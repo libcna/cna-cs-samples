@@ -1,0 +1,61 @@
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!--
+    Everything an unmodified 2010-era XNA sample needs in order to compile on .NET 8.
+
+    This file exists so that no sample's own source has to change. Each setting below replaces
+    something the original Visual Studio 2010 project said, or switches off a modern C# default
+    the original code predates. A sample .csproj should carry only its identity.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+
+    <!-- The original Windows projects are all WinExe. -->
+    <OutputType>WinExe</OutputType>
+
+    <!-- 2010 C#: explicit using lists, no nullable reference types, no file-scoped namespaces.
+         Implicit usings would silently add namespaces the original never imported and can make a
+         previously unambiguous name ambiguous. -->
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <!-- Every sample ships Properties/AssemblyInfo.cs. Letting the SDK generate its own would
+         collide with it (CS0579), and deleting the upstream file would be a source deviation. -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+    <!-- Old code produces warnings. They are evidence about the sample, so they are reported
+         rather than suppressed, and they never fail the build. -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+
+    <!-- Keeps bin/<Configuration>/ flat, so the run script can find one executable. -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- Content.RootDirectory is "Content" in essentially every sample. -->
+    <CnaSampleContentDirectory Condition="'$(CnaSampleContentDirectory)' == ''">Content</CnaSampleContentDirectory>
+  </PropertyGroup>
+
+  <!-- The DefineConstants of the original Windows configuration. A sample whose selected
+       configuration differs overrides CnaSampleDefineConstants in its own .csproj. -->
+  <PropertyGroup>
+    <CnaSampleDefineConstants Condition="'$(CnaSampleDefineConstants)' == ''">WINDOWS</CnaSampleDefineConstants>
+    <DefineConstants>$(DefineConstants);$(CnaSampleDefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaCsRoot)' != ''" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/$(CnaSampleContentDirectory)')">
+    <None Include="$(CnaSampleContentDirectory)/**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="ValidateCnaCsRoot" BeforeTargets="ResolveProjectReferences">
+    <Error Condition="'$(CnaCsRoot)' == ''"
+           Text="CNA.NET was not found. Check out cna-cs beside this repository, or set CNA_CS_ROOT or -p:CnaCsRoot=/path/to/cna-cs." />
+    <Error Condition="!Exists('$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj')"
+           Text="CnaCsRoot='$(CnaCsRoot)' does not contain src/CNA.XnaCompat/CNA.XnaCompat.csproj." />
+  </Target>
+
+</Project>
