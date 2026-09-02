@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>InputSequenceSample</RootNamespace>
+    <AssemblyName>InputSequenceSample</AssemblyName>
+    <StartupObject>InputSequenceSample.Program</StartupObject>
+  </PropertyGroup>
+</Project>

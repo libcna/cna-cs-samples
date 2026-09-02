@@ -56,8 +56,8 @@ Recount from the table rather than trusting these numbers
 | ✅ complete | 14 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 2 |
-| 🛑 owner decision | 1 |
-| ⬜ not started | 61 |
+| 🛑 owner decision | 2 |
+| ⬜ not started | 60 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
 loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -124,6 +124,29 @@ branch, defining `WINDOWS` in the project file answers it with no invented code 
 phone-only sample has before escalating it.
 
 Evidence: `samples/Bounce/missing.md`.
+
+
+### DEC-002 — `Microsoft.Xna.Framework.Net`
+
+Raised by `CSSAMPLE-010` InputSequence, 2026-09-02. **Blocks 1 row outright; 2 more mention it.**
+
+`Microsoft.Xna.Framework.Net` does not exist in CNA.NET, so `using Microsoft.Xna.Framework.Net;`
+fails to compile. Unlike `DEC-001`'s `Microsoft.Devices`, this **is** real XNA 4.0 surface, so
+`rules.md`'s ladder points at `../cna-cs` — but it is the Xbox LIVE session subsystem, and
+implementing it is a large new subsystem rather than a bounded fix. CNA.NET already records the gap
+(`docs/xna-compatibility.md:188`, "GamerServices and networking/session APIs need separate
+inventory"); `GamerServices` and `Storage` are present.
+
+The rows split usefully. `CSSAMPLE-010` and `CSSAMPLE-038` carry only the XNA template's boilerplate
+`using` and touch **no type** in the namespace; `CSSAMPLE-081` genuinely uses `NetworkSession`,
+`LocalNetworkGamer`, `NetworkGamer`, `NetworkSessionType`, `PacketReader` and `PacketWriter`.
+
+Options: (1) declare the namespace's XNA 4.0 public types with no implementation behind them —
+metadata work, not a networking project, and it unblocks the two boilerplate rows; (2) implement the
+subsystem, which only `CSSAMPLE-081` actually needs; (3) leave it, which costs one row, since
+`CSSAMPLE-038` and `CSSAMPLE-081` are blocked by `CNA-REPORT-002` anyway.
+
+Evidence: `samples/InputSequence/missing.md`.
 
 ## Verified toolchain baseline
 
@@ -204,7 +227,7 @@ port ships.
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ⬜ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
 | CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ⬜ |
-| CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | ⬜ |
+| CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | 🛑 |
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ⬜ |
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
