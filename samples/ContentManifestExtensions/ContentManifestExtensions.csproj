@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: ContentManifestExtensions_4_0
+    Selected configuration: SampleGame/SampleGame/SampleGame (Windows).csproj, Release|x86
+    (Windows, HiDef). Main is in a static Program class in Program.cs.
+
+    Upstream's other project, ContentManifestExtensions.csproj, is a Content Pipeline
+    importer/processor library. It is design-time only and is not built here; see missing.md.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SampleGame</RootNamespace>
+    <AssemblyName>SampleGame</AssemblyName>
+    <StartupObject>SampleGame.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

@@ -9,8 +9,10 @@ PORT="${2:-}"
 echo "### solutions"; find "$U" -maxdepth 1 -name "*.sln" -printf "  %f\n" | sort
 echo "### projects"; find "$U" -name "*.csproj" -printf "  %P\n" | sort
 echo "### Windows/Xbox project settings"
-for p in $(find "$U" -name "*.csproj" | grep -viE "phone|mango|silverlight" | sort); do
-    echo "  -- ${p#$U/}"
+# -print0 and read -d: XNA project names contain spaces ("SampleGame (Windows).csproj").
+find "$U" -name "*.csproj" -print0 | sort -z | while IFS= read -r -d "" p; do
+    case "$p" in *[Pp]hone*|*[Mm]ango*|*[Ss]ilverlight*) continue ;; esac
+    echo "  -- ${p#"$U"/}"
     grep -hE "<(OutputType|RootNamespace|AssemblyName|XnaPlatform|XnaProfile|DefineConstants)>" "$p" \
         | sed 's/^[[:space:]]*/     /'
 done

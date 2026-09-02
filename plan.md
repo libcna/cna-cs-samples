@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 6 |
+| ✅ complete | 7 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 1 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 70 |
+| ⬜ not started | 69 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **32 of the 78 rows** — every one that
 draws a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -264,7 +264,7 @@ port ships.
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |
 | CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ⬜ |
 | CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ⬜ |
-| CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ⬜ |
+| CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |
 | CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ⬜ |
 | CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ⬜ |
 | CSSAMPLE-102 | `Orientation_4_0` | `Orientation` | 4 / 528 | 2 | ⬜ |
