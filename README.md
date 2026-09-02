@@ -54,6 +54,10 @@ yet work on C++ CNA is not attempted, because a failure here could not be attrib
 Compiled content (`.xnb`) is copied byte-for-byte from `../cna-samples`. CNA reads `.xnb` and
 cannot produce it, so no content is built in this repository.
 
+`../cna-cs` is the only dependency this repository fixes. A defect below the C ABI is recorded in
+[cna-bugs.md](cna-bugs.md) with a reproduction script instead, because CNA is not ours to change
+from here.
+
 ## License
 
 Microsoft Permissive License (Ms-PL) — see [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).

@@ -238,16 +238,20 @@ port ships.
 ## CNA defect register
 
 `rules.md` forbids repairing `../cnanext` or `../sharp-runtimenext` from here, so a defect found
-below the C ABI is written down instead. This is that list. Each row names the defect precisely
-enough for someone working in CNA to act on it without re-deriving it.
+below the C ABI is written down instead. [`cna-bugs.md`](cna-bugs.md) holds the full records —
+observation, reproduction, what is established and what is not. This is the index.
 
-| Id | Found by | Owner | Defect |
+| Id | Found by | Blocks? | Defect |
 |---|---|---|---|
-| CNA-REPORT-001 | `CSSAMPLE-001` | `../cnanext` | The XNA game window is created **resizable**, and a resized window leaves the backbuffer image at the bottom-left instead of filling or scaling. XNA's `GameWindow.AllowUserResizing` defaults to `false` (FNA `FNAWindow.cs:32`, and `SDL2_FNAPlatform.cs:416` creates the window without `SDL_WINDOW_RESIZABLE`), but CNA's `GraphicsDevice.cpp:2893` builds its `WindowDescription` without setting `resizable`, taking the platform default of `true` (`WindowDescription.hpp:86`). The managed layer places no pixels: `Present()` is a bare ABI call and `ClientSizeChanged` only forwards an event. Measured at a forced 1200x900: content bbox x 3..852, y 420..898, and the game-visible `Viewport.Width` was about 640. Evidence: `samples/PrimitivesSample/missing.md`. |
+| [CNA-REPORT-001](cna-bugs.md#cna-report-001--the-xna-game-window-is-resizable-and-a-resized-window-leaves-the-image-at-the-bottom-left) | `CSSAMPLE-001` | no | The XNA game window is created resizable, and a resized window leaves the backbuffer image at the bottom-left. XNA's `AllowUserResizing` defaults to false; CNA's `WindowDescription` default is `resizable = true` and the XNA window creation never overrides it. |
 
 A register row does not block a sample. A sample that cannot run because of one is `⛔`; a sample
 that runs correctly within what the original defines stays `✅` with the difference recorded, which
 is `CSSAMPLE-001`'s case — the original window cannot be resized at all.
+
+Each row must carry a reproduction. `CNA-REPORT-001`'s is `scripts/repro-cna-report-001.sh`, which
+takes an arbitrary executable and window name so the same measurement can be pointed at a C++ CNA
+game built from the same revision.
 
 ## Session report and commit contract
 

@@ -131,8 +131,9 @@ placement: `CNA.Framework.GraphicsDevice.Present()` is a bare call to
 resets the backbuffer — which is also XNA-correct here, since XNA's `GraphicsDeviceManager` only
 resizes the backbuffer when `AllowUserResizing` is true.
 
-Per `rules.md`, a CNA defect is reported and not repaired from this repository. It is recorded in
-`plan.md`'s CNA defect register as `CNA-REPORT-001`.
+Per `rules.md`, a CNA defect is reported and not repaired from this repository. The full record,
+including what is *not* established, is [`cna-bugs.md`](../../cna-bugs.md) `CNA-REPORT-001`;
+`scripts/repro-cna-report-001.sh` reproduces it in one command.
 
 Two further observations, recorded because they will matter to whoever fixes it:
 
@@ -142,8 +143,9 @@ Two further observations, recorded because they will matter to whoever fixes it:
 - The C++ port appeared to stretch to fill the same forced resize while this build did not, but
   **that comparison is not sound** and is not offered as evidence: the port's binary is from
   2026-08-25 and is statically linked against the CNA tree of that date, while this run used the
-  Release C ABI library built on 2026-09-01. A week of CNA changes separates them. Settling whether
-  the presentation genuinely differs needs the port rebuilt against the current `../cnanext`.
+  Release C ABI library built on 2026-09-01. A week of CNA changes separates them. Settling it
+  needs the port rebuilt against the current `../cnanext` and put through
+  `scripts/repro-cna-report-001.sh`, which takes an arbitrary executable for that purpose.
 
 The row stays `✅`: at its own 853x480 size — the only size the original can be in — the sample is
 correct, and this difference is neither a source deviation nor something this repository can fix.

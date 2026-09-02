@@ -75,9 +75,16 @@ on Xbox 360 or Windows Phone 7, for instance. Then, in this order:
 1. If the API is XNA 4.0's, it belongs in `../cna-cs`. **Fix it there.** That is the whole point of
    this repository, and it is the only dependency this repository may change.
 2. If the gap is in CNA itself — a missing native behaviour, a wrong result, a crash below the
-   binding — **do not fix it.** Write it up in the sample's `missing.md` under
-   *Blocked on CNA*, mark the row `⛔` in `plan.md`, and go to the next sample. `../cnanext` and
-   `../sharp-runtimenext` are read-only from here.
+   binding — **do not fix it.** Record it in [`cna-bugs.md`](cna-bugs.md) with a reproduction
+   script under `scripts/`, index it in `plan.md`'s CNA defect register, and summarise it in the
+   sample's `missing.md`. If it stops the sample running, mark the row `⛔` and go to the next
+   sample; if the sample still runs correctly within what the original defines, the row can stay
+   `✅` with the difference recorded. `../cnanext` and `../sharp-runtimenext` are read-only from
+   here.
+
+   A CNA record must separate what is established from what is not. A comparison against a C++ port
+   built from a different CNA revision is not evidence, and saying so in the record is what stops it
+   being quoted as such later.
 3. Only when neither applies is the source edited. Make the smallest possible edit, keep the
    original line in a comment beside it, and record it in `missing.md` under *Source deviations*
    with the exact upstream text, the replacement, and why no project-file setting could do it.

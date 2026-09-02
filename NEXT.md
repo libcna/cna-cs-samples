@@ -76,7 +76,8 @@ all passing.
 
 ### Reported to CNA, not repaired
 
-`CNA-REPORT-001` in `plan.md`'s new CNA defect register: the owner maximized the sample's window
+`CNA-REPORT-001`, recorded in full in the new [`cna-bugs.md`](cna-bugs.md) and indexed from
+`plan.md`: the owner maximized the sample's window
 and the 853x480 image stayed at the bottom-left. Established by measurement, not inspection — the
 window forced to 1200x900 puts the content at x 3..852, y 420..898, which is the OpenGL
 framebuffer origin.
@@ -91,7 +92,12 @@ call, `ClientSizeChanged` only forwards an event — so this is not `../cna-cs`'
 Worth knowing for whoever picks it up: the game-visible `Viewport.Width` after that resize was
 about 640 in a 1200-wide window, and the C++ port's apparent difference in the same test is **not**
 usable as evidence — its binary is from 2026-08-25 and statically linked against the CNA tree of
-that date, a week behind the library used here.
+that date, a week behind the library used here. `scripts/repro-cna-report-001.sh` takes an
+arbitrary executable and window name precisely so a rebuilt port can settle that.
+
+`cna-bugs.md` is new and is where every below-the-ABI finding goes from now on: `rules.md` says
+report and move on, and a finding scattered across three documents is a finding that gets lost.
+Each record must separate what is established from what is not.
 
 ### Open items
 
@@ -160,7 +166,8 @@ against.
 
 ### Reported to CNA, not repaired
 
-`CNA-REPORT-001` in `plan.md`'s new CNA defect register: the owner maximized the sample's window
+`CNA-REPORT-001`, recorded in full in the new [`cna-bugs.md`](cna-bugs.md) and indexed from
+`plan.md`: the owner maximized the sample's window
 and the 853x480 image stayed at the bottom-left. Established by measurement, not inspection — the
 window forced to 1200x900 puts the content at x 3..852, y 420..898, which is the OpenGL
 framebuffer origin.
@@ -175,7 +182,12 @@ call, `ClientSizeChanged` only forwards an event — so this is not `../cna-cs`'
 Worth knowing for whoever picks it up: the game-visible `Viewport.Width` after that resize was
 about 640 in a 1200-wide window, and the C++ port's apparent difference in the same test is **not**
 usable as evidence — its binary is from 2026-08-25 and statically linked against the CNA tree of
-that date, a week behind the library used here.
+that date, a week behind the library used here. `scripts/repro-cna-report-001.sh` takes an
+arbitrary executable and window name precisely so a rebuilt port can settle that.
+
+`cna-bugs.md` is new and is where every below-the-ABI finding goes from now on: `rules.md` says
+report and move on, and a finding scattered across three documents is a finding that gets lost.
+Each record must separate what is established from what is not.
 
 ### Open items
 
