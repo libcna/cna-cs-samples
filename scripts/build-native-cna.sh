@@ -25,6 +25,18 @@ fi
 #
 # CSSAMPLE-028 hit exactly that against cmake-build-release-capi, which is Release OPENGLES3 and
 # looked like the obvious choice. Renderer and build type are not enough to pick a tree.
+# Same search, without the compiled-effects requirement.
+find_existing_any() {
+    local d cache
+    for d in "$cna_root"/cmake-build-* "$cna_root"/build "$cna_root"/build-*; do
+        cache="$d/CMakeCache.txt"
+        [ -f "$cache" ] || continue
+        grep -q "^CNA_GRAPHICS_RENDERER:STRING=$renderer\$" "$cache" || continue
+        [ -f "$d/modules/c-api/libcna_c_api.so" ] || continue
+        echo "$(grep -c '^CMAKE_BUILD_TYPE:STRING=Release$' "$cache") $(stat -c %Y "$d/modules/c-api/libcna_c_api.so") $d"
+    done | sort -rn | head -1 | cut -d' ' -f3-
+}
+
 find_existing() {
     local d cache
     for d in "$cna_root"/cmake-build-* "$cna_root"/build "$cna_root"/build-*; do
@@ -38,6 +50,19 @@ find_existing() {
 }
 
 build_dir="$(find_existing || true)"
+
+# Fall back to a tree WITHOUT compiled effects rather than stopping the campaign. Most rows do not
+# load a compiled effect, and the ones that do are blocked on CNA-REPORT-002 anyway. The warning is
+# the point: a silent fallback would turn "this sample needs an effect" into a confusing runtime
+# error much later.
+if [ -z "$build_dir" ]; then
+    build_dir="$(CNA_REQUIRE_COMPILED_EFFECTS=0 find_existing_any || true)"
+    if [ -n "$build_dir" ]; then
+        echo "warning: no $renderer tree with CNA_EASYGL_COMPILED_EFFECTS=ON; using $build_dir," >&2
+        echo "         which cannot load compiled .fx bytecode. Rows needing an effect will fail" >&2
+        echo "         with GraphicsCapability::CompiledEffects is false." >&2
+    fi
+fi
 
 if [ -z "$build_dir" ]; then
     build_dir="$cna_root/cmake-build-release-capi"

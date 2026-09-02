@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: GesturesSample_4_0
+    Upstream ships one solution, TouchGestureSample.sln, and one project:
+    TouchGestureSample.csproj, XnaPlatform "Windows Phone", OutputType Library, packaged as a XAP
+    with DefineConstants TRACE;WINDOWS_PHONE.
+
+    This build defines WINDOWS instead, and that is the whole of the deviation. It is recorded in
+    missing.md and it is not arbitrary: the sample's ONLY preprocessor directive in any file is the
+    `#if WINDOWS || XBOX` around Program, upstream wrote that desktop entry point itself, and the
+    Game1 it constructs exists. There is no `#if WINDOWS_PHONE` code branch to lose, so the
+    constant decides exactly one thing: whether the entry point the XAP host would otherwise have
+    supplied is compiled.
+  -->
+  <PropertyGroup>
+    <RootNamespace>TouchGestureSample</RootNamespace>
+    <AssemblyName>TouchGestureSample</AssemblyName>
+    <StartupObject>TouchGestureSample.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

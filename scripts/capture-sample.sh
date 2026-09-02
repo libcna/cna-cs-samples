@@ -65,9 +65,20 @@ env -u WAYLAND_DISPLAY DISPLAY="$display" SDL_VIDEODRIVER=x11 LIBGL_ALWAYS_SOFTW
     CNA_NATIVE_LIBRARY="$lib" "$exe" >"$out/run.log" 2>&1 &
 sample_pid=$!
 
+# Pick a NAMED window, not just any match. SDL creates an unnamed 1x1 helper window beside the
+# real one, and a loose pattern plus the wrong list position selects it; the crop is then garbage
+# and the comparison invents a difference. CSSAMPLE-079 produced a 124187-pixel "difference"
+# against the C++ port that way, which was entirely this bug.
 window=""
 for _ in $(seq 1 120); do
-    window="$(DISPLAY="$display" xdotool search --onlyvisible --name "$window_pattern" 2>/dev/null | head -1 || true)"
+    window="$(DISPLAY="$display" xwininfo -root -tree 2>/dev/null |
+        grep -oE '0x[0-9a-f]+ "[^"]+": \("[^"]*" "[^"]*"\)  [0-9]+x[0-9]+' |
+        awk -v pat="$window_pattern" '{
+            id=$1; line=$0
+            if (match(line, /"[^"]+"/)) { name=substr(line, RSTART+1, RLENGTH-2) }
+            if (match(line, /[0-9]+x[0-9]+$/)) { split(substr(line, RSTART, RLENGTH), d, "x") }
+            if (name ~ pat && d[1] > 8 && d[2] > 8) { print id; exit }
+        }')"
     [ -n "$window" ] && break
     if ! kill -0 "$sample_pid" 2>/dev/null; then
         echo "error: the sample exited before its window appeared" >&2

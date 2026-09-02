@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 7 |
+| ✅ complete | 8 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 1 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 69 |
+| ⬜ not started | 68 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **32 of the 78 rows** — every one that
 draws a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -114,8 +114,14 @@ which is this repository implementing a Microsoft SDK and is what the zero-worka
 prevent; (3) declare phone-only samples out of scope here.
 
 A second ruling is needed either way: phone-only samples have **no entry point**, because the XAP
-host supplied it and the shipped `Program.Main` is `#if WINDOWS || XBOX` guarded and constructs a
-`Game1` class that does not exist. Supplying one means adding a file outside the upstream subtree.
+host supplied it and the shipped `Program.Main` is `#if WINDOWS || XBOX` guarded.
+
+**`CSSAMPLE-079` narrowed this considerably and it is now two questions, not one.** Where the
+guarded `Main` constructs a class that *exists* and the sample has no other `#if WINDOWS_PHONE`
+branch, defining `WINDOWS` in the project file answers it with no invented code and no source edit
+— GesturesSample is `✅` on exactly that basis. Only samples shaped like Bounce, whose guarded
+`Main` names a `Game1` that is not in the sample at all, still need a ruling. Check which shape a
+phone-only sample has before escalating it.
 
 Evidence: `samples/Bounce/missing.md`.
 
@@ -258,7 +264,7 @@ port ships.
 | CSSAMPLE-076 | `SplitScreenSample_4_0` | `SplitScreen` | 4 / 485 | 3 | ⬜ |
 | CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | ⬜ |
 | CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ⬜ |
-| CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ⬜ |
+| CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ✅ |
 | CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ⬜ |
 | CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ⬜ |
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |

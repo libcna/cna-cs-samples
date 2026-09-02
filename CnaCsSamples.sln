@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AimingSample", "samples\Aim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentManifestExtensions", "samples\ContentManifestExtensions\ContentManifestExtensions.csproj", "{0985E533-E199-4D1F-ACEA-7A35AE067EC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturesSample", "samples\GesturesSample\GesturesSample.csproj", "{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{0985E533-E199-4D1F-ACEA-7A35AE067EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0985E533-E199-4D1F-ACEA-7A35AE067EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0985E533-E199-4D1F-ACEA-7A35AE067EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{51E15D00-434C-4437-BF60-ADD52BC1370A} = {56575440-B495-4DA2-A48E-9CE41CEB8639}
@@ -72,5 +78,6 @@ Global
 		{FADC911A-58D0-4A26-B460-1D37010A677A} = {56575440-B495-4DA2-A48E-9CE41CEB8639}
 		{BCBCB820-5895-445E-BD5C-BBA15683673E} = {56575440-B495-4DA2-A48E-9CE41CEB8639}
 		{0985E533-E199-4D1F-ACEA-7A35AE067EC3} = {56575440-B495-4DA2-A48E-9CE41CEB8639}
+		{7F3DDCF2-94E7-4E2E-BD0D-2CFDDAE8E71D} = {56575440-B495-4DA2-A48E-9CE41CEB8639}
 	EndGlobalSection
 EndGlobal
