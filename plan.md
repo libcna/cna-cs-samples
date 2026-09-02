@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 5 |
+| ✅ complete | 6 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 1 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 71 |
+| ⬜ not started | 70 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **32 of the 78 rows** — every one that
 draws a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -212,7 +212,7 @@ port ships.
 | CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⬜ |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ⬜ |
 | CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ⬜ |
-| CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ⬜ |
+| CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
 | CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ⬜ |
 | CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ⛔ |
 | CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ⬜ |
@@ -296,6 +296,7 @@ observation, reproduction, what is established and what is not. This is the inde
 |---|---|---|---|
 | [CNA-REPORT-001](cna-bugs.md#cna-report-001--the-xna-game-window-is-resizable-and-a-resized-window-leaves-the-image-at-the-bottom-left) | `CSSAMPLE-001` | no | The XNA game window is created resizable, and a resized window leaves the backbuffer image at the bottom-left. XNA's `AllowUserResizing` defaults to false; CNA's `WindowDescription` default is `resizable = true` and the XNA window creation never overrides it. |
 | [CNA-REPORT-002](cna-bugs.md#cna-report-002--destroying-an-owned-technique-or-pass-collection-view-invalidates-the-effects-real-one) | `CSSAMPLE-028` | **yes — 32 rows** | Destroying the technique or pass-collection view that the C ABI documents as *owned* invalidates the effect's real one, so the second frame of any `ModelMesh.Draw` throws `InvalidHandle`. Either the destroy path or the header's "owned" is wrong; CNA owns the choice. |
+| [CNA-REPORT-003](cna-bugs.md#cna-report-003--the-opengles3-build-with-compiled-effects-segfaults-during-shutdown) | `CSSAMPLE-018` | no, but it removes the only OPENGLES3 tree that loads compiled effects | A game on the `cmake-build-debug` library renders correctly and then dies with `SIGSEGV` on its own Escape exit. Not staleness — a fresh rebuild crashes identically. The option matrix narrows it to `CNA_ENABLE_DRACO=OFF` or to `OPENGLES3` combined with compiled effects, and stops there rather than configuring a new build tree. |
 
 A register row does not block a sample. A sample that cannot run because of one is `⛔`; a sample
 that runs correctly within what the original defines stays `✅` with the difference recorded, which

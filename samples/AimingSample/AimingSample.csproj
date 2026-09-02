@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: AimingSample_4_0
+    Selected configuration: Aiming/AimingWindows.csproj, Release|x86 (Windows, Reach).
+    Main is in a static Program class at the bottom of AimingGame.cs.
+    The directory is AimingSample to match the C++ port; the assembly keeps the original's Aiming.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Aiming</RootNamespace>
+    <AssemblyName>Aiming</AssemblyName>
+    <StartupObject>Aiming.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

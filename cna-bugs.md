@@ -194,3 +194,69 @@ Both readings are consistent with the evidence and CNA owns the choice:
 | `../cnanext` | `next` `1caa45c84`, C ABI 0.21.0, `cmake-build-debug`, OPENGLES3, `CNA_EASYGL_COMPILED_EFFECTS=ON` |
 | `../cna-cs` | `develop` `5bcfa70` |
 | Renderer | EasyGL, OpenGL ES 3.2, Mesa 25.0.7, `LIBGL_ALWAYS_SOFTWARE=1` under Xvfb |
+
+---
+
+## CNA-REPORT-003 — the OPENGLES3 build with compiled effects segfaults during shutdown
+
+| | |
+|---|---|
+| Found by | `CSSAMPLE-018` PerPixelCollision, 2026-09-02 |
+| Owner | `../cnanext` |
+| Affects | any game on a `cmake-build-debug`-configured library; the campaign works around it by using a different tree |
+| Blocks a sample? | Not directly — but it removes the only OPENGLES3 tree that can load compiled effects |
+| Reproduction | `scripts/capture-sample.sh RectangleCollision --window '.'` with `CNA_NATIVE_LIBRARY` pointed at that tree |
+
+### Observed
+
+The game runs, renders and responds. On the original's own Escape exit the process dies with
+`SIGSEGV` (exit code 139, core dumped) instead of exiting 0. Nothing is printed before the crash;
+the last log line is the ordinary asset loading.
+
+Reproduced with two different samples — `CSSAMPLE-018` PerPixelCollision and `CSSAMPLE-019`
+RectangleCollision. **Neither uses a compiled effect**; both load two textures and draw sprites. So
+it is not the effect path at run time, it is the teardown.
+
+### Not staleness
+
+The first hypothesis was a stale tree. `cmake --build cmake-build-debug --target cna_c_api` rebuilt
+111 targets and relinked the library on 2026-09-02 20:28. **The freshly built library crashes
+identically.**
+
+### What distinguishes the crashing build
+
+Four `../cnanext` trees, each driven to the same Escape exit with the same sample:
+
+| tree | renderer | compiled effects | devices | draco | static C API | exit |
+|---|---|---|---|---|---|---:|
+| `cmake-build-release-capi` | OPENGLES3 | OFF | OFF | ON | ON | 0 |
+| `cmake-build-opengles3` | OPENGLES3 | OFF | ON | ON | OFF | 0 |
+| `cmake-build-opengl33` | OPENGL33 | ON | OFF | ON | ON | 0 |
+| **`cmake-build-debug`** | **OPENGLES3** | **ON** | OFF | **OFF** | ON | **139** |
+
+Reading the matrix rather than guessing from it:
+
+- **Compiled effects alone are not the cause** — `cmake-build-opengl33` has them ON and exits 0.
+- **Devices, the static C API and the renderer alone are not the cause** — each value of each
+  appears in a tree that exits 0.
+- The **only option unique to the crashing tree is `CNA_ENABLE_DRACO=OFF`.** Every clean tree has
+  it ON. That is a surprising suspect for a shutdown crash, which is exactly why it is worth
+  stating.
+- The other candidate the matrix cannot rule out is the **combination** of `OPENGLES3` with
+  compiled effects, since the only other compiled-effects tree is a different renderer.
+
+### What this repository did not do
+
+Isolating the two candidates needs a tree that differs in exactly one option, which means
+configuring a new CNA build. The openeggbert build rules close the list of build directories and
+exist to prevent exactly that, and the campaign does not currently need a compiled-effects library
+— the one sample that needs one, `CSSAMPLE-028`, is blocked on `CNA-REPORT-002` anyway. So the
+narrowing stops here, honestly short of a single cause, and the rows that need no compiled effect
+are measured on `cmake-build-release-capi`, which exits 0.
+
+There is no backtrace: neither `gdb` nor `catchsegv` is installed on this host.
+
+### Measured on
+
+`../cnanext` `next` `1caa45c84` plus the working tree as it stood, C ABI 0.21.0, EasyGL on OpenGL
+ES 3.2 (Mesa 25.0.7), `LIBGL_ALWAYS_SOFTWARE=1` under Xvfb.
