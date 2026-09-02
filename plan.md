@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 2 |
+| ✅ complete | 3 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 75 |
+| ⬜ not started | 74 |
 | **total** | **78** |
 
 Both finished rows run from byte-identical upstream sources with no deviation.
@@ -65,6 +65,12 @@ Both finished rows run from byte-identical upstream sources with no deviation.
 `CSSAMPLE-001` PrimitivesSample found one real binding defect: `GraphicsDevice.Clear(Color)`
 cleared only the colour target, so every depth-tested draw was rejected and the window stayed
 black. Fixed in `../cna-cs` and pinned by a test.
+
+`CSSAMPLE-002` Primitives3D loads the official XNA `hudfont.xnb` through `Content.Load<SpriteFont>`
+and renders text pixel-identical to the C++ port — which could not use the compiled font and
+shipped a converted CNA-native one instead. The `.xnb` column for this row reads 1 rather than the
+0 the initial inventory recorded, because that count came from the port's `Content/` and the port
+has no `.xnb`.
 
 `CSSAMPLE-008` ShapeRendering needed no change anywhere. It is the row that shows what this
 repository is for: the C++ port had to invent a `SHAPE_RENDERING_SAMPLE_DEBUG` macro and
@@ -176,7 +182,7 @@ port ships.
 | Task | Upstream | C++ port | Size (files / lines) | .xnb | Status |
 |---|---|---|---:|---:|---|
 | CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
-| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 0 | ⬜ |
+| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | ✅ |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⬜ |

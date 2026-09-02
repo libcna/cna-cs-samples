@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: Primitives3DSample_4_0
+    Selected configuration: Primitives3D/Primitives3DWindows.csproj, Release|x86 (Windows, Reach).
+    Content: hudfont.xnb, official XNA Content Pipeline output. See missing.md for its provenance,
+    which is not this repository's usual one.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Primitives3D</RootNamespace>
+    <AssemblyName>Primitives3D</AssemblyName>
+    <StartupObject>Primitives3D.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>
