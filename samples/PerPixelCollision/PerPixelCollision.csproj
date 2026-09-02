@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: PerPixelCollisionSample_4_0
+    Selected configuration: PerPixelCollision/PerPixelCollisionWindows.csproj, Release|x86
+    (Windows, Reach). Main is in a static Program class in Program.cs.
+  -->
+  <PropertyGroup>
+    <RootNamespace>PerPixelCollision</RootNamespace>
+    <AssemblyName>PerPixelCollision</AssemblyName>
+    <StartupObject>PerPixelCollision.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

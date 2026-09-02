@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 4 |
+| ✅ complete | 5 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 1 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 72 |
+| ⬜ not started | 71 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **32 of the 78 rows** — every one that
 draws a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -204,7 +204,7 @@ port ships.
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
 | CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | 🛑 |
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
-| CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ⬜ |
+| CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ⬜ |
 | CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | ⬜ |
