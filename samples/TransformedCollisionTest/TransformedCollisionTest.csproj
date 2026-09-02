@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>TransformedCollisionTest</RootNamespace>
+    <AssemblyName>TransformedCollisionTest</AssemblyName>
+    <StartupObject>TransformedCollisionTest.Program</StartupObject>
+  </PropertyGroup>
+</Project>

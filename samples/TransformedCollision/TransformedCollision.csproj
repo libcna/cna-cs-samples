@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>TransformedCollision</RootNamespace>
+    <AssemblyName>TransformedCollision</AssemblyName>
+    <StartupObject>TransformedCollision.Program</StartupObject>
+  </PropertyGroup>
+</Project>

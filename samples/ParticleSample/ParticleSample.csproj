@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>ParticleSample</RootNamespace>
+    <AssemblyName>ParticleSample</AssemblyName>
+    <StartupObject>ParticleSample.Program</StartupObject>
+  </PropertyGroup>
+</Project>

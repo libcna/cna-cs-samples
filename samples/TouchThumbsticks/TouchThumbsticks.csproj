@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>TouchThumbSticks</RootNamespace>
+    <AssemblyName>TouchThumbSticks</AssemblyName>
+    <StartupObject>TouchThumbsticks.Program</StartupObject>
+  </PropertyGroup>
+</Project>

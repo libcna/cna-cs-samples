@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Waypoints</RootNamespace>
+    <AssemblyName>Waypoints</AssemblyName>
+    <StartupObject>Waypoint.Program</StartupObject>
+  </PropertyGroup>
+</Project>

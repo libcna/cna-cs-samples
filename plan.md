@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 15 |
+| ✅ complete | 18 |
 | 🛠 in progress | 0 |
-| ⛔ blocked on CNA | 2 |
+| ⛔ blocked on CNA | 4 |
 | 🛑 owner decision | 3 |
-| ⬜ not started | 58 |
+| ⬜ not started | 53 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
 loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -241,16 +241,16 @@ port ships.
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
-| CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ⬜ |
+| CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ✅ |
 | CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | 🛑 |
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ⬜ |
-| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⬜ |
+| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⛔ |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ⬜ |
 | CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ✅ |
 | CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
-| CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ⬜ |
+| CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ✅ |
 | CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ⛔ |
-| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ⬜ |
+| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ⛔ |
 | CSSAMPLE-030 | `CameraShake_4_0` | `CameraShake` | 5 / 630 | 6 | ⬜ |
 | CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ⬜ |
 | CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ⬜ |
@@ -294,7 +294,7 @@ port ships.
 | CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | ⬜ |
 | CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ✅ |
 | CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ✅ |
-| CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ⬜ |
+| CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ✅ |
 | CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ⬜ |
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |
 | CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ✅ |
@@ -331,6 +331,7 @@ observation, reproduction, what is established and what is not. This is the inde
 |---|---|---|---|
 | [CNA-REPORT-001](cna-bugs.md#cna-report-001--the-xna-game-window-is-resizable-and-a-resized-window-leaves-the-image-at-the-bottom-left) | `CSSAMPLE-001` | no | The XNA game window is created resizable, and a resized window leaves the backbuffer image at the bottom-left. XNA's `AllowUserResizing` defaults to false; CNA's `WindowDescription` default is `resizable = true` and the XNA window creation never overrides it. |
 | [CNA-REPORT-002](cna-bugs.md#cna-report-002--destroying-an-owned-technique-or-pass-collection-view-invalidates-the-effects-real-one) | `CSSAMPLE-028` | **yes — 37 rows** | Destroying the technique or pass-collection view that the C ABI documents as *owned* invalidates the effect's real one, so the second frame of any `ModelMesh.Draw` throws `InvalidHandle`. Either the destroy path or the header's "owned" is wrong; CNA owns the choice. |
+| [CNA-REPORT-004](cna-bugs.md#cna-report-004--graphicsdevice-is-unreachable-from-every-drawablegamecomponent-callback) | `CSSAMPLE-029`, `CSSAMPLE-023` | **yes — up to 25 rows** | `GraphicsDevice` throws in every `DrawableGameComponent` callback: native does not treat its own component callbacks as lifecycle callbacks, so a component can never borrow the device it exists to draw with. No managed workaround — the ABI forbids caching the handle. |
 | [CNA-REPORT-003](cna-bugs.md#cna-report-003--the-opengles3-build-with-compiled-effects-segfaults-during-shutdown) | `CSSAMPLE-018` | no, but it removes the only OPENGLES3 tree that loads compiled effects | A game on the `cmake-build-debug` library renders correctly and then dies with `SIGSEGV` on its own Escape exit. Not staleness — a fresh rebuild crashes identically. The option matrix narrows it to `CNA_ENABLE_DRACO=OFF` or to `OPENGLES3` combined with compiled effects, and stops there rather than configuring a new build tree. |
 
 A register row does not block a sample. A sample that cannot run because of one is `⛔`; a sample

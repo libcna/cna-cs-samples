@@ -265,3 +265,85 @@ There is no backtrace: neither `gdb` nor `catchsegv` is installed on this host.
 
 `../cnanext` `next` `1caa45c84` plus the working tree as it stood, C ABI 0.21.0, EasyGL on OpenGL
 ES 3.2 (Mesa 25.0.7), `LIBGL_ALWAYS_SOFTWARE=1` under Xvfb.
+
+---
+
+## CNA-REPORT-004 — `GraphicsDevice` is unreachable from every `DrawableGameComponent` callback
+
+| | |
+|---|---|
+| Found by | `CSSAMPLE-029` ParticleSample and `CSSAMPLE-023` WaypointSample, 2026-09-02 |
+| Owner | `../cnanext` |
+| Affects | any game that adds a `DrawableGameComponent` that touches the device — 25 of the 78 eligible rows declare one |
+| Blocks a sample? | **Yes.** `CSSAMPLE-023` and `CSSAMPLE-029` are `⛔`. |
+| Reproduction | `../cna-cs/build-probe/drawable-component/` |
+
+### Observed
+
+`DrawableGameComponent` is the standard XNA way to give a game a self-drawing part, and its whole
+point is the `GraphicsDevice` property it inherits. **That property throws in every callback the
+component receives:**
+
+```text
+cna_game_get_graphics_device failed with native result InvalidState:
+The graphics device may be borrowed only during a game lifecycle callback.
+```
+
+A probe that reports the device from all four callbacks:
+
+```text
+game.Initialize before base
+game.LoadContent
+game.Initialize after base
+  component.LoadContent    GraphicsDevice = THREW CnaException: ... only during a game lifecycle callback
+  component.Initialize     GraphicsDevice = THREW ...
+  component.Update         GraphicsDevice = THREW ...
+  component.Draw           GraphicsDevice = THREW ...
+```
+
+So native does not treat its own component callbacks as lifecycle callbacks, and a component can
+never borrow the device it exists to draw with.
+
+### How the two samples fail, differently
+
+The `GameComponent` machinery captures a callback exception and rethrows it at the next
+managed-initiated call, so the symptom depends on what the sample does next:
+
+- **`CSSAMPLE-023` WaypointSample** reaches shutdown and the capture surfaces there:
+  `GameComponentCollection.DisposeAllKnownComponents` → `GameComponent.Dispose` →
+  `ThrowPendingException`, and the process aborts with **exit 134 (SIGABRT)**.
+- **`CSSAMPLE-029` ParticleSample** fails earlier with a `NullReferenceException` inside a
+  callback — its `ParticleSystem` components create their own resources from the device.
+
+### A false counterexample, checked rather than assumed
+
+`CSSAMPLE-011` SafeArea declares a `SafeAreaOverlay : DrawableGameComponent` that uses
+`GraphicsDevice` in both `LoadContent` and `Draw`, is added with `Components.Add`, **and passed with
+0 differing pixels and exit 0.** That looked like a refutation.
+
+It is not: `SafeAreaGame.cs:66` adds it under `#if XBOX && DEBUG`, and this build defines `WINDOWS`,
+so the component is never constructed. Re-running the probe with SafeArea's exact access pattern —
+`GraphicsDevice` touched only from `LoadContent` and `Draw` — still throws.
+
+Recorded because the count below has the same trap: **declaring** a `DrawableGameComponent` is not
+the same as **adding** one in the configuration being built.
+
+### Not the managed binding
+
+`DrawableGameComponent.GraphicsDevice` is `Game.GraphicsDevice`, which calls
+`cna_game_get_graphics_device`. There is no managed workaround: the ABI documents the device handle
+as valid only inside the callback that fetched it, so the binding cannot cache one across callbacks,
+and the borrow itself is what native refuses. The C++ ports of both samples are `✅`, because C++
+uses CNA's component directly and never crosses this boundary.
+
+### How far this reaches
+
+25 of the 78 eligible rows declare a `DrawableGameComponent`: `005`, `011`, `017`, `023`, `029`,
+`031`, `032`, `041`, `043`, `044`, `045`, `046`, `047`, `048`, `056`, `060`, `061`, `063`, `067`,
+`068`, `069`, `072`, `073`, `081`, `082`. `011` is confirmed unaffected because its component is
+compiled out; the rest need checking one at a time rather than assuming.
+
+### Measured on
+
+`../cnanext` `cmake-build-release-capi`, Release OPENGLES3, built 2026-09-02, C ABI 0.21.0;
+`../cna-cs` `develop` `5bcfa70`.
