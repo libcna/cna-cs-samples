@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SafeArea</RootNamespace>
+    <AssemblyName>SafeArea</AssemblyName>
+    <StartupObject>SafeArea.Program</StartupObject>
+  </PropertyGroup>
+</Project>

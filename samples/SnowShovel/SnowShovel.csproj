@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SnowShovel</RootNamespace>
+    <AssemblyName>SnowShovel</AssemblyName>
+    <StartupObject>SnowShovel.Program</StartupObject>
+  </PropertyGroup>
+</Project>

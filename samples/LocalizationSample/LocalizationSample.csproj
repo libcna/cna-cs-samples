@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: LocalizationSample_4_0
+    Selected configuration: Localization/LocalizationWindows.csproj, Release|x86 (Windows, Reach).
+    Main is in a static Program class at the bottom of LocalizationGame.cs.
+
+    Upstream's second project, LocalizationPipeline, is a Content Pipeline extension and is
+    design-time only; it is not built here. See missing.md.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Localization</RootNamespace>
+    <AssemblyName>Localization</AssemblyName>
+    <StartupObject>Localization.Program</StartupObject>
+  </PropertyGroup>
+
+  <!--
+    The .resx files live at the ROOT of the upstream project, so XNA embedded them as
+    `Localization.Strings.resources`. Here the upstream tree is a subdirectory, and the SDK derives
+    a resource's manifest name from RootNamespace plus its path, giving
+    `Localization.Localization.Strings.resources`. Strings.Designer.cs asks for the original name
+    and the game threw at startup:
+
+      Could not find the resource "Localization.Strings.resources" among the resources
+      "Localization.Localization.Strings.resources" embedded in the assembly "Localization"
+
+    LogicalName restores the name upstream produced. This is a layout consequence of checking the
+    project in as a subdirectory, not a difference in the sample, and it is fixed here rather than
+    by moving or editing anything.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Update="Localization/Strings.resx" LogicalName="Localization.Strings.resources" />
+    <EmbeddedResource Update="Localization/Strings.da.resx" LogicalName="Localization.Strings.da.resources" />
+    <EmbeddedResource Update="Localization/Strings.fr.resx" LogicalName="Localization.Strings.fr.resources" />
+    <EmbeddedResource Update="Localization/Strings.ja.resx" LogicalName="Localization.Strings.ja.resources" />
+    <EmbeddedResource Update="Localization/Strings.ko.resx" LogicalName="Localization.Strings.ko.resources" />
+  </ItemGroup>
+
+</Project>

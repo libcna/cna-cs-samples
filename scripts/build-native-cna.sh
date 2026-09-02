@@ -71,8 +71,11 @@ if [ -z "$build_dir" ]; then
         echo "error: ccache is not installed; refusing to configure a CNA build without it" >&2
         exit 2
     fi
+    # CNA_BUILD_C_API defaults to OFF, so without it the configure succeeds and the cna_c_api
+    # target simply does not exist -- the build then fails with "No rule to make target".
     cmake -S "$cna_root" -B "$build_dir" \
         -DCMAKE_BUILD_TYPE=Release \
+        -DCNA_BUILD_C_API=ON \
         -DCNA_GRAPHICS_RENDERER="$renderer" \
         -DCNA_EASYGL_COMPILED_EFFECTS=ON \
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \

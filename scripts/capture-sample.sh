@@ -49,7 +49,7 @@ exe="$(find "$project_dir/bin/$configuration" -maxdepth 1 -type f -executable \
         ! -name '*.so' ! -name '*.dll' 2>/dev/null | head -1)"
 [ -n "$exe" ] || { echo "error: no $configuration build of $sample" >&2; exit 2; }
 
-Xvfb "$display" -screen 0 1280x1024x24 +extension GLX >"$out/xvfb.log" 2>&1 &
+Xvfb "$display" -screen 0 1920x1200x24 +extension GLX >"$out/xvfb.log" 2>&1 &
 xvfb_pid=$!
 sample_pid=""
 cleanup() {
@@ -71,14 +71,19 @@ sample_pid=$!
 # against the C++ port that way, which was entirely this bug.
 window=""
 for _ in $(seq 1 120); do
+    # `|| true` is load-bearing: under `set -e` with `pipefail`, a grep that matches nothing --
+    # which is every iteration before the window appears -- would abort the script silently.
     window="$(DISPLAY="$display" xwininfo -root -tree 2>/dev/null |
-        grep -oE '0x[0-9a-f]+ "[^"]+": \("[^"]*" "[^"]*"\)  [0-9]+x[0-9]+' |
-        awk -v pat="$window_pattern" '{
-            id=$1; line=$0
-            if (match(line, /"[^"]+"/)) { name=substr(line, RSTART+1, RLENGTH-2) }
-            if (match(line, /[0-9]+x[0-9]+$/)) { split(substr(line, RSTART, RLENGTH), d, "x") }
-            if (name ~ pat && d[1] > 8 && d[2] > 8) { print id; exit }
-        }')"
+        awk '
+            match($0, /0x[0-9a-f]+ "[^"]+"/) {
+                id = substr($0, RSTART, index(substr($0, RSTART), " ") - 1)
+                s = substr($0, RSTART)
+                match(s, /"[^"]+"/); name = substr(s, RSTART + 1, RLENGTH - 2)
+                if (match($0, /[0-9]+x[0-9]+\+/)) {
+                    split(substr($0, RSTART, RLENGTH - 1), d, "x")
+                    if (name ~ pat && d[1] > 8 && d[2] > 8) { print id; exit }
+                }
+            }' pat="$window_pattern" || true)"
     [ -n "$window" ] && break
     if ! kill -0 "$sample_pid" 2>/dev/null; then
         echo "error: the sample exited before its window appeared" >&2

@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 8 |
+| ✅ complete | 14 |
 | 🛠 in progress | 0 |
-| ⛔ blocked on CNA | 1 |
+| ⛔ blocked on CNA | 2 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 68 |
+| ⬜ not started | 61 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
 loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -200,12 +200,12 @@ port ships.
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | ✅ |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
-| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⬜ |
+| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⛔ |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ⬜ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
 | CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ⬜ |
 | CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | ⬜ |
-| CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ⬜ |
+| CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ⬜ |
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
 | CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | 🛑 |
@@ -217,7 +217,7 @@ port ships.
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ⬜ |
 | CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⬜ |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ⬜ |
-| CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ⬜ |
+| CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ✅ |
 | CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
 | CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ⬜ |
 | CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ⛔ |
@@ -263,17 +263,17 @@ port ships.
 | CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ⬜ |
 | CSSAMPLE-076 | `SplitScreenSample_4_0` | `SplitScreen` | 4 / 485 | 3 | ⬜ |
 | CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | ⬜ |
-| CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ⬜ |
+| CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ✅ |
 | CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ✅ |
 | CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ⬜ |
 | CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ⬜ |
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |
-| CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ⬜ |
+| CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ✅ |
 | CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ⬜ |
 | CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |
-| CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ⬜ |
+| CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ✅ |
 | CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ⬜ |
-| CSSAMPLE-102 | `Orientation_4_0` | `Orientation` | 4 / 528 | 2 | ⬜ |
+| CSSAMPLE-102 | `Orientation_4_0` | `Orientation` | 4 / 528 | 2 | ✅ |
 
 ## Excluded `✅` rows
 

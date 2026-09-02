@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>MicrophoneEchoSample</RootNamespace>
+    <AssemblyName>MicrophoneEchoSample</AssemblyName>
+    <StartupObject>MicrophoneEchoSample.Program</StartupObject>
+  </PropertyGroup>
+</Project>
