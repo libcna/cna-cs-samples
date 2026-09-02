@@ -53,12 +53,20 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 0 |
+| ✅ complete | 1 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 0 |
-| ⬜ not started | 78 |
+| ⬜ not started | 77 |
 | **total** | **78** |
+
+`CSSAMPLE-001` PrimitivesSample runs from byte-identical upstream sources with no deviation. It
+found one real binding defect: `GraphicsDevice.Clear(Color)` cleared only the colour target, so
+every depth-tested draw was rejected and the window stayed black. Fixed in `../cna-cs` and pinned
+by a test; the sample's `missing.md` has the isolation.
+
+**The owner has authorised one sample. Do not start `CSSAMPLE-008` until the owner says to
+continue.**
 
 ## Verified toolchain baseline
 
@@ -131,7 +139,7 @@ port ships.
 
 | Task | Upstream | C++ port | Size (files / lines) | .xnb | Status |
 |---|---|---|---:|---:|---|
-| CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ⬜ |
+| CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 0 | ⬜ |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |

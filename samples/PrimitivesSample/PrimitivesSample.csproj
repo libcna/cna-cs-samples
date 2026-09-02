@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: PrimitivesSample_4_0
+    Selected configuration: Primitives/PrimitivesWindows.csproj, Release|x86 (Windows, Reach).
+
+    RootNamespace and AssemblyName are the original project's, not this directory's. The upstream
+    Windows configuration defined WINDOWS and TRACE; WINDOWS comes from samples/Directory.Build.props
+    and TRACE is a .NET SDK default. Everything else the original project said is either an XNA
+    Game Studio concern that CNA.NET replaces, or a Visual Studio 2010 concern with no meaning on
+    .NET 8. See missing.md.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Primitives</RootNamespace>
+    <AssemblyName>Primitives</AssemblyName>
+    <StartupObject>PrimitivesSample.PrimitivesSampleGame</StartupObject>
+  </PropertyGroup>
+
+</Project>

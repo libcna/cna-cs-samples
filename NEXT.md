@@ -5,13 +5,93 @@ inherits.
 
 ---
 
-## Active handoff — 2026-09-02
+## Active handoff — 2026-09-02 (second entry)
 
 ### Work on next
 
+**Nothing, until the owner says so.** `CSSAMPLE-001` PrimitivesSample is complete and is the one
+sample the owner authorised. `CSSAMPLE-008` ShapeRendering is next in Tier 1 when permission comes.
+
+### Synchronized heads
+
+| Repository | Branch | Head |
+|---|---|---|
+| `cna-cs-samples` | `develop` | this commit |
+| `../cna-cs` | `develop` | `67ac872` — the `CSSAMPLE-001` `Clear(Color)` fix |
+| `../cnanext` | `next` | `1caa45c84` — **unchanged**, as the rules require |
+| `../sharp-runtimenext` | `next` | `9cc96cd5` — unchanged |
+| `../cna-samples` | `develop` | `425d772` |
+
+### CSSAMPLE-001 PrimitivesSample — ✅
+
+The original C# runs **unmodified**: `diff -r` against
+`/rv/tmp/XNAGameStudio/Samples/PrimitivesSample_4_0/Primitives` reports no difference, both
+configurations build with 0 warnings and 0 errors, and the sample renders its stars, ships and sun
+at 853x480 on `OPENGLES3` and exits 0 on Escape.
+
+Compared with the C++ port through the identical capture route, the two agree exactly on everything
+deterministic — 273 pure-white pixels, 91 `Color.Gray` pixels, grey range 56..255, and the same
+three white x-clusters at 90–110 (left ship), 397–456 (sun) and 743–763 (right ship). Only the total
+differs (1,174 vs 1,191), because `CreateStars` seeds `new Random()` from the clock and the star
+field is different every launch by design.
+
+### The defect it found, and how it was found
+
+The first run drew **nothing**. That is worth recording in full, because the method generalises:
+
+1. The window was 853x480 and Escape exited cleanly, so the sample was alive and its own code was
+   running.
+2. The C++ port of the same sample, captured the same way on the same CNA build, drew 1,191 pixels.
+   That put the defect above CNA and below the sample.
+3. `../cna-cs-template` — a managed CNA.NET app — captured 963 distinct colours, so managed
+   presentation and the X capture route were both fine.
+4. A probe drove the sample's **own unmodified `PrimitiveBatch.cs`** and read the result back
+   instead of screenshotting it. Into a `RenderTarget2D`: 20,219 pixels. Into the backbuffer: 0.
+5. Four variants of the clear separated colour from depth, and named it exactly:
+   `GraphicsDevice.Clear(Color)` selected `ClearOptions.Target` alone.
+
+XNA and FNA both define the one-argument overload as `Target | DepthBuffer | Stencil` with
+`Viewport.MaxDepth`; CNA's C++ layer already agreed (Task 928). The divergence was managed-side
+only, which is exactly why the C++ port was unaffected. Fixed in `../cna-cs`, pinned by
+`tests/CNA.Integration.Tests/ClearColorDepthTests.cs` — confirmed red with the fix reverted
+(0 of 64 lit), green with it (64 of 64), and its target-only case stays dark so a pass is not
+vacuous. `../cna-cs` suites after the fix: 622 framework, 225 XnaCompat, 208 native integration,
+all passing.
+
+### Techniques worth reusing
+
+- **Read pixels back, do not screenshot, when locating a defect.** A `RenderTarget2D` plus
+  `GetData`, or `GetBackBufferData`, answers "did it draw" without the window, the compositor or
+  the capture route in the way. The probe area is `../cna-cs/build-probe/` — shared, gitignored,
+  never per-ticket.
+- **The C++ port is the discriminator.** Any sample here has a working port beside it; running both
+  through the same capture route is what turns "it looks wrong" into "the defect is in the
+  binding".
+- **`SDL_VIDEODRIVER=x11` with `WAYLAND_DISPLAY` unset, and `Xvfb +extension GLX`.** Without the
+  first, SDL opens the window on the developer's real Wayland session and the private display stays
+  empty — the run looks fine and the capture is black. Without the second, GL never reaches the
+  drawable. `scripts/capture-sample.sh` encodes both.
+- **Crop the root window to the sample window's geometry.** `import -window <id>` on a GL window
+  reads back black.
+
+### Open items
+
+- `CSINFRA-003`, `004` and `005` — the content-provenance, verbatim-source and eligibility checkers
+  — remain unwritten. `CSSAMPLE-001` verified both properties by hand; a sample with content will
+  need the first one for real.
+- `../cna-cs/tests/CNA.Integration.Tests/RenderTargetClearTests.cs` documents itself as expected-RED
+  against an upstream CNA defect. It passes now. Someone should close that blocker row with
+  evidence rather than leave the comment claiming otherwise; it is `../cna-cs`'s to close, not this
+  repository's.
+
+---
+
+## Handoff — 2026-09-02 (first entry: repository established)
+
+### Work on next at the time
+
 `CSSAMPLE-001` PrimitivesSample, the first row of Tier 1. **The owner has authorised exactly one
-sample.** Do not start `CSSAMPLE-008` or any other row until the owner has reviewed the first one
-and said to continue.
+sample.**
 
 ### Synchronized heads
 
