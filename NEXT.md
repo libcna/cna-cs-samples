@@ -12,15 +12,23 @@ inherits.
 **Nothing, until the owner says so.** `CSSAMPLE-001` PrimitivesSample is complete and is the one
 sample the owner authorised. `CSSAMPLE-008` ShapeRendering is next in Tier 1 when permission comes.
 
-### Synchronized heads
+### Heads this session measured against
 
-| Repository | Branch | Head |
-|---|---|---|
-| `cna-cs-samples` | `develop` | this commit |
-| `../cna-cs` | `develop` | `67ac872` — the `CSSAMPLE-001` `Clear(Color)` fix |
-| `../cnanext` | `next` | `1caa45c84` — **unchanged**, as the rules require |
-| `../sharp-runtimenext` | `next` | `9cc96cd5` — unchanged |
-| `../cna-samples` | `develop` | `425d772` |
+Recorded as history, not as a claim about today: `../cnanext` and `../cna-samples` are worked on by
+other sessions and move independently. Re-read them at the start of a session rather than trusting
+this table, and in particular re-check the C ABI generation against `../cna-cs`'s admission matrix
+before treating a native load failure as a bug.
+
+| Repository | Branch | Head when measured | Changed by this session? |
+|---|---|---|---|
+| `cna-cs-samples` | `develop` | this commit | yes |
+| `../cna-cs` | `develop` | `67ac872` | yes — the `CSSAMPLE-001` `Clear(Color)` fix |
+| `../cnanext` | `next` | `1caa45c84`, C ABI 0.21.0 | no, as the rules require |
+| `../sharp-runtimenext` | `next` | `9cc96cd5` | no |
+| `../cna-samples` | `develop` | `425d772` | no |
+
+`../cnanext` had already advanced to `0eb5fc151` by the time this session pushed, through work that
+is not ours. Nothing here was rebuilt against it.
 
 ### CSSAMPLE-001 PrimitivesSample — ✅
 
