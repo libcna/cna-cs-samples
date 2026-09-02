@@ -105,6 +105,49 @@ render target with a depth of 0, then compares three clears. It was confirmed to
 reverted (`Clear(Color)` 0 of 64 lit) and to pass with it (64 of 64). Its third case — a
 target-only clear, which must stay dark — is what stops a pass from being vacuous.
 
+## Known difference — the window is resizable, and CNA owns it
+
+Reported by the owner on 2026-09-02: maximizing the window leaves the 853x480 image at the
+**bottom-left** of the enlarged client area instead of filling it.
+
+Reproduced headless by forcing the window to 1200x900 with `xdotool windowsize`: the content's
+bounding box is x 3..852, y 420..898 — the original 853x480 picture, occupying the bottom 480 rows.
+Bottom-left is the OpenGL framebuffer origin, which is where an unadjusted `glViewport` or blit
+puts a smaller image in a larger default framebuffer.
+
+**The original cannot get into this state at all.** XNA's `GameWindow.AllowUserResizing` defaults to
+`false` — FNA marks it `[DefaultValue(false)]` (`src/FNAPlatform/FNAWindow.cs:32`) and creates the
+SDL window without `SDL_WINDOW_RESIZABLE` (`src/FNAPlatform/SDL2_FNAPlatform.cs:416`) — and
+PrimitivesSample never sets it. The original window has no working maximize box, which matches what
+the owner observed.
+
+**The divergence is in CNA, below the C ABI, not in this binding.** CNA's XNA `GraphicsDevice`
+builds its game window from a `WindowDescription` and never sets `resizable`
+(`modules/graphics/src/Xna/GraphicsDevice.cpp:2893`), so it takes the platform layer's default of
+`true` (`modules/platform/include/CNA/Platform/WindowDescription.hpp:86`). Every CNA game therefore
+gets a resizable window whether or not it asked for one. The managed layer contributes no pixel
+placement: `CNA.Framework.GraphicsDevice.Present()` is a bare call to
+`cna_graphics_device_present`, and `GameWindow.ClientSizeChanged` is an event forwarder that never
+resets the backbuffer — which is also XNA-correct here, since XNA's `GraphicsDeviceManager` only
+resizes the backbuffer when `AllowUserResizing` is true.
+
+Per `rules.md`, a CNA defect is reported and not repaired from this repository. It is recorded in
+`plan.md`'s CNA defect register as `CNA-REPORT-001`.
+
+Two further observations, recorded because they will matter to whoever fixes it:
+
+- After the forced resize, the *game-visible* viewport is not the window size either. The sample
+  draws its sun at `Viewport.Width / 2` and its right ship at `Viewport.Width - 100`; measured back
+  from their positions, the game saw a width of about 640 in a 1200-wide window.
+- The C++ port appeared to stretch to fill the same forced resize while this build did not, but
+  **that comparison is not sound** and is not offered as evidence: the port's binary is from
+  2026-08-25 and is statically linked against the CNA tree of that date, while this run used the
+  Release C ABI library built on 2026-09-01. A week of CNA changes separates them. Settling whether
+  the presentation genuinely differs needs the port rebuilt against the current `../cnanext`.
+
+The row stays `✅`: at its own 853x480 size — the only size the original can be in — the sample is
+correct, and this difference is neither a source deviation nor something this repository can fix.
+
 ## Native verification
 
 ```bash

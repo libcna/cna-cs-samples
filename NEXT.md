@@ -74,6 +74,25 @@ all passing.
 - **Crop the root window to the sample window's geometry.** `import -window <id>` on a GL window
   reads back black.
 
+### Reported to CNA, not repaired
+
+`CNA-REPORT-001` in `plan.md`'s new CNA defect register: the owner maximized the sample's window
+and the 853x480 image stayed at the bottom-left. Established by measurement, not inspection — the
+window forced to 1200x900 puts the content at x 3..852, y 420..898, which is the OpenGL
+framebuffer origin.
+
+The original cannot reach that state: XNA's `AllowUserResizing` defaults to false and the sample
+never sets it, so the real window has no working maximize box. CNA's XNA `GraphicsDevice` builds
+its `WindowDescription` without setting `resizable` and takes the platform default of `true`, so
+every CNA game gets a resizable window. The binding places no pixels — `Present()` is a bare ABI
+call, `ClientSizeChanged` only forwards an event — so this is not `../cna-cs`'s to fix and, per
+`rules.md`, not this repository's either.
+
+Worth knowing for whoever picks it up: the game-visible `Viewport.Width` after that resize was
+about 640 in a 1200-wide window, and the C++ port's apparent difference in the same test is **not**
+usable as evidence — its binary is from 2026-08-25 and statically linked against the CNA tree of
+that date, a week behind the library used here.
+
 ### Open items
 
 - `CSINFRA-003`, `004` and `005` — the content-provenance, verbatim-source and eligibility checkers
@@ -138,6 +157,25 @@ against.
   searching `bin/<cfg>/` rather than by guessing its name.
 - **Deterministic runs are a launcher concern.** `cna-samples` could add a frame counter to a port;
   adding one here would be a fidelity deviation, because the original sample had none.
+
+### Reported to CNA, not repaired
+
+`CNA-REPORT-001` in `plan.md`'s new CNA defect register: the owner maximized the sample's window
+and the 853x480 image stayed at the bottom-left. Established by measurement, not inspection — the
+window forced to 1200x900 puts the content at x 3..852, y 420..898, which is the OpenGL
+framebuffer origin.
+
+The original cannot reach that state: XNA's `AllowUserResizing` defaults to false and the sample
+never sets it, so the real window has no working maximize box. CNA's XNA `GraphicsDevice` builds
+its `WindowDescription` without setting `resizable` and takes the platform default of `true`, so
+every CNA game gets a resizable window. The binding places no pixels — `Present()` is a bare ABI
+call, `ClientSizeChanged` only forwards an event — so this is not `../cna-cs`'s to fix and, per
+`rules.md`, not this repository's either.
+
+Worth knowing for whoever picks it up: the game-visible `Viewport.Width` after that resize was
+about 640 in a 1200-wide window, and the C++ port's apparent difference in the same test is **not**
+usable as evidence — its binary is from 2026-08-25 and statically linked against the CNA tree of
+that date, a week behind the library used here.
 
 ### Open items
 
