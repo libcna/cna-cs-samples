@@ -53,8 +53,8 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 22 |
-| 🛠 in progress | 0 |
+| ✅ complete | 21 |
+| 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 4 |
 | 🛑 owner decision | 4 |
 | ⬜ not started | 48 |
@@ -77,11 +77,12 @@ Both finished rows run from byte-identical upstream sources with no deviation.
 cleared only the colour target, so every depth-tested draw was rejected and the window stayed
 black. Fixed in `../cna-cs` and pinned by a test.
 
-`CSSAMPLE-002` Primitives3D loads the official XNA `hudfont.xnb` through `Content.Load<SpriteFont>`
-and renders text pixel-identical to the C++ port — which could not use the compiled font and
-shipped a converted CNA-native one instead. The `.xnb` column for this row reads 1 rather than the
-0 the initial inventory recorded, because that count came from the port's `Content/` and the port
-has no `.xnb`.
+`CSSAMPLE-002` Primitives3D was `✅` and is now `🛠`. `../cna-samples` reopened its own `SAMPLE-002`
+on 2026-09-02 after finding that the reference `hudfont.xnb` in its artifact root is
+**script-synthesized rather than official pipeline output** — the file this row copied and described
+as authentic. The C# side is unaffected and still runs; the provenance claim was wrong.
+`scripts/check-eligibility.sh` found this on its first run, and nothing else would have: the sample
+still builds, still runs and still matches the C++ port.
 
 `CSSAMPLE-019` RectangleCollision found the second and larger binding defect:
 `Microsoft.Xna.Framework.Game.Initialize` did not call `LoadContent`, so every game using the
@@ -234,7 +235,7 @@ port ships.
 | Task | Upstream | C++ port | Size (files / lines) | .xnb | Status |
 |---|---|---|---:|---:|---|
 | CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
-| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | ✅ |
+| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | 🛠 |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⛔ |
@@ -324,10 +325,11 @@ port ships.
 | Task | Status | Work |
 |---|---|---|
 | CSINFRA-001 | ✅ | Establish the repository: Ms-PL license and notices, .NET ignore rules, `.gitattributes` keeping `.xnb` binary, README. First commit on `main`. |
+| CSINFRA-006 | ⬜ | Run all three checkers from one entry point and wire them into whatever CI this repository eventually gets. They are useful now and easy to forget. |
 | CSINFRA-002 | ✅ | Establish the working documents and build infrastructure on `develop`: `rules.md`, this plan, `AGENTS.md`/`CLAUDE.md`, `NEXT.md`, `Directory.Build.props` chain, solution, `scripts/build-native-cna.sh` and `scripts/run-sample.sh`. Verified the toolchain baseline above. |
-| CSINFRA-003 | ⬜ | Add a content-provenance checker that compares every `samples/*/Content/**` file with its `../cna-samples` counterpart by hash and reports drift. |
-| CSINFRA-004 | ⬜ | Add a verbatim-source checker that diffs each `samples/<Name>/` upstream subtree against `/rv/tmp/XNAGameStudio/Samples/<Upstream>/` and fails on any `.cs` difference not listed in that sample's `missing.md`. |
-| CSINFRA-005 | ⬜ | Add an eligibility checker that re-derives the 78 rows from `../cna-samples/plan.md` and reports rows that became eligible, ineligible or renamed. |
+| CSINFRA-003 | ✅ | `scripts/check-content.sh` compares every `samples/*/Content/**` file with its `../cna-samples` counterpart. First run: **142 identical, 0 drifted, 1 sourced elsewhere** — `Primitives3D/hudfont.xnb`, exactly the documented case. A file sourced elsewhere is reported rather than failed, because it can be legitimate; drift never is. |
+| CSINFRA-004 | ✅ | `scripts/check-verbatim.sh` diffs each sample's upstream subtree against the snapshot. First run: **30 samples checked, 0 failures.** It does not consult `missing.md`: a recorded deviation is a decision someone made, and this check exists so that no difference passes silently. |
+| CSINFRA-005 | ✅ | `scripts/check-eligibility.sh` re-derives the eligible inventory from `../cna-samples/plan.md`. **It earned its keep on the first run**, reporting `CSSAMPLE-002` as no longer eligible: `../cna-samples` had reopened `SAMPLE-002` because the reference `hudfont.xnb` is script-synthesized rather than official pipeline output. Nothing else would have noticed — the sample still builds, runs and matches the port. It fails only on an overclaim (marked `✅` here, not complete there); a row upstream reopened is a note while it is honestly not `✅`. |
 
 ## CNA defect register
 

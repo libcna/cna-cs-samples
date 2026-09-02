@@ -1,10 +1,32 @@
-# Primitives3D audit — CSSAMPLE-002
+# Primitives3D audit — CSSAMPLE-002 🛠
 
 ## Result
 
-**The original C# runs unmodified**, and it loads the **official XNA `hudfont.xnb`** through
-`Content.Load<SpriteFont>` — which the C++ port could not do, and had to replace with a converted
-CNA-native asset. No `../cna-cs` change was needed.
+**Reopened 2026-09-02, and the row is no longer `✅`.** The C# side is unchanged and still correct:
+the original source runs unmodified, both configurations build 0/0, and the sample renders and
+exits cleanly. What was wrong is this file's **provenance claim** for the font.
+
+`../cna-samples` reopened its own `SAMPLE-002` on 2026-09-02 (`2782faa`) with the finding that
+**the reference `hudfont.xnb` retained in its artifact root is script-synthesized, not official XNA
+pipeline output.** This row copied that file and described it as "official XNA Content Pipeline
+output the C++ campaign itself generated and validated". That description was wrong, and it was
+wrong in the direction that matters: `rules.md` requires official pipeline output and this is not
+it.
+
+Two consequences, and neither is optional:
+
+1. The row drops to `🛠` and stays there until an authentic Win7/XNA 4.0 `hudFont.xnb` exists. The
+   C++ campaign is obtaining one; this row should copy it and re-qualify rather than produce its
+   own.
+2. **This repository's eligibility rule did its job only because a script ran it.**
+   `scripts/check-eligibility.sh` re-derives the eligible inventory from `../cna-samples/plan.md`,
+   and its very first run reported `CSSAMPLE-002` as no longer eligible. Nothing else would have
+   noticed: the sample still builds, still runs, and still matches the C++ port.
+
+Everything below is retained as the record of what was measured, with that correction standing over
+it. The pixel comparison in particular remains true and remains beside the point — it compared this
+build against a port that ships the *other* substitute, so the two agreeing says nothing about
+either being authentic.
 
 ## Selected configuration
 
@@ -36,8 +58,9 @@ Copying a `.cnj` here would have been the wrong thing twice over: the original C
 `Content.Load<SpriteFont>("hudfont")`, which is an `.xnb` contract, and substituting a CNA-native
 asset is exactly the kind of runtime substitution `rules.md` forbids.
 
-The source used instead is the **official XNA Content Pipeline output the C++ campaign itself
-generated and validated**, retained at:
+The source used instead was the file retained in the C++ campaign's artifact root, described at the
+time as official pipeline output. **`../cna-samples` has since established that it is
+script-synthesized** — see the correction at the top of this file:
 
 ```text
 /rv/tmp/samples/SAMPLE-002-Primitives3DSample_4_0/xna4-original/Primitives3D/bin/x86/Release/Content/hudfont.xnb
