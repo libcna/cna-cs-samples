@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Audio3D</RootNamespace>
+    <AssemblyName>Audio3D</AssemblyName>
+    <StartupObject>Audio3D.Program</StartupObject>
+  </PropertyGroup>
+</Project>

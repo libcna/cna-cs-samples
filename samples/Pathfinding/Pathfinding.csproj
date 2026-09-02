@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA Game Studio 4.0 sample: Pathfinding_4_0, Windows configuration. Two upstream source
+       trees live side by side here, so default compile items are off in both projects. -->
+  <PropertyGroup>
+    <RootNamespace>Pathfinding</RootNamespace>
+    <AssemblyName>Pathfinding</AssemblyName>
+    <StartupObject>Pathfinding.Program</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Pathfinding/**/*.cs" />
+    <ProjectReference Include="MapData.csproj" />
+  </ItemGroup>
+</Project>

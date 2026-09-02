@@ -53,11 +53,18 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 18 |
+| ✅ complete | 22 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 4 |
-| 🛑 owner decision | 3 |
-| ⬜ not started | 53 |
+| 🛑 owner decision | 4 |
+| ⬜ not started | 48 |
+
+**Every one of the 48 remaining rows is blocked by one of the four known issues.** Measured on
+2026-09-02 by classifying each `⬜` row against all four: 37 load a `Model` (`CNA-REPORT-002`), 25
+declare a `DrawableGameComponent` (`CNA-REPORT-004`), 6 reach Windows Phone SDK types (`DEC-001`)
+and 3 reference `Microsoft.Xna.Framework.Net` (`DEC-002`); the sets overlap, and their union is all
+48. The campaign's throughput is now gated on those fixes rather than on sample work, and
+`CNA-REPORT-002` and `CNA-REPORT-004` are where the leverage is.
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
 loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -116,7 +123,7 @@ prevent; (3) declare phone-only samples out of scope here.
 A second ruling is needed either way: phone-only samples have **no entry point**, because the XAP
 host supplied it and the shipped `Program.Main` is `#if WINDOWS || XBOX` guarded.
 
-**Three rows have now met this and they form a ladder**, so check which rung a phone-only sample is
+**Four rows have now met this and they form a ladder**, so check which rung a phone-only sample is
 on before escalating it:
 
 | Row | Upstream provides | Resolution |
@@ -124,6 +131,7 @@ on before escalating it:
 | `CSSAMPLE-079` GesturesSample | guarded `Main` constructing a class that **exists** | `✅` — define `WINDOWS` in the project file, no source edit |
 | `CSSAMPLE-016` Bounce | guarded `Main` constructing a `Game1` that **does not exist** | `🛑` — defining `WINDOWS` does not compile |
 | `CSSAMPLE-021` PathDrawing | **no `Main` and no `Program.cs` at all** | `🛑` — there is nothing to enable |
+| `CSSAMPLE-077` DynamicMenu | the same: **0 occurrences** of `static void Main` in the whole directory | `🛑` |
 
 Only the second and third rungs need a ruling. For the third, no constant can help: running it means
 adding a `Program` class beside the upstream subtree — new authored code in a repository whose
@@ -230,7 +238,7 @@ port ships.
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⛔ |
-| CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ⬜ |
+| CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ✅ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
 | CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ✅ |
 | CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | 🛑 |
@@ -243,9 +251,9 @@ port ships.
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ✅ |
 | CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | 🛑 |
-| CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ⬜ |
+| CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ✅ |
 | CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⛔ |
-| CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ⬜ |
+| CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ✅ |
 | CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ✅ |
 | CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
 | CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ✅ |
@@ -280,7 +288,7 @@ port ships.
 | CSSAMPLE-056 | `CPUSkinningSample_4_0` | `CPUSkinning` | 19 / 1691 | 7 | ⬜ |
 | CSSAMPLE-057 | `InverseKinematics_4_0` | `InverseKinematics` | 3 / 1104 | 3 | ⬜ |
 | CSSAMPLE-058 | `ChaseCamera_4_0` | `ChaseCamera` | 4 / 880 | 5 | ⬜ |
-| CSSAMPLE-059 | `Audio3DSample_4_0` | `Audio3D` | 8 / 821 | 7 | ⬜ |
+| CSSAMPLE-059 | `Audio3DSample_4_0` | `Audio3D` | 8 / 821 | 7 | ✅ |
 | CSSAMPLE-060 | `SoundAndMusic_4_0` | `SoundAndMusic` | 5 / 963 | 10 | ⬜ |
 | CSSAMPLE-061 | `MarbleMaze_4_0` | `MarbleMaze` | 140 / 25402 | 26 | ⬜ |
 | CSSAMPLE-063 | `HoneycombRush_4_0` | `HoneycombRush` | 65 / 16127 | 47 | ⬜ |
@@ -291,7 +299,7 @@ port ships.
 | CSSAMPLE-073 | `SoccerPitchSample_4_0` | `SoccerPitch` | 10 / 1150 | 6 | ⬜ |
 | CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ⬜ |
 | CSSAMPLE-076 | `SplitScreenSample_4_0` | `SplitScreen` | 4 / 485 | 3 | ⬜ |
-| CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | ⬜ |
+| CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | 🛑 |
 | CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ✅ |
 | CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ✅ |
 | CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ✅ |

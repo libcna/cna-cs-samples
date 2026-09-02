@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: SpriteSheetSample_4_0
+    Selected configuration: SpriteSheetSample/SpriteSheetSample/SpriteSheetSample (Windows).csproj.
+    The namespace is `SpriteSheetSampleWindowsPhone` in the Windows project too; that is upstream's.
+    Upstream's third project, SpriteSheetPipeline, is design-time and is not built here.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SpriteSheetSampleWindowsPhone</RootNamespace>
+    <AssemblyName>SpriteSheetSample</AssemblyName>
+    <StartupObject>SpriteSheetSampleWindowsPhone.Program</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="SpriteSheetSample/**/*.cs" />
+    <ProjectReference Include="SpriteSheetRuntime.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The sample's runtime library, kept as its OWN assembly rather than folded into the game.
+    That is not tidiness: `SpriteSheet.xnb` was produced by upstream's SpriteSheetPipeline and
+    names its reader by assembly-qualified type name, so the assembly has to be called
+    SpriteSheetRuntime for the content to load.
+
+    Default compile items are off in both projects here, because two upstream source trees live
+    side by side under one directory and the SDK's glob would otherwise compile each into both.
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SpriteSheetRuntime</RootNamespace>
+    <AssemblyName>SpriteSheetRuntime</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="SpriteSheetRuntime/**/*.cs" />
+  </ItemGroup>
+
+</Project>

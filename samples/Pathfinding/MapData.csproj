@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly for the same reason as CSSAMPLE-007's:
+       the compiled map content names its reader by assembly-qualified type name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MapData</RootNamespace>
+    <AssemblyName>MapData</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MapData/**/*.cs" />
+  </ItemGroup>
+</Project>
