@@ -1,0 +1,7 @@
+# Compiled XNA content is exact upstream pipeline output, never text.
+*.xnb binary
+# Upstream sample artifacts retained byte-for-byte.
+*.rtf binary
+*.doc binary
+*.docx binary
+*.ico binary

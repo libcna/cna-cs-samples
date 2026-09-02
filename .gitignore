@@ -1,0 +1,52 @@
+# .NET build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+*.user
+*.suo
+*.userprefs
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.sln.docstates
+
+# Native CNA library staged beside a sample for a run
+samples/**/libcna_c_api.so*
+samples/**/libcna_c_api.dylib
+samples/**/cna_c_api.dll
+
+# Run and capture output
+*.log
+capture/
+run-output/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Packaging
+*.zip
+*.tar.gz
+*.7z
+
+# Temporary
+*.tmp
+*.bak
+*.swp
+*~
