@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: ShapeRenderingSample_4_0
+    Selected configuration: ShapeRenderingSample/ShapeRenderingSample (Windows).csproj,
+    Debug|x86 (Windows, HiDef).
+
+    Debug is the configuration that matters here, and that is not a preference. Every public method
+    of DebugShapeRenderer carries [Conditional("DEBUG")], so in Release the compiler elides the call
+    sites and the sample draws nothing but its clear. The .NET SDK defines DEBUG for Debug builds,
+    so this needs no help; missing.md records that the C++ port had to invent a macro for the same
+    behaviour, because C++ has no call-site-eliding attribute.
+  -->
+  <PropertyGroup>
+    <RootNamespace>ShapeRenderingSample</RootNamespace>
+    <AssemblyName>ShapeRenderingSample</AssemblyName>
+    <StartupObject>ShapeRenderingSample.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

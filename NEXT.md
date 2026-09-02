@@ -5,7 +5,73 @@ inherits.
 
 ---
 
-## Active handoff — 2026-09-02 (second entry)
+## Active handoff — 2026-09-02 (third entry)
+
+### Work on next
+
+`CSSAMPLE-016` Bounce, the last Tier 1 row without content, then `CSSAMPLE-002` Primitives3D. The
+owner has switched this campaign to autonomous work with a 15-minute reminder, so the one-sample
+limit of the previous entry no longer applies; the eligibility rule does, unchanged.
+
+### CSSAMPLE-008 ShapeRendering — ✅
+
+Unmodified original C#, `diff -r` clean, 0 warnings and 0 errors in both configurations, 800x480 on
+`OPENGLES3`, exit 0 on Escape. **No change was needed in `../cna-cs` or anywhere else.**
+
+This row is the clearest demonstration so far of what this repository measures that the C++
+campaign cannot. Every public method of `DebugShapeRenderer` carries `[Conditional("DEBUG")]`, so
+Release elides the call sites and the sample draws only its clear — measured, 1 distinct colour in
+Release against 6 in Debug. C++ has no call-site-eliding attribute, so
+`../cna-samples/samples/ShapeRendering` had to define its own `SHAPE_RENDERING_SAMPLE_DEBUG` and
+hand-guard the original call sites, and could not even name it `DEBUG` because that collides with
+CNA's `LogLevel::DEBUG`. Here the original source says it and the project file says nothing.
+
+### A near-miss worth copying
+
+The first comparison said **0 differing pixels of 384 000** between the C# run and the C++ port. It
+was true, and it was nearly a false claim: the sample's camera orbits from
+`gameTime.TotalGameTime.TotalSeconds`, so a capture is only comparable if both runs are caught on
+the same frame, and nothing in the harness guarantees that.
+
+The control that turned it into evidence: a **second** C# run at the same settle differs from the
+first by 5 076 pixels — and from the C++ port by exactly 5 076 as well. Two runs of the same build
+differing by the same amount as a cross-engine pair is what a frame offset looks like, not what an
+engine difference looks like. So the sound claim is "identical when both land on the same game-time
+frame", not "pixel-identical".
+
+**Repeat any pixel comparison against the same build before attributing the residue to the other
+engine.** A third capture at a longer settle (10 935 differing pixels) established that the scene
+animates at all, which is the first thing to check.
+
+### Recorded for a later row
+
+`XnaProfile=HiDef` in the original project has no .NET 8 equivalent, and ShapeRendering never sets
+`GraphicsDeviceManager.GraphicsProfile` in code, so this build does not request HiDef. It does not
+need it — `LineList` through `BasicEffect` is Reach — but the first row that genuinely needs HiDef
+will have to establish how the profile gets selected. Do not rediscover this.
+
+### Engine throughput, measured because the owner asked
+
+Same source, three engines, timestep and vsync off, Release, 300 frames after 30 warm-up, all on
+the identical llvmpipe software rasterizer under Xvfb, so the delta is CPU-side rather than GPU:
+
+| workload | CNA.NET | MonoGame | Kni |
+|---|---:|---:|---:|
+| empty loop (clear only) | 2 358 fps | 2 646 | 2 960 |
+| 2 000 triangles, `DrawUserPrimitives` | 549 | 999 | 1 002 |
+| 2 000 sprites, `SpriteBatch` | 255 | 478 | 480 |
+
+CNA.NET is about **half the speed of MonoGame and Kni on the draw paths** and modestly behind on an
+empty loop. The obvious suspect is the layer the others do not have — managed to P/Invoke to C ABI
+to C++, crossed per draw call — but that is a hypothesis, not a profile. On real hardware GL CNA
+reached 1 482 fps on the triangle workload against 549 on llvmpipe, so it is not rasterizer-bound;
+MonoGame and Kni hang on this desktop session, so there is no hardware comparison. XNA 4.0 itself
+cannot be measured on Linux at all, and FNA's native runtime is unavailable here.
+
+The benchmark lives in `../cna-cs/build-probe/engine-bench/`, which is **gitignored and
+disposable**. If this is worth keeping it needs a home in `../cna-cs`.
+
+## Handoff — 2026-09-02 (second entry)
 
 ### Work on next
 
