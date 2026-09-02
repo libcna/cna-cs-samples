@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 3 |
+| ✅ complete | 4 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 74 |
+| ⬜ not started | 73 |
 | **total** | **78** |
 
 Both finished rows run from byte-identical upstream sources with no deviation.
@@ -71,6 +71,11 @@ and renders text pixel-identical to the C++ port — which could not use the com
 shipped a converted CNA-native one instead. The `.xnb` column for this row reads 1 rather than the
 0 the initial inventory recorded, because that count came from the port's `Content/` and the port
 has no `.xnb`.
+
+`CSSAMPLE-019` RectangleCollision found the second and larger binding defect:
+`Microsoft.Xna.Framework.Game.Initialize` did not call `LoadContent`, so every game using the
+documented `base.Initialize()` pattern — which is most of the sample collection — read a null and
+died in the initialize callback. Fixed in `../cna-cs` and pinned by two tests.
 
 `CSSAMPLE-008` ShapeRendering needed no change anywhere. It is the row that shows what this
 repository is for: the C++ port had to invent a `SHAPE_RENDERING_SAMPLE_DEBUG` macro and
@@ -196,7 +201,7 @@ port ships.
 | CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | 🛑 |
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ⬜ |
-| CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ⬜ |
+| CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ⬜ |
 | CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | ⬜ |
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ⬜ |

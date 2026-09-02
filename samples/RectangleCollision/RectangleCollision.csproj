@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: RectangleCollisionSample_4_0
+    Selected configuration: RectangleCollision/RectangleCollisionWindows.csproj, Release|x86
+    (Windows, Reach). Content: Block.xnb and Person.xnb, official pipeline output copied from the
+    C++ port. Main is in a separate Program class in Program.cs.
+  -->
+  <PropertyGroup>
+    <RootNamespace>RectangleCollision</RootNamespace>
+    <AssemblyName>RectangleCollision</AssemblyName>
+    <StartupObject>RectangleCollision.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>

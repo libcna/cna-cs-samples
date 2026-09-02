@@ -9,8 +9,42 @@ inherits.
 
 ### Work on next
 
-Tier 2, starting at `CSSAMPLE-019` RectangleCollision. Tier 1 is finished: `CSSAMPLE-001`,
-`CSSAMPLE-008` and `CSSAMPLE-002` are `✅` and `CSSAMPLE-016` is `🛑` awaiting `DEC-001`.
+Tier 2 continues at `CSSAMPLE-028` ColorReplacement. Done so far: `CSSAMPLE-001`, `008`, `002`,
+`019` are `✅`; `CSSAMPLE-016` is `🛑` awaiting `DEC-001`.
+
+### CSSAMPLE-019 RectangleCollision — ✅, and it found the biggest defect yet
+
+The sample crashed on its first run with `cna_game_run failed with native result Callback: Object
+reference not set to an instance of an object` — and the cause was worth the trouble of finding.
+
+`Microsoft.Xna.Framework.Game.Initialize` was **empty**. Content arrived only through the separate
+native `load_content` callback, which the C ABI delivers *after* `initialize`. XNA's `Initialize`
+ends by calling `LoadContent`, so a game may use its textures immediately after `base.Initialize()`
+— and that is how the XNA sample collection is written throughout. Every such game read a null.
+
+Fixed in `../cna-cs` `5bcfa70`: the facade's `Initialize` calls `LoadContent` through a once-guard,
+and the native callback goes through the same guard. A game that skips `base.Initialize()` still
+loads exactly once, as before. Two tests pin the order and the count; confirmed red with the fix
+reverted.
+
+**Expect this class of defect to dominate the campaign.** Both binding defects so far — this and
+`Clear(Color)` — are lifecycle or contract details that no metadata gate can see: the signatures
+were right and the behaviour was not. The 257/257 type match says nothing about them.
+
+### The diagnostic that was missing
+
+The failure surfaced as an exception message and nothing else — no stack, no indication of which
+callback or which line. `ReportCallbackFailure` writes only `ex.Message` into the native error
+buffer. Locating this meant reading the sample's `Initialize` and reasoning about XNA's contract; a
+stack trace would have made it immediate. Worth raising in `../cna-cs` as its own item.
+
+### A namespace trap in the test project
+
+`tests/CNA.Integration.Tests` sits in `namespace CNA.Integration.Tests`, so a bare `Game` binds to
+`CNA.Game` through the enclosing namespace **before** any `using Microsoft.Xna.Framework;` is
+considered. A facade test must write `Microsoft.Xna.Framework.Game` in full. The existing tests
+already do this for `global::CNA.Integration.Tests.OwnGameCollection`; the same applies to every
+facade type.
 
 ### CSSAMPLE-016 Bounce — 🛑, and it raised DEC-001
 
