@@ -119,7 +119,7 @@ reason.
 |---|---|
 | Found by | `CSSAMPLE-028` ColorReplacement, 2026-09-02 |
 | Owner | `../cnanext` |
-| Affects | **32 of the 78 eligible rows** — every sample that draws a `Model` |
+| Affects | **37 of the 78 eligible rows** — every sample that loads a `Model` |
 | Blocks a sample? | **Yes.** `CSSAMPLE-028` is `⛔`. |
 | Reproduction | `scripts/repro-cna-report-002.sh` |
 
@@ -182,10 +182,15 @@ Both readings are consistent with the evidence and CNA owns the choice:
 
 ### How far this reaches
 
-32 of the 78 eligible rows reference `ModelMesh` or call `mesh.Draw()`: `CSSAMPLE-003`, `005`,
-`012`, `028`, `031`, `032`, `033`, `034`, `035`, `036`, `037`, `038`, `039`, `040`, `041`, `042`,
-`046`, `047`, `048`, `049`, `050`, `051`, `053`, `054`, `055`, `056`, `057`, `058`, `061`, `074`,
-`076`, `099`. That is most of Tier 2 and Tier 3, so this is the campaign's highest-value fix.
+**37 of the 78 eligible rows** load a `Model`: `003`, `005`, `012`, `028`, `030`, `031`, `032`, `033`, `034`, `035`, `036`, `037`, `038`, `039`, `040`, `041`, `042`, `043`, `045`, `046`, `047`, `048`, `049`, `050`, `051`, `052`, `053`, `054`, `055`, `056`, `057`, `058`, `061`, `074`, `076`, `081`, `099`. That is most of Tier 2 and Tier 3, so
+this is the campaign's highest-value fix.
+
+The first count of this was **32, and it was wrong**. It came from grepping for `ModelMesh` and
+`mesh.Draw()`, which misses every sample that calls `Model.Draw(world, view, projection)` instead
+— and `Model.Draw` iterates the meshes and calls `ModelMesh.Draw` on each, so those samples hit the
+defect identically. `CSSAMPLE-030` CameraShake is what exposed the gap: it ships `tank.xnb` and was
+not on the list. The corrected query looks for `Content.Load<Model>` as well, which is the property
+that actually matters, and added `030`, `043`, `045`, `052` and `081`.
 
 ### Measured on
 
