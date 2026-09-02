@@ -56,8 +56,8 @@ Recount from the table rather than trusting these numbers
 | ✅ complete | 2 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
-| 🛑 owner decision | 0 |
-| ⬜ not started | 76 |
+| 🛑 owner decision | 1 |
+| ⬜ not started | 75 |
 | **total** | **78** |
 
 Both finished rows run from byte-identical upstream sources with no deviation.
@@ -71,6 +71,38 @@ repository is for: the C++ port had to invent a `SHAPE_RENDERING_SAMPLE_DEBUG` m
 conditionally compile the original call sites by hand, because C++ has no equivalent of
 `[Conditional("DEBUG")]`. Here the upstream source expresses it directly and the project file says
 nothing about it.
+
+## Owner decision queue
+
+Auditing and bounded fixes continue without asking. A row lands here when finishing it would expand
+what CNA.NET is, or would need a source deviation that changes what the sample demonstrates. Each
+entry states the measured scope and the realistic options; none is acted on until the owner rules.
+
+### DEC-001 — Windows Phone 7 SDK surface (`Microsoft.Devices`)
+
+Raised by `CSSAMPLE-016` Bounce, 2026-09-02. **Blocks 6 of the 78 eligible rows.**
+
+Phone-only samples call `Microsoft.Devices.Environment.DeviceType` and
+`Microsoft.Devices.Sensors.Accelerometer`. In `Bounce/Accelerometer.cs:109` the call sits **outside**
+every `#if WINDOWS_PHONE` guard, so the types are required whatever the constant is set to. They
+live in `Microsoft.Phone.dll` and `Microsoft.Devices.Sensors.dll` — Windows Phone 7 SDK, not XNA
+4.0, and referenced separately from XNA by the upstream project. CNA.NET has no such surface.
+
+Measured reach, counting only references reachable with `WINDOWS_PHONE` undefined:
+`CSSAMPLE-016` (1), `CSSAMPLE-060` (1), `CSSAMPLE-061` (34), `CSSAMPLE-067` (4), `CSSAMPLE-068` (16),
+`CSSAMPLE-084` (2). Three further rows mention it only inside guards and are unaffected.
+
+Options: (1) CNA.NET adds a minimal `Microsoft.Devices` compatibility surface — bounded in size, and
+CNA implements the sensor below the C ABI already, but it ends CNA.NET's "XNA facade only" scope and
+its strict metadata gate needs a policy for deliberately-not-XNA surface; (2) a samples-local shim,
+which is this repository implementing a Microsoft SDK and is what the zero-workaround rule exists to
+prevent; (3) declare phone-only samples out of scope here.
+
+A second ruling is needed either way: phone-only samples have **no entry point**, because the XAP
+host supplied it and the shipped `Program.Main` is `#if WINDOWS || XBOX` guarded and constructs a
+`Game1` class that does not exist. Supplying one means adding a file outside the upstream subtree.
+
+Evidence: `samples/Bounce/missing.md`.
 
 ## Verified toolchain baseline
 
@@ -155,7 +187,7 @@ port ships.
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ⬜ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ⬜ |
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
-| CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | ⬜ |
+| CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | 🛑 |
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ⬜ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ⬜ |
