@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 14 |
+| ✅ complete | 15 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 2 |
-| 🛑 owner decision | 2 |
-| ⬜ not started | 60 |
+| 🛑 owner decision | 3 |
+| ⬜ not started | 58 |
 
 `CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
 loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
@@ -116,12 +116,18 @@ prevent; (3) declare phone-only samples out of scope here.
 A second ruling is needed either way: phone-only samples have **no entry point**, because the XAP
 host supplied it and the shipped `Program.Main` is `#if WINDOWS || XBOX` guarded.
 
-**`CSSAMPLE-079` narrowed this considerably and it is now two questions, not one.** Where the
-guarded `Main` constructs a class that *exists* and the sample has no other `#if WINDOWS_PHONE`
-branch, defining `WINDOWS` in the project file answers it with no invented code and no source edit
-— GesturesSample is `✅` on exactly that basis. Only samples shaped like Bounce, whose guarded
-`Main` names a `Game1` that is not in the sample at all, still need a ruling. Check which shape a
-phone-only sample has before escalating it.
+**Three rows have now met this and they form a ladder**, so check which rung a phone-only sample is
+on before escalating it:
+
+| Row | Upstream provides | Resolution |
+|---|---|---|
+| `CSSAMPLE-079` GesturesSample | guarded `Main` constructing a class that **exists** | `✅` — define `WINDOWS` in the project file, no source edit |
+| `CSSAMPLE-016` Bounce | guarded `Main` constructing a `Game1` that **does not exist** | `🛑` — defining `WINDOWS` does not compile |
+| `CSSAMPLE-021` PathDrawing | **no `Main` and no `Program.cs` at all** | `🛑` — there is nothing to enable |
+
+Only the second and third rungs need a ruling. For the third, no constant can help: running it means
+adding a `Program` class beside the upstream subtree — new authored code in a repository whose
+premise is that there is none, and the same file for every row of that shape.
 
 Evidence: `samples/Bounce/missing.md`.
 
@@ -226,7 +232,7 @@ port ships.
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⛔ |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ⬜ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
-| CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ⬜ |
+| CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ✅ |
 | CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | 🛑 |
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ⬜ |
@@ -236,7 +242,7 @@ port ships.
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ⬜ |
-| CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | ⬜ |
+| CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | 🛑 |
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ⬜ |
 | CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⬜ |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ⬜ |

@@ -1,0 +1,31 @@
+<Project>
+
+  <!--
+    This file exists because `Directory.Build.props` cannot do this. Props is imported BEFORE the
+    SDK's default item globs run, so an `Update` there has no items to update and is silently a
+    no-op. Targets is imported after the project body, by which time the `EmbeddedResource` items
+    exist. That distinction cost a debugging round: the rule looked right, changed nothing, and the
+    samples failed exactly as before.
+
+    Every sample's .resx sat at the ROOT of its upstream project, so XNA embedded it as
+    `<RootNamespace>.<Filename>.resources`. Here the upstream tree is checked in one directory
+    down, and the SDK derives a resource's manifest name from RootNamespace plus its path, which
+    inserts an extra segment. The generated Designer class then asks for a name that is not there:
+
+      Could not find the resource "InputReporter.InputReporterResources.resources" among the
+      resources "InputReporter.InputReporter.InputReporterResources.resources"
+
+    Restating LogicalName restores what upstream produced, and the rule is exact rather than a
+    guess: %(Filename) keeps the culture suffix, so `Strings.da.resx` becomes
+    `<RootNamespace>.Strings.da.resources` and the SDK still builds its satellite assembly.
+
+    This is a consequence of THIS repository's layout, not a difference in any sample, which is why
+    it lives here rather than in each project. CSSAMPLE-078 and CSSAMPLE-009 both hit it.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Update="**/*.resx">
+      <LogicalName>$(RootNamespace).%(Filename).resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

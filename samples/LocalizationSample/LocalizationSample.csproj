@@ -14,26 +14,8 @@
     <StartupObject>Localization.Program</StartupObject>
   </PropertyGroup>
 
-  <!--
-    The .resx files live at the ROOT of the upstream project, so XNA embedded them as
-    `Localization.Strings.resources`. Here the upstream tree is a subdirectory, and the SDK derives
-    a resource's manifest name from RootNamespace plus its path, giving
-    `Localization.Localization.Strings.resources`. Strings.Designer.cs asks for the original name
-    and the game threw at startup:
+  <!-- The .resx manifest-name fix that used to live here is now the shared rule in
+       samples/Directory.Build.props; CSSAMPLE-009 hit the same thing. See missing.md. -->
 
-      Could not find the resource "Localization.Strings.resources" among the resources
-      "Localization.Localization.Strings.resources" embedded in the assembly "Localization"
-
-    LogicalName restores the name upstream produced. This is a layout consequence of checking the
-    project in as a subdirectory, not a difference in the sample, and it is fixed here rather than
-    by moving or editing anything.
-  -->
-  <ItemGroup>
-    <EmbeddedResource Update="Localization/Strings.resx" LogicalName="Localization.Strings.resources" />
-    <EmbeddedResource Update="Localization/Strings.da.resx" LogicalName="Localization.Strings.da.resources" />
-    <EmbeddedResource Update="Localization/Strings.fr.resx" LogicalName="Localization.Strings.fr.resources" />
-    <EmbeddedResource Update="Localization/Strings.ja.resx" LogicalName="Localization.Strings.ja.resources" />
-    <EmbeddedResource Update="Localization/Strings.ko.resx" LogicalName="Localization.Strings.ko.resources" />
-  </ItemGroup>
 
 </Project>

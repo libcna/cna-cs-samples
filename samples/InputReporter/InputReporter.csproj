@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>InputReporter</RootNamespace>
+    <AssemblyName>InputReporter</AssemblyName>
+    <StartupObject>InputReporter.InputReporterGame</StartupObject>
+  </PropertyGroup>
+</Project>
