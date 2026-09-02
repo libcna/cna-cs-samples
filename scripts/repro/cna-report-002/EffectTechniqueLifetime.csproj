@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Reproduction for CNA-REPORT-002. Not a sample: it is a diagnostic, and it is deliberately
+    outside samples/ so the shared sample props do not apply to it and it is not in the solution.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>EffectTechniqueLifetime</AssemblyName>
+    <RootNamespace>EffectTechniqueLifetime</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaCsRoot)' != ''" />
+  </ItemGroup>
+
+  <Target Name="ValidateCnaCsRoot" BeforeTargets="ResolveProjectReferences">
+    <Error Condition="'$(CnaCsRoot)' == ''" Text="CNA.NET not found; set CNA_CS_ROOT." />
+  </Target>
+
+</Project>

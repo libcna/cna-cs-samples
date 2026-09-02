@@ -15,13 +15,23 @@ if [ ! -f "$cna_root/modules/c-api/include/CNA/C/abi.h" ]; then
     exit 2
 fi
 
-# Any build tree already configured for this renderer will do; prefer Release, newest first.
+# A build tree for this renderer WITH compiled effects; prefer Release, then newest.
+#
+# CNA_EASYGL_COMPILED_EFFECTS is not optional for this campaign. XNA samples ship compiled .fx
+# bytecode in their .xnb files, and a library built without it refuses the asset outright:
+#
+#   EffectReader could not create the compiled effect ---> The active graphics renderer does not
+#   support compiled XNA/FNA Effect Framework bytecode (GraphicsCapability::CompiledEffects is false)
+#
+# CSSAMPLE-028 hit exactly that against cmake-build-release-capi, which is Release OPENGLES3 and
+# looked like the obvious choice. Renderer and build type are not enough to pick a tree.
 find_existing() {
     local d cache
     for d in "$cna_root"/cmake-build-* "$cna_root"/build "$cna_root"/build-*; do
         cache="$d/CMakeCache.txt"
         [ -f "$cache" ] || continue
         grep -q "^CNA_GRAPHICS_RENDERER:STRING=$renderer\$" "$cache" || continue
+        grep -q "^CNA_EASYGL_COMPILED_EFFECTS:BOOL=ON$" "$cache" || continue
         [ -f "$d/modules/c-api/libcna_c_api.so" ] || continue
         echo "$(grep -c '^CMAKE_BUILD_TYPE:STRING=Release$' "$cache") $(stat -c %Y "$d/modules/c-api/libcna_c_api.so") $d"
     done | sort -rn | head -1 | cut -d' ' -f3-
@@ -31,7 +41,7 @@ build_dir="$(find_existing || true)"
 
 if [ -z "$build_dir" ]; then
     build_dir="$cna_root/cmake-build-release-capi"
-    echo "no existing $renderer build tree with a C ABI library; configuring $build_dir"
+    echo "no existing $renderer build tree with compiled effects and a C ABI library; configuring $build_dir"
     if ! command -v ccache >/dev/null 2>&1; then
         echo "error: ccache is not installed; refusing to configure a CNA build without it" >&2
         exit 2
@@ -39,6 +49,7 @@ if [ -z "$build_dir" ]; then
     cmake -S "$cna_root" -B "$build_dir" \
         -DCMAKE_BUILD_TYPE=Release \
         -DCNA_GRAPHICS_RENDERER="$renderer" \
+        -DCNA_EASYGL_COMPILED_EFFECTS=ON \
         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
         -DCMAKE_C_COMPILER_LAUNCHER=ccache
 fi
@@ -56,7 +67,7 @@ abi="$(awk '/#define CNA_ABI_VERSION_(MAJOR|MINOR|PATCH)/ {gsub(/[^0-9]/, "", $3
 
 echo
 echo "native library : $lib"
-echo "renderer       : $renderer"
+echo "renderer       : $renderer (compiled effects ON)"
 echo "CNA C ABI      : $abi"
 echo
 echo "CNA.NET admits one reviewed ABI generation at a time; check that $abi is in"

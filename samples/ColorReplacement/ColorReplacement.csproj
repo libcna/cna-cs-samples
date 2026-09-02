@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    XNA Game Studio 4.0 sample: ColorReplacementSample_4_0
+    Selected configuration: ColorReplacement/ColorReplacementWindows.csproj, Release|x86
+    (Windows, Reach). Main is in a static Program class at the bottom of Game.cs.
+    Content: four official pipeline XNBs, including a Model with its Car_0 texture and a
+    compiled ReplaceColor effect.
+  -->
+  <PropertyGroup>
+    <RootNamespace>ColorReplacement</RootNamespace>
+    <AssemblyName>ColorReplacement</AssemblyName>
+    <StartupObject>ColorReplacement.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>
