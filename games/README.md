@@ -14,6 +14,7 @@ checkout.
 | Rookie Drivers | `github.com/Gaming-Triad/rookie-drivers` @ `d9c099b` | shipped `bin/x86/Debug/Content` (23 `.xnb`) | title 0.24% from its own XNA-built `.exe` under Wine; race screen as XNA draws it |
 | TIE Fighter Forever | `github.com/prenex/tiefighter` @ `3c72d10` | built: 42 assets, 4 pipeline-extension projects → 62 `.xnb` | menu, battle with the game's own effect models, game-over screen |
 | NePlus | `github.com/PhoenixWright/NePlus` @ `f9fb441` | built: its 3 content projects (59 `.xnb`, XACT) with its prebuilt Mercury and Tiled pipeline extensions | title with its Bloom effect; plays: Tiled map, Krypton light, Mercury rain, Farseer physics -- five prebuilt XNA 4.0 libraries (Farseer, DebugView, Mercury, TiledLib, EasyConfig) unchanged; the build gives `Content\Config.ini` a Unix name |
+| HeliumBiker | `github.com/danielgomezrico/HeliumBiker-Game` @ `83880ab` | built: 30 assets and its XACT project | runs to its "CONNECT" screen and waits there, as on Windows without one: the published source drives the bike only from a Wii Remote (`DeviceFactory` returns `WiimoteDevice`; the keyboard device is commented out), and the Wiimote search fails quietly here as there |
 | Moto Trial Racer | `github.com/microsoft/moto-trial-racer-wp` @ `9464556` | built: 59 assets incl. Game Studio's QUARTZ MS font (WindowsPhone/Reach) and its 3 level files; Box2D.XNA from its source | menu, level choice and a level 1 run against the clock on Box2D physics, by touch |
 | Solitaire (XNASolitaire) | `github.com/microsoft/solitaire-wp` @ `f6acde9` | built: 56 textures (WindowsPhone/Reach) | deals a Klondike layout; a tap on the stock turns a card (the phone's touch from the mouse) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships |
@@ -33,6 +34,8 @@ Tried and not running here, each for a reason outside XNA:
   a Windows run.
 - **Flux** (`headdetect/Flux-XNA`): its sprite fonts name Fabada and Origin, which the repository
   does not ship; XNA's pipeline cannot build them, and another font would not be its content.
+- **infinecraft** (`adamveld12/infinecraft`): its core references `TomShane.Neoforce.Controls.dll`,
+  which the repository does not ship (only its XML documentation).
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
   `System.Windows` controls, MVVM Light -- like the gallery's Yacht.
 

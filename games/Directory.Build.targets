@@ -5,17 +5,44 @@
   <!--
     A game whose directory also holds sources its own project did not compile (resonance-game has
     ten) names that project in <GameProject>: exactly its Compile items are compiled, read from it.
+    Each is found as Windows found it, segment by segment without regard to case (HeliumBiker lists
+    BluetoothDevice.cs and ships bluetoothDevice.cs).
   -->
+  <UsingTask TaskName="CnaGameProjectSourceFiles" TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Project ParameterType="System.String" Required="true" />
+      <Sources ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        string root = Path.GetDirectoryName(Project);
+        var found = new System.Collections.Generic.List<ITaskItem>();
+        foreach (Match m in Regex.Matches(File.ReadAllText(Project), "<Compile Include=\"([^\"]+)\""))
+        {
+            string path = root;
+            foreach (string segment in m.Groups[1].Value.Split('\\', '/'))
+            {
+                string exact = Path.Combine(path, segment);
+                path = File.Exists(exact) || Directory.Exists(exact) || !Directory.Exists(path)
+                    ? exact
+                    : Directory.EnumerateFileSystemEntries(path)
+                          .FirstOrDefault(e => string.Equals(Path.GetFileName(e), segment, StringComparison.OrdinalIgnoreCase))
+                      ?? exact;
+            }
+            found.Add(new TaskItem(path));
+        }
+        Sources = found.ToArray();
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
   <Target Name="CnaGameProjectSources" BeforeTargets="BeforeBuild" Condition="'$(GameProject)' != ''">
-    <XmlPeek XmlInputPath="$(GameProject)" Query="/msb:Project/msb:ItemGroup/msb:Compile/@Include"
-             Namespaces="&lt;Namespace Prefix='msb' Uri='http://schemas.microsoft.com/developer/msbuild/2003' /&gt;">
-      <Output TaskParameter="Result" ItemName="_CnaGameProjectSource" />
-    </XmlPeek>
-    <PropertyGroup>
-      <_CnaGameProjectDirectory>$([System.IO.Path]::GetDirectoryName('$(GameProject)'))</_CnaGameProjectDirectory>
-    </PropertyGroup>
-    <ItemGroup>
-      <Compile Include="$(_CnaGameProjectDirectory)/$([System.String]::Copy('%(_CnaGameProjectSource.Identity)').Replace('\', '/'))" />
-    </ItemGroup>
+    <CnaGameProjectSourceFiles Project="$(GameProject)">
+      <Output TaskParameter="Sources" ItemName="Compile" />
+    </CnaGameProjectSourceFiles>
   </Target>
 </Project>

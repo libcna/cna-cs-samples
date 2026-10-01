@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- danielgomezrico/HeliumBiker-Game, unchanged, with the Wiimote libraries it ships and its
+       content built from its own content project by XNA's BuildContent
+       (scripts/build-xna-content.sh). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>HeliumBiker</AssemblyName>
+    <RootNamespace>HeliumBiker</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/HeliumBiker-Game</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/heliumbiker/Content</GameContent>
+    <GameProject>$(GameRoot)/HeliumBiker/HeliumBiker/HeliumBiker.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="WiimoteLib" HintPath="$(GameRoot)/lib/WiimoteLib.dll" />
+    <Reference Include="InTheHand.Net.Personal" HintPath="$(GameRoot)/lib/InTheHand.Net.Personal.dll" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
