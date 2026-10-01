@@ -26,6 +26,10 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-053 | CustomModelEffect | ✅ verbatim; environment-mapping effect on the model; 11.45%, rotation |
 | CSSAMPLE-034 | NormalMappingEffect | ✅ verbatim; compiled normal-mapping effect; 0.54% from the C++ port |
 | CSSAMPLE-031 | BloomSample | ✅ verbatim; three-pass bloom; 22.70% (rotation), bloom off after B on both |
+| CSSAMPLE-039 | BillboardSample | ✅ verbatim, HiDef; billboard effect; 4.72%, sway |
+| CSSAMPLE-040 | InstancedModel | ✅ verbatim, HiDef; 1 000 hardware-instanced cats; 13.95%; ~60 vs ~350 fps, llvmpipe-bound, older C++ build |
+| CSSAMPLE-099 | ModelImporterSample | ✅ verbatim; .obj-imported tank; 11.80%, rotation |
+| CSSAMPLE-058 | ChaseCamera | ✅ verbatim; 0.22% from the C++ port |
 
 Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
 `build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest

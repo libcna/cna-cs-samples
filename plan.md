@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 41 |
+| ✅ complete | 45 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 35 |
+| ⬜ not started | 31 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -266,8 +266,8 @@ port ships.
 | CSSAMPLE-036 | `VertexLightingSample_4_0` | `VertexLighting` | 4 / 1086 | 7 | ⬜ |
 | CSSAMPLE-037 | `RimLighting_4_0` | `RimLighting` | 8 / 1041 | 5 | ⬜ |
 | CSSAMPLE-038 | `ShadowMappingSample_4_0` | `ShadowMapping` | 5 / 628 | 16 | ✅ |
-| CSSAMPLE-039 | `BillboardSample_4_0` | `BillboardSample` | 4 / 705 | 5 | ⬜ |
-| CSSAMPLE-040 | `InstancedModelSample_4_0` | `InstancedModel` | 5 / 716 | 4 | ⬜ |
+| CSSAMPLE-039 | `BillboardSample_4_0` | `BillboardSample` | 4 / 705 | 5 | ✅ |
+| CSSAMPLE-040 | `InstancedModelSample_4_0` | `InstancedModel` | 5 / 716 | 4 | ✅ |
 | CSSAMPLE-041 | `LensFlareSample_4_0` | `LensFlare` | 3 / 643 | 6 | ✅ |
 | CSSAMPLE-042 | `ShatterEffectSample_4_0` | `ShatterEffect` | 5 / 514 | 5 | ✅ |
 | CSSAMPLE-043 | `Particles3DSample_4_0` | `Particles3D` | 12 / 1727 | 7 | ⬜ |
@@ -285,7 +285,7 @@ port ships.
 | CSSAMPLE-055 | `SkinnedModelExtensions_4_0` | `SkinnedModelExtensions` | 13 / 1620 | 7 | ⬜ |
 | CSSAMPLE-056 | `CPUSkinningSample_4_0` | `CPUSkinning` | 19 / 1691 | 7 | ⬜ |
 | CSSAMPLE-057 | `InverseKinematics_4_0` | `InverseKinematics` | 3 / 1104 | 3 | ⬜ |
-| CSSAMPLE-058 | `ChaseCamera_4_0` | `ChaseCamera` | 4 / 880 | 5 | ⬜ |
+| CSSAMPLE-058 | `ChaseCamera_4_0` | `ChaseCamera` | 4 / 880 | 5 | ✅ |
 | CSSAMPLE-059 | `Audio3DSample_4_0` | `Audio3D` | 8 / 821 | 7 | ✅ |
 | CSSAMPLE-060 | `SoundAndMusic_4_0` | `SoundAndMusic` | 5 / 963 | 10 | ⬜ |
 | CSSAMPLE-061 | `MarbleMaze_4_0` | `MarbleMaze` | 140 / 25402 | 26 | ⬜ |
@@ -307,7 +307,7 @@ port ships.
 | CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ✅ |
 | CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |
 | CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ✅ |
-| CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ⬜ |
+| CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ✅ |
 | CSSAMPLE-102 | `Orientation_4_0` | `Orientation` | 4 / 528 | 2 | ✅ |
 
 ## Excluded `✅` rows

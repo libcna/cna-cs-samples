@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
+    <RootNamespace>Billboard</RootNamespace>
+    <AssemblyName>Billboard</AssemblyName>
+    <StartupObject>Billboard.Program</StartupObject>
+  </PropertyGroup>
+</Project>
