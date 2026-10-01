@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- glitchculture/ZombieSmashersXNA4 (Zombie Smashers X, James Silva's), unchanged, with the XNA
+       4.0 build output its repository ships: content (effects, textures, XACT banks), the data
+       folder of maps and characters, and settings.sav. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>GameZS</AssemblyName>
+    <RootNamespace>ZombieSmashers</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ZombieSmashersXNA4/GameZS/GameZS/GameZS</GameRoot>
+    <GameProject>$(GameRoot)/GameZS.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameRoot)/bin/x86/Debug/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/bin/x86/Debug/data/**/*" LinkBase="data" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/bin/x86/Debug/settings.sav" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
