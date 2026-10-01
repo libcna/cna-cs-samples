@@ -26,6 +26,9 @@ for a real C++ port. Measured against `../cna-samples` at `425d772` on 2026-09-0
 | less `SAMPLE-004` StockEffects — owner-accepted non-port (`SAMPLES-DEC-002`) | −1 |
 | less `SAMPLE-015` TicTacToe — owner-accepted non-port (`SAMPLES-DEC-004`) | −1 |
 | **eligible rows here** | **78** |
+| re-derived 2026-10-01 (`scripts/check-eligibility.sh`): newly `✅` upstream — 014, 062, 065, 066, 070, 071, 091 | +7 |
+| less `SAMPLE-068` CatapultWarsTrainingKit — owner-cancelled 2026-09-26, a staged training kit of `SAMPLE-067`'s game | −1 |
+| **eligible rows here, 2026-10-01** | **84** |
 | runnable products behind those rows | 85 |
 
 The two exclusions are `✅` for an evidence-backed decision *not* to port, so there is no C++ port
@@ -57,8 +60,8 @@ Recount from the table rather than trusting these numbers
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 0 |
-| ⬜ not started | 1 |
-| **total** | **78** |
+| ⬜ not started | 7 |
+| **total** | **84** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
 `CNA-REPORT-002`; 25 declare a `DrawableGameComponent`, `CNA-REPORT-004`; 6 reach Windows Phone SDK
@@ -243,6 +246,7 @@ port ships.
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ✅ |
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ✅ |
+| CSSAMPLE-014 | `Spacewar_4_0` | `Spacewar` | 41 / 7586 | 154 | ⬜ |
 | CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | ✅ |
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ✅ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
@@ -289,10 +293,14 @@ port ships.
 | CSSAMPLE-059 | `Audio3DSample_4_0` | `Audio3D` | 8 / 821 | 7 | ✅ |
 | CSSAMPLE-060 | `SoundAndMusic_4_0` | `SoundAndMusic` | 5 / 963 | 10 | ✅ |
 | CSSAMPLE-061 | `MarbleMaze_4_0` | `MarbleMaze` | 140 / 25402 | 26 | ✅ |
+| CSSAMPLE-062 | `NetRumble_4_0` | `NetRumble` | 49 / 12812 | 56 | ⬜ |
 | CSSAMPLE-063 | `HoneycombRush_4_0` | `HoneycombRush` | 65 / 16127 | 47 | ✅ |
+| CSSAMPLE-065 | `NinjAcademy_4_0` | `NinjAcademy` | 41 / 8506 | 47 | ⬜ |
+| CSSAMPLE-066 | `ShipGame_4_0` | `ShipGame` | 40 / 10094 | 159 | ⬜ |
 | CSSAMPLE-067 | `CatapultWars_4_0` | `CatapultWars` | 61 / 12001 | 33 | ✅ |
-| CSSAMPLE-068 | `CatapultWarsTrainingKit_4_0` | `CatapultWarsTrainingHealthBar`<br>`CatapultWarsTrainingSecondHuman`<br>`CatapultWarsTrainingShotAngle`<br>`CatapultWarsTrainingShotGuide`<br>`CatapultWarsTrainingSupplyCrate`<br>`CatapultWarsTrainingAllFeatures`<br>`CatapultWarsTrainingScrollingScreen` | 150 / 30911 | 242 | ⬜ |
 | CSSAMPLE-069 | `CardsStarterKit_4_0` | `CardsStarterKit` | 47 / 8742 | 89 | ✅ |
+| CSSAMPLE-070 | `RolePlayingGame_4_0_Win_Xbox` | `RolePlayingGame` | 137 / 32744 | 1004 | ⬜ |
+| CSSAMPLE-071 | `Yacht_4_0` | `Yacht` | 39 / 10983 | 45 | ⬜ |
 | CSSAMPLE-072 | `GSMSample_4_0_WIN_XBOX` | `GameStateManagement` | 15 / 2520 | 5 | ✅ |
 | CSSAMPLE-073 | `SoccerPitchSample_4_0` | `SoccerPitch` | 10 / 1150 | 6 | ✅ |
 | CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ✅ |
@@ -305,6 +313,7 @@ port ships.
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ✅ |
 | CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ✅ |
 | CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ✅ |
+| CSSAMPLE-091 | `ClientServerSample_4_0` | `ClientServerSample` | 3 / 785 | 3 | ⬜ |
 | CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |
 | CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ✅ |
 | CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ✅ |
