@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
+    <RootNamespace>Spacewar</RootNamespace>
+    <AssemblyName>SpaceWarWindows</AssemblyName>
+    <StartupObject>Spacewar.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- As the upstream project ships it: a Content item copied beside the executable, which
+         Settings.Load opens by that relative name. -->
+    <None Update="Spacewar_4_0/settings.xml">
+      <Link>settings.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

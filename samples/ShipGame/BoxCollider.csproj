@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: as the original solution builds it. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BoxCollider</RootNamespace>
+    <AssemblyName>BoxCollider</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BoxCollider/**/*.cs" />
+  </ItemGroup>
+</Project>

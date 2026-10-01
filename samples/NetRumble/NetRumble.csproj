@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
+    <RootNamespace>NetRumble</RootNamespace>
+    <AssemblyName>NetRumble</AssemblyName>
+    <!-- Program is nested in the game class. -->
+    <StartupObject>NetRumble.NetRumbleGame.Program</StartupObject>
+  </PropertyGroup>
+
+  <!--
+    NetRumbleGame enumerates its sound effects with the BCL, not with XNA:
+      new DirectoryInfo(Content.RootDirectory + @"\audio\wav")
+    which Windows resolves to Content/Audio/wav, and no other filesystem does. Beside the executable,
+    an entry named literally "Content\audio\wav" links to that directory, so the unchanged line finds
+    what it found on Windows. The sounds themselves still load through XNA's ContentManager.
+  -->
+  <UsingTask TaskName="CnaWindowsPathLink" TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Directory ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Class" Language="cs"><![CDATA[
+        using System.IO;
+        using System.Runtime.InteropServices;
+        using Microsoft.Build.Utilities;
+
+        public class CnaWindowsPathLink : Task
+        {
+            [DllImport("libc", SetLastError = true)]
+            private static extern int symlink(string target, string linkPath);
+
+            public string Directory { get; set; }
+
+            public override bool Execute()
+            {
+                string link = Path.Combine(Directory, "Content\\audio\\wav");
+                if (File.Exists(link) || System.IO.Directory.Exists(link))
+                {
+                    return true;
+                }
+
+                if (symlink("Content/Audio/wav", link) != 0)
+                {
+                    Log.LogError("Could not link " + link + " (errno " + Marshal.GetLastWin32Error() + ").");
+                    return false;
+                }
+
+                return true;
+            }
+        }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="CnaLinkWindowsAudioPath" AfterTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
+    <CnaWindowsPathLink Directory="$(OutDir)" />
+  </Target>
+</Project>

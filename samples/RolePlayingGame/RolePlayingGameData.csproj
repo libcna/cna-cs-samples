@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: the compiled game data names its types by assembly-qualified name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RolePlayingGameData</RootNamespace>
+    <AssemblyName>RolePlayingGameDataWindows</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="RolePlayingGameData/**/*.cs" />
+  </ItemGroup>
+</Project>

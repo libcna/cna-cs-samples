@@ -79,3 +79,8 @@ MarbleMaze	MarbleMaze_4_0	Source/EX2_Polishing/End/MarbleMazeGame/MarbleMazeGame
 HoneycombRush	HoneycombRush_4_0	Sources/EX2_PolishAndMenus/HoneycombRush/HoneycombRush	HoneycombRush
 CatapultWars	CatapultWars_4_0	Source/EX2_PolishAndMenus/End/CatapultGame/CatapultGame	CatapultWars
 CardsStarterKit	CardsStarterKit_4_0	CardsGame/CardsGame	CardsStarterKit
+Spacewar	Spacewar_4_0	.	Spacewar
+ClientServerSample	ClientServerSample_4_0	ClientServer	ClientServerSample
+ShipGame	ShipGame_4_0	ShipGame	ShipGame
+NetRumble	NetRumble_4_0	NetRumble	NetRumble
+RolePlayingGame	RolePlayingGame_4_0_Win_Xbox	RolePlayingGame_4_0_Win_Xbox/RolePlayingGame	RolePlayingGame

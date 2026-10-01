@@ -75,6 +75,11 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-063 | HoneycombRush | ✅ phone host, the kit's final stage; 0 px from the C++ menu frame |
 | CSSAMPLE-067 | CatapultWars | ✅ phone host, the kit's final stage; 0 px from the C++ menu frame |
 | CSSAMPLE-069 | CardsStarterKit | ✅ verbatim with its `CardsFramework`, HiDef; 0 px on the title and on the table after Play; leaves through its Exit entry |
+| CSSAMPLE-014 | Spacewar | ✅ verbatim, project at the upstream root; `settings.xml` copied as upstream; 0 px; Left Shift is its Back |
+| CSSAMPLE-091 | ClientServerSample | ✅ verbatim; opens on CNA's Guide sign-in as the sample asks; 0 px on the session menu after signing in |
+| CSSAMPLE-066 | ShipGame | ✅ verbatim with `BoxCollider`; Windows-cased audio path (CSX-096); animated title; quits from its menu |
+| CSSAMPLE-062 | NetRumble | ✅ verbatim; a `Content\audio\wav` link in the output answers its BCL directory scan; 1.04% |
+| CSSAMPLE-070 | RolePlayingGame | ✅ verbatim with its data library, 1 004 assets; backslash audio path (CSX-096); 0 px |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Two upstream source trees live side by side here, so default compile items are off. -->
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
+    <RootNamespace>ShipGame</RootNamespace>
+    <AssemblyName>ShipGameWindows</AssemblyName>
+    <StartupObject>ShipGame.ShipGameGame</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ShipGame/**/*.cs" />
+    <ProjectReference Include="BoxCollider.csproj" />
+  </ItemGroup>
+</Project>
