@@ -37,6 +37,11 @@ Tried and not running here, each for a reason outside XNA:
   does not ship; XNA's pipeline cannot build them, and another font would not be its content.
 - **infinecraft** (`adamveld12/infinecraft`): its core references `TomShane.Neoforce.Controls.dll`,
   which the repository does not ship (only its XML documentation).
+- **Grey Infection** (`VisualStudioEX3/Grey-Infection`): the repository holds its Xbox 360 project
+  and one shader, not its art.
+- **Diseased Toast** (`Sharparam/DiseasedToast`): its `Main` opens a console through `kernel32`
+  (`AllocConsole`) and uses Windows Forms.
+- **Mannux** (`andyfriesen/Mannux`): a `winmm.dll` timer and Windows Forms.
 - **Minor Destruction** (`geel9/Minor-Destruction`): calls Windows Forms directly (`MessageBox`,
   cursors), which .NET does not have off Windows.
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
