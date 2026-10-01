@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Speedy Blupi as its XNA 4.0 Windows build compiles it (speedy-blupi-xna4/scripts/build.sh):
+       the same sources and sensor stand-ins, TRACE;WINDOWS, Reach. See README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>SpeedyBlupi</AssemblyName>
+    <RootNamespace>WindowsPhoneSpeedyBlupi</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(MSBuildThisFileDirectory)../../../../openeggbert/mobile-eggbert-legacy/speedy-blupi-xna4</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(GameRoot)/WindowsPhoneSpeedyBlupi/**/*.cs" />
+    <Compile Include="$(GameRoot)/Microsoft.Devices.Sensors/*.cs" />
+    <None Include="$(GameRoot)/build/bin/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/build/bin/worlds/**/*" LinkBase="worlds" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

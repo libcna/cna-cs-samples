@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Gaming-Triad/rookie-drivers, unchanged, with the XNA 4.0 content its repository ships
+       (bin/x86/Debug/Content, built by its authors). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Rookie Drivers</AssemblyName>
+    <RootNamespace>RookieDrivers</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/rookie-drivers/Rookie Drivers/Rookie Drivers</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(GameRoot)/**/*.cs" Exclude="$(GameRoot)/obj/**;$(GameRoot)/bin/**" />
+    <None Include="$(GameRoot)/bin/x86/Debug/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

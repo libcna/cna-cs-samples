@@ -1,0 +1,21 @@
+<Project>
+  <!-- DefineConstants and the RuntimeProfile resource, as for the samples. -->
+  <Import Project="../samples/Directory.Build.targets" />
+
+  <!--
+    A game whose directory also holds sources its own project did not compile (resonance-game has
+    ten) names that project in <GameProject>: exactly its Compile items are compiled, read from it.
+  -->
+  <Target Name="CnaGameProjectSources" BeforeTargets="BeforeBuild" Condition="'$(GameProject)' != ''">
+    <XmlPeek XmlInputPath="$(GameProject)" Query="/msb:Project/msb:ItemGroup/msb:Compile/@Include"
+             Namespaces="&lt;Namespace Prefix='msb' Uri='http://schemas.microsoft.com/developer/msbuild/2003' /&gt;">
+      <Output TaskParameter="Result" ItemName="_CnaGameProjectSource" />
+    </XmlPeek>
+    <PropertyGroup>
+      <_CnaGameProjectDirectory>$([System.IO.Path]::GetDirectoryName('$(GameProject)'))</_CnaGameProjectDirectory>
+    </PropertyGroup>
+    <ItemGroup>
+      <Compile Include="$(_CnaGameProjectDirectory)/$([System.String]::Copy('%(_CnaGameProjectSource.Identity)').Replace('\', '/'))" />
+    </ItemGroup>
+  </Target>
+</Project>

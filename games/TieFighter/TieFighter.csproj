@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- prenex/tiefighter (TIE Fighter Forever), unchanged; its content built from its own content
+       project and pipeline extensions with XNA's BuildContent (scripts/build-xna-content.sh).
+       See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>TIE Fighter Forever</AssemblyName>
+    <RootNamespace>TIE_Fighter_Forever</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/tiefighter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/tiefighter/Content</GameContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(GameRoot)/TIE Fighter Forever/**/*.cs" Exclude="$(GameRoot)/TIE Fighter Forever/obj/**;$(GameRoot)/TIE Fighter Forever/bin/**;$(GameRoot)/TIE Fighter Forever/Content/**" />
+    <ProjectReference Include="TypeReaders/TypeReaders.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

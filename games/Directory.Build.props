@@ -1,0 +1,5 @@
+<Project>
+  <!-- The real games build exactly as the gallery samples do (../samples/Directory.Build.props):
+       2010-era C# settings, CNA.NET by project reference, no generated assembly info. -->
+  <Import Project="../samples/Directory.Build.props" />
+</Project>

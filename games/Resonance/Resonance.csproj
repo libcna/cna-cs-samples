@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- resonance-game, unchanged: its Windows project's sources, its own two libraries, and the
+       BEPUphysics v1.0.0 binary it ships, compiled against XNA 4.0. Content built from its own
+       content project and pipeline extension by XNA's BuildContent (scripts/build-xna-content.sh,
+       songs as labelled stand-ins). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Resonance</AssemblyName>
+    <RootNamespace>Resonance</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/resonance-game/Resonance</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/resonance/Content</GameContent>
+    <GameProject>$(GameRoot)/Resonance/Resonance/Windows Copy of Resonance.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The Windows Phone build of the BEPUphysics release the game ships: its x86 build lays out a
+         struct with an object field at offset 20, which no 64-bit runtime loads. -->
+    <Reference Include="BEPUphysics" HintPath="$(GameRoot)/Resonance/Resonance/BEPUphysics v1.0.0/Windows Phone/Release/BEPUphysics.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="AnimationLibrary/AnimationLibrary.csproj" />
+    <ProjectReference Include="ResonanceLibrary/ResonanceLibrary.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game's content-runtime library, its own assembly: the compiled collision data names
+       TypeReaders.CollisionPipelineRuntimeHelper types by assembly. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>TypeReaders</AssemblyName>
+    <RootNamespace>TypeReaders</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/tiefighter</GameRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(GameRoot)/TypeReaders/**/*.cs" Exclude="$(GameRoot)/TypeReaders/obj/**;$(GameRoot)/TypeReaders/bin/**" />
+  </ItemGroup>
+</Project>

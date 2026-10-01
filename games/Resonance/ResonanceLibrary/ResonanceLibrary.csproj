@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game's level data types, its own assembly: the compiled levels name them by assembly. Its
+       one project targets the Xbox 360; the Windows game referenced that build, and its sources have
+       no platform conditions. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ResonanceLibrary</AssemblyName>
+    <RootNamespace>ResonanceLibrary</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/resonance-game/Resonance</GameRoot>
+    <GameProject>$(GameRoot)/ResonanceLibrary/ResonanceLibrary.csproj</GameProject>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game's animation library, its own assembly as the game built it. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>AnimationLibrary</AssemblyName>
+    <RootNamespace>AnimationLibrary</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/resonance-game/Resonance</GameRoot>
+    <GameProject>$(GameRoot)/AnimationLibrary/Windows Copy of AnimationLibrary.csproj</GameProject>
+  </PropertyGroup>
+</Project>
