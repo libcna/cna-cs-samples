@@ -5,6 +5,21 @@ inherits.
 
 ---
 
+## 2026-10-01 — gallery rows resumed (CSX-053..)
+
+New rows, each from verbatim upstream sources with official XNBs from `../cna-samples`, built Debug
+and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `build-probe`
+(OPENGLES3, compiled effects). Details in each row's `missing.md`.
+
+| Row | Sample | Result |
+|---|---|---|
+| CSSAMPLE-084 | AccelerometerSample | ✅ phone host + CNA.PhoneCompat; first frame 0 px from the original XNA emulator frame; Right arrow moves the asteroid |
+
+Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
+`build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest
+Release OPENGLES3 tree with compiled effects, and the host cannot load it); `capture-sample.sh
+--xdotool` drives input before the capture.
+
 ## 2026-10-01 — samples in a browser
 
 `scripts/browser-sample.sh <Sample>` builds a sample for the browser and runs it in headless

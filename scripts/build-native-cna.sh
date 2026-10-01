@@ -32,6 +32,7 @@ find_existing_any() {
         cache="$d/CMakeCache.txt"
         [ -f "$cache" ] || continue
         grep -q "^CNA_GRAPHICS_RENDERER:STRING=$renderer\$" "$cache" || continue
+        grep -q "^CMAKE_TOOLCHAIN_FILE:" "$cache" && continue
         [ -f "$d/modules/c-api/libcna_c_api.so" ] || continue
         echo "$(grep -c '^CMAKE_BUILD_TYPE:STRING=Release$' "$cache") $(stat -c %Y "$d/modules/c-api/libcna_c_api.so") $d"
     done | sort -rn | head -1 | cut -d' ' -f3-
@@ -44,6 +45,9 @@ find_existing() {
         [ -f "$cache" ] || continue
         grep -q "^CNA_GRAPHICS_RENDERER:STRING=$renderer\$" "$cache" || continue
         grep -q "^CNA_EASYGL_COMPILED_EFFECTS:BOOL=ON$" "$cache" || continue
+        # A cross-compiled tree (../cna-cs's cmake-build-android-<abi>) is the newest Release
+        # OPENGLES3 tree with compiled effects too, and this host cannot load what it builds.
+        grep -q "^CMAKE_TOOLCHAIN_FILE:" "$cache" && continue
         [ -f "$d/modules/c-api/libcna_c_api.so" ] || continue
         echo "$(grep -c '^CMAKE_BUILD_TYPE:STRING=Release$' "$cache") $(stat -c %Y "$d/modules/c-api/libcna_c_api.so") $d"
     done | sort -rn | head -1 | cut -d' ' -f3-

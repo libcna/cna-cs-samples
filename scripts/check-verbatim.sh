@@ -36,8 +36,10 @@ while IFS=$'\t' read -r sample upstream subpath _; do
     checked=$((checked + 1))
 
     # Content/ is excluded on both sides: rules.md keeps the upstream project's pipeline INPUTS out
-    # of this repository, and the compiled output lives in the sample's own Content/ instead.
-    diff_output="$(diff -r --exclude=Content "$src" "$dst" 2>&1)"
+    # of this repository, and the compiled output lives in the sample's own Content/ instead. bin/
+    # and obj/ are Visual Studio build output some upstream snapshots carry (AccelerometerSample's
+    # obj/ holds a generated AssemblyAttributes.cs); they are not sources and are not checked in.
+    diff_output="$(diff -r --exclude=Content --exclude=bin --exclude=obj "$src" "$dst" 2>&1)"
     if [ -n "$diff_output" ]; then
         echo "DIFFERS           $sample"
         printf '%s\n' "$diff_output" | sed 's/^/                    /' | head -12

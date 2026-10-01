@@ -5,10 +5,13 @@
 # Usage: scripts/capture-sample.sh <SampleDirectory> --window <regex> --out <directory>
 #                                  [--configuration Debug|Release] [--settle SECONDS]
 #                                  [--exit-key KEY] [--display :N] [--no-exit-check]
-#                                  [--exe PATH]
+#                                  [--exe PATH] [--xdotool 'COMMANDS']
 #
 # --exe captures another executable the same way -- the retained C++ port, for the reference the
 # C# capture is compared against. The sample directory still names the output file.
+#
+# --xdotool drives the focused window after the settle time and before the capture, e.g.
+# 'keydown Right sleep 1.5 keyup Right' (xdotool's own chaining), so input has evidence too.
 #
 # Two details are not obvious and both were learned the hard way:
 #
@@ -21,7 +24,7 @@ set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 sample=""; window_pattern=""; out=""; configuration=Release
-settle=5; exit_key=Escape; display=":${CNA_CAPTURE_DISPLAY_NUMBER:-128}"; check_exit=1; exe_override=""
+settle=5; exit_key=Escape; display=":${CNA_CAPTURE_DISPLAY_NUMBER:-128}"; check_exit=1; exe_override=""; input=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -33,7 +36,8 @@ while [ $# -gt 0 ]; do
         --display)        display="$2"; shift 2 ;;
         --no-exit-check)  check_exit=0; shift ;;
         --exe)            exe_override="$2"; shift 2 ;;
-        -h|--help)        sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        --xdotool)        input="$2"; shift 2 ;;
+        -h|--help)        sed -n '2,21p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)               echo "error: unknown option $1" >&2; exit 2 ;;
         *)                sample="$1"; shift ;;
     esac
@@ -121,6 +125,11 @@ eval "$(DISPLAY="$display" xwininfo -id "$window" |
 
 DISPLAY="$display" xdotool windowfocus --sync "$window"
 sleep "$settle"
+if [ -n "$input" ]; then
+    # Word splitting is the point: the value is a sequence of xdotool arguments.
+    # shellcheck disable=SC2086
+    DISPLAY="$display" xdotool $input
+fi
 DISPLAY="$display" import -window root -crop "${ww}x${wh}+${wx}+${wy}" +repage "$out/$sample.png"
 
 echo "window   : $(cat "$out/window-name.txt") ${ww}x${wh}"

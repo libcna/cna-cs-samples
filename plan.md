@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 28 |
+| ✅ complete | 29 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 48 |
+| ⬜ not started | 47 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -304,7 +304,7 @@ port ships.
 | CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ⬜ |
 | CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |
 | CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ✅ |
-| CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ⬜ |
+| CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ✅ |
 | CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |
 | CSSAMPLE-098 | `MicrophoneEchoSample_4_0` | `MicrophoneEcho` | 3 / 550 | 1 | ✅ |
 | CSSAMPLE-099 | `ModelImporterSample_4_0` | `ModelImporterSample` | 4 / 797 | 3 | ⬜ |
