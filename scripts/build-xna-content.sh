@@ -6,7 +6,7 @@
 #
 # Usage: scripts/build-xna-content.sh --project X.contentproj --out DIR [--obj DIR]
 #            [--profile Reach|HiDef] [--platform Windows] [--compress true|false]
-#            [--extension Y.csproj ...] [--font F.ttf ...] [--song-standins]
+#            [--extension Y.csproj ...] [--font F.ttf ...] [--song-standins] [--video-standins]
 #
 # --extension compiles one of the game's pipeline-extension (or content-runtime) projects with mono
 # against XNA's assemblies and hands it to BuildContent; list them in dependency order. XACT
@@ -17,8 +17,9 @@
 #
 # Needs the XNA 4.0 Wine prefix (~/.wine-cna-xna40, CNA_XNA40_WINEPREFIX) and the Game Studio
 # reference assemblies the C++ campaign unpacked (CNA_XNA40_GS). The pipeline creates a real D3D9
-# device, so it gets a private Xvfb, never the desktop. Wine cannot run WmaImporter (songs); those
-# assets fail and are reported.
+# device, so it gets a private Xvfb, never the desktop. Wine cannot run WmaImporter (songs) or
+# VideoProcessor (videos); those assets are listed, not built, and --song-standins/--video-standins
+# write labelled stand-ins for them (scripts/song-standin.sh, scripts/video-standin.sh).
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 gs="${CNA_XNA40_GS:-/rv/tmp/samples/_tools/xna-game-studio-4-refresh/admin}"
@@ -28,7 +29,7 @@ wine_prefix="${CNA_XNA40_WINEPREFIX:-$HOME/.wine-cna-xna40}"
 xna_native="$wine_prefix/drive_c/Program Files/Common Files/Microsoft Shared/XNA/Framework/v4.0/XnaNative.dll"
 runner="$here/build-consumer/xna-content-runner"
 
-project=""; out=""; obj=""; profile=Reach; platform=Windows; compress=false; extensions=(); fonts=(); standins=false
+project=""; out=""; obj=""; profile=Reach; platform=Windows; compress=false; extensions=(); fonts=(); standins=false; video_standins=false
 while [ $# -gt 0 ]; do
     case "$1" in
         --project)   project="$(realpath "$2")"; shift 2 ;;
@@ -40,6 +41,7 @@ while [ $# -gt 0 ]; do
         --extension) extensions+=("$(realpath "$2")"); shift 2 ;;
         --font)      fonts+=("$(realpath "$2")"); shift 2 ;;
         --song-standins) standins=true; shift ;;
+        --video-standins) video_standins=true; shift ;;
         -h|--help)   sed -n '2,22p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "error: unknown argument $1" >&2; exit 2 ;;
     esac
@@ -190,6 +192,12 @@ if $standins; then
         "$here/scripts/song-standin.sh" "$(dirname "$project")/$source" "$out/$(dirname "$source")" "$name"
     done
 fi
+if $video_standins; then
+    sed -n 's/^skipped video: \(.*\) as \([^\r]*\)\r\{0,1\}$/\1\t\2/p' "$obj/build.log" | while IFS=$'\t' read -r source name; do
+        source="${source//\\//}"
+        "$here/scripts/video-standin.sh" "$(dirname "$project")/$source" "$out/$(dirname "$source")" "$name"
+    done
+fi
 
 # Plain files the content project copies beside the built content (MSBuild's part, not BuildContent's).
 python3 - "$project" "$out" <<'PYEOF'
@@ -213,6 +221,23 @@ for inc in re.findall(r'<Compile Include="([^"]+\.xap)"', open(sys.argv[1], enco
     print(inc.replace("\\", "/"))
 PYEOF
     mkdir -p "$out/$(dirname "$xap")"
+    # A wave named by its author's absolute path (C:\csdev\...\x.wav) was found there on the
+    # author's machine. The same file beside the project is linked at that path in the XNA prefix,
+    # so the project builds as written.
+    python3 - "$(dirname "$project")/$xap" "$wine_prefix" <<'PYEOF'
+import os, re, sys
+xap, prefix = sys.argv[1], sys.argv[2]
+for drive, rest in re.findall(r'^\s*File = ([A-Za-z]):\\(.+\.wav);', open(xap, encoding="utf-8-sig", errors="replace").read(), re.M):
+    target = os.path.join(prefix, "drive_" + drive.lower(), *rest.split("\\"))
+    name = rest.split("\\")[-1]
+    # Found without regard to case, as Windows found it (step2soft.wav names step2Soft.wav).
+    local = next((os.path.join(os.path.dirname(xap), f) for f in os.listdir(os.path.dirname(xap) or ".")
+                  if f.lower() == name.lower()), "")
+    if not os.path.lexists(target) and os.path.isfile(local):
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        os.symlink(os.path.abspath(local), target)
+        print("xact wave at its author's path: " + drive + ":\\" + rest)
+PYEOF
     env -u WAYLAND_DISPLAY DISPLAY="$display" WINEPREFIX="$wine_prefix" WINEDEBUG=-all \
         wine "$(win "$runner/XactBld3.exe")" /F /WINDOWS /X:HEADER /X:CUELIST /X:REPORT \
         "$(win "$(dirname "$project")/$xap")" "$(win "$out/$(dirname "$xap")")"

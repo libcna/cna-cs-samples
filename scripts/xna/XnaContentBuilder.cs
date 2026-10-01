@@ -58,6 +58,12 @@ internal static class Program
                 Console.WriteLine("skipped song: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
                 continue;
             }
+            // VideoProcessor reads the video through Windows Media Format as well, and fails the same way.
+            if (item.GetMetadata("Processor") == "VideoProcessor")
+            {
+                Console.WriteLine("skipped video: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
+                continue;
+            }
             assets.Add(item);
         }
         Console.WriteLine("content project: " + assets.Count + " assets");
