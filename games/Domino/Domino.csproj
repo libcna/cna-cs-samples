@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- itsshortforleo/DominoTropicalXNA, unchanged, with the XNA 4.0 content its repository ships
+       (bin/x86/Debug/Content, built by its authors). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Domino Beta v0.1</AssemblyName>
+    <RootNamespace>Domino_Beta_v0._1</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/DominoTropicalXNA/Domino/Domino</GameRoot>
+    <GameProject>$(GameRoot)/Domino.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameRoot)/bin/x86/Debug/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
