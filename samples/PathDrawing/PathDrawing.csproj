@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
     <RootNamespace>PathDrawing</RootNamespace>
     <AssemblyName>PathDrawing</AssemblyName>
-    <StartupObject>PathDrawing.Program</StartupObject>
+    <!-- Upstream ships only the phone project and no Main at all; the XAP host constructed the game. -->
+    <CnaPhoneGame>PathDrawing.PathDrawingGame</CnaPhoneGame>
   </PropertyGroup>
 </Project>

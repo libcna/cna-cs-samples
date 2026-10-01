@@ -36,12 +36,8 @@
     <CnaSampleContentDirectory Condition="'$(CnaSampleContentDirectory)' == ''">Content</CnaSampleContentDirectory>
   </PropertyGroup>
 
-  <!-- The DefineConstants of the original Windows configuration. A sample whose selected
-       configuration differs overrides CnaSampleDefineConstants in its own .csproj. -->
-  <PropertyGroup>
-    <CnaSampleDefineConstants Condition="'$(CnaSampleDefineConstants)' == ''">WINDOWS</CnaSampleDefineConstants>
-    <DefineConstants>$(DefineConstants);$(CnaSampleDefineConstants)</DefineConstants>
-  </PropertyGroup>
+  <!-- DefineConstants are set in Directory.Build.targets, where a sample's own project body has
+       already been read. -->
 
   <ItemGroup>
     <ProjectReference Include="$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaCsRoot)' != ''" />

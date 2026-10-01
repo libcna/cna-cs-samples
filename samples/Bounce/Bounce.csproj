@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
     <RootNamespace>Bounce</RootNamespace>
     <AssemblyName>Bounce</AssemblyName>
-    <CnaSampleDefineConstants></CnaSampleDefineConstants>
+    <!-- Upstream ships only the phone project: TRACE;WINDOWS_PHONE, no Main of its own. -->
+    <CnaPhoneGame>Bounce.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
   </PropertyGroup>
 </Project>

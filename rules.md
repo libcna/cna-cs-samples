@@ -89,8 +89,10 @@ on Xbox 360 or Windows Phone 7, for instance. Then, in this order:
    as such later.
 3. If the API is not XNA's but a Windows Phone SDK one (`Microsoft.Devices`, ...), it goes into the
    separate opt-in phone compatibility assembly of `../cna-cs`, never into the strict XNA facade.
-4. A sample without its own `Main` (its host supplied one) gets an external host project around the
-   unchanged source.
+4. A sample without its own `Main` (its host supplied one) gets a generated host around the
+   unchanged source: the project names the game class in `<CnaPhoneGame>`, and
+   `samples/Directory.Build.targets` writes the entry point into `obj/` and selects the phone
+   configuration's `WINDOWS_PHONE`. `<CnaPhoneCompat>true</CnaPhoneCompat>` adds CNA.PhoneCompat.
 5. Only when none of these applies is the source edited. Make the smallest possible edit, keep the
    original line in a comment beside it, and record it in `missing.md` under *Source deviations*
    with the exact upstream text, the replacement, and why no project-file setting could do it.
