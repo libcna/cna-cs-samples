@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- debreuil/Swf2XNA's runtime: the screens and physics its games are built on. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>V2DRuntime</AssemblyName>
+    <RootNamespace>V2DRuntime</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/SWF2XNA</GameRoot>
+    <GameProject>$(GameRoot)/V2DRuntime/V2DRuntime.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Box2D.XNA/Box2D.XNA.csproj" />
+    <ProjectReference Include="../VexPipelineReader/VexPipelineReader.csproj" />
+  </ItemGroup>
+</Project>

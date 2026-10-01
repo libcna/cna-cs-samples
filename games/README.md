@@ -8,7 +8,7 @@ output**: either the content the game's repository ships, or content built from 
 (`scripts/build-xna-content.sh`). Nothing of a game is checked in here; `GameRoot` points at its
 checkout.
 
-| Game | Source | Content | Measured 2026-10-01 and -02 (CNA.NET `4fc7dfb`, music and the sidescroller `82cd310`; CNA `1c2923efd`) |
+| Game | Source | Content | Measured 2026-10-01 and -02 (CNA.NET `4fc7dfb`; music and the games added 2026-10-02 on CNA.NET `880b6bc`, CNA `fad9fabe0`; the rest CNA `1c2923efd`) |
 |---|---|---|---|
 | [Speedy Blupi](SpeedyBlupi/README.md) | `openeggbert/mobile-eggbert-legacy` `speedy-blupi-xna4` @ `6d35cca` | its XNA build's `build/bin/Content` (280 `.xnb`) | title 255 px from XNA 4.0 under Wine (save-game numbers); plays, pauses |
 | Rookie Drivers | `github.com/Gaming-Triad/rookie-drivers` @ `d9c099b` | shipped `bin/x86/Debug/Content` (23 `.xnb`) | title 0.24% from its own XNA-built `.exe` under Wine; race screen as XNA draws it; its music (5 songs) |
@@ -23,6 +23,8 @@ checkout.
 | Kosmic Warz | `github.com/ActiveNick/KosmicWarz-WP` @ `e892775` | built: 44 files from its content project with its own pipeline extension (WindowsPhone/Reach); its song a labelled stand-in, converted | menu, then a level by touch: the 3D fleet, the ship, the DPSF starfield and explosions, the HUD; DPSF from its author's own prebuilt `DPSFPhone.dll` (`deadlydog/DPSF-XNA` @ `0b80a2f`, MIT) unchanged |
 | Dominó Tropical | `github.com/itsshortforleo/DominoTropicalXNA` @ `ac426b7` | shipped `bin/x86/Debug/Content` (129 `.xnb`, XACT) | title 0.32% (10% fuzz) from its own XNA-built `.exe` under Wine, all in one tile whose alpha pulses while the pointer is over the window; a click on New Game deals: the double six, four hands, the score |
 | A Princess' Request (Ludum Dare 30) | `github.com/cedwards145/princess-request` @ `fdcf9a6` | built: 35 assets from its content project | title, then its first map: the player, the lit silhouette level, its "WASD to move" hint; no XNA build in the repository to compare with |
+| My Big Head Is Weighing Me Down | `github.com/debreuil/MyBigHeadIsWeighingMeDownGame` @ `eb974cd` | built: its content project with Swf2XNA's pipeline extension (`debreuil/Swf2XNA` @ `da62298`, from source): the Flash-authored level, its font | its level: Flash-drawn art, Box2D physics on crates and heads, the particle trail; Swf2XNA's runtime from source (`../Swf2Xna`) |
+| Playing in Traffic | `github.com/debreuil/PlayingInTrafficGame` @ `3ca43c1` | built likewise, XACT banks; its four videos labelled stand-ins (`--video-standins`: the game's own `.wmv`, XNA's Video layout) | its splash video, decoded and drawn by SpriteBatch under its Flash overlay, then its main menu; it reads only an Xbox 360 gamepad (no input manager without one, as on Windows) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships; the menu's music |
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
@@ -30,8 +32,9 @@ flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `Tit
 (CSX-096), a game's worker thread loading content (CSX-100/101, CNA C ABI 0.39.0), a library
 compiled against XNA 4.0 (CSX-099), a vertex shader's point-size output on GLSL (CNA FX-140) and
 `PhoneApplicationService.StartupMode` (CSX-103), a song played from the converted file beside
-its `.wma` (CSX-105), `ActivatedEventArgs.IsApplicationInstancePreserved` (CSX-106) and sprites
-placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120).
+its `.wma` (CSX-105), `ActivatedEventArgs.IsApplicationInstancePreserved` (CSX-106), sprites
+placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120) and a video frame a
+SpriteBatch accepts (CNA CBIND-142).
 
 XNA writes every song as Windows Media Audio, which neither CNA nor FNA decodes. As in an FNA port,
 `scripts/convert-xna-songs.sh <content-dir>` writes an Ogg Vorbis copy beside each `.wma`; the
@@ -64,6 +67,13 @@ Tried and not running here, each for a reason outside XNA:
   not free and not included; the content project holds three fonts, level files and one 1x1 bitmap.
 - **Expanze** (`alenkacz/Expanze`): its sources and art without a project or content project, so
   neither what it compiled nor what its pipeline built can be read off the repository.
+- **Sleepwalker** (`debreuil/SleepwalkerGame`): its sprite font names Inkpen2 Chords, a commercial font
+  the repository does not ship.
+- **DwarfCorp** (`Blecki/dwarfcorp`): its XNA build reads typed text through a Windows Forms
+  message filter and `user32`'s `TranslateMessage`; the repository's other builds are FNA's and
+  MonoGame's, not XNA's.
+- **EvoNet** (`pampersrocker/EvoNet`): a Windows Forms application hosting XNA in a control.
+- **Astro Flare Rampage** (`JoeMarsh/Astro-Flare-Rampage`): a Silverlight and XNA application.
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
   `System.Windows` controls, MVVM Light -- like the gallery's Yacht.
 
@@ -103,6 +113,12 @@ Kosmic Warz's DPSF binary comes from its author's repository, sparsely (the whol
 --profile Reach --platform WindowsPhone --extension "ParticleSettings/ParticleSettings (Windows).csproj"
 --extension SpaceInvadersWP7Pipeline/SpaceInvadersWP7Pipeline.csproj --song-standins`, then
 `scripts/convert-xna-songs.sh` on the output.
+
+The two Swf2XNA games need `debreuil/Swf2XNA` cloned as `/rv/tmp/xna-games/SWF2XNA` (their
+projects name it `..\..\SWF2XNA`), and its pipeline as six extensions in dependency order:
+`Vex/Vex.csproj`, `SwfReader/SwfFormat.csproj`, `GdiRenderer/GdiRenderer.csproj`,
+`VexPipelineReader/VexPipelineReader.csproj`, `VexTo2DPhysics/VexTo2DPhysics.csproj`,
+`VexPipeline/VexPipeline.csproj` (`--profile HiDef`; Playing in Traffic adds `--video-standins`).
 
 `GameRoot` (and `GameContent` for the games with built content) override the checkout locations. The XNA 4.0
 reference frames come from the games' own XNA-built executables run under Wine with the XNA 4.0

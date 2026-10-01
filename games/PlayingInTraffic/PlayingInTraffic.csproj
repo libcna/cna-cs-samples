@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- debreuil/PlayingInTrafficGame, unchanged, on debreuil/Swf2XNA's runtime (../Swf2Xna). Content
+       built from its own content project with Swf2XNA's pipeline extension by XNA's BuildContent
+       (scripts/build-xna-content.sh; its four videos labelled stand-ins). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>SmuckVexWin</AssemblyName>
+    <RootNamespace>SmuckVexWin</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/PlayingInTrafficGame/SmuckVexWin</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/traffic/Content</GameContent>
+    <GameProject>$(GameRoot)/Traffic.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Swf2Xna/Box2D.XNA/Box2D.XNA.csproj" />
+    <ProjectReference Include="../Swf2Xna/V2DRuntime/V2DRuntime.csproj" />
+    <ProjectReference Include="../Swf2Xna/VexPipelineReader/VexPipelineReader.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

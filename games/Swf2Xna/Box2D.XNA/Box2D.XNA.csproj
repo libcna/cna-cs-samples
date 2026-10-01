@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Box2D.XNA copy debreuil/Swf2XNA ships, its own assembly. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Box2D.XNA</AssemblyName>
+    <RootNamespace>Box2D.XNA</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/SWF2XNA</GameRoot>
+    <GameProject>$(GameRoot)/Box2D.XNA/Box2D.XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

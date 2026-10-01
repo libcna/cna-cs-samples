@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- debreuil/Swf2XNA's content types and readers, the assembly its games' content names. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>VexPipelineReader</AssemblyName>
+    <RootNamespace>VexPipelineReader</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/SWF2XNA</GameRoot>
+    <GameProject>$(GameRoot)/VexPipelineReader/VexPipelineReader.csproj</GameProject>
+  </PropertyGroup>
+</Project>
