@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's card-game framework, kept as its own assembly as the original solution builds it. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CardsFramework</RootNamespace>
+    <AssemblyName>CardsFramework</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CardsFramework/**/*.cs" />
+  </ItemGroup>
+</Project>

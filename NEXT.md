@@ -71,6 +71,10 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-081 | PerformanceMeasuring | ✅ verbatim; random spheres and live timings (13.48%) |
 | CSSAMPLE-082 | UISample | ✅ phone host; 0 px from the C++ main-menu frame; Escape is the phone's Back (CSX-095) |
 | CSSAMPLE-077 | DynamicMenu | ✅ phone host with its menu library, no longer 🛑; 0 px from both the C++ and the original XNA page-1 frames |
+| CSSAMPLE-061 | MarbleMaze | ✅ phone host, the kit's final stage; 0 px from the C++ menu frame |
+| CSSAMPLE-063 | HoneycombRush | ✅ phone host, the kit's final stage; 0 px from the C++ menu frame |
+| CSSAMPLE-067 | CatapultWars | ✅ phone host, the kit's final stage; 0 px from the C++ menu frame |
+| CSSAMPLE-069 | CardsStarterKit | ✅ verbatim with its `CardsFramework`, HiDef; 0 px on the title and on the table after Play; leaves through its Exit entry |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no
