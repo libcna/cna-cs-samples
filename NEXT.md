@@ -17,6 +17,7 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-050 | SimpleAnimation | ✅ verbatim; tank `Model` animates; 4.45% from the C++ port, animation phase |
 | CSSAMPLE-076 | SplitScreen | ✅ verbatim, HiDef; two viewports of the tank; 4.84% from the C++ port, animation phase |
 | CSSAMPLE-042 | ShatterEffect | ✅ verbatim; custom compiled effect; 13 px from the C++ port, 46 px after holding Up on both |
+| CSSAMPLE-052 | CustomModelClass | ✅ verbatim; the game's own `CustomModel` through XNA's `ReflectiveReader`; 6.39% from the C++ port, rotation phase |
 
 Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
 `build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest

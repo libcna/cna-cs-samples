@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 32 |
+| ✅ complete | 33 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 44 |
+| ⬜ not started | 43 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -279,7 +279,7 @@ port ships.
 | CSSAMPLE-049 | `HeightmapCollisionSample_4_0` | `HeightmapCollision` | 6 / 881 | 4 | ⬜ |
 | CSSAMPLE-050 | `SimpleAnimation_4_0` | `SimpleAnimation` | 3 / 404 | 3 | ✅ |
 | CSSAMPLE-051 | `CustomModelAnimation_4_0` | `CustomModelAnimation` | 13 / 1672 | 8 | ⬜ |
-| CSSAMPLE-052 | `CustomModelClassSample_4_0` | `CustomModelClass` | 6 / 541 | 3 | ⬜ |
+| CSSAMPLE-052 | `CustomModelClassSample_4_0` | `CustomModelClass` | 6 / 541 | 3 | ✅ |
 | CSSAMPLE-053 | `CustomModelEffectSample_4_0` | `CustomModelEffect` | 6 / 674 | 4 | ⬜ |
 | CSSAMPLE-054 | `SkinningSample_4_0` | `SkinningSample` | 9 / 1040 | 5 | ⬜ |
 | CSSAMPLE-055 | `SkinnedModelExtensions_4_0` | `SkinnedModelExtensions` | 13 / 1620 | 7 | ⬜ |
