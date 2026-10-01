@@ -80,8 +80,12 @@ for row in "${rows[@]}"; do
         build="**Release fails**"
     else
         exit_args=()
-        if ! grep -rq 'Keys.Escape' --include='*.cs' "$here/samples/$row"; then
-            # Phone-shaped samples exit through GamePad Back only; there is no key to press.
+        # A Windows Phone title's Back button is Escape off a phone (CNA.NET CSX-095), so a phone
+        # row that leaves on GamePad Back is checked like one that reads Escape itself.
+        if ! grep -rq 'Keys.Escape' --include='*.cs' "$here/samples/$row" &&
+           ! { grep -q '<XnaPlatform>Windows Phone</XnaPlatform>' "$project" &&
+               grep -rq 'Buttons.Back' --include='*.cs' "$here/samples/$row"; }; then
+            # Nothing in the sample answers a key: there is nothing to press.
             exit_args=(--no-exit-check)
             exit_result="no key in source"
         fi
@@ -104,7 +108,12 @@ for row in "${rows[@]}"; do
         port="$(awk -F'\t' -v r="$row" '$1 == r { print ($4 == "-" ? $1 : $4) }' "$here/samples/manifest.tsv")"
         port_dir="$(ls -d /rv/tmp/samples/SAMPLE-*/cna-native-opengles3/samples/"$port" 2>/dev/null | head -1 || true)"
         port_exe=""
-        [ -n "$port_dir" ] && port_exe="$(find "$port_dir" -maxdepth 1 -type f -executable ! -name '*.so*' | head -1)"
+        # The game, not a test runner beside it (CollisionSample ships CollisionSampleUnitTests too).
+        if [ -n "$port_dir" ] && [ -x "$port_dir/${port}_cna_samples" ]; then
+            port_exe="$port_dir/${port}_cna_samples"
+        elif [ -n "$port_dir" ]; then
+            port_exe="$(find "$port_dir" -maxdepth 1 -type f -executable ! -name '*.so*' ! -iname '*test*' | head -1)"
+        fi
         if [ -z "$port_exe" ]; then
             cpp="no C++ port"
         elif "$here/scripts/capture-sample.sh" "$row" --exe "$port_exe" --window '.' --out "$log/cpp" \
