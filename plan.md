@@ -54,22 +54,18 @@ Recount from the table rather than trusting these numbers
 | Status | Rows |
 |---|---:|
 | ✅ complete | 21 |
-| 🛠 in progress | 1 |
-| ⛔ blocked on CNA | 4 |
+| 🛠 in progress | 5 |
+| ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 4 |
 | ⬜ not started | 48 |
-
-**Every one of the 48 remaining rows is blocked by one of the four known issues.** Measured on
-2026-09-02 by classifying each `⬜` row against all four: 37 load a `Model` (`CNA-REPORT-002`), 25
-declare a `DrawableGameComponent` (`CNA-REPORT-004`), 6 reach Windows Phone SDK types (`DEC-001`)
-and 3 reference `Microsoft.Xna.Framework.Net` (`DEC-002`); the sets overlap, and their union is all
-48. The campaign's throughput is now gated on those fixes rather than on sample work, and
-`CNA-REPORT-002` and `CNA-REPORT-004` are where the leverage is.
-
-`CSSAMPLE-028` is `⛔` on `CNA-REPORT-002`, which blocks **37 of the 78 rows** — every one that
-loads a `Model`. Until `../cnanext` resolves it, most of Tier 2 and Tier 3 cannot be finished, so
-the execution order below is followed by skipping model-drawing rows rather than stopping.
 | **total** | **78** |
+
+On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
+`CNA-REPORT-002`; 25 declare a `DrawableGameComponent`, `CNA-REPORT-004`; 6 reach Windows Phone SDK
+types, `DEC-001`; 3 reference `Microsoft.Xna.Framework.Net`, `DEC-002`). As of 2026-10-01 both
+CNA-REPORTs are fixed (one in cna-cs, one in CNA) and the four `⛔` rows run; `DEC-001`/`DEC-002`
+are superseded by the campaign brief in `../cna-cs/CAMPAIGN.md` (a separate phone compatibility
+assembly; the XNA Net/GamerServices surface backed by CNA).
 
 Both finished rows run from byte-identical upstream sources with no deviation.
 
@@ -238,7 +234,7 @@ port ships.
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | 🛠 |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
-| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ⛔ |
+| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | 🛠 |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ✅ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
 | CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ✅ |
@@ -253,13 +249,13 @@ port ships.
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ✅ |
 | CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | 🛑 |
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ✅ |
-| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ⛔ |
+| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | 🛠 |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ✅ |
 | CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ✅ |
 | CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
 | CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ✅ |
-| CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ⛔ |
-| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ⛔ |
+| CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | 🛠 |
+| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | 🛠 |
 | CSSAMPLE-030 | `CameraShake_4_0` | `CameraShake` | 5 / 630 | 6 | ⬜ |
 | CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ⬜ |
 | CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ⬜ |
@@ -336,6 +332,8 @@ port ships.
 `rules.md` forbids repairing `../cnanext` or `../sharp-runtimenext` from here, so a defect found
 below the C ABI is written down instead. [`cna-bugs.md`](cna-bugs.md) holds the full records —
 observation, reproduction, what is established and what is not. This is the index.
+
+All four are closed as of 2026-10-01 -- see the status table at the top of `cna-bugs.md`.
 
 | Id | Found by | Blocks? | Defect |
 |---|---|---|---|

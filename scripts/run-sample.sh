@@ -4,7 +4,7 @@
 # Usage: scripts/run-sample.sh [options] <SampleDirectory> [-- sample arguments...]
 #
 #   -c, --configuration <cfg>  Debug or Release (default Release)
-#       --headless             run under xvfb-run on a private display
+#       --headless             accepted for compatibility; every run is on a private display
 #       --frames N             forwarded to the sample as --frames N
 #       --build                dotnet build the sample first
 #       --lib <path>           explicit libcna_c_api.so
@@ -83,8 +83,14 @@ echo "native   : $lib"
 [ $# -gt 0 ] && echo "arguments: $*"
 echo
 
-cd "$(dirname "$exe")"
-if [ "$headless" = 1 ]; then
-    exec xvfb-run -a "$exe" "$@"
+# Never on the owner's desktop: CNA's private runner starts a headless Weston and a rootful
+# Xwayland with the real GPU (DRI3) and runs the sample there. Xvfb has no DRI3 and would measure a
+# software rasterizer instead of the renderer the C++ evidence was taken on.
+cna_root="${CNA_ROOT:-$(cd "$here/.." && pwd)/cna}"
+runner="$cna_root/tools/platform/run_gpu_tests_private.sh"
+if [ ! -x "$runner" ]; then
+    echo "error: $runner not found (set CNA_ROOT)" >&2
+    exit 2
 fi
-exec "$exe" "$@"
+cd "$(dirname "$exe")"
+exec "$runner" --exec "$exe" "$@"

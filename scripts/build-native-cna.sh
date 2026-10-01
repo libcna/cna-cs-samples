@@ -3,11 +3,11 @@
 #
 # Reuse is the point. The openeggbert build rules exist because repeated from-scratch CMake trees
 # wore out this machine's SSD, so this script never creates a build directory when a usable one
-# already exists, and never builds anywhere but inside ../cnanext.
+# already exists, and never builds anywhere but inside ../cna.
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cna_root="${CNA_ROOT:-$(cd "$here/.." && pwd)/cnanext}"
+cna_root="${CNA_ROOT:-$(cd "$here/.." && pwd)/cna}"
 renderer="${CNA_GRAPHICS_RENDERER:-OPENGLES3}"
 
 if [ ! -f "$cna_root/modules/c-api/include/CNA/C/abi.h" ]; then
@@ -51,10 +51,9 @@ find_existing() {
 
 build_dir="$(find_existing || true)"
 
-# Fall back to a tree WITHOUT compiled effects rather than stopping the campaign. Most rows do not
-# load a compiled effect, and the ones that do are blocked on CNA-REPORT-002 anyway. The warning is
-# the point: a silent fallback would turn "this sample needs an effect" into a confusing runtime
-# error much later.
+# Fall back to a tree WITHOUT compiled effects rather than stopping. Most rows do not load a
+# compiled effect. The warning is the point: a silent fallback would turn "this sample needs an
+# effect" into a confusing runtime error much later.
 if [ -z "$build_dir" ]; then
     build_dir="$(CNA_REQUIRE_COMPILED_EFFECTS=0 find_existing_any || true)"
     if [ -n "$build_dir" ]; then
@@ -87,7 +86,7 @@ if [ "${1:-}" = "--no-build" ]; then
     exit 0
 fi
 
-cmake --build "$build_dir" --target cna_c_api -j"$(nproc)"
+cmake --build "$build_dir" --target cna_c_api -j"${CNA_BUILD_JOBS:-8}"
 
 lib="$build_dir/modules/c-api/libcna_c_api.so"
 abi="$(awk '/#define CNA_ABI_VERSION_(MAJOR|MINOR|PATCH)/ {gsub(/[^0-9]/, "", $3); printf "%s%s", sep, $3; sep="."}' \

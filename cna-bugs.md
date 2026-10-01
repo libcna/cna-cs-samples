@@ -1,7 +1,7 @@
 # CNA defects found by this repository
 
-`rules.md` forbids repairing `../cnanext` or `../sharp-runtimenext` from here: a sample that hits a
-defect below the C ABI records it and moves on. This file is where those records live, in full.
+Since 2026-10-01 a defect below the binding is fixed in `../cna` or `../sharp-runtime` (see
+`rules.md`); this file records what was found, how it was reproduced and where it was fixed.
 [`plan.md`](plan.md) carries a one-line index of the same rows.
 
 A defect belongs here only when it is **below** `../cna-cs`. A defect in the binding is fixed in
@@ -10,6 +10,19 @@ A defect belongs here only when it is **below** `../cna-cs`. A defect in the bin
 
 Each row is written so that someone working in `../cnanext` can act on it without re-deriving it:
 what was observed, how to reproduce it, what is established, and — separately — what is *not*.
+
+## Status re-measured 2026-10-01
+
+Against CNA `next` `6e0de68e8` (C ABI 0.35.0, `build-probe`, OPENGLES3 Release,
+`CNA_EASYGL_COMPILED_EFFECTS=ON`) and cna-cs `develop` `5f6c212`. The records below are kept as
+history; this table is the current state.
+
+| Id | Now | Evidence |
+|---|---|---|
+| CNA-REPORT-001 | **Resolved in CNA.** `8c713f1d8` (SAMPLE-152) creates XNA game windows non-resizable, so `AllowUserResizing` is false as in XNA. A window resized from outside (xdotool, no WM) now scales the image to the client area instead of leaving it bottom-left. | `scripts/repro-cna-report-001.sh`: before 853x480, after 1200x900 content x 0..1199 y 115..786 (`/rv/tmp/cs-samples/CNA-REPORT-001/`). Whether XNA would instead reset the back buffer on `ClientSizeChanged` is not measured here; the original windows cannot be resized. |
+| CNA-REPORT-002 | **Was a cna-cs defect, fixed there** (`5f6c212`). The effect caches its technique/pass wrappers, and `ModelMesh.Draw` disposed them per draw, so the second draw used a released handle. CNA mints a fresh handle per accessor call and its destroy releases only that one. | cna-cs `CompatModel_DrawsRepeatedlyWithTheEffectsOwnTechnique` fails without the fix with the reported message. `CSSAMPLE-028` runs, renders with its compiled effect, exits 0. |
+| CNA-REPORT-003 | **Not reproduced** on the current OPENGLES3 + compiled-effects tree. | `CSSAMPLE-006` SpriteEffects runs and exits 0 through Escape (`/rv/tmp/cs-samples/requal-20261001/SpriteEffects/`). |
+| CNA-REPORT-004 | **Fixed in CNA** `bdf239360` (CBIND-128); a second defect behind it, `CSSAMPLE-029`'s, fixed in `6e0de68e8` (CBIND-129: a component's own Initialize now runs before its base loads content). | `RuntimeComponentDeviceBorrow.c`, `RuntimeComponentsSmoke.c`; cna-cs `DrawableComponent_UsesGraphicsDeviceFromGameDrivenCallbacks`. `CSSAMPLE-023` and `CSSAMPLE-029` run and exit 0. |
 
 ---
 

@@ -42,7 +42,7 @@ for f in root.rglob("*.cs"):
 print("\n".join(hits) if hits else "  none")
 PY
 if [ -n "$PORT" ]; then
-    C="/rv/data/development/github.com/openeggbert/cna-samples/samples/$PORT/Content"
+    C="${CNA_SAMPLES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/cna-samples}/samples/$PORT/Content"
     echo "### C++ port content ($PORT)"
     if [ -d "$C" ]; then
         find "$C" -type f -printf "  %P\n" | sort | head -30
