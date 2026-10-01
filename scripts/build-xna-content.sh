@@ -85,19 +85,40 @@ built=()
 for csproj in "${extensions[@]}"; do
     dir="$(dirname "$csproj")"
     name="$(sed -n 's:.*<AssemblyName>\(.*\)</AssemblyName>.*:\1:p' "$csproj" | head -1)"
-    mapfile -t sources < <(python3 - "$csproj" <<'PYEOF'
+    # Its Compile items, and the references its project names: framework assemblies by name, and
+    # prebuilt libraries by HintPath (copied beside the pipeline, which loads them too).
+    sources=(); extra=()
+    api=/usr/lib/mono/4.0-api
+    while IFS= read -r line; do
+        case "$line" in
+            SRC:*)  sources+=("${line#SRC:}") ;;
+            UNSAFE) extra+=("-unsafe") ;;
+            FW:*)   [ -f "$api/${line#FW:}.dll" ] && extra+=("-r:$api/${line#FW:}.dll") ;;
+            HINT:*) cp -u "${line#HINT:}" "$runner/"
+                    extra+=("-r:$runner/$(basename "${line#HINT:}")")
+                    pipeline+=("$(win "$runner/$(basename "${line#HINT:}")")") ;;
+        esac
+    done < <(python3 - "$csproj" <<'PYEOF'
 import re, sys, os
 p = sys.argv[1]
-for inc in re.findall(r'<Compile Include="([^"]+)"', open(p, encoding="utf-8-sig").read()):
-    print(os.path.join(os.path.dirname(p), inc.replace("\\", "/")))
+text = open(p, encoding="utf-8-sig").read()
+here = os.path.dirname(p)
+for inc in re.findall(r'<Compile Include="([^"]+)"', text):
+    print("SRC:" + os.path.join(here, inc.replace("\\", "/")))
+if re.search(r'<AllowUnsafeBlocks>\s*true', text, re.I):
+    print("UNSAFE")
+for name in re.findall(r'<Reference Include="(System[^",]*)', text):
+    print("FW:" + name)
+for hint in re.findall(r'<HintPath>([^<]+)</HintPath>', text):
+    path = os.path.normpath(os.path.join(here, hint.replace("\\", "/")))
+    if "Microsoft.Xna" not in path and os.path.isfile(path):
+        print("HINT:" + path)
 PYEOF
 )
-    extra=()
     for b in "${built[@]}"; do extra+=("-r:$b"); done
     # Against .NET Framework 4.0's reference assemblies, as Visual Studio 2010 compiled them: mono's
     # own mscorlib offers newer overloads (String.Split(char, StringSplitOptions)) that bind and
     # then do not exist when XNA's pipeline runs the extension under .NET 4.0.
-    api=/usr/lib/mono/4.0-api
     mcs -nologo -target:library -nostdlib -out:"$runner/$name.dll" -r:"$api/mscorlib.dll" -r:"$api/System.dll" \
         -r:"$api/System.Core.dll" -r:"$api/System.Xml.dll" -r:"$api/System.Xml.Linq.dll" \
         "${xna_refs[@]}" "${extra[@]}" "${sources[@]}"
