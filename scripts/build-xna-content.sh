@@ -116,8 +116,15 @@ done < <(python3 - "$project" <<'PYEOF'
 import os, re, sys
 project = sys.argv[1]
 text = open(project, encoding="utf-8-sig").read()
+seen = set()
 for hint in re.findall(r'<Reference Include="[^"]*">\s*<HintPath>([^<]+)</HintPath>', text):
-    print(os.path.normpath(os.path.join(os.path.dirname(project), hint.replace("\\", "/"))))
+    path = os.path.normpath(os.path.join(os.path.dirname(project), hint.replace("\\", "/")))
+    # Game Studio's own assemblies under C:\Program Files are the ones this script supplies; and of
+    # two references with one name (NePlus names its Windows and Xbox 360 builds alike) the first
+    # loaded is the one the pipeline used.
+    if os.path.isfile(path) and os.path.basename(path).lower() not in seen:
+        seen.add(os.path.basename(path).lower())
+        print(path)
 PYEOF
 )
 for dll in TextureImporter EffectImporter FBXImporter XImporter AudioImporters VideoImporters; do
