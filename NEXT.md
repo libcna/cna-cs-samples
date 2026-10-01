@@ -14,6 +14,7 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | Row | Sample | Result |
 |---|---|---|
 | CSSAMPLE-084 | AccelerometerSample | ✅ phone host + CNA.PhoneCompat; first frame 0 px from the original XNA emulator frame; Right arrow moves the asteroid |
+| CSSAMPLE-050 | SimpleAnimation | ✅ verbatim; tank `Model` animates; 4.45% from the C++ port, animation phase |
 
 Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
 `build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest
