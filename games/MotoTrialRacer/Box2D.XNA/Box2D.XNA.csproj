@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Box2D.XNA physics library the game ships as source, built as its Windows Phone project
+       built it. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Box2D.XNA</AssemblyName>
+    <RootNamespace>Box2D.XNA</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/moto-trial-racer-wp/MotoTrialRacer</GameRoot>
+    <GameProject>$(GameRoot)/Box2D.XNA/Box2D.XNA - wp7.csproj</GameProject>
+  </PropertyGroup>
+</Project>

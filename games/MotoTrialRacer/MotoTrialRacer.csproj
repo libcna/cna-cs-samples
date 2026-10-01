@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- microsoft/moto-trial-racer-wp (Moto Trial Racer), the Windows Phone 7 motorcycle game
+       Microsoft published with XNA Game Studio 4.0, unchanged, with its Box2D.XNA library from
+       source and its content built from its own content project by XNA's BuildContent
+       (scripts/build-xna-content.sh, WindowsPhone/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>MotoTrialRacer</AssemblyName>
+    <RootNamespace>MotoTrialRacer</RootNamespace>
+    <CnaPhoneGame>MotoTrialRacer.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/moto-trial-racer-wp/MotoTrialRacer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/moto/Content</GameContent>
+    <GameProject>$(GameRoot)/MotoTrialRacer/MotoTrialRacer/MotoTrialRacer.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Box2D.XNA/Box2D.XNA.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

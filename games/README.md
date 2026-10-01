@@ -13,6 +13,7 @@ checkout.
 | [Speedy Blupi](SpeedyBlupi/README.md) | `openeggbert/mobile-eggbert-legacy` `speedy-blupi-xna4` @ `6d35cca` | its XNA build's `build/bin/Content` (280 `.xnb`) | title 255 px from XNA 4.0 under Wine (save-game numbers); plays, pauses |
 | Rookie Drivers | `github.com/Gaming-Triad/rookie-drivers` @ `d9c099b` | shipped `bin/x86/Debug/Content` (23 `.xnb`) | title 0.24% from its own XNA-built `.exe` under Wine; race screen as XNA draws it |
 | TIE Fighter Forever | `github.com/prenex/tiefighter` @ `3c72d10` | built: 42 assets, 4 pipeline-extension projects → 62 `.xnb` | menu, battle with the game's own effect models, game-over screen |
+| Moto Trial Racer | `github.com/microsoft/moto-trial-racer-wp` @ `9464556` | built: 59 assets incl. Game Studio's QUARTZ MS font (WindowsPhone/Reach) and its 3 level files; Box2D.XNA from its source | menu, level choice and a level 1 run against the clock on Box2D physics, by touch |
 | Solitaire (XNASolitaire) | `github.com/microsoft/solitaire-wp` @ `f6acde9` | built: 56 textures (WindowsPhone/Reach) | deals a Klondike layout; a tap on the stock turns a card (the phone's touch from the mouse) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships |
 
@@ -50,6 +51,6 @@ writer, which does not run under Wine, so its songs are ffmpeg WMA in XNA's Song
 (`scripts/song-standin.sh`), not official pipeline output. `<GameProject>` compiles exactly the
 sources the game's own project lists; its directory holds ten more it did not.
 
-`GameRoot` (and `GameContent` for TIE Fighter, Resonance and Solitaire) override the checkout locations. The XNA 4.0
+`GameRoot` (and `GameContent` for the games with built content) override the checkout locations. The XNA 4.0
 reference frames come from the games' own XNA-built executables run under Wine with the XNA 4.0
 prefix (`~/.wine-cna-xna40`, WineD3D) on a private 800x480 Xvfb.
