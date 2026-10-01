@@ -9,6 +9,8 @@
     importer/processor library. It is design-time only and is not built here; see missing.md.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
     <RootNamespace>SampleGame</RootNamespace>
     <AssemblyName>SampleGame</AssemblyName>
     <StartupObject>SampleGame.Program</StartupObject>

@@ -8,6 +8,8 @@
     compiled ReplaceColor effect.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>ColorReplacement</RootNamespace>
     <AssemblyName>ColorReplacement</AssemblyName>
     <StartupObject>ColorReplacement.Program</StartupObject>

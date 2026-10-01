@@ -7,6 +7,8 @@
     which is not this repository's usual one.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>Primitives3D</RootNamespace>
     <AssemblyName>Primitives3D</AssemblyName>
     <StartupObject>Primitives3D.Program</StartupObject>

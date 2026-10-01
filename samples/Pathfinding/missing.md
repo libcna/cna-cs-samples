@@ -13,7 +13,7 @@ real binding defect, fixed in `../cna-cs` with five tests.
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/Pathfinding_4_0` |
 | Solution | `Pathfinding (Windows).sln` |
 | Projects | `Pathfinding/Pathfinding/PathfindingWindows.csproj` **and** `MapData/PathfindingDataWindows.csproj` |
-| Configuration | `Release\|x86` and `Debug\|x86`, Windows, Reach |
+| Configuration | `Release\|x86` and `Debug\|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Entry point | `Pathfinding.Program.Main` |
 | Assembly names | `Pathfinding` and `MapData` |
 | Content | 13 official pipeline XNBs, including `Map1.xnb`–`Map4.xnb` |

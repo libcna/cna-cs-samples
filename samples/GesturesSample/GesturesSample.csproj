@@ -14,6 +14,9 @@
     supplied is compiled.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
     <RootNamespace>TouchGestureSample</RootNamespace>
     <AssemblyName>TouchGestureSample</AssemblyName>
     <StartupObject>TouchGestureSample.Program</StartupObject>

@@ -10,7 +10,7 @@
 |---|---|
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/FlockingSample_4_0` |
 | Project | `Flocking/Flocking/Flocking (Windows).csproj` |
-| Configuration | `Release|x86` and `Debug|x86`, Windows, Reach |
+| Configuration | `Release|x86` and `Debug|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Entry point | `Flocking.Program` |
 | Assembly name | `Flocking` |
 | Content | `cat.xnb`, `HUDFont.xnb`, `mouse.xnb`, `xboxControllerButtonB.xnb` |

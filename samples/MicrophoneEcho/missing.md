@@ -10,7 +10,7 @@
 |---|---|
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/MicrophoneEchoSample_4_0` |
 | Project | `MicrophoneEchoSample/MicrophoneEchoSampleWindows.csproj` |
-| Configuration | `Release|x86` and `Debug|x86`, Windows, Reach |
+| Configuration | `Release|x86` and `Debug|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Entry point | `MicrophoneEchoSample.Program` |
 | Assembly name | `MicrophoneEchoSample` |
 | Content | `MyFont.xnb` |

@@ -2,6 +2,8 @@
   <!-- XNA Game Studio 4.0 sample: Pathfinding_4_0, Windows configuration. Two upstream source
        trees live side by side here, so default compile items are off in both projects. -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
     <RootNamespace>Pathfinding</RootNamespace>
     <AssemblyName>Pathfinding</AssemblyName>
     <StartupObject>Pathfinding.Program</StartupObject>

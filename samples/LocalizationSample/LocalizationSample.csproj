@@ -9,6 +9,8 @@
     design-time only; it is not built here. See missing.md.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>Localization</RootNamespace>
     <AssemblyName>Localization</AssemblyName>
     <StartupObject>Localization.Program</StartupObject>

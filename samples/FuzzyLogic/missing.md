@@ -10,7 +10,7 @@
 |---|---|
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/FuzzyLogicSample_4_0` |
 | Project | `FuzzyLogic/FuzzyLogic/FuzzyLogicWindows.csproj` |
-| Configuration | `Release|x86` and `Debug|x86`, Windows, Reach |
+| Configuration | `Release|x86` and `Debug|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Entry point | `FuzzyLogic.Program` |
 | Assembly name | `FuzzyLogic` |
 | Content | `hudFont.xnb`, `Mouse.xnb`, `OnePixelWhite.xnb`, `Tank.xnb` |

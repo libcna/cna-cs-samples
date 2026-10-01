@@ -7,6 +7,8 @@
     The directory is AimingSample to match the C++ port; the assembly keeps the original's Aiming.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>Aiming</RootNamespace>
     <AssemblyName>Aiming</AssemblyName>
     <StartupObject>Aiming.Program</StartupObject>

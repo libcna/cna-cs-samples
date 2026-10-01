@@ -12,7 +12,7 @@
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/InputReporter_4_0` |
 | Solution | `InputReporter (Windows).sln` |
 | Project | `InputReporter/InputReporterWindows.csproj` |
-| Configuration | `Release\|x86` and `Debug\|x86`, Windows, Reach |
+| Configuration | `Release\|x86` and `Debug\|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Entry point | `InputReporter.InputReporterGame.Main` — in the **game class itself**, not a `Program` class |
 | Assembly name | `InputReporter` |
 | Content | 15 official pipeline XNBs under `Fonts/` and `Textures/` |

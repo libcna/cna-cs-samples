@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
     <RootNamespace>OrientationSample</RootNamespace>
     <AssemblyName>LayoutSample</AssemblyName>
     <StartupObject>OrientationSample.Program</StartupObject>

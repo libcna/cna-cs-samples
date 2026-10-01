@@ -7,6 +7,8 @@
     Upstream's third project, SpriteSheetPipeline, is design-time and is not built here.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
     <RootNamespace>SpriteSheetSampleWindowsPhone</RootNamespace>
     <AssemblyName>SpriteSheetSample</AssemblyName>
     <StartupObject>SpriteSheetSampleWindowsPhone.Program</StartupObject>

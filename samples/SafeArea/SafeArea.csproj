@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>SafeArea</RootNamespace>
     <AssemblyName>SafeArea</AssemblyName>
     <StartupObject>SafeArea.Program</StartupObject>

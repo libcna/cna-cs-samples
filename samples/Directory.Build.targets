@@ -22,6 +22,15 @@
     This is a consequence of THIS repository's layout, not a difference in any sample, which is why
     it lives here rather than in each project. CSSAMPLE-078 and CSSAMPLE-009 both hit it.
   -->
+  <!--
+    XNA's build wrote the project's <XnaProfile> into the game assembly, and GraphicsDeviceManager
+    reads it for its default GraphicsProfile. A package consumer gets this from CNA.XnaCompat's
+    build/ folder; these samples reference the project, so they import it here, and each sample
+    states its original project's profile.
+  -->
+  <Import Project="$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets"
+          Condition="'$(CnaCsRoot)' != '' and Exists('$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets')" />
+
   <ItemGroup>
     <EmbeddedResource Update="**/*.resx">
       <LogicalName>$(RootNamespace).%(Filename).resources</LogicalName>

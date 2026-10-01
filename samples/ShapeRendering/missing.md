@@ -13,7 +13,7 @@
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/ShapeRenderingSample_4_0` |
 | Solution | `ShapeRenderingSample (Windows).sln` |
 | Project | `ShapeRenderingSample/ShapeRenderingSample (Windows).csproj` |
-| Configuration | **`Debug\|x86`**, `XnaPlatform=Windows`, `XnaProfile=HiDef` |
+| Configuration | **`Debug\|x86`**, `XnaPlatform=Windows`, `XnaProfile=HiDef` -- the project declares it and CNA.XnaCompat's targets embed XNA's `RuntimeProfile` resource, so the game runs HiDef (CNA.NET CSX-081) |
 | Original `DefineConstants` | `DEBUG;TRACE;WINDOWS` (Debug), `TRACE;WINDOWS` (Release) |
 | Entry point | `ShapeRenderingSample.Program.Main` |
 | Assembly name | `ShapeRenderingSample` |
@@ -116,11 +116,6 @@ not have and which `rules.md` forbids adding to its source.
 ## Not verified
 
 - **No browser result.** No .NET route to CNA's WEBGL2 backend exists.
-- **`XnaProfile=HiDef`.** The original project embeds an XNA runtime-profile resource that has no
-  .NET 8 equivalent, and the sample never sets `GraphicsDeviceManager.GraphicsProfile` in code, so
-  this build does not request HiDef. Nothing here needs it — the sample draws `LineList` primitives
-  through `BasicEffect`, which Reach supports — but a sample that does need HiDef will have to
-  establish how the profile is selected. Recorded now so that row does not rediscover it.
 - **Gamepad Back.** Present in the source and compiled; no controller attached. Escape was
   exercised and both reach the same `Exit()`.
 

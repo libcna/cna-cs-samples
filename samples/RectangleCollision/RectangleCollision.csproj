@@ -7,6 +7,8 @@
     C++ port. Main is in a separate Program class in Program.cs.
   -->
   <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
     <RootNamespace>RectangleCollision</RootNamespace>
     <AssemblyName>RectangleCollision</AssemblyName>
     <StartupObject>RectangleCollision.Program</StartupObject>
