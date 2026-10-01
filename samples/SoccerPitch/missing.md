@@ -2,7 +2,7 @@
 
 ## Result
 
-**Runs, as the phone game it is, matching the C++ port.** Upstream ships only the phone project (its assembly is named `GrassRender1`, kept); its sources are checked in verbatim and build in Debug and Release. The first frame differs from the C++ port by 52.25%: the camera circles the pitch and the frame-rate counter differs; pitch, stripes, centre circle, ball and its shadow, and the `Alpha-Blend` mode are the same.
+**Runs, as the phone game it is, matching the C++ port.** Upstream ships only the phone project (its assembly is named `GrassRender1`, kept); its sources are checked in verbatim and build in Debug and Release. The first frame differs from the C++ port by 44.48%: the camera circles the pitch and the frame-rate counter differs; pitch, stripes, centre circle, ball and its shadow, and the `Alpha-Blend` mode are the same. The game sets `graphics.IsFullScreen = true`, which on the phone hides the status bar; off a phone it now stays the game's own state instead of asking the desktop for a 480x800 full-screen mode, which had failed and once left the capture black (CNA.NET CSX-094). Escape is the phone's Back button off a phone (CSX-095) and exits 0.
 
 ## Selected configuration
 
@@ -47,4 +47,4 @@ The first frame at 2% fuzz against the C++ port's frame captured the same way, a
 
 ## Artifacts
 
-`/rv/tmp/cs-samples/gallery-batch-58/SoccerPitch/` (C# capture and logs) and `.../cpp/` (the C++ port through the same route).
+`/rv/tmp/cs-samples/phone-rows-csx095/SoccerPitch/` (C# capture and logs) and `.../cpp/` (the C++ port through the same route).

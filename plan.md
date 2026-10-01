@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 66 |
+| ✅ complete | 73 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
-| 🛑 owner decision | 1 |
-| ⬜ not started | 11 |
+| 🛑 owner decision | 0 |
+| ⬜ not started | 5 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -129,7 +129,7 @@ on before escalating it:
 | `CSSAMPLE-079` GesturesSample | guarded `Main` constructing a class that **exists** | `✅` — define `WINDOWS` in the project file, no source edit |
 | `CSSAMPLE-016` Bounce | guarded `Main`; the upstream configuration is the phone one (`WINDOWS_PHONE`) | `✅` — `<CnaPhoneGame>` generates the host, CNA.PhoneCompat supplies `Microsoft.Devices` |
 | `CSSAMPLE-021` PathDrawing | **no `Main` and no `Program.cs` at all** | `✅` — `<CnaPhoneGame>` generates the host |
-| `CSSAMPLE-077` DynamicMenu | the same: **0 occurrences** of `static void Main` in the whole directory | `🛑` until checked in; same route |
+| `CSSAMPLE-077` DynamicMenu | the same: **0 occurrences** of `static void Main` in the whole directory | `✅` — `<CnaPhoneGame>` generates the host, as for PathDrawing |
 
 Only the second and third rungs need a ruling. For the third, no constant can help: running it means
 adding a `Program` class beside the upstream subtree — new authored code in a repository whose
@@ -234,7 +234,7 @@ port ships.
 | CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | ✅ |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ✅ |
-| CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
+| CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ✅ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ✅ |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ✅ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
@@ -242,9 +242,9 @@ port ships.
 | CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | ✅ |
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ✅ |
-| CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
+| CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ✅ |
 | CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | ✅ |
-| CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
+| CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ✅ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ✅ |
@@ -293,16 +293,16 @@ port ships.
 | CSSAMPLE-067 | `CatapultWars_4_0` | `CatapultWars` | 61 / 12001 | 33 | ⬜ |
 | CSSAMPLE-068 | `CatapultWarsTrainingKit_4_0` | `CatapultWarsTrainingHealthBar`<br>`CatapultWarsTrainingSecondHuman`<br>`CatapultWarsTrainingShotAngle`<br>`CatapultWarsTrainingShotGuide`<br>`CatapultWarsTrainingSupplyCrate`<br>`CatapultWarsTrainingAllFeatures`<br>`CatapultWarsTrainingScrollingScreen` | 150 / 30911 | 242 | ⬜ |
 | CSSAMPLE-069 | `CardsStarterKit_4_0` | `CardsStarterKit` | 47 / 8742 | 89 | ⬜ |
-| CSSAMPLE-072 | `GSMSample_4_0_WIN_XBOX` | `GameStateManagement` | 15 / 2520 | 5 | ⬜ |
+| CSSAMPLE-072 | `GSMSample_4_0_WIN_XBOX` | `GameStateManagement` | 15 / 2520 | 5 | ✅ |
 | CSSAMPLE-073 | `SoccerPitchSample_4_0` | `SoccerPitch` | 10 / 1150 | 6 | ✅ |
 | CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ✅ |
 | CSSAMPLE-076 | `SplitScreenSample_4_0` | `SplitScreen` | 4 / 485 | 3 | ✅ |
-| CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | 🛑 |
+| CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | ✅ |
 | CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ✅ |
 | CSSAMPLE-079 | `GesturesSample_4_0` | `GesturesSample` | 4 / 456 | 2 | ✅ |
 | CSSAMPLE-080 | `TouchThumbsticksSample_4_0` | `TouchThumbsticks` | 8 / 965 | 4 | ✅ |
-| CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ⬜ |
-| CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ⬜ |
+| CSSAMPLE-081 | `PerformanceMeasuringSample_4_0` | `PerformanceMeasuring` | 17 / 3841 | 3 | ✅ |
+| CSSAMPLE-082 | `UISample_4_0` | `UISample` | 25 / 3497 | 11 | ✅ |
 | CSSAMPLE-083 | `SnowShovelSample_4_0` | `SnowShovel` | 3 / 667 | 5 | ✅ |
 | CSSAMPLE-084 | `AccelerometerSample_4_0` | `AccelerometerSample` | 5 / 399 | 2 | ✅ |
 | CSSAMPLE-092 | `ContentManifestExtensions_4_0` | `ContentManifestExtensions` | 5 / 366 | 10 | ✅ |

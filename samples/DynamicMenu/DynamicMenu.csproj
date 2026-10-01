@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Two upstream source trees live side by side here, so default compile items are off. -->
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <RootNamespace>DynamicMenuSample</RootNamespace>
+    <AssemblyName>DynamicMenuSample</AssemblyName>
+    <!-- Upstream ships only the phone project, and a phone game has no Main: the XAP host supplied it. -->
+    <CnaPhoneGame>DynamicMenuSample.DynamicMenuSample</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DynamicMenuSample/**/*.cs" />
+    <ProjectReference Include="DynamicMenuLibrary.csproj" />
+  </ItemGroup>
+</Project>

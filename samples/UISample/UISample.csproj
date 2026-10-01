@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <RootNamespace>UISample</RootNamespace>
+    <!-- Upstream's own assembly name. -->
+    <AssemblyName>AchievementUISample</AssemblyName>
+    <!-- Upstream ships only the phone project: TRACE;WINDOWS_PHONE, and a phone game has no Main. -->
+    <CnaPhoneGame>UserInterfaceSample.SampleGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+  </PropertyGroup>
+</Project>

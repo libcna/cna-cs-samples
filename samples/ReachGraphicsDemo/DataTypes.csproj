@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: the compiled content names its types by
+       assembly-qualified name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DataTypes</RootNamespace>
+    <AssemblyName>DataTypes</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DataTypes/**/*.cs" />
+  </ItemGroup>
+</Project>

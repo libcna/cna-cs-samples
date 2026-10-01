@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's menu library, kept as its own assembly (DynamicMenu): the compiled menus name its
+       types by assembly-qualified name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DynamicMenu</RootNamespace>
+    <AssemblyName>DynamicMenu</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DynamicMenu/**/*.cs" />
+  </ItemGroup>
+</Project>

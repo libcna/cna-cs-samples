@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Two upstream source trees live side by side here, so default compile items are off. -->
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <RootNamespace>XnaGraphicsDemo</RootNamespace>
+    <AssemblyName>XnaGraphicsDemo</AssemblyName>
+    <StartupObject>XnaGraphicsDemo.Program</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ReachGraphicsDemo/**/*.cs" />
+    <ProjectReference Include="DataTypes.csproj" />
+  </ItemGroup>
+</Project>

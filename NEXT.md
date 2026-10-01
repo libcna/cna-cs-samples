@@ -64,9 +64,19 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-051 | CustomModelAnimation | ✅ verbatim with its runtime library; 4 px with A and B held on both builds |
 | CSSAMPLE-055 | SkinnedModelExtensions | ✅ verbatim with its `SkinnedModel` library; bat in hand; 9.17%, walk phase |
 | CSSAMPLE-056 | CPUSkinning | ✅ verbatim with its data-types library; 9.16%, walk phase |
+| CSSAMPLE-005 | ReachGraphicsDemo | ✅ verbatim with its `DataTypes` library; all six stock-effect screens opened on both builds (dual-texture 0.49%, alpha-test 0.11%, the rest motion) |
+| CSSAMPLE-013 | Platformer | ✅ verbatim, HiDef; levels through `TitleContainer`; 0.97%, and 1.11% with Right held on both builds |
+| CSSAMPLE-017 | CollisionSample | ✅ verbatim; 0.65% (requalify now picks the port's game, not its test runner) |
+| CSSAMPLE-072 | GameStateManagement | ✅ verbatim; 0.95%; Escape opens the exit box, Enter exits 0 |
+| CSSAMPLE-081 | PerformanceMeasuring | ✅ verbatim; random spheres and live timings (13.48%) |
+| CSSAMPLE-082 | UISample | ✅ phone host; 0 px from the C++ main-menu frame; Escape is the phone's Back (CSX-095) |
+| CSSAMPLE-077 | DynamicMenu | ✅ phone host with its menu library, no longer 🛑; 0 px from both the C++ and the original XNA page-1 frames |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
-binaries ask for full screen, which a bare Xvfb cannot grant, and capture black.
+binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no
+longer asks (CNA.NET CSX-094: a phone title's full screen is its status bar), and Escape is its
+Back button off a phone (CSX-095), so every phone row now exits 0 on Escape and `requalify.sh`
+checks that for any phone row reading `Buttons.Back`.
 
 Tooling on the way: `add-sample.sh` also copies what the content pipeline puts beside compiled
 assets (a song's `.wma`, a video's `.wmv`, XACT's banks) and the raw files a content project copies
