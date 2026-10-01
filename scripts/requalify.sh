@@ -80,7 +80,10 @@ for row in "${rows[@]}"; do
             exit_args=(--no-exit-check)
             exit_result="no key in source"
         fi
+        # A row qualified in another configuration names it (ShapeRendering draws only in Debug).
+        configuration="$(sed -n 's:.*<CnaSampleConfiguration>\(.*\)</CnaSampleConfiguration>.*:\1:p' "$project")"
         if "$here/scripts/capture-sample.sh" "$row" --window '.' --out "$log" --settle "$settle" \
+                --configuration "${configuration:-Release}" \
                 "${exit_args[@]}" >"$log/capture.log" 2>&1; then
             run="pass"
             [ "$exit_result" = "-" ] && exit_result="Escape, code 0"

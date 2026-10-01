@@ -43,7 +43,25 @@ cp "$cs_root/eng/browser/wwwroot/index.html" "$cs_root/eng/browser/wwwroot/main.
 DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
-    -getProperty:CnaPhoneCompat -getItem:Compile -getItem:EmbeddedResource >"$work/evaluation.json"
+    -getProperty:CnaPhoneCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
+    -getItem:EmbeddedResource -getItem:ProjectReference >"$work/evaluation.json"
+
+# Library projects beside the sample (Pathfinding's MapData, SpriteSheet's runtime) are referenced
+# as their own Release builds, not merged in: content names their readers by assembly.
+python3 - "$work/evaluation.json" "$cs_root" <<'PYEOF' >"$work/libraries.txt"
+import json, sys
+items = json.load(open(sys.argv[1]))["Items"].get("ProjectReference", [])
+for item in items:
+    if not item["FullPath"].startswith(sys.argv[2].rstrip("/") + "/"):
+        print(item["FullPath"])
+PYEOF
+: >"$work/library-paths.txt"
+while read -r library; do
+    [ -n "$library" ] || continue
+    dotnet build "$library" -c Release -m:1 >/dev/null
+    DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$library" -p:Configuration=Release \
+        -getProperty:TargetPath >>"$work/library-paths.txt"
+done <"$work/libraries.txt"
 
 python3 - "$work" "$here/samples/$sample" "$cs_root" <<'EOF'
 import json, sys
@@ -51,6 +69,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
 work, sample_dir, cs_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+libraries = [Path(line.strip()) for line in (work / "library-paths.txt").read_text().splitlines() if line.strip()]
 evaluation = json.loads((work / "evaluation.json").read_text())
 props = evaluation["Properties"]
 items = evaluation.get("Items", {})
@@ -71,6 +90,9 @@ lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
          "    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>",
          "    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>",
          f"    <DefineConstants>$(DefineConstants);{escape(props.get('CnaSampleDefineConstants') or 'WINDOWS')}</DefineConstants>"]
+# A row qualified in Debug keeps its DEBUG-only code ([Conditional("DEBUG")] drawing, say).
+if props.get("CnaSampleConfiguration") == "Debug":
+    lines.append("    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>")
 if props.get("XnaProfile"):
     lines.append(f"    <XnaProfile>{escape(props['XnaProfile'])}</XnaProfile>")
 if props.get("XnaPlatform"):
@@ -88,6 +110,12 @@ for item in items.get("EmbeddedResource", []):
     logical = item.get("LogicalName", "")
     attr = f" LogicalName={quoteattr(logical)}" if logical else ""
     lines.append(f"    <EmbeddedResource Include={quoteattr(item['FullPath'])}{attr} />")
+for library in libraries:
+    lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
+    lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
+lines.append(f'    <TrimmerRootAssembly Include="{escape(props["AssemblyName"])}" />')
+if props.get("CnaPhoneCompat") == "true":
+    lines.append('    <TrimmerRootAssembly Include="CNA.PhoneCompat" />')
 for name in references:
     folder = binaries_phone if name == "CNA.PhoneCompat" else binaries
     lines.append(f'    <Reference Include="{name}"><HintPath>{folder / (name + ".dll")}</HintPath></Reference>')

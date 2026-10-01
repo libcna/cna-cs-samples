@@ -14,8 +14,50 @@ linking the CNA archive `../cna-cs/scripts/Build-BrowserNative.sh` stages and th
 assemblies; Content is linked into its `wwwroot` and so into the browser's file system.
 `CNA_ACTIONS` scripts input (see `../cna-cs/scripts/Run-BrowserPage.mjs`).
 
-AimingSample is the first: 0 pixels from its C++ port, input, exit and reload all driven. The other
-rows have not been tried in a browser yet.
+AimingSample was first: 0 pixels from its C++ port, input, exit and reload all driven.
+`scripts/browser-requalify.sh --desktop <requalify output>` then ran every row (CNA.NET `274be55`..,
+CNA `1e7c4d323`, .NET 11 RC1, headless Chromium with SwiftShader WebGL2, 6 s), measured against the
+row's desktop C# capture:
+
+| Sample | Browser run | vs desktop C# | Canvas | Page errors |
+|---|---|---|---|---|
+| AimingSample | pass | 0.00% (0 px) | 853x480 | 0 |
+| Audio3D | pass | 5.01% (19238 px) | 800x480 | 0 |
+| Bounce | pass | 6.93% (26622 px) | 800x480 | 0 |
+| ChaseAndEvade | pass | 1.05% (4312 px) | 853x480 | 0 |
+| ColorReplacement | pass | 9.85% (37839 px) | 800x480 | 0 |
+| ContentManifestExtensions | pass | 0.00% (0 px) | 800x480 | 0 |
+| FlockingSample | pass | 2.82% (10813 px) | 800x480 | 0 |
+| FuzzyLogic | pass | 5.13% (19689 px) | 800x480 | 0 |
+| GesturesSample | pass | 0.00% (0 px) | 800x480 | 0 |
+| InputReporter | pass | 0.00% (0 px) | 853x480 | 0 |
+| InputSequence | pass | 0.00% (0 px) | 800x480 | 0 |
+| LocalizationSample | pass | 0.00% (0 px) | 800x480 | 0 |
+| MicrophoneEcho | pass | 0.70% (2677 px) | 800x480 | 0 |
+| Orientation | pass | 0.00% (0 px) | 800x480 | 0 |
+| ParticleSample | pass | 84.60% (324866 px) | 800x480 | 0 |
+| PathDrawing | pass | 0.00% (0 px) | 800x480 | 0 |
+| Pathfinding | pass | 0.00% (0 px) | 800x480 | 0 |
+| PerPixelCollision | pass | 1.00% (3838 px) | 800x480 | 0 |
+| Primitives3D | pass | 14.87% (57116 px) | 800x480 | 0 |
+| PrimitivesSample | pass | 0.39% (1594 px) | 853x480 | 0 |
+| RectangleCollision | pass | 0.89% (3414 px) | 800x480 | 0 |
+| SafeArea | pass | 0.00% (0 px) | 1280x720 | 0 |
+| ShapeRendering | pass | 2.61% (10013 px) | 800x480 | 0 |
+| SnowShovel | pass | 7.38% (28340 px) | 480x800 | 0 |
+| SpriteEffects | pass | 4.44% (17065 px) | 800x480 | 0 |
+| SpriteSheet | pass | 7.02% (28728 px) | 853x480 | 0 |
+| TouchThumbsticks | pass | 0.21% (798 px) | 800x480 | 0 |
+| TransformedCollision | pass | 7.52% (28864 px) | 800x480 | 0 |
+| TransformedCollisionTest | pass | 0.00% (0 px) | 800x480 | 0 |
+| WaypointSample | pass | 0.00% (0 px) | 853x480 | 0 |
+
+Found on the way and fixed: publishing trims, and content readers are created by reflection, so the
+CNA.NET assemblies and the game's are rooted (ContentManifestExtensions); library projects beside a
+sample are referenced as their own builds (Pathfinding, SpriteSheet); and ShapeRendering, whose
+drawing is `[Conditional("DEBUG")]`, had been captured in Release and drawn nothing since the
+migration -- a row now names its configuration with `CnaSampleConfiguration`, which both capture
+scripts honour.
 
 ---
 

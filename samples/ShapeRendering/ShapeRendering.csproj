@@ -17,6 +17,8 @@
     <RootNamespace>ShapeRenderingSample</RootNamespace>
     <AssemblyName>ShapeRenderingSample</AssemblyName>
     <StartupObject>ShapeRenderingSample.Program</StartupObject>
+    <!-- Read by scripts/requalify.sh and scripts/browser-sample.sh: capture this configuration. -->
+    <CnaSampleConfiguration>Debug</CnaSampleConfiguration>
   </PropertyGroup>
 
 </Project>
