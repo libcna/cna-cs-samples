@@ -81,6 +81,7 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-062 | NetRumble | ✅ verbatim; a `Content\audio\wav` link in the output answers its BCL directory scan; 1.04% |
 | CSSAMPLE-070 | RolePlayingGame | ✅ verbatim with its data library, 1 004 assets; backslash audio path (CSX-096); 0 px |
 | CSSAMPLE-065 | NinjAcademy | ✅ phone host with its common-types library; `PhoneApplicationService` (CSX-097); 0 px from the C++ menu frame |
+| CSSAMPLE-071 | Yacht | 🛑 the client's generated WCF proxy is Silverlight's (configuration-name constructors, `ServiceReferences.ClientConfig`); two options in `samples/Yacht/missing.md` |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no
