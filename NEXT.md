@@ -16,11 +16,13 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-084 | AccelerometerSample | ✅ phone host + CNA.PhoneCompat; first frame 0 px from the original XNA emulator frame; Right arrow moves the asteroid |
 | CSSAMPLE-050 | SimpleAnimation | ✅ verbatim; tank `Model` animates; 4.45% from the C++ port, animation phase |
 | CSSAMPLE-076 | SplitScreen | ✅ verbatim, HiDef; two viewports of the tank; 4.84% from the C++ port, animation phase |
+| CSSAMPLE-042 | ShatterEffect | ✅ verbatim; custom compiled effect; 13 px from the C++ port, 46 px after holding Up on both |
 
 Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
 `build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest
 Release OPENGLES3 tree with compiled effects, and the host cannot load it); `capture-sample.sh
---xdotool` drives input before the capture.
+--xdotool` drives input before the capture, and `requalify.sh --xdotool` gives the C# run and the C++
+port the same input.
 
 ## 2026-10-01 — samples in a browser
 

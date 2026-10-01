@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 31 |
+| ✅ complete | 32 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 45 |
+| ⬜ not started | 44 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -269,7 +269,7 @@ port ships.
 | CSSAMPLE-039 | `BillboardSample_4_0` | `BillboardSample` | 4 / 705 | 5 | ⬜ |
 | CSSAMPLE-040 | `InstancedModelSample_4_0` | `InstancedModel` | 5 / 716 | 4 | ⬜ |
 | CSSAMPLE-041 | `LensFlareSample_4_0` | `LensFlare` | 3 / 643 | 6 | ⬜ |
-| CSSAMPLE-042 | `ShatterEffectSample_4_0` | `ShatterEffect` | 5 / 514 | 5 | ⬜ |
+| CSSAMPLE-042 | `ShatterEffectSample_4_0` | `ShatterEffect` | 5 / 514 | 5 | ✅ |
 | CSSAMPLE-043 | `Particles3DSample_4_0` | `Particles3D` | 12 / 1727 | 7 | ⬜ |
 | CSSAMPLE-044 | `Particles2DPipeline_4_0` | `Particles2DPipeline` | 9 / 1172 | 9 | ⬜ |
 | CSSAMPLE-045 | `XmlParticles_4_0` | `XmlParticles` | 8 / 1462 | 12 | ⬜ |

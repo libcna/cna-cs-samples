@@ -3,7 +3,10 @@
 # this repository: Release build, a capture on the private Xvfb display, the exit path the source
 # itself has, and the capture measured against a capture of the row's C++ port taken the same way.
 #
-# Usage: scripts/requalify.sh [--out DIR] [--settle SECONDS] [SampleDirectory ...]
+# Usage: scripts/requalify.sh [--out DIR] [--settle SECONDS] [--xdotool 'COMMANDS'] [SampleDirectory ...]
+#
+# --xdotool gives the C# run and the C++ port the same input before their captures
+# (capture-sample.sh --xdotool), so an interaction is measured like a first frame.
 #
 # Writes DIR/<sample>/ and DIR/<sample>/cpp/ (what capture-sample.sh writes) and
 # DIR/requalification.md, one table row per sample. A row that builds, runs, shows its window, exits
@@ -18,13 +21,15 @@ cs_root="$(cd "$here/../cna-cs" && pwd)"
 cna_root="$(cd "$here/../cna" && pwd)"
 out=""
 settle=5
+input=()
 rows=()
 
 while [ $# -gt 0 ]; do
     case "$1" in
         --out)    out="$2"; shift 2 ;;
         --settle) settle="$2"; shift 2 ;;
-        -h|--help) sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        --xdotool) input=(--xdotool "$2"); shift 2 ;;
+        -h|--help) sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)       echo "error: unknown option $1" >&2; exit 2 ;;
         *)        rows+=("$1"); shift ;;
     esac
@@ -83,7 +88,7 @@ for row in "${rows[@]}"; do
         # A row qualified in another configuration names it (ShapeRendering draws only in Debug).
         configuration="$(sed -n 's:.*<CnaSampleConfiguration>\(.*\)</CnaSampleConfiguration>.*:\1:p' "$project")"
         if "$here/scripts/capture-sample.sh" "$row" --window '.' --out "$log" --settle "$settle" \
-                --configuration "${configuration:-Release}" \
+                --configuration "${configuration:-Release}" "${input[@]}" \
                 "${exit_args[@]}" >"$log/capture.log" 2>&1; then
             run="pass"
             [ "$exit_result" = "-" ] && exit_result="Escape, code 0"
@@ -103,7 +108,7 @@ for row in "${rows[@]}"; do
         if [ -z "$port_exe" ]; then
             cpp="no C++ port"
         elif "$here/scripts/capture-sample.sh" "$row" --exe "$port_exe" --window '.' --out "$log/cpp" \
-                --settle "$settle" --no-exit-check >"$log/cpp-capture.log" 2>&1 || [ -f "$log/cpp/$row.png" ]; then
+                --settle "$settle" "${input[@]}" --no-exit-check >"$log/cpp-capture.log" 2>&1 || [ -f "$log/cpp/$row.png" ]; then
             [ -f "$log/$row.png" ] && cpp="$(measure "$log/$row.png" "$log/cpp/$row.png")"
         else
             cpp="C++ capture failed"
