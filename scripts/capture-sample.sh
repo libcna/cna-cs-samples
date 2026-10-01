@@ -5,6 +5,10 @@
 # Usage: scripts/capture-sample.sh <SampleDirectory> --window <regex> --out <directory>
 #                                  [--configuration Debug|Release] [--settle SECONDS]
 #                                  [--exit-key KEY] [--display :N] [--no-exit-check]
+#                                  [--exe PATH]
+#
+# --exe captures another executable the same way -- the retained C++ port, for the reference the
+# C# capture is compared against. The sample directory still names the output file.
 #
 # Two details are not obvious and both were learned the hard way:
 #
@@ -17,7 +21,7 @@ set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 sample=""; window_pattern=""; out=""; configuration=Release
-settle=5; exit_key=Escape; display=":${CNA_CAPTURE_DISPLAY_NUMBER:-128}"; check_exit=1
+settle=5; exit_key=Escape; display=":${CNA_CAPTURE_DISPLAY_NUMBER:-128}"; check_exit=1; exe_override=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -28,6 +32,7 @@ while [ $# -gt 0 ]; do
         --exit-key)       exit_key="$2"; shift 2 ;;
         --display)        display="$2"; shift 2 ;;
         --no-exit-check)  check_exit=0; shift ;;
+        --exe)            exe_override="$2"; shift 2 ;;
         -h|--help)        sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)               echo "error: unknown option $1" >&2; exit 2 ;;
         *)                sample="$1"; shift ;;
@@ -45,15 +50,25 @@ mkdir -p "$out"
 lib="${CNA_NATIVE_LIBRARY:-$("$here/scripts/build-native-cna.sh" --no-build)}"
 [ -f "$lib" ] || { echo "error: native CNA library not found at $lib" >&2; exit 2; }
 
-exe="$(find "$project_dir/bin/$configuration" -maxdepth 1 -type f -executable \
-        ! -name '*.so' ! -name '*.dll' 2>/dev/null | head -1)"
-[ -n "$exe" ] || { echo "error: no $configuration build of $sample" >&2; exit 2; }
+if [ -n "$exe_override" ]; then
+    exe="$(realpath "$exe_override")"
+else
+    exe="$(find "$project_dir/bin/$configuration" -maxdepth 1 -type f -executable \
+            ! -name '*.so' ! -name '*.dll' 2>/dev/null | head -1)"
+fi
+[ -n "$exe" ] && [ -x "$exe" ] || { echo "error: no $configuration build of $sample" >&2; exit 2; }
 
 Xvfb "$display" -screen 0 1920x1200x24 +extension GLX >"$out/xvfb.log" 2>&1 &
 xvfb_pid=$!
 sample_pid=""
+# The sample goes first and Xvfb only once it has gone: a game still drawing when its X server
+# dies takes Xlib's IO-error exit(), which deadlocked against a concurrent exit() (CNA.NET CSX-084).
 cleanup() {
-    [ -n "$sample_pid" ] && kill -0 "$sample_pid" 2>/dev/null && kill "$sample_pid" 2>/dev/null || true
+    if [ -n "$sample_pid" ] && kill -0 "$sample_pid" 2>/dev/null; then
+        kill "$sample_pid" 2>/dev/null || true
+        for _ in $(seq 1 100); do kill -0 "$sample_pid" 2>/dev/null || break; sleep 0.1; done
+        kill -0 "$sample_pid" 2>/dev/null && { echo "warning: SIGTERM did not end the sample; killed" >&2; kill -KILL "$sample_pid" 2>/dev/null || true; }
+    fi
     kill "$xvfb_pid" 2>/dev/null || true
     wait 2>/dev/null || true
 }
