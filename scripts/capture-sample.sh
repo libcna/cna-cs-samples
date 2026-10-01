@@ -127,13 +127,7 @@ done
 
 DISPLAY="$display" xdotool windowmove "$window" 100 100
 sleep 0.5
-DISPLAY="$display" xwininfo -id "$window" >"$out/window-geometry.txt"
 DISPLAY="$display" xdotool getwindowname "$window" >"$out/window-name.txt"
-eval "$(DISPLAY="$display" xwininfo -id "$window" |
-    sed -n 's/ *Absolute upper-left X: *\([0-9]*\)/wx=\1/p;
-            s/ *Absolute upper-left Y: *\([0-9]*\)/wy=\1/p;
-            s/ *Width: *\([0-9]*\)/ww=\1/p;
-            s/ *Height: *\([0-9]*\)/wh=\1/p')"
 
 DISPLAY="$display" xdotool windowfocus --sync "$window"
 sleep "$settle"
@@ -142,6 +136,13 @@ if [ -n "$input" ]; then
     # shellcheck disable=SC2086
     DISPLAY="$display" xdotool $input
 fi
+# The geometry is read now, not when the window appeared: a game that sets its back buffer size
+# after startup (PlayingInTraffic goes from 800x480 to 1280x720) has resized its window since.
+DISPLAY="$display" xwininfo -id "$window" >"$out/window-geometry.txt"
+eval "$(sed -n 's/ *Absolute upper-left X: *\([0-9]*\)/wx=\1/p;
+            s/ *Absolute upper-left Y: *\([0-9]*\)/wy=\1/p;
+            s/ *Width: *\([0-9]*\)/ww=\1/p;
+            s/ *Height: *\([0-9]*\)/wh=\1/p' "$out/window-geometry.txt")"
 DISPLAY="$display" import -window root -crop "${ww}x${wh}+${wx}+${wy}" +repage "$out/$sample.png"
 
 echo "window   : $(cat "$out/window-name.txt") ${ww}x${wh}"
