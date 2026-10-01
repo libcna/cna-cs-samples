@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- microsoft/solitaire-wp (XNASolitaire), the Windows Phone 7 game Microsoft published with XNA
+       Game Studio 4.0, unchanged, with its content built from its own content project by XNA's
+       BuildContent (scripts/build-xna-content.sh, WindowsPhone/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>Solitaire XNA</AssemblyName>
+    <RootNamespace>XNASolitaire</RootNamespace>
+    <CnaPhoneGame>XNASolitaire.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/solitaire-wp/XNASolitaire</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/solitaire/Content</GameContent>
+    <GameProject>$(GameRoot)/XNASolitaire/XNASolitaire.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
