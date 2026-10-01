@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Mavinkea/XNASidescroller, unchanged, with the XNA 4.0 content its repository ships
+       (bin/x86/Debug/Content, built by its author). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>WindowsGame1</AssemblyName>
+    <RootNamespace>WindowsGame1</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/XNASidescroller/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
+    <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameRoot)/bin/x86/Debug/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
