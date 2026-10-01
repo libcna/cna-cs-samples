@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <RootNamespace>Graphics3DSample</RootNamespace>
+    <AssemblyName>Graphics3DSample</AssemblyName>
+    <!-- Upstream ships only the phone project: TRACE;WINDOWS_PHONE, so its Main is guarded out
+         (and names a Sample3DGraphics class that does not exist; the class is Graphics3DSampleGame). -->
+    <CnaPhoneGame>Graphics3DSample.Graphics3DSampleGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Upstream ships Buttons/Button.cs outside its project's Compile list, and it does not
+         compile against the rest; the original project never built it either. -->
+    <Compile Remove="Sample3DGraphics/Buttons/Button.cs" />
+  </ItemGroup>
+</Project>

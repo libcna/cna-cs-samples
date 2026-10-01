@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <RootNamespace>TexturesAndColorsSample</RootNamespace>
+    <AssemblyName>TexturesAndColorsSample</AssemblyName>
+    <!-- Main is a static method of the game class itself. -->
+    <StartupObject>TexturesAndColorsSample.TexturesAndColors</StartupObject>
+  </PropertyGroup>
+</Project>

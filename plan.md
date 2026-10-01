@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 45 |
+| ✅ complete | 57 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 31 |
+| ⬜ not started | 19 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -233,7 +233,7 @@ port ships.
 |---|---|---|---:|---:|---|
 | CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | 🛠 |
-| CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
+| CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ✅ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ✅ |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ✅ |
@@ -259,12 +259,12 @@ port ships.
 | CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ✅ |
 | CSSAMPLE-030 | `CameraShake_4_0` | `CameraShake` | 5 / 630 | 6 | ✅ |
 | CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ✅ |
-| CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ⬜ |
+| CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ✅ |
 | CSSAMPLE-033 | `NonPhotoRealisticSample_4_0` | `NonPhotoRealistic` | 3 / 568 | 6 | ✅ |
 | CSSAMPLE-034 | `NormalMappingSample_4_0` | `NormalMappingEffect` | 6 / 679 | 8 | ✅ |
-| CSSAMPLE-035 | `PerPixelLightingSample_4_0` | `PerPixelLighting` | 4 / 1133 | 8 | ⬜ |
-| CSSAMPLE-036 | `VertexLightingSample_4_0` | `VertexLighting` | 4 / 1086 | 7 | ⬜ |
-| CSSAMPLE-037 | `RimLighting_4_0` | `RimLighting` | 8 / 1041 | 5 | ⬜ |
+| CSSAMPLE-035 | `PerPixelLightingSample_4_0` | `PerPixelLighting` | 4 / 1133 | 8 | ✅ |
+| CSSAMPLE-036 | `VertexLightingSample_4_0` | `VertexLighting` | 4 / 1086 | 7 | ✅ |
+| CSSAMPLE-037 | `RimLighting_4_0` | `RimLighting` | 8 / 1041 | 5 | ✅ |
 | CSSAMPLE-038 | `ShadowMappingSample_4_0` | `ShadowMapping` | 5 / 628 | 16 | ✅ |
 | CSSAMPLE-039 | `BillboardSample_4_0` | `BillboardSample` | 4 / 705 | 5 | ✅ |
 | CSSAMPLE-040 | `InstancedModelSample_4_0` | `InstancedModel` | 5 / 716 | 4 | ✅ |
@@ -273,21 +273,21 @@ port ships.
 | CSSAMPLE-043 | `Particles3DSample_4_0` | `Particles3D` | 12 / 1727 | 7 | ⬜ |
 | CSSAMPLE-044 | `Particles2DPipeline_4_0` | `Particles2DPipeline` | 9 / 1172 | 9 | ⬜ |
 | CSSAMPLE-045 | `XmlParticles_4_0` | `XmlParticles` | 8 / 1462 | 12 | ⬜ |
-| CSSAMPLE-046 | `Graphics3DSample_4_0` | `Graphics3D` | 8 / 962 | 10 | ⬜ |
-| CSSAMPLE-047 | `PickingSample_4_0` | `PickingSample` | 6 / 1046 | 10 | ⬜ |
+| CSSAMPLE-046 | `Graphics3DSample_4_0` | `Graphics3D` | 8 / 962 | 10 | ✅ |
+| CSSAMPLE-047 | `PickingSample_4_0` | `PickingSample` | 6 / 1046 | 10 | ✅ |
 | CSSAMPLE-048 | `TrianglePickingSample_4_0` | `TrianglePicking` | 5 / 1139 | 10 | ⬜ |
-| CSSAMPLE-049 | `HeightmapCollisionSample_4_0` | `HeightmapCollision` | 6 / 881 | 4 | ⬜ |
+| CSSAMPLE-049 | `HeightmapCollisionSample_4_0` | `HeightmapCollision` | 6 / 881 | 4 | ✅ |
 | CSSAMPLE-050 | `SimpleAnimation_4_0` | `SimpleAnimation` | 3 / 404 | 3 | ✅ |
 | CSSAMPLE-051 | `CustomModelAnimation_4_0` | `CustomModelAnimation` | 13 / 1672 | 8 | ⬜ |
 | CSSAMPLE-052 | `CustomModelClassSample_4_0` | `CustomModelClass` | 6 / 541 | 3 | ✅ |
 | CSSAMPLE-053 | `CustomModelEffectSample_4_0` | `CustomModelEffect` | 6 / 674 | 4 | ✅ |
-| CSSAMPLE-054 | `SkinningSample_4_0` | `SkinningSample` | 9 / 1040 | 5 | ⬜ |
+| CSSAMPLE-054 | `SkinningSample_4_0` | `SkinningSample` | 9 / 1040 | 5 | ✅ |
 | CSSAMPLE-055 | `SkinnedModelExtensions_4_0` | `SkinnedModelExtensions` | 13 / 1620 | 7 | ⬜ |
 | CSSAMPLE-056 | `CPUSkinningSample_4_0` | `CPUSkinning` | 19 / 1691 | 7 | ⬜ |
-| CSSAMPLE-057 | `InverseKinematics_4_0` | `InverseKinematics` | 3 / 1104 | 3 | ⬜ |
+| CSSAMPLE-057 | `InverseKinematics_4_0` | `InverseKinematics` | 3 / 1104 | 3 | ✅ |
 | CSSAMPLE-058 | `ChaseCamera_4_0` | `ChaseCamera` | 4 / 880 | 5 | ✅ |
 | CSSAMPLE-059 | `Audio3DSample_4_0` | `Audio3D` | 8 / 821 | 7 | ✅ |
-| CSSAMPLE-060 | `SoundAndMusic_4_0` | `SoundAndMusic` | 5 / 963 | 10 | ⬜ |
+| CSSAMPLE-060 | `SoundAndMusic_4_0` | `SoundAndMusic` | 5 / 963 | 10 | ✅ |
 | CSSAMPLE-061 | `MarbleMaze_4_0` | `MarbleMaze` | 140 / 25402 | 26 | ⬜ |
 | CSSAMPLE-063 | `HoneycombRush_4_0` | `HoneycombRush` | 65 / 16127 | 47 | ⬜ |
 | CSSAMPLE-067 | `CatapultWars_4_0` | `CatapultWars` | 61 / 12001 | 33 | ⬜ |
@@ -295,7 +295,7 @@ port ships.
 | CSSAMPLE-069 | `CardsStarterKit_4_0` | `CardsStarterKit` | 47 / 8742 | 89 | ⬜ |
 | CSSAMPLE-072 | `GSMSample_4_0_WIN_XBOX` | `GameStateManagement` | 15 / 2520 | 5 | ⬜ |
 | CSSAMPLE-073 | `SoccerPitchSample_4_0` | `SoccerPitch` | 10 / 1150 | 6 | ⬜ |
-| CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ⬜ |
+| CSSAMPLE-074 | `TankOnAHeightMapSample_4_0` | `TankOnHeightmap` | 7 / 1130 | 5 | ✅ |
 | CSSAMPLE-076 | `SplitScreenSample_4_0` | `SplitScreen` | 4 / 485 | 3 | ✅ |
 | CSSAMPLE-077 | `DynamicMenu_4_0` | `DynamicMenu` | 15 / 2447 | 11 | 🛑 |
 | CSSAMPLE-078 | `LocalizationSample_4_0` | `LocalizationSample` | 6 / 481 | 8 | ✅ |

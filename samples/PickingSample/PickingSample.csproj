@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>HiDef</XnaProfile>
+    <RootNamespace>Picking</RootNamespace>
+    <AssemblyName>Picking</AssemblyName>
+    <StartupObject>PickingSample.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Upstream ships GeometricPrimitive.cs outside both of its projects' Compile lists, and it
+         names a VertexPositionNormal type the sample never defines; the original never built it. -->
+    <Compile Remove="Picking/GeometricPrimitive.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA Game Studio 4.0 sample: SkinningSample_4_0, Windows configuration. Two upstream source
+       trees live side by side here, so default compile items are off in both projects. -->
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <RootNamespace>SkinningSample</RootNamespace>
+    <AssemblyName>SkinningSample</AssemblyName>
+    <StartupObject>SkinningSample.Program</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="SkinningSample/**/*.cs" />
+    <ProjectReference Include="SkinnedModel.csproj" />
+  </ItemGroup>
+</Project>

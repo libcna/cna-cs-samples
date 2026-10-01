@@ -43,8 +43,27 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-040 | InstancedModel | ✅ verbatim, HiDef; 1 000 hardware-instanced cats; 13.95%; ~60 vs ~350 fps, llvmpipe-bound, older C++ build |
 | CSSAMPLE-099 | ModelImporterSample | ✅ verbatim; .obj-imported tank; 11.80%, rotation |
 | CSSAMPLE-058 | ChaseCamera | ✅ verbatim; 0.22% from the C++ port |
+| CSSAMPLE-049 | HeightmapCollision | ✅ verbatim, HiDef; terrain `Model` tagged with the game's own type (CSX-089); 0 px |
+| CSSAMPLE-032 | DistortionSample | ✅ verbatim; components drawn at `base.Draw` (CSX-090), `Color.Transparent` transparent black (CSX-091); 0 px |
+| CSSAMPLE-046 | Graphics3D | ✅ phone host; `Buttons/Button.cs` left out as upstream's project did; 35 px from the original XNA frame, 1 px from the C++ start frame |
+| CSSAMPLE-060 | SoundAndMusic | ✅ phone host; song from its `.wma`; 0 px from the C++ start frame |
+| CSSAMPLE-054 | SkinningSample | ✅ verbatim with its `SkinnedModel` library; `SkinnedEffectReader` (CSX-092); 8.15%, walk phase |
+| CSSAMPLE-037 | RimLighting | ✅ phone host; 0.40% from the original XNA frame, 0.88% from the C++ start frame |
+| CSSAMPLE-003 | TexturesAndColors | ✅ verbatim; 2.77%: the retained C++ binary predates CNA SOFTWARE-336 (apitrace: identical grid draw but for the stock shader) |
+| CSSAMPLE-047 | PickingSample | ✅ verbatim, HiDef; `GeometricPrimitive.cs` left out as upstream's projects did; 15.51%, camera orbit |
+| CSSAMPLE-036 | VertexLighting | ✅ verbatim; 1.08%, all in the grid's horizon band (as CSSAMPLE-003) |
+| CSSAMPLE-035 | PerPixelLighting | ✅ verbatim; 1.08%, all in the grid's horizon band (as CSSAMPLE-003) |
+| CSSAMPLE-057 | InverseKinematics | ✅ verbatim, HiDef; 2.36% is CNA's avatar, which XNA on Windows and the older C++ binary do not draw |
+| CSSAMPLE-074 | TankOnHeightmap | ✅ verbatim, HiDef; 0 px |
 
-Tooling on the way: `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
+The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
+binaries ask for full screen, which a bare Xvfb cannot grant, and capture black.
+
+Tooling on the way: `add-sample.sh` also copies what the content pipeline puts beside compiled
+assets (a song's `.wma`, a video's `.wmv`, XACT's banks) and the raw files a content project copies
+as they are (only those byte-identical to an upstream file); `capture-sample.sh` runs every sample
+with a private home and no session bus, so a sample that starts GamerServices no longer reads or
+writes the developer's own CNA profiles, credentials or Secret Service; `check-verbatim.sh` ignores an upstream snapshot's `bin/`/`obj/` build output;
 `build-native-cna.sh` no longer picks a cross-compiled tree (`cmake-build-android-*` is the newest
 Release OPENGLES3 tree with compiled effects, and the host cannot load it); `capture-sample.sh
 --xdotool` drives input before the capture, and `requalify.sh --xdotool` gives the C# run and the C++
