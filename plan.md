@@ -53,10 +53,10 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 21 |
-| 🛠 in progress | 5 |
+| ✅ complete | 28 |
+| 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
-| 🛑 owner decision | 4 |
+| 🛑 owner decision | 1 |
 | ⬜ not started | 48 |
 | **total** | **78** |
 
@@ -67,7 +67,8 @@ CNA-REPORTs are fixed (one in cna-cs, one in CNA) and the four `⛔` rows run; `
 are superseded by the campaign brief in `../cna-cs/CAMPAIGN.md` (a separate phone compatibility
 assembly; the XNA Net/GamerServices surface backed by CNA).
 
-Both finished rows run from byte-identical upstream sources with no deviation.
+Every finished row runs from byte-identical upstream sources with no deviation; the phone-only
+rows get a generated host and CNA.PhoneCompat (`rules.md`, rung 4).
 
 `CSSAMPLE-001` PrimitivesSample found one real binding defect: `GraphicsDevice.Clear(Color)`
 cleared only the colour target, so every depth-tested draw was rejected and the window stayed
@@ -126,9 +127,9 @@ on before escalating it:
 | Row | Upstream provides | Resolution |
 |---|---|---|
 | `CSSAMPLE-079` GesturesSample | guarded `Main` constructing a class that **exists** | `✅` — define `WINDOWS` in the project file, no source edit |
-| `CSSAMPLE-016` Bounce | guarded `Main` constructing a `Game1` that **does not exist** | `🛑` — defining `WINDOWS` does not compile |
-| `CSSAMPLE-021` PathDrawing | **no `Main` and no `Program.cs` at all** | `🛑` — there is nothing to enable |
-| `CSSAMPLE-077` DynamicMenu | the same: **0 occurrences** of `static void Main` in the whole directory | `🛑` |
+| `CSSAMPLE-016` Bounce | guarded `Main`; the upstream configuration is the phone one (`WINDOWS_PHONE`) | `✅` — `<CnaPhoneGame>` generates the host, CNA.PhoneCompat supplies `Microsoft.Devices` |
+| `CSSAMPLE-021` PathDrawing | **no `Main` and no `Program.cs` at all** | `✅` — `<CnaPhoneGame>` generates the host |
+| `CSSAMPLE-077` DynamicMenu | the same: **0 occurrences** of `static void Main` in the whole directory | `🛑` until checked in; same route |
 
 Only the second and third rungs need a ruling. For the third, no constant can help: running it means
 adding a `Program` class beside the upstream subtree — new authored code in a repository whose
@@ -234,28 +235,28 @@ port ships.
 | CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | 🛠 |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ⬜ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
-| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | 🛠 |
+| CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ✅ |
 | CSSAMPLE-007 | `SpriteSheetSample_4_0` | `SpriteSheet` | 9 / 835 | 3 | ✅ |
 | CSSAMPLE-008 | `ShapeRenderingSample_4_0` | `ShapeRendering` | 4 / 662 | 0 | ✅ |
 | CSSAMPLE-009 | `InputReporter_4_0` | `InputReporter` | 6 / 1119 | 15 | ✅ |
-| CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | 🛑 |
+| CSSAMPLE-010 | `InputSequenceSample_4_0` | `InputSequence` | 6 / 859 | 15 | ✅ |
 | CSSAMPLE-011 | `SafeAreaSample_4_0` | `SafeArea` | 4 / 555 | 3 | ✅ |
 | CSSAMPLE-012 | `GeneratedGeometrySample_4_0` | `GeneratedGeometry` | 7 / 629 | 3 | ⬜ |
 | CSSAMPLE-013 | `Platformer_4_0` | `Platformer` | 14 / 2214 | 46 | ⬜ |
-| CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | 🛑 |
+| CSSAMPLE-016 | `BounceSample_4_0` | `Bounce` | 8 / 1117 | 0 | ✅ |
 | CSSAMPLE-017 | `CollisionSample_4_0` | `CollisionSample` | 13 / 2962 | 1 | ⬜ |
 | CSSAMPLE-018 | `PerPixelCollisionSample_4_0` | `PerPixelCollision` | 3 / 335 | 2 | ✅ |
 | CSSAMPLE-019 | `RectangleCollisionSample_4_0` | `RectangleCollision` | 3 / 280 | 2 | ✅ |
 | CSSAMPLE-020 | `TransformedCollisionSample_4_0` | `TransformedCollision`<br>`TransformedCollisionTest` | 8 / 1034 | 6 | ✅ |
-| CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | 🛑 |
+| CSSAMPLE-021 | `PathDrawing_4_0` | `PathDrawing` | 5 / 781 | 3 | ✅ |
 | CSSAMPLE-022 | `Pathfinding_4_0` | `Pathfinding` | 9 / 1726 | 13 | ✅ |
-| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | 🛠 |
+| CSSAMPLE-023 | `WaypointSample_4_0` | `WaypointSample` | 8 / 1192 | 5 | ✅ |
 | CSSAMPLE-024 | `FlockingSample_4_0` | `FlockingSample` | 14 / 1950 | 6 | ✅ |
 | CSSAMPLE-025 | `ChaseAndEvadeSample_4_0` | `ChaseAndEvade` | 2 / 751 | 4 | ✅ |
 | CSSAMPLE-026 | `AimingSample_4_0` | `AimingSample` | 2 / 391 | 2 | ✅ |
 | CSSAMPLE-027 | `FuzzyLogicSample_4_0` | `FuzzyLogic` | 10 / 1332 | 4 | ✅ |
-| CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | 🛠 |
-| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | 🛠 |
+| CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ✅ |
+| CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ✅ |
 | CSSAMPLE-030 | `CameraShake_4_0` | `CameraShake` | 5 / 630 | 6 | ⬜ |
 | CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ⬜ |
 | CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ⬜ |

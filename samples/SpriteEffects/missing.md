@@ -1,17 +1,14 @@
-# SpriteEffects audit — CSSAMPLE-006 ⛔
+# SpriteEffects audit — CSSAMPLE-006 ✅
 
 ## Result
 
-**Blocked, and not by anything in the sample or the binding.** The original C# is checked in
-verbatim and builds 0/0 in both configurations. It cannot run because no native library with
-compiled-effect support can currently be built:
+**Runs.** The original C# is checked in verbatim, builds 0/0 in Debug and Release, runs on
+OPENGLES3 with its three compiled effects (`desaturate`, `disappear`, `normalmap`) and exits 0
+through Escape. Its four panels animate on `GameTime`, so the comparison with the C++ port differs
+only where the effects are at a different phase.
 
-```text
-'desaturate': EffectReader could not create the compiled effect ---> The active graphics renderer
-does not support compiled XNA/FNA Effect Framework bytecode (GraphicsCapability::CompiledEffects is false)
-```
-
-The project is in `CnaCsSamples.sln` and the solution builds clean; only the run is blocked.
+Until 2026-10-01 no OPENGLES3 library with compiled effects could be built; `build-probe` has them
+now, and the shutdown crash once suspected there (`CNA-REPORT-003`) does not reproduce.
 
 ## Selected configuration
 
@@ -29,46 +26,26 @@ The upstream project's own `Content/` subdirectory — `normalmap.fx`, `disappea
 `desaturate.fx`, `cat_depth.jpg`, `waterfall.jpg`, `glacier.jpg` and the rest — is excluded per
 `rules.md`: those are pipeline inputs, and the compiled output is checked in instead.
 
-## Why it cannot run right now
-
-This is a supply problem, not a defect in CNA's effect support, and the distinction matters:
-
-1. Compiled `.fx` bytecode needs a CNA library built with `CNA_EASYGL_COMPILED_EFFECTS=ON`.
-   `CSSAMPLE-028` established that renderer and build type alone do not give you one.
-2. The only OPENGLES3 tree that had it, `cmake-build-debug`, segfaults during shutdown —
-   `CNA-REPORT-003` — and was in any case deleted from `../cnanext` by other work partway through
-   this session, along with every other OPENGLES3 tree.
-3. Configuring a fresh one with `CNA_EASYGL_COMPILED_EFFECTS=ON` **fails to configure**:
-
-   ```text
-   error: corrupt patch at line 20
-   CMake Error at cmake/patches/apply-fna3d-mojoshader-patch.cmake:52 (message):
-     CNA: failed to apply mojoshader-6333f74-xna4-effect-state-identifiers.patch to FNA3D's
-     MojoShader submodule
-   ```
-
-   `../cnanext`'s working tree currently has that patch, `cmake/ThirdPartyFNA3D.cmake` and
-   `modules/graphics/src/Xna/Effect.cpp` modified by another session's in-flight effect work.
-
-So the library this row was measured against is `cmake-build-release-capi` configured
-**without** compiled effects, which is what every other row in this batch used and what
-`scripts/build-native-cna.sh` now falls back to with a warning naming exactly this failure.
-
-**This is transient.** It is not filed in `cna-bugs.md`, because there is nothing for CNA to fix
-here that is not already `CNA-REPORT-003`: retry the row once `../cnanext`'s patch tree settles and
-a working `CNA_EASYGL_COMPILED_EFFECTS=ON` OPENGLES3 build exists.
-
 ## Source deviations
 
-**None** in any `.cs` file. `diff -r` over the code is clean; the excluded `Content/` inputs are
-listed above.
+**None** in any `.cs` file. `diff -r` over the code is clean; the upstream `Content/` inputs
+are excluded as pipeline sources (`rules.md`).
 
 ## What was verified
 
-- Sources verbatim; both configurations build with 0 warnings and 0 errors.
-- The window opens at 800x480 and the failure is at content load, not at draw, so everything up to
-  and including the non-effect content path works.
+- Sources verbatim (`scripts/check-verbatim.sh`); every `.xnb` identical to the C++ port's
+  (`scripts/check-content.sh`).
+- Debug and Release build with 0 warnings and 0 errors.
+- Runs against CNA.NET `496858b`, CNA `e9dd5d879` (`build-probe`, OPENGLES3 with compiled effects) on a private Xvfb; Escape exits with code 0.
+- Compared with the C++ port captured through the same route (`scripts/requalify.sh`): 7.4% of pixels differ, inside the animated panels at 800x480.
+
+## Not verified
+
+- The panel switching keys were not driven; no interaction harness. Gamepad: no controller attached.
 
 ## Artifacts
 
-`/rv/tmp/cs-samples/SpriteEffects/evidence/release/run.log`
+```text
+/rv/tmp/cs-samples/requal-20261001-cs496858b/SpriteEffects/        C# capture, run and build logs
+/rv/tmp/cs-samples/requal-20261001-cs496858b/SpriteEffects/cpp/    the C++ port through the same route
+```

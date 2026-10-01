@@ -1,19 +1,15 @@
-# InputSequence audit — CSSAMPLE-010 🛑
+# InputSequence audit — CSSAMPLE-010 ✅
 
 ## Result
 
-**Blocked on an owner decision, `DEC-002`.** The original C# is checked in verbatim and everything
-about the row is ready; it does not compile for one reason:
+**Runs, and matches the C++ port exactly.** The original C# is checked in verbatim, builds 0/0 in
+Debug and Release, runs on OPENGLES3 and exits 0 through Escape. Its capture is pixel-identical to
+the C++ port's.
 
-```text
-samples/InputSequence/InputSequenceSample/Game.cs(22,31): error CS0234: The type or namespace name
-'Net' does not exist in the namespace 'Microsoft.Xna.Framework'
-```
-
-Line 22 is `using Microsoft.Xna.Framework.Net;` — part of the boilerplate using-block the XNA
-project template generates. **The sample uses no type from that namespace at all.**
-
-The project is deliberately **not** in `CnaCsSamples.sln`, so the solution still builds clean.
+Blocked until 2026-10-01 on `DEC-002`: line 22 of `Game.cs` is the template's
+`using Microsoft.Xna.Framework.Net;`, and CNA.NET had no such namespace. The sample uses no type
+from it. CNA.NET now provides the XNA Net surface backed by CNA (`../cna-cs` CSX-043), so the
+using directive resolves and nothing else changes.
 
 ## Selected configuration
 
@@ -26,46 +22,27 @@ The project is deliberately **not** in `CnaCsSamples.sln`, so the solution still
 | Assembly name | `InputSequenceSample` |
 | Content | 15 official pipeline XNBs, copied from the C++ port |
 
-## Why this is a decision and not a fix
-
-`Microsoft.Xna.Framework.Net` is **real XNA 4.0 surface**, so `rules.md`'s ladder points at
-`../cna-cs` rather than at a source edit — unlike `CSSAMPLE-016`'s `Microsoft.Devices`, which is
-Windows Phone SDK and outside XNA entirely.
-
-But `Net` is the Xbox LIVE session subsystem: `NetworkSession`, `LocalNetworkGamer`,
-`NetworkGamer`, `PacketReader`/`PacketWriter`, `AvailableNetworkSession` and the rest. Implementing
-it is a large new subsystem, which `rules.md` says to stop and ask about rather than start.
-
-CNA.NET already knows: `docs/xna-compatibility.md:188` records "GamerServices and networking/session
-APIs need separate inventory". `GamerServices` and `Storage` are present; `Net` is not.
-
-## The measurement that makes the decision cheap
-
-Three of the 78 eligible rows mention the namespace, and they split in a way that matters:
-
-| Row | Uses a `Net` **type**? | What it needs |
-|---|---|---|
-| `CSSAMPLE-010` InputSequence | **no** — boilerplate `using` only | the namespace to exist |
-| `CSSAMPLE-038` ShadowMapping | **no** — boilerplate `using` only | the namespace to exist |
-| `CSSAMPLE-081` PerformanceMeasuring | **yes** — `NetworkSession`, `LocalNetworkGamer`, `NetworkGamer`, `NetworkSessionType`, `PacketReader`, `PacketWriter` | real networking |
-
-So declaring the namespace's XNA 4.0 public types, with no working implementation behind them,
-unblocks two rows and is metadata work rather than a networking project. Only `CSSAMPLE-081` needs
-the subsystem itself, and it is blocked by `CNA-REPORT-002` as well.
-
-`CSSAMPLE-038` is blocked by `CNA-REPORT-002` too, so **`CSSAMPLE-010` is the only row where `Net`
-is the sole obstacle.**
-
 ## Source deviations
 
-**None.** `diff -r` against the upstream project directory is clean. The upstream project's own
-`Content/` inputs (`.png` sources and `Font.spritefont`) are excluded per `rules.md`; the compiled
-output is checked in.
+**None.** `diff -r` against the upstream project directory is clean.
+
+## What was verified
+
+- Sources verbatim (`scripts/check-verbatim.sh`); every `.xnb` identical to the C++ port's
+  (`scripts/check-content.sh`).
+- Debug and Release build with 0 warnings and 0 errors.
+- Runs against CNA.NET `496858b`, CNA `e9dd5d879` (`build-probe`, OPENGLES3 with compiled effects) on a private Xvfb; Escape exits with code 0.
+- Compared with the C++ port captured through the same route (`scripts/requalify.sh`): 0 of 384 000
+  pixels differ at 800x480.
+
+## Not verified
+
+- The input sequences themselves (the special moves the sample detects) were not driven; the capture
+  script has no interaction harness. Gamepad: no controller attached.
 
 ## Artifacts
 
-The sources and `InputSequence.csproj` are the reproduction:
-
-```bash
-dotnet build samples/InputSequence/InputSequence.csproj -c Release
+```text
+/rv/tmp/cs-samples/requal-20261001-cs496858b/InputSequence/        C# capture, run and build logs
+/rv/tmp/cs-samples/requal-20261001-cs496858b/InputSequence/cpp/    the C++ port through the same route
 ```

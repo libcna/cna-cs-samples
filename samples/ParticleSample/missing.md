@@ -1,39 +1,23 @@
-# ParticleSample audit — CSSAMPLE-029 ⛔
+# ParticleSample audit — CSSAMPLE-029 ✅
 
 ## Result
 
-**Blocked by `CNA-REPORT-004`.** The original C# is checked in verbatim and builds 0/0 in both
-configurations. It cannot run because `GraphicsDevice` is unreachable from every
-`DrawableGameComponent` callback, and this sample's work is done in components.
+**Runs.** The original C# is checked in verbatim, builds 0/0 in Debug and Release, runs on
+OPENGLES3 and exits 0 through Escape. The scene is the C++ port's: same HUD, same effect, smoke
+and explosions drawn the same way; the particles themselves are seeded from `Random`, so no two
+captures agree pixel for pixel.
 
-Observed symptom: **NullReferenceException inside a component callback**.
+Blocked until 2026-10-01 by `CNA-REPORT-004` and a second defect behind it — a component's own
+`Initialize` ran after its base had loaded content. Fixed in CNA `bdf239360` (CBIND-128) and
+`6e0de68e8` (CBIND-129); see `cna-bugs.md`.
 
 ## Selected configuration
 
 | | |
 |---|---|
 | Upstream directory | `/rv/tmp/XNAGameStudio/Samples/ParticleSample_4_0` |
-| Configuration | `Release\|x86` and `Debug\|x86`, Windows, Reach |
+| Configuration | `Release\|x86` and `Debug\|x86`, Windows, HiDef (`<XnaProfile>` in the project, as upstream) |
 | Content | official pipeline XNBs, copied from the C++ port |
-
-## Why it is blocked
-
-The sample adds `DrawableGameComponent` subclasses with `Components.Add`, which is the standard
-XNA way to give a game self-drawing parts. Every callback such a component receives —
-`Initialize`, `LoadContent`, `Update`, `Draw` — throws when it touches `GraphicsDevice`:
-
-```text
-cna_game_get_graphics_device failed with native result InvalidState:
-The graphics device may be borrowed only during a game lifecycle callback.
-```
-
-Native does not treat its own component callbacks as lifecycle callbacks. The binding cannot work
-around it: the ABI documents the device handle as valid only inside the callback that fetched it,
-so no cache is legal, and the borrow itself is what is refused.
-
-Reproduced in isolation by `../cna-cs/build-probe/drawable-component/`, which reports the device
-from all four callbacks. Full write-up, including the blast radius and the false counterexample that
-had to be checked, is `cna-bugs.md` `CNA-REPORT-004`.
 
 ## Source deviations
 
@@ -41,9 +25,21 @@ had to be checked, is `cna-bugs.md` `CNA-REPORT-004`.
 
 ## What was verified
 
-- Sources verbatim; both configurations build with 0 warnings and 0 errors.
-- The window opens and the failure is in the component path, not in content loading.
+- Sources verbatim (`scripts/check-verbatim.sh`); every `.xnb` identical to the C++ port's
+  (`scripts/check-content.sh`).
+- Debug and Release build with 0 warnings and 0 errors.
+- Runs against CNA.NET `496858b`, CNA `e9dd5d879` (`build-probe`, OPENGLES3 with compiled effects) on a private Xvfb; Escape exits with code 0.
+- Compared with the C++ port captured through the same route (`scripts/requalify.sh`): 81.6% of pixels differ, nearly all of them smoke; the HUD text agrees at 800x480.
+- That is what a randomly seeded particle field does: two C# captures differ from each other on
+  85.2% of pixels, and two captures of the C++ port on 59.9%.
+
+## Not verified
+
+- Switching effects (A button, space bar, tap) was not driven; no interaction harness.
 
 ## Artifacts
 
-`/rv/tmp/cs-samples/ParticleSample/evidence/release/run.log`
+```text
+/rv/tmp/cs-samples/requal-20261001-cs496858b/ParticleSample/        C# capture, run and build logs
+/rv/tmp/cs-samples/requal-20261001-cs496858b/ParticleSample/cpp/    the C++ port through the same route
+```

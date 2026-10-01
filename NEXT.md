@@ -5,6 +5,74 @@ inherits.
 
 ---
 
+## 2026-10-01 — every checked-in row requalified against the migrated binding (CSX-050)
+
+`scripts/requalify.sh` builds each row in Debug and Release, captures it on a private Xvfb, takes
+its exit path, captures the row's C++ port the same way and measures the difference. Run against
+CNA.NET `496858b` and CNA `e9dd5d879`; the five rows the phone hosts changed were re-run after
+them (`requal-20261001-phonehost`). All 30 rows build, run and capture; every one with an Escape
+path exits 0.
+
+| Sample | Build | Run + capture | Exit | vs C++ port | Window |
+|---|---|---|---|---|---|
+| AimingSample | pass | pass | Escape, code 0 | 0.00% (0 px) | AimingSample 853x480 |
+| Audio3D | pass | pass | Escape, code 0 | 0.00% (0 px) | Audio 3D 800x480 |
+| Bounce | pass | pass | Escape, code 0 | 44.59% (171207 px) | Bounce 800x480 |
+| ChaseAndEvade | pass | pass | Escape, code 0 | 0.90% (3692 px) | ChaseAndEvade 853x480 |
+| ColorReplacement | pass | pass | Escape, code 0 | 3.04% (11663 px) | Color Replacement 800x480 |
+| ContentManifestExtensions | pass | pass | Escape, code 0 | 0.00% (0 px) | SampleGame 800x480 |
+| FlockingSample | pass | pass | Escape, code 0 | 2.67% (10237 px) | Flocking 800x480 |
+| FuzzyLogic | pass | pass | Escape, code 0 | 5.02% (19270 px) | FuzzyLogic 800x480 |
+| GesturesSample | pass | pass | no key in source | 32.34% (124187 px) | TouchGestureSample 800x480 |
+| InputReporter | pass | pass | Escape, code 0 | 0.00% (0 px) | Input Reporter 853x480 |
+| InputSequence | pass | pass | Escape, code 0 | 0.00% (0 px) | Input Sequence 800x480 |
+| LocalizationSample | pass | pass | Escape, code 0 | 0.00% (0 px) | Localization Sample 800x480 |
+| MicrophoneEcho | pass | pass | Escape, code 0 | 0.00% (0 px) | MicrophoneEchoSample 800x480 |
+| Orientation | pass | pass | no key in source | 50.92% (195519 px) | OrientationSample 800x480 |
+| ParticleSample | pass | pass | Escape, code 0 | 81.59% (313314 px) | ParticleSample 800x480 |
+| PathDrawing | pass | pass | no key in source | 98.01% (376373 px) | PathDrawing 800x480 |
+| Pathfinding | pass | pass | no key in source | 0.00% (0 px) | Pathfinding 800x480 |
+| PerPixelCollision | pass | pass | Escape, code 0 | 0.89% (3420 px) | Per Pixel Collision 800x480 |
+| Primitives3D | pass | pass | Escape, code 0 | 14.80% (56845 px) | Primitives3D 800x480 |
+| PrimitivesSample | pass | pass | Escape, code 0 | 0.39% (1605 px) | Primitives 853x480 |
+| RectangleCollision | pass | pass | Escape, code 0 | 0.63% (2422 px) | Rectangle Collision 800x480 |
+| SafeArea | pass | pass | Escape, code 0 | 0.00% (0 px) | Safe Area Sample 1280x720 |
+| ShapeRendering | pass | pass | Escape, code 0 | 1.55% (5936 px) | ShapeRenderingSample 800x480 |
+| SnowShovel | pass | pass | Escape, code 0 | 5.84% (22418 px) | SnowShovel 480x800 |
+| SpriteEffects | pass | pass | Escape, code 0 | 7.35% (28232 px) | Sprite Effects 800x480 |
+| SpriteSheet | pass | pass | Escape, code 0 | 6.76% (27685 px) | SpriteSheetSample 853x480 |
+| TouchThumbsticks | pass | pass | no key in source | 0.32% (1223 px) | TouchThumbSticks 800x480 |
+| TransformedCollision | pass | pass | Escape, code 0 | 5.37% (20624 px) | Transformed Collision 800x480 |
+| TransformedCollisionTest | pass | pass | Escape, code 0 | 0.00% (0 px) | Transformed Collision Test 800x480 |
+| WaypointSample | pass | pass | Escape, code 0 | 0.00% (0 px) | Waypoints 853x480 |
+
+Reading the pixel column: 0% rows are exact. Animated rows differ by phase (SpriteEffects,
+ColorReplacement, Primitives3D, SpriteSheet, SnowShovel, TransformedCollision, FuzzyLogic,
+Flocking) and seeded ones by randomness (ParticleSample, Bounce, RectangleCollision). The large
+GesturesSample, Orientation, Bounce and PathDrawing numbers are the C++ captures: every retained
+C++ phone port draws offset by the 100-pixel window position the capture script moves windows to,
+and the C# runs on current CNA do not. With the offset removed GesturesSample, Orientation and
+PathDrawing differ by 0 pixels.
+
+What the pass found and fixed:
+
+- **ColorReplacement's tyres** — `../cna-cs` CSX-083 (`b48db04`): the device's managed state
+  cache did not see native `SpriteBatch.End` apply `AlphaBlend`, so the sample's
+  `BlendState = Opaque` was skipped and alpha-0 texels blended away.
+- **Pathfinding hung at teardown** — `../cna-cs` CSX-084 (`496858b`): SIGTERM let the runtime call
+  `exit()` beside a game thread inside GL/X. `capture-sample.sh` now also waits for the sample
+  before stopping Xvfb.
+- **Bounce and PathDrawing run** through the generated phone host (`rules.md` rung 4).
+  `Directory.Build.props` used to set `DefineConstants` before a project body could override
+  `CnaSampleDefineConstants`, so Bounce's override never took effect; the targets file does it now.
+- **InputSequence runs** now that CNA.NET has the Net namespace; `DEC-002` no longer blocks it.
+- Each project declares its original `<XnaProfile>` (10 are HiDef) and `<XnaPlatform>` where it is
+  the phone; CNA.XnaCompat's targets embed XNA's `RuntimeProfile` resource from them (CSX-081).
+
+Next: the gallery rows. `CSSAMPLE-077` DynamicMenu takes the phone-host route; `CSSAMPLE-002`
+stays `🛠` for its font provenance. No row drives input yet — every `missing.md` lists that as not
+verified, and an interaction harness in `capture-sample.sh` would let rows exercise their controls.
+
 ## Active handoff — 2026-09-02 (third entry)
 
 ### Work on next
