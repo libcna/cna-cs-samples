@@ -24,7 +24,9 @@ while IFS=$'\t' read -r sample upstream subpath _; do
     fi
 
     src="$upstream_root/$upstream/$subpath"
-    dst="$here/samples/$sample/$(basename "$subpath")"
+    # A project at the upstream root (subpath '.') is checked in under the upstream directory's name.
+    tree="$(basename "$subpath")"; [ "$tree" = "." ] && tree="$upstream"
+    dst="$here/samples/$sample/$tree"
 
     if [ ! -d "$src" ]; then
         echo "MISSING UPSTREAM  $sample -> $src"; failures=$((failures + 1)); continue

@@ -87,7 +87,10 @@ private_home="$(cd "$out" && pwd)/home"
 mkdir -p "$private_home"
 mesa_cache="${MESA_SHADER_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/mesa_shader_cache}"
 cd "$(dirname "$exe")"
+# Sound goes nowhere unless asked for: the private display has no speakers of its own, and SDL would
+# otherwise find the developer's sound server through XDG_RUNTIME_DIR.
 env -u WAYLAND_DISPLAY -u DBUS_SESSION_BUS_ADDRESS DISPLAY="$display" SDL_VIDEODRIVER=x11 LIBGL_ALWAYS_SOFTWARE=1 \
+    SDL_AUDIODRIVER="${CNA_CAPTURE_AUDIODRIVER:-dummy}" \
     HOME="$private_home" XDG_DATA_HOME="$private_home/.local/share" XDG_STATE_HOME="$private_home/.local/state" \
     XDG_CONFIG_HOME="$private_home/.config" XDG_CACHE_HOME="$private_home/.cache" \
     MESA_SHADER_CACHE_DIR="$mesa_cache" CNA_NATIVE_LIBRARY="$lib" "$exe" >"$out/run.log" 2>&1 &

@@ -22,7 +22,9 @@ grep -q "^$sample	" "$here/samples/manifest.tsv" && { echo "error: $sample is al
 
 mkdir -p "$dst"
 # The same exclusions scripts/check-verbatim.sh makes: pipeline inputs and Visual Studio output.
-rsync -a --exclude Content --exclude bin --exclude obj "$src/" "$dst/$(basename "$subpath")/"
+# A project at the upstream root (subpath '.') goes under the upstream directory's name.
+tree="$(basename "$subpath")"; [ "$tree" = "." ] && tree="$upstream"
+rsync -a --exclude Content --exclude bin --exclude obj "$src/" "$dst/$tree/"
 find "$upstream_root/$upstream" -maxdepth 1 -name '*.htm' -exec cp {} "$dst/" \;
 
 if [ "$port" != "-" ]; then
