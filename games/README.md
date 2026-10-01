@@ -74,6 +74,8 @@ Tried and not running here, each for a reason outside XNA:
   MonoGame's, not XNA's.
 - **EvoNet** (`pampersrocker/EvoNet`): a Windows Forms application hosting XNA in a control.
 - **Astro Flare Rampage** (`JoeMarsh/Astro-Flare-Rampage`): a Silverlight and XNA application.
+- **Drumkit XNA** (`microsoft/drumkit-wp`): its sprite font names Segoe WP, which the Windows Phone
+  SDK installed and which is not available here.
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
   `System.Windows` controls, MVVM Light -- like the gallery's Yacht.
 
