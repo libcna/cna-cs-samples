@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: the compiled dude names its SkinningData reader by assembly-qualified type name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SkinnedModel</RootNamespace>
+    <AssemblyName>SkinnedModel</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="SkinnedModel/**/*.cs" />
+  </ItemGroup>
+</Project>

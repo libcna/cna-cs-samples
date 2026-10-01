@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: the compiled particle settings name their types by assembly-qualified name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ParticleSettings</RootNamespace>
+    <AssemblyName>ParticleSettings</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ParticleSettings/**/*.cs" />
+  </ItemGroup>
+</Project>

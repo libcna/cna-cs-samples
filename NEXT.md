@@ -56,6 +56,14 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-057 | InverseKinematics | ✅ verbatim, HiDef; 2.36% is CNA's avatar, which XNA on Windows and the older C++ binary do not draw |
 | CSSAMPLE-074 | TankOnHeightmap | ✅ verbatim, HiDef; 0 px |
 | CSSAMPLE-002 | Primitives3D | ✅ again: the official `hudFont.xnb` (XNA 4.0 `BuildContent`, `../cna-samples` 2026-09-06) replaces the synthesized font; HUD 0 px from the C++ port. Swapping a content file leaves the old one in `bin/`, where an exact-case match wins |
+| CSSAMPLE-048 | TrianglePicking | ✅ verbatim; model tags of XNA's types (CSX-093); 1 px |
+| CSSAMPLE-073 | SoccerPitch | ✅ phone host, upstream's `GrassRender1` assembly; 52.25%, the circling camera and the fps counter |
+| CSSAMPLE-043 | Particles3D | ✅ verbatim; clock-seeded particles, so frames differ by construction (62.05%) |
+| CSSAMPLE-044 | Particles2DPipeline | ✅ verbatim with its `ParticleSettings` library; clock-seeded particles (54.86%) |
+| CSSAMPLE-045 | XmlParticles | ✅ verbatim with its `ParticleSettings` library; clock-seeded particles (77.50%) |
+| CSSAMPLE-051 | CustomModelAnimation | ✅ verbatim with its runtime library; 4 px with A and B held on both builds |
+| CSSAMPLE-055 | SkinnedModelExtensions | ✅ verbatim with its `SkinnedModel` library; bat in hand; 9.17%, walk phase |
+| CSSAMPLE-056 | CPUSkinning | ✅ verbatim with its data-types library; 9.16%, walk phase |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black.

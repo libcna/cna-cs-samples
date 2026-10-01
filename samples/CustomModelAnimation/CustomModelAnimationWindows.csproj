@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's runtime library, kept as its own assembly: the compiled animation names its reader by assembly-qualified type name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CustomModelAnimationWindows</RootNamespace>
+    <AssemblyName>CustomModelAnimationWindows</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CustomModelAnimation/**/*.cs" />
+  </ItemGroup>
+</Project>

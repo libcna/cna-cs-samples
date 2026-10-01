@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Two upstream source trees live side by side here, so default compile items are off. -->
+  <PropertyGroup>
+    <!-- The original project's graphics profile; CNA.XnaCompat.targets embeds it as XNA did. -->
+    <XnaProfile>Reach</XnaProfile>
+    <RootNamespace>Particle3DSample</RootNamespace>
+    <AssemblyName>Particle3DSample</AssemblyName>
+    <StartupObject>Particle3DSample.Program</StartupObject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Particle3DSample/**/*.cs" />
+    <ProjectReference Include="ParticleSettings.csproj" />
+  </ItemGroup>
+</Project>
