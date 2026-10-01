@@ -105,6 +105,21 @@ PYEOF
     pipeline+=("$(win "$runner/$name.dll")")
     echo "extension: $name ($((${#sources[@]})) sources)"
 done
+# The content project's own references with a HintPath -- prebuilt pipeline extensions and the
+# runtime libraries they need -- are pipeline assemblies too, as MSBuild handed them over.
+while IFS= read -r dll; do
+    [ -n "$dll" ] || continue
+    cp -u "$dll" "$runner/"
+    pipeline+=("$(win "$runner/$(basename "$dll")")")
+    echo "pipeline reference: $(basename "$dll")"
+done < <(python3 - "$project" <<'PYEOF'
+import os, re, sys
+project = sys.argv[1]
+text = open(project, encoding="utf-8-sig").read()
+for hint in re.findall(r'<Reference Include="[^"]*">\s*<HintPath>([^<]+)</HintPath>', text):
+    print(os.path.normpath(os.path.join(os.path.dirname(project), hint.replace("\\", "/"))))
+PYEOF
+)
 for dll in TextureImporter EffectImporter FBXImporter XImporter AudioImporters VideoImporters; do
     pipeline+=("$(win "$runner/Microsoft.Xna.Framework.Content.Pipeline.$dll.dll")")
 done
