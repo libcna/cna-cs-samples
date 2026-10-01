@@ -20,6 +20,10 @@
 #     instead -- the run looks fine and the private display stays empty.
 #   * The window is captured by cropping the ROOT window to the sample window's geometry.
 #     "import -window <id>" on a GL window reads back black.
+#
+# The sample runs with a private home under the output directory and no session bus: a sample that
+# starts GamerServices otherwise reads and writes the developer's own CNA profiles, credentials and
+# asset cache (XDG data/state/cache, the Secret Service). Mesa keeps its shared shader cache.
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -79,9 +83,14 @@ cleanup() {
 trap cleanup EXIT
 for _ in $(seq 1 100); do DISPLAY="$display" xdpyinfo >/dev/null 2>&1 && break; sleep 0.1; done
 
+private_home="$(cd "$out" && pwd)/home"
+mkdir -p "$private_home"
+mesa_cache="${MESA_SHADER_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/mesa_shader_cache}"
 cd "$(dirname "$exe")"
-env -u WAYLAND_DISPLAY DISPLAY="$display" SDL_VIDEODRIVER=x11 LIBGL_ALWAYS_SOFTWARE=1 \
-    CNA_NATIVE_LIBRARY="$lib" "$exe" >"$out/run.log" 2>&1 &
+env -u WAYLAND_DISPLAY -u DBUS_SESSION_BUS_ADDRESS DISPLAY="$display" SDL_VIDEODRIVER=x11 LIBGL_ALWAYS_SOFTWARE=1 \
+    HOME="$private_home" XDG_DATA_HOME="$private_home/.local/share" XDG_STATE_HOME="$private_home/.local/state" \
+    XDG_CONFIG_HOME="$private_home/.config" XDG_CACHE_HOME="$private_home/.cache" \
+    MESA_SHADER_CACHE_DIR="$mesa_cache" CNA_NATIVE_LIBRARY="$lib" "$exe" >"$out/run.log" 2>&1 &
 sample_pid=$!
 
 # Pick a NAMED window, not just any match. SDL creates an unnamed 1x1 helper window beside the
