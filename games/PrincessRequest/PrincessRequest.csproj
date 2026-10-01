@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- cedwards145/princess-request (A Princess' Request, Ludum Dare 30), unchanged. Content built
+       from its own content project by XNA's BuildContent (scripts/build-xna-content.sh). See
+       ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>A Princess%27 Request</AssemblyName>
+    <RootNamespace>LD30</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/princess-request/LD30/LD30</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/princess/Content</GameContent>
+    <GameProject>$(GameRoot)/LD30.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
