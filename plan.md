@@ -53,11 +53,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 37 |
+| ✅ complete | 41 |
 | 🛠 in progress | 1 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
-| ⬜ not started | 39 |
+| ⬜ not started | 35 |
 | **total** | **78** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -258,17 +258,17 @@ port ships.
 | CSSAMPLE-028 | `ColorReplacementSample_4_0` | `ColorReplacement` | 2 / 282 | 4 | ✅ |
 | CSSAMPLE-029 | `ParticleSample_4_0` | `ParticleSample` | 8 / 1130 | 3 | ✅ |
 | CSSAMPLE-030 | `CameraShake_4_0` | `CameraShake` | 5 / 630 | 6 | ✅ |
-| CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ⬜ |
+| CSSAMPLE-031 | `BloomSample_4_0` | `BloomSample` | 4 / 701 | 8 | ✅ |
 | CSSAMPLE-032 | `DistortionSample_4_0` | `DistortionSample` | 9 / 1015 | 9 | ⬜ |
 | CSSAMPLE-033 | `NonPhotoRealisticSample_4_0` | `NonPhotoRealistic` | 3 / 568 | 6 | ✅ |
-| CSSAMPLE-034 | `NormalMappingSample_4_0` | `NormalMappingEffect` | 6 / 679 | 8 | ⬜ |
+| CSSAMPLE-034 | `NormalMappingSample_4_0` | `NormalMappingEffect` | 6 / 679 | 8 | ✅ |
 | CSSAMPLE-035 | `PerPixelLightingSample_4_0` | `PerPixelLighting` | 4 / 1133 | 8 | ⬜ |
 | CSSAMPLE-036 | `VertexLightingSample_4_0` | `VertexLighting` | 4 / 1086 | 7 | ⬜ |
 | CSSAMPLE-037 | `RimLighting_4_0` | `RimLighting` | 8 / 1041 | 5 | ⬜ |
 | CSSAMPLE-038 | `ShadowMappingSample_4_0` | `ShadowMapping` | 5 / 628 | 16 | ✅ |
 | CSSAMPLE-039 | `BillboardSample_4_0` | `BillboardSample` | 4 / 705 | 5 | ⬜ |
 | CSSAMPLE-040 | `InstancedModelSample_4_0` | `InstancedModel` | 5 / 716 | 4 | ⬜ |
-| CSSAMPLE-041 | `LensFlareSample_4_0` | `LensFlare` | 3 / 643 | 6 | ⬜ |
+| CSSAMPLE-041 | `LensFlareSample_4_0` | `LensFlare` | 3 / 643 | 6 | ✅ |
 | CSSAMPLE-042 | `ShatterEffectSample_4_0` | `ShatterEffect` | 5 / 514 | 5 | ✅ |
 | CSSAMPLE-043 | `Particles3DSample_4_0` | `Particles3D` | 12 / 1727 | 7 | ⬜ |
 | CSSAMPLE-044 | `Particles2DPipeline_4_0` | `Particles2DPipeline` | 9 / 1172 | 9 | ⬜ |
@@ -280,7 +280,7 @@ port ships.
 | CSSAMPLE-050 | `SimpleAnimation_4_0` | `SimpleAnimation` | 3 / 404 | 3 | ✅ |
 | CSSAMPLE-051 | `CustomModelAnimation_4_0` | `CustomModelAnimation` | 13 / 1672 | 8 | ⬜ |
 | CSSAMPLE-052 | `CustomModelClassSample_4_0` | `CustomModelClass` | 6 / 541 | 3 | ✅ |
-| CSSAMPLE-053 | `CustomModelEffectSample_4_0` | `CustomModelEffect` | 6 / 674 | 4 | ⬜ |
+| CSSAMPLE-053 | `CustomModelEffectSample_4_0` | `CustomModelEffect` | 6 / 674 | 4 | ✅ |
 | CSSAMPLE-054 | `SkinningSample_4_0` | `SkinningSample` | 9 / 1040 | 5 | ⬜ |
 | CSSAMPLE-055 | `SkinnedModelExtensions_4_0` | `SkinnedModelExtensions` | 13 / 1620 | 7 | ⬜ |
 | CSSAMPLE-056 | `CPUSkinningSample_4_0` | `CPUSkinning` | 19 / 1691 | 7 | ⬜ |
