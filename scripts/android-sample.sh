@@ -2,7 +2,7 @@
 # Builds one sample as an Android app and runs it in a headless emulator.
 #
 # Usage: scripts/android-sample.sh <SampleDirectory> [--out DIR] [--seconds N] [--avd NAME] [--keep-emulator]
-#                                  [--then 'DEVICE SHELL COMMAND']
+#                                  [--then 'DEVICE SHELL COMMAND'] [--keep-app]
 #
 # Like browser-sample.sh, the sample's own project is untouched: its evaluated identity, Compile
 # items and library projects are read from MSBuild, and a net11.0-android app is generated under
@@ -11,7 +11,8 @@
 # -no-window and a read-only AVD; one this script started is stopped at the end unless
 # --keep-emulator. Screenshot and logcat land in DIR (default /rv/tmp/cs-samples/android/<Sample>).
 # --then runs a command on the device after the screenshot (e.g. 'input keyevent KEYCODE_BACK')
-# and reports whether the game's Main then returned.
+# and reports whether the game's Main then returned. The app is uninstalled at the end unless
+# --keep-app: the emulator's /data holds a few apps of this size, not a corpus of them.
 #
 # Needs ../cna-cs/scripts/Build-AndroidNative.sh to have staged the native libraries, the .NET 11 SDK
 # with the android workload (default ~/deps/dotnet11) and the Android SDK (default ~/Android/Sdk).
@@ -21,7 +22,7 @@ here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cs_root="$(cd "$here/../cna-cs" && pwd)"
 dotnet_root="${DOTNET_ROOT_ANDROID:-$HOME/deps/dotnet11}"
 sdk="${ANDROID_SDK_ROOT:-$HOME/Android/Sdk}"
-sample=""; out=""; seconds=10; avd=Medium_Phone; keep=0; then=""
+sample=""; out=""; seconds=10; avd=Medium_Phone; keep=0; then=""; keep_app=0
 while [ $# -gt 0 ]; do
     case "$1" in
         --out)           out="$2"; shift 2 ;;
@@ -29,7 +30,8 @@ while [ $# -gt 0 ]; do
         --avd)           avd="$2"; shift 2 ;;
         --keep-emulator) keep=1; shift ;;
         --then)          then="$2"; shift 2 ;;
-        -h|--help)       sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        --keep-app)      keep_app=1; shift ;;
+        -h|--help)       sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)              echo "error: unknown option $1" >&2; exit 2 ;;
         *)               sample="$1"; shift ;;
     esac
@@ -174,19 +176,25 @@ apk="$(ls "$work"/bin/Release/net11.0-android/android-x64/*-Signed.apk | head -1
 
 started=0
 if ! "$adb" devices | grep -q '^emulator-[0-9]*[[:space:]]*device$'; then
+    # -read-only keeps the AVD untouched, so -wipe-data only gives this instance an empty /data:
+    # the AVD's own userdata leaves less free space than Android's install threshold.
     env -u DISPLAY -u WAYLAND_DISPLAY "$sdk/emulator/emulator" -avd "$avd" -no-window -no-audio \
-        -no-boot-anim -read-only -gpu swiftshader_indirect >"$out/emulator.log" 2>&1 &
+        -no-boot-anim -read-only -wipe-data -gpu "${CNA_ANDROID_GPU:-swiftshader_indirect}" \
+        >"$out/emulator.log" 2>&1 &
     started=1
 fi
 "$adb" wait-for-device
 until [ "$("$adb" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ]; do sleep 2; done
+# A wiped device explains immersive full screen the first time a game asks for it, in a dialog that
+# takes the Back key; a phone game (IsFullScreen) would then never see it.
+"$adb" shell settings put secure immersive_mode_confirmations confirmed >/dev/null 2>&1 || true
 cleanup() { [ "$started" = 1 ] && [ "$keep" = 0 ] && "$adb" emu kill >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
 # A fresh install each run: no state left by an earlier one, and the emulator's small /data does not
 # have to hold two copies of the app while it is replaced.
 "$adb" uninstall "$package" >/dev/null 2>&1 || true
-"$adb" install "$apk" >"$out/install.log" 2>&1 || { tail -3 "$out/install.log" >&2; exit 1; }
+"$adb" install --no-incremental "$apk" >"$out/install.log" 2>&1 || { tail -3 "$out/install.log" >&2; exit 1; }
 "$adb" logcat -c
 "$adb" shell am start -W -n "$package/com.libcna.cna.CnaGameActivity" >"$out/start.log" 2>&1
 sleep "$seconds"
@@ -197,6 +205,7 @@ if [ -n "$then" ]; then
 fi
 "$adb" logcat -d >"$out/logcat.txt"
 "$adb" shell am force-stop "$package"
+[ "$keep_app" = 1 ] || "$adb" uninstall "$package" >/dev/null 2>&1 || true
 # monodroid warns for every P/Invoke into the library CNA.Interop's resolver loads; that is noise.
 grep -E " (CNA|SDL|DOTNET|MonoDroid|monodroid|AndroidRuntime)" "$out/logcat.txt" | grep -v "not loaded, p/invoke" \
     | grep -iE "error|exception|fatal|CNA" | tail -20 || true

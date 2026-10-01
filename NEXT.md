@@ -5,6 +5,19 @@ inherits.
 
 ---
 
+## 2026-10-01 — every row on the Android emulator (CSX-071)
+
+`scripts/android-requalify.sh --desktop <requalify output>` runs each manifest row through
+`scripts/android-sample.sh` (a generated `net11.0-android` app around the row's unchanged sources and
+Content, `../cna-cs/eng/android`), taps Back, and measures the game's frame against the desktop
+capture. All 34 rows pass: built, ran without a managed exception or a native crash, drew, and ended
+on one Back tap. Table: `/rv/tmp/cs-samples/android-requal-20261001/android-requalification.md`.
+
+The emulator is started read-only and wiped (`-wipe-data`: the AVD's own userdata leaves less free
+space than Android's install threshold), every app is uninstalled after its row, and immersive mode
+is pre-confirmed -- its one-time explanation otherwise takes the Back key from a full-screen phone
+game. `CNA_ANDROID_GPU` picks the emulator's GPU mode (`swiftshader_indirect` by default).
+
 ## 2026-10-01 — gallery rows resumed (CSX-053..)
 
 New rows, each from verbatim upstream sources with official XNBs from `../cna-samples`, built Debug
