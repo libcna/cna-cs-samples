@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- valryon/Rabbit-Apocalypse, unchanged: its game, engine and data projects from source; the
+       prebuilt EasyStorage and OgmoXNA4 libraries it ships, compiled against XNA 4.0; content built
+       from its own content project with the prebuilt Ogmo pipeline extension and its own font by
+       XNA's BuildContent (scripts/build-xna-content.sh). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>RabbitApocalypse</AssemblyName>
+    <RootNamespace>Lapins.Game</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Rabbit-Apocalypse/Source</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/rabbit/Content</GameContent>
+    <GameProject>$(GameRoot)/Lapins.Game/Lapins.Game.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OgmoXNA4" HintPath="$(GameRoot)/Libs/OgmoXNA4/OgmoXNA4.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.GamerServices/Microsoft.Xna.Framework.GamerServices.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Storage/Microsoft.Xna.Framework.Storage.csproj" />
+    <ProjectReference Include="Engine/Lapins.Engine.csproj" />
+    <ProjectReference Include="Data/Lapins.Data.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

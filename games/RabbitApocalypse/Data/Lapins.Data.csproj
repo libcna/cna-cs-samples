@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game's data library, as its own project built it, with the prebuilt OgmoXNA4. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Lapins.Data</AssemblyName>
+    <RootNamespace>Lapins.Data</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Rabbit-Apocalypse/Source</GameRoot>
+    <GameProject>$(GameRoot)/Lapins.Data/Lapins.Data.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Engine/Lapins.Engine.csproj" />
+    <Reference Include="OgmoXNA4" HintPath="$(GameRoot)/Libs/OgmoXNA4/OgmoXNA4.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+  </ItemGroup>
+</Project>

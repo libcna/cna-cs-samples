@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- PhoenixWright/NePlus, unchanged: its Windows project's sources; the five prebuilt XNA 4.0
+       libraries it ships (Farseer Physics, DebugView, Mercury Particle Engine, TiledLib,
+       EasyConfig); content built from its three content projects, with its prebuilt Mercury and
+       Tiled pipeline extensions, by XNA's BuildContent (scripts/build-xna-content.sh). See
+       ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>NePlus</AssemblyName>
+    <RootNamespace>NePlus</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/NePlus/NePlus</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/neplus</GameContent>
+    <GameProject>$(GameRoot)/NePlus/NePlus [Windows].csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DebugViewXNA" HintPath="$(GameRoot)/NePlus/WindowsDLLs/DebugViewXNA.dll" />
+    <Reference Include="EasyConfig" HintPath="$(GameRoot)/NePlus/WindowsDLLs/EasyConfig.dll" />
+    <Reference Include="FarseerPhysicsXNA" HintPath="$(GameRoot)/NePlus/WindowsDLLs/FarseerPhysicsXNA.dll" />
+    <Reference Include="ProjectMercury" HintPath="$(GameRoot)/NePlus/WindowsDLLs/ProjectMercury.dll" />
+    <Reference Include="TiledLib" HintPath="$(GameRoot)/NePlus/WindowsDLLs/TiledLib.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <!-- The three content projects all build into Content/, as the game's build merged them. -->
+    <None Include="$(GameContent)/NePlusContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameContent)/BloomPostProcessContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameContent)/DebugViewXNAContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <!-- The game opens @"Content\Config.ini" through EasyConfig, a prebuilt library, with a plain
+       FileStream: on a Unix file system that names one file with a backslash in it, so the build
+       puts one there (as NetRumble's project links its Windows-spelled audio folder). -->
+  <Target Name="NePlusWindowsSpelledConfig" AfterTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
+    <Exec Command="cp -f Content/Config.ini 'Content\Config.ini'" WorkingDirectory="$(OutDir)" />
+  </Target>
+</Project>
