@@ -21,8 +21,11 @@ def string(b):
     while n >= 0x80:
         out.append(n & 0x7F | 0x80); n >>= 7
     return bytes(out) + bytes([n]) + b
-body = b"\x01" + string(b"Microsoft.Xna.Framework.Content.SongReader") + struct.pack("<i", 0) + b"\x00" + b"\x01" \
-       + string(stream) + struct.pack("<i", duration)
+# XNA's SongWriter: the file name written raw, the duration through WriteObject<int>, so the
+# table holds Int32Reader beside SongReader (as every XNA-built song does).
+body = b"\x02" + string(b"Microsoft.Xna.Framework.Content.SongReader") + struct.pack("<i", 0) \
+       + string(b"Microsoft.Xna.Framework.Content.Int32Reader") + struct.pack("<i", 0) + b"\x00" + b"\x01" \
+       + string(stream) + b"\x02" + struct.pack("<i", duration)
 open(path, "wb").write(b"XNBw\x05\x00" + struct.pack("<I", 10 + len(body)) + body)
 PYEOF
 echo "stand-in song: $out/$name.xnb ($duration_ms ms)"
