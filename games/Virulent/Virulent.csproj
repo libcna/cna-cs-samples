@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- vwr0527/Virulent-game, unchanged, with the XNA 4.0 content its repository ships
+       (bin/x86/Debug/Content, built by its author). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Virulent_dev</AssemblyName>
+    <RootNamespace>Virulent_dev</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Virulent-game/Virulent_dev/Virulent_dev</GameRoot>
+    <GameProject>$(GameRoot)/Virulent_dev Windows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameRoot)/bin/x86/Debug/Content/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
