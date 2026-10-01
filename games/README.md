@@ -44,6 +44,9 @@ Tried and not running here, each for a reason outside XNA:
 - **Mannux** (`andyfriesen/Mannux`): a `winmm.dll` timer and Windows Forms.
 - **Minor Destruction** (`geel9/Minor-Destruction`): calls Windows Forms directly (`MessageBox`,
   cursors), which .NET does not have off Windows.
+- **XNA Racing Game** (`Pepsi1x1/XNA-4-Racing-Game-Kit` @ `c05d519`): `BaseGame`'s constructor
+  takes the game window as a Windows Forms `Form` (`Form.FromHandle(Window.Handle)`) to hide it
+  until its settings are applied, and `Program` reports device errors through `MessageBox`.
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
   `System.Windows` controls, MVVM Light -- like the gallery's Yacht.
 
