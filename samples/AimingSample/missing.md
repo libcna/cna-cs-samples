@@ -67,9 +67,16 @@ This is the first cross-engine match in the campaign that is exact and survives 
 Given the sample draws two textures through `SpriteBatch` with rotation and origin, it is also a
 meaningful one: the rotation, origin and filtering paths agree to the bit.
 
+## Browser
+
+`scripts/browser-sample.sh AimingSample` (2026-10-01, CNA.NET `274be55`, CNA `1e7c4d323`, .NET 11 RC1
+browser-wasm, headless Chromium with SwiftShader WebGL2): the unchanged sources and XNBs, 853x480,
+**0 pixels** apart from the C++ port's desktop capture. Held ArrowRight moves the cat, a held left
+button pulls it to the pointer, held Escape exits through the sample's own path, and a reload
+starts it again.
+
 ## Not verified
 
-- **No browser result.** No .NET route to CNA's WEBGL2 backend exists.
 - **The aiming behaviour itself.** The cat rotates to face the mouse or touch point, and no input
   was driven, which is precisely why the frame is static and comparable. Exercising it needs the
   interaction harness the capture script does not yet have.

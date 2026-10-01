@@ -50,3 +50,6 @@ desktop.ini
 *.bak
 *.swp
 *~
+
+# Consumer fixtures (browser variants of the samples)
+/build-consumer/

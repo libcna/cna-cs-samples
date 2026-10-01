@@ -5,6 +5,20 @@ inherits.
 
 ---
 
+## 2026-10-01 — samples in a browser
+
+`scripts/browser-sample.sh <Sample>` builds a sample for the browser and runs it in headless
+Chromium. The sample's project is not touched: its evaluated identity and Compile items are read
+from MSBuild and a .NET 11 WebAssembly project is generated under `build-consumer/browser/<Sample>/`,
+linking the CNA archive `../cna-cs/scripts/Build-BrowserNative.sh` stages and the net8.0 CNA.NET
+assemblies; Content is linked into its `wwwroot` and so into the browser's file system.
+`CNA_ACTIONS` scripts input (see `../cna-cs/scripts/Run-BrowserPage.mjs`).
+
+AimingSample is the first: 0 pixels from its C++ port, input, exit and reload all driven. The other
+rows have not been tried in a browser yet.
+
+---
+
 ## 2026-10-01 — every checked-in row requalified against the migrated binding (CSX-050)
 
 `scripts/requalify.sh` builds each row in Debug and Release, captures it on a private Xvfb, takes
