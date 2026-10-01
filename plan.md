@@ -53,8 +53,8 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 57 |
-| 🛠 in progress | 1 |
+| ✅ complete | 58 |
+| 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 1 |
 | ⬜ not started | 19 |
@@ -232,7 +232,7 @@ port ships.
 | Task | Upstream | C++ port | Size (files / lines) | .xnb | Status |
 |---|---|---|---:|---:|---|
 | CSSAMPLE-001 | `PrimitivesSample_4_0` | `PrimitivesSample` | 3 / 586 | 0 | ✅ |
-| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | 🛠 |
+| CSSAMPLE-002 | `Primitives3DSample_4_0` | `Primitives3D` | 10 / 1484 | 1 | ✅ |
 | CSSAMPLE-003 | `TexturesAndColorsSample_4_0` | `TexturesAndColors` | 4 / 1046 | 8 | ✅ |
 | CSSAMPLE-005 | `ReachGraphicsDemo_4_0` | `ReachGraphicsDemo` | 28 / 4056 | 22 | ⬜ |
 | CSSAMPLE-006 | `SpriteEffectsSample_4_0` | `SpriteEffects` | 5 / 770 | 8 | ✅ |

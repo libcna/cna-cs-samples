@@ -55,6 +55,7 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-035 | PerPixelLighting | ✅ verbatim; 1.08%, all in the grid's horizon band (as CSSAMPLE-003) |
 | CSSAMPLE-057 | InverseKinematics | ✅ verbatim, HiDef; 2.36% is CNA's avatar, which XNA on Windows and the older C++ binary do not draw |
 | CSSAMPLE-074 | TankOnHeightmap | ✅ verbatim, HiDef; 0 px |
+| CSSAMPLE-002 | Primitives3D | ✅ again: the official `hudFont.xnb` (XNA 4.0 `BuildContent`, `../cna-samples` 2026-09-06) replaces the synthesized font; HUD 0 px from the C++ port. Swapping a content file leaves the old one in `bin/`, where an exact-case match wins |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black.
