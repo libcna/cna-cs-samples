@@ -80,6 +80,7 @@ and Release and captured with `scripts/requalify.sh` against CNA.NET and CNA `bu
 | CSSAMPLE-066 | ShipGame | ✅ verbatim with `BoxCollider`; Windows-cased audio path (CSX-096); animated title; quits from its menu |
 | CSSAMPLE-062 | NetRumble | ✅ verbatim; a `Content\audio\wav` link in the output answers its BCL directory scan; 1.04% |
 | CSSAMPLE-070 | RolePlayingGame | ✅ verbatim with its data library, 1 004 assets; backslash audio path (CSX-096); 0 px |
+| CSSAMPLE-065 | NinjAcademy | ✅ phone host with its common-types library; `PhoneApplicationService` (CSX-097); 0 px from the C++ menu frame |
 
 The phone rows are measured against the C++ campaign's own start frames: the retained C++ phone
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no

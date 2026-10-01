@@ -56,11 +56,11 @@ Recount from the table rather than trusting these numbers
 
 | Status | Rows |
 |---|---:|
-| ✅ complete | 82 |
+| ✅ complete | 83 |
 | 🛠 in progress | 0 |
 | ⛔ blocked on CNA | 0 |
 | 🛑 owner decision | 0 |
-| ⬜ not started | 2 |
+| ⬜ not started | 1 |
 | **total** | **84** |
 
 On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a `Model`,
@@ -295,7 +295,7 @@ port ships.
 | CSSAMPLE-061 | `MarbleMaze_4_0` | `MarbleMaze` | 140 / 25402 | 26 | ✅ |
 | CSSAMPLE-062 | `NetRumble_4_0` | `NetRumble` | 49 / 12812 | 56 | ✅ |
 | CSSAMPLE-063 | `HoneycombRush_4_0` | `HoneycombRush` | 65 / 16127 | 47 | ✅ |
-| CSSAMPLE-065 | `NinjAcademy_4_0` | `NinjAcademy` | 41 / 8506 | 47 | ⬜ |
+| CSSAMPLE-065 | `NinjAcademy_4_0` | `NinjAcademy` | 41 / 8506 | 47 | ✅ |
 | CSSAMPLE-066 | `ShipGame_4_0` | `ShipGame` | 40 / 10094 | 159 | ✅ |
 | CSSAMPLE-067 | `CatapultWars_4_0` | `CatapultWars` | 61 / 12001 | 33 | ✅ |
 | CSSAMPLE-069 | `CardsStarterKit_4_0` | `CardsStarterKit` | 47 / 8742 | 89 | ✅ |

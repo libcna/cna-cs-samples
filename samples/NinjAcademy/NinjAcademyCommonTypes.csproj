@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Upstream's shared types, kept as their own assembly: the compiled content names them by
+       assembly-qualified name. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <RootNamespace>NinjAcademy</RootNamespace>
+    <AssemblyName>NinjAcademyCommonTypes</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="NinjAcademyCommonTypes/**/*.cs" />
+  </ItemGroup>
+</Project>
