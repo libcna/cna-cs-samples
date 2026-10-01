@@ -50,7 +50,7 @@ d39c239d365a7fb69e069c99efa668926d216aeba3cb5fabae409b50c419cf97  DynamicMenuSam
 ## What was verified
 
 The first frame at 2% fuzz against `cna-native-opengles3/01-page1.png` and `original-windows-hidef-diagnostic/01-page1.png` under `/rv/tmp/samples/SAMPLE-077-DynamicMenu_4_0/evidence/`; Escape as the exit key (`/rv/tmp/cs-samples/phone-exit-csx095/DynamicMenu/`). Runs against CNA.NET `eb2f2ee`, CNA `9976f4909`
-(`build-probe`, Release OPENGLES3, compiled effects) on a private Xvfb.
+(`build-probe`, Release OPENGLES3, compiled effects) on a private Xvfb. A mouse click on the "Page 2" tab shows page 2, **0 differing pixels** from both `cna-native-opengles3-qualified/02-page2.png` and `original-windows-hidef-diagnostic/02-page2.png`: off a phone the mouse is the finger, as in the emulator (CNA.NET CSX-098) (`/rv/tmp/cs-samples/dynamicmenu-touch2/`).
 
 ## Artifacts
 

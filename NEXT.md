@@ -87,7 +87,8 @@ The phone rows are measured against the C++ campaign's own start frames: the ret
 binaries ask for full screen, which a bare Xvfb cannot grant, and capture black. The C# side no
 longer asks (CNA.NET CSX-094: a phone title's full screen is its status bar), and Escape is its
 Back button off a phone (CSX-095), so every phone row now exits 0 on Escape and `requalify.sh`
-checks that for any phone row reading `Buttons.Back`.
+checks that for any phone row reading `Buttons.Back`. Their touch controls answer the mouse, as in
+the phone emulator (CSX-098): DynamicMenu's Page 2 tab, clicked, is 0 px from the original's page 2.
 
 Tooling on the way: `add-sample.sh` also copies what the content pipeline puts beside compiled
 assets (a song's `.wma`, a video's `.wmv`, XACT's banks) and the raw files a content project copies
