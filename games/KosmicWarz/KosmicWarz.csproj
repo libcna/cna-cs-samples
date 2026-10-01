@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ActiveNick/KosmicWarz-WP (Kosmic Warz), a Windows Phone 7.5 3D shooter, unchanged: its game
+       sources, its GameStateManagement and ParticleSettings libraries, and DPSF's own prebuilt
+       Windows Phone binary (deadlydog/DPSF-XNA, MIT), compiled against XNA 4.0. Content built from
+       its own content project and pipeline extension by XNA's BuildContent
+       (scripts/build-xna-content.sh, WindowsPhone/Reach; its song a labelled stand-in). See
+       ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>SpaceInvadersWP7</AssemblyName>
+    <RootNamespace>SpaceInvadersWP7</RootNamespace>
+    <CnaPhoneGame>SpaceInvadersWP7.SIAGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/kosmicwarz/Content</GameContent>
+    <DpsfRoot Condition="'$(DpsfRoot)' == ''">/rv/tmp/xna-games/DPSF-XNA</DpsfRoot>
+    <GameProject>$(GameRoot)/SpaceInvadersWP7/SpaceInvadersWP7.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DPSFPhone" HintPath="$(DpsfRoot)/XNA 4.0/Installer/Installer Files/DPSFPhone.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="GameStateManagement/GameStateManagement.csproj" />
+    <ProjectReference Include="ParticleSettings/ParticleSettings.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

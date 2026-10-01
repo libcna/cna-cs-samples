@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The game's screen manager, its own assembly as the game built it (the Windows Phone project). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>GameStateManagement</AssemblyName>
+    <RootNamespace>GameStateManagement</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
+    <GameProject>$(GameRoot)/GameStateManagement/GameStateManagement (Windows Phone).csproj</GameProject>
+  </PropertyGroup>
+</Project>

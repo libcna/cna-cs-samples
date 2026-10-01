@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The particle settings type its content names by assembly (the Windows Phone project). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ParticleSettings</AssemblyName>
+    <RootNamespace>ParticleSettings</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
+    <GameProject>$(GameRoot)/ParticleSettings/ParticleSettings (Phone).csproj</GameProject>
+  </PropertyGroup>
+</Project>

@@ -20,14 +20,16 @@ checkout.
 | Solitaire (XNASolitaire) | `github.com/microsoft/solitaire-wp` @ `f6acde9` | built: 56 textures (WindowsPhone/Reach) | deals a Klondike layout; a tap on the stock turns a card (the phone's touch from the mouse) |
 | Megaman vs. Zombies (XNASidescroller) | `github.com/Mavinkea/XNASidescroller` @ `65b51d6` | shipped `bin/x86/Debug/Content` (12 `.xnb`) | title 8 px of 480 000 from its own XNA-built `.exe` under Wine; plays: the jungle, Megaman, the zombies, the HUD, its music |
 | Virulent (work in progress) | `github.com/vwr0527/Virulent-game` @ `b89be89` | shipped `bin/x86/Debug/Content` (20 `.xnb`) | its intro, title menu and start page; Enter loads the tutorial level: the player and the platforms with the build's own collision outlines. Its own XNA `.exe` stops at startup under Wine, so there is no XNA frame to compare |
+| Kosmic Warz | `github.com/ActiveNick/KosmicWarz-WP` @ `e892775` | built: 44 files from its content project with its own pipeline extension (WindowsPhone/Reach); its song a labelled stand-in, converted | menu, then a level by touch: the 3D fleet, the ship, the DPSF starfield and explosions, the HUD; DPSF from its author's own prebuilt `DPSFPhone.dll` (`deadlydog/DPSF-XNA` @ `0b80a2f`, MIT) unchanged |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships; the menu's music |
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
 (CSX-096), a game's worker thread loading content (CSX-100/101, CNA C ABI 0.39.0), a library
 compiled against XNA 4.0 (CSX-099), a vertex shader's point-size output on GLSL (CNA FX-140) and
-`PhoneApplicationService.StartupMode` (CSX-103), and a song played from the converted file beside
-its `.wma` (CSX-105).
+`PhoneApplicationService.StartupMode` (CSX-103), a song played from the converted file beside
+its `.wma` (CSX-105), `ActivatedEventArgs.IsApplicationInstancePreserved` (CSX-106) and sprites
+placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120).
 
 XNA writes every song as Windows Media Audio, which neither CNA nor FNA decodes. As in an FNA port,
 `scripts/convert-xna-songs.sh <content-dir>` writes an Ogg Vorbis copy beside each `.wma`; the
@@ -91,6 +93,14 @@ For resonance-game (`--project Resonance/Resonance/ResonanceContent/ResonanceCon
 writer, which does not run under Wine, so its songs are ffmpeg WMA in XNA's Song container
 (`scripts/song-standin.sh`), not official pipeline output. `<GameProject>` compiles exactly the
 sources the game's own project lists; its directory holds ten more it did not.
+
+Kosmic Warz's DPSF binary comes from its author's repository, sparsely (the whole is 732 MB):
+`git clone --filter=blob:none --no-checkout https://github.com/deadlydog/DPSF-XNA.git` then
+`git sparse-checkout set --no-cone "/XNA 4.0/Installer/Installer Files/DPSFPhone.*" /LICENSE` and
+`git checkout`. Its content: `--project SpaceInvadersWP7Content/SpaceInvadersWP7Content.contentproj
+--profile Reach --platform WindowsPhone --extension "ParticleSettings/ParticleSettings (Windows).csproj"
+--extension SpaceInvadersWP7Pipeline/SpaceInvadersWP7Pipeline.csproj --song-standins`, then
+`scripts/convert-xna-songs.sh` on the output.
 
 `GameRoot` (and `GameContent` for the games with built content) override the checkout locations. The XNA 4.0
 reference frames come from the games' own XNA-built executables run under Wine with the XNA 4.0
