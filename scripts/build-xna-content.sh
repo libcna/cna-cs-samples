@@ -98,6 +98,7 @@ for csproj in "${extensions[@]}"; do
             SRC:*)  sources+=("${line#SRC:}") ;;
             UNSAFE) extra+=("-unsafe") ;;
             KEY:*)  extra+=("-keyfile:${line#KEY:}") ;;
+            DEF:*)  extra+=("-define:${line#DEF:}") ;;
             RESX:*) resx="${line#RESX:}"; resx_file="${resx%%|*}"; resx_name="${resx##*|}"
                     resgen "$resx_file" "$runner/$resx_name" >/dev/null
                     extra+=("-resource:$runner/$resx_name,$resx_name") ;;
@@ -115,6 +116,12 @@ for inc in re.findall(r'<Compile Include="([^"]+)"', text):
     print("SRC:" + os.path.join(here, inc.replace("\\", "/")))
 if re.search(r'<AllowUnsafeBlocks>\s*true', text, re.I):
     print("UNSAFE")
+# The symbols of its first (Debug) configuration: ProjectMercury's code is all #if WINDOWS.
+defines = re.search(r'<DefineConstants>([^<]*)</DefineConstants>', text)
+if defines:
+    names = [d for d in re.split(r'[;, ]+', defines.group(1)) if d]
+    if names:
+        print("DEF:" + ";".join(names))
 # Its .resx resources, under the name its build gave them (<RootNamespace>.<folders>.<name>.resources;
 # XNAnimationPipeline reads its messages from Resources.resx).
 root = re.search(r'<RootNamespace>([^<]+)</RootNamespace>', text)

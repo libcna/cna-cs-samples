@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Project Mercury's XNA 4.0 test bench, unchanged, with the engine it ships. Content built from
+       its own content project, with Mercury's pipeline extension, by XNA's BuildContent
+       (Windows/HiDef); its effect is XML that XNA's reflective writer serialized. Its reference to
+       that pipeline extension is a build-time one the program does not use. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>ProjectMercury.TestBench</AssemblyName>
+    <RootNamespace>ProjectMercury.TestBench</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.TestBench.Windows</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mercury/Content</GameContent>
+    <GameProject>$(GameRoot)/ProjectMercury.TestBench.Windows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="ProjectMercury/ProjectMercury.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

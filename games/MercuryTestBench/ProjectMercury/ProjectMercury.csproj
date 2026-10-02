@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Project Mercury, the XNA 4.0 particle engine (Andrea/MercuryParticleEngine, Branches/4.0), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>ProjectMercury</AssemblyName>
+    <RootNamespace>ProjectMercury</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS;UNSAFE</CnaSampleDefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.Windows</GameRoot>
+    <GameProject>$(GameRoot)/ProjectMercury.Windows.csproj</GameProject>
+  </PropertyGroup>
+</Project>
