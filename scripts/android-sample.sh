@@ -68,6 +68,11 @@ from xml.sax.saxutils import escape, quoteattr
 work, sample_dir, cs_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
 evaluation = json.loads((work / "evaluation.json").read_text())
 props, items = evaluation["Properties"], evaluation.get("Items", {})
+# The Android SDK's MSBuild breaks on an assembly name holding an apostrophe (A Princess' Request:
+# XAPSA7009), as the WebAssembly SDK does; such a game is built here without it.
+if "'" in props["AssemblyName"]:
+    print(f"android assembly name: {props['AssemblyName']!r} without its apostrophe", file=sys.stderr)
+    props["AssemblyName"] = props["AssemblyName"].replace("'", "")
 sample = sample_dir.name
 package = "com.libcna.samples." + re.sub(r"[^a-z0-9]", "", sample.lower())
 
@@ -106,6 +111,9 @@ lines = ['<Project Sdk="Microsoft.NET.Sdk">', "  <PropertyGroup>",
          "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
          "    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>",
          "    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>",
+         # The Android SDK generates a Resource class in the root namespace; a game may have one of
+         # its own there (Speedy Blupi does). The generated one goes elsewhere.
+         "    <AndroidResgenNamespace>CnaAndroidResources</AndroidResgenNamespace>",
          f"    <DefineConstants>$(DefineConstants);{escape(constants)}</DefineConstants>"]
 if props.get("XnaProfile"):
     lines.append(f"    <XnaProfile>{escape(props['XnaProfile'])}</XnaProfile>")
