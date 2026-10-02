@@ -7,5 +7,10 @@
     <!-- A 2010 project could version itself "1.0.*" (Farseer is "3.3.*"): Visual Studio 2010's
          compiler filled the stars in, and a deterministic build, .NET's default, refuses them. -->
     <Deterministic>false</Deterministic>
+    <!-- A game's own library projects sit in subdirectories (games/HauntedHouse/TiledLib), and the
+         SDK's default None glob would take their bin/ and obj/ as candidate assemblies: a reference
+         TiledLib compiles against and never ships was copied beside the game. Nothing here relies
+         on default None items; the glue names every file a game copies. -->
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
   </PropertyGroup>
 </Project>

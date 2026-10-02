@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The TiledLib callumlawson/Projects' HauntedHouse ships, unchanged: its Tiled map reader, and the
+       content types its importer builds, which compile against Game Studio's content pipeline. That
+       assembly is a compile-time reference here, as it was on the developer's machine: the game
+       never touches those types, and XNA's runtime redistributable never had the pipeline either.
+       Its importer also measures tileset images with System.Drawing, .NET's System.Drawing.Common
+       here, which compiles but works only on Windows: at build time, never in the game. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>TiledLib</AssemblyName>
+    <RootNamespace>TiledLib</RootNamespace>
+    <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/TiledLib/TiledLib</GameRoot>
+    <GameProject>$(GameRoot)/TiledLib.csproj</GameProject>
+    <XnaGameStudioReferences Condition="'$(XnaGameStudioReferences)' == ''">$(CNA_XNA40_GS)</XnaGameStudioReferences>
+    <XnaGameStudioReferences Condition="'$(XnaGameStudioReferences)' == ''">/rv/tmp/samples/_tools/xna-game-studio-4-refresh/admin</XnaGameStudioReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" PrivateAssets="all" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline" Private="false"
+               HintPath="$(XnaGameStudioReferences)/Program Files/Microsoft XNA/XNA Game Studio/v4.0/References/Windows/x86/Microsoft.Xna.Framework.Content.Pipeline.dll" />
+  </ItemGroup>
+</Project>

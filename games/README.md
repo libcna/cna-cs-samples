@@ -46,6 +46,7 @@ checkout.
 | SKraft | `github.com/Kermit/SKraft` @ `2480755` (a student block-world game, 2012) | built from its own content project, with its own `SKraftPipeline` model processor, by XNA's BuildContent (Windows/Reach): all 27 items | (2026-10-02, after CNA CBIND-153 and CNA.NET CSX-121: its constructor calls `ApplyChanges` and reads `GraphicsDevice.Viewport`) its menu; Start draws its world as instanced cubes through its own shader (3,721 grass cubes in view), the mouse looks and W walks, its sun dims the sky and the grass on its timer, and Quit saves the nine sectors and exits 0. The world is read from `<working directory>\Maps\Test\TestXY.sec`, a Windows path, and its repository keeps it outside the game's project (`Models/Maps/Test`), so a fresh build has none on Windows either and the player falls through an empty sky; for the run the nine files were copied (not linked: the game rewrites them on exit) to the one name Linux reads, `w\Maps\Test\TestXY.sec` beside the working directory `w` (`/rv/tmp/cs-samples/skraft/`) |
 | Forge sample | `github.com/jacobdufault/forge-sample` @ `6b18d3f` (the XNA 4.0 sample game of the Forge entity engine), with its `GameLogic` library (`games/ForgeSample/GameLogic`) and its prebuilt Forge, Lidgren, log4net and Json.NET 5 libraries | none: it draws with a 1x1 texture it makes | (2026-10-02, after CNA.NET CSX-122) its two paddles and the balls they collect, the engine at 15 updates a second over its own local Lidgren server. It loads `GameLogic.dll` with `Assembly.LoadFile` from its working directory, and `../../../../../Assets` -- Visual Studio's `bin\x86\Debug`, which is also its own directory -- so the run copies its output five levels below a copy of `Assets` (`/rv/tmp/cs-samples/forge/`); before CSX-122, .NET's second copy of `GameLogic` left its renderers unmatched and it drew nothing. log4net and Json.NET 5 need `System.Configuration.ConfigurationManager` and `System.Security.Permissions`, .NET Framework assemblies that are packages on .NET |
 | Sonic 3 | `github.com/JonathanDechelle/Sonic3` @ `80add97`, its 2014 state with its `MyGameLibrairy` library (`games/Sonic3/MyGameLibrairy`); the 2017 commits after it refactor its menus and stop short of a level (the tip's main menu never starts one) | built from its own content project by XNA's BuildContent (Windows/HiDef): 149 items, its seven MP3 songs as labelled stand-ins | (2026-10-02) the SEGA splash, the title, and Enter twice into Angel Island Act 1: Sonic runs (arrows), spin-jumps (Space) and collects rings, with its parallax and HUD. No defect found; CNA logs one heuristic warning that a sound's PCM looks compressed, though every sound XNA built is PCM16 |
+| HauntedHouse | `github.com/callumlawson/Projects` @ `2433240`, its HauntedHouse prototype with the Farseer Physics 3.3.1, Krypton and TiledLib copies it ships (`games/HauntedHouse/{Farseer,Krypton,TiledLib}`) and its prebuilt `C3.XNA.Primitives2D.dll` (CSX-099) | the XNA build output its repository ships (`HauntedHouse/bin/x86/Debug/Content`: its Tiled level, sprites, font and the `KryptonEffect` built from Krypton's content project) | (2026-10-02) a dark house lit by Krypton's 2D lights -- chandelier cones and the player's flashlight casting shadows from the furniture -- on its Tiled map; arrows walk the player off the stairs and the camera follows. TiledLib compiles its importer's content types into the game, so Game Studio's `Microsoft.Xna.Framework.Content.Pipeline.dll` is a compile-time reference only, as on the developer's machine (XNA's runtime never had it); its importer's `System.Drawing` is .NET's package, never called |
 
 In a browser and on Android: `scripts/browser-sample.sh games/<Game>` (headless Chromium, WebGL2
 through SwiftShader) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -173,6 +174,24 @@ Tried and not running here, each for a reason outside XNA:
 - **Voxeliq** (`bonesoul/voxeliq` @ `249b1d0`, its XNA 4.0 client under
   `contrib/old-codebase`): its content project builds but for its three sprite fonts, which name
   Calibri, a Windows font neither its repository nor Game Studio ships; no built content is shipped.
+- **Design Patterns Game** (`brunolm/DesignPatternsGame` @ `109ddea`): its `Main` composes its 20
+  mini-games through MEF, which constructs every one -- 21 `Game` objects alive at once, where
+  CNA runs one game per process ("Only one C-owned CNA game may be active at a time").
+- **Jxqy HD** (`mapic91/JxqyHD`): its game data is a separate download of the commercial original,
+  and its engine reads it through code page 936, which .NET has only with a provider registered.
+- **Tactile Engine** (`bwdyeti-com/Tactile-Engine`): needs its sibling `TactileSharedLibraries`
+  repository and a content project it does not ship; its `Main` reads the registry and `LoadLibrary`s
+  OpenAL through `kernel32`.
+- **Kodu Game Lab** (`scoy/KoduGameLab`): hosts its game in a Windows Forms window
+  (`Application.Run(MainForm)`), with Calibri, Segoe UI, Arial and Consolas sprite fonts and Win32
+  keyboard calls.
+- **SuperHorrorFactory** (`initials/SuperHorrorFactory`): its XFlixel and midi-dot-net projects live
+  in another repository. **DrunkiBoy** (`spectacell/DrunkiBoy`): its `levels\` folder is not in
+  its repository and its fonts name "8BIT WONDER". **Asteroids** (`nourselim0/Asteroids-Game`),
+  **PACMAN** (`cuza/PACMAN`) and callumlawson's **Shooter**: sprite fonts that name Copperplate
+  Gothic and Freestyle Script, Lucida Console, Impact. callumlawson's **Platformer** uses Farseer
+  without referencing it and loads assets its content project lacks.
+- **Medicraft** (`SuperBigtoo/Medicraft`): MonoGame (net8.0, DesktopGL), not XNA.
 - **Old School Adventure** (`Source/OldSchoolAdventure`): its projects are MonoGame's now
   (`net8.0-windows`, MonoGame.Framework.WindowsDX); only its types library is still XNA 4.0.
 

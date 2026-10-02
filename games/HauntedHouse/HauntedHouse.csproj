@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- callumlawson/Projects' HauntedHouse, an XNA 4.0 platformer prototype with Farseer physics,
+       Krypton lighting and a Tiled map, unchanged, with the libraries it ships. Content: the XNA
+       build output its repository ships (bin/x86/Debug/Content), whose KryptonEffect was built from
+       Krypton's own content project. Its TiledPipelineExtensions reference is a content-pipeline
+       extension the game itself does not use. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>HauntedHouse</AssemblyName>
+    <RootNamespace>HauntedHouse</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/HauntedHouse</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/HauntedHouse.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A library built against XNA 4.0 itself (CSX-099): it binds to XNA's assembly names. -->
+    <Reference Include="C3.XNA.Primitives2D" HintPath="$(GameRoot)/../XNAPrimitiveShapesLibrary/C3.XNA.Primitives2D.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <ProjectReference Include="Krypton/Krypton.csproj" />
+    <ProjectReference Include="TiledLib/TiledLib.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

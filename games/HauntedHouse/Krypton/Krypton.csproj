@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Krypton 2D lighting library copy callumlawson/Projects' HauntedHouse ships, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Krypton</AssemblyName>
+    <RootNamespace>Krypton</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/Krypton/Krypton</GameRoot>
+    <GameProject>$(GameRoot)/Krypton.csproj</GameProject>
+  </PropertyGroup>
+</Project>
