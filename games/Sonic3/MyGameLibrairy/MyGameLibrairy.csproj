@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- JonathanDechelle/Sonic3's MyGameLibrairy library (its sprite and animation helpers), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>MyGameLibrairy</AssemblyName>
+    <RootNamespace>MyGameLibrairy</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/JonathanDechelle_Sonic3/GameLibrairie/MyGameLibrairy/MyGameLibrairy</GameRoot>
+    <GameProject>$(GameRoot)/MyGameLibrairy.csproj</GameProject>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- JonathanDechelle/Sonic3, a student remake of Sonic 3's Angel Island on XNA 4.0, unchanged, at
+       its 2014 state (80add97; the 2017 commits after it refactor its menus and stop short of a
+       level), with its MyGameLibrairy library. Content built from its own content project by XNA's
+       BuildContent (Windows/HiDef); its MP3 songs as labelled stand-ins. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Sonic3</AssemblyName>
+    <RootNamespace>Sonic3</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/JonathanDechelle_Sonic3/Sonic3/Sonic3/Sonic3</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/sonic3/Content</GameContent>
+    <GameProject>$(GameRoot)/Sonic3.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="MyGameLibrairy/MyGameLibrairy.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
