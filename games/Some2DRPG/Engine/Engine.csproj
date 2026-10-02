@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- MichaelAquilina/Some-2D-RPG's GameEngine library (its tile engine), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>GameEngine</AssemblyName>
+    <RootNamespace>GameEngine</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Some-2D-RPG/GameEngine</GameRoot>
+    <GameProject>$(GameRoot)/GameEngine.csproj</GameProject>
+  </PropertyGroup>
+</Project>

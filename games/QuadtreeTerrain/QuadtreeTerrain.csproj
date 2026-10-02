@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- george7378/quadtree-terrain, an XNA 4.0 quadtree terrain renderer with its own terrain and
+       water effects, unchanged. Content is the XNA build output its repository ships
+       (bin/x86/Debug/Content, all seven items of its content project). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Terrain</AssemblyName>
+    <RootNamespace>Terrain</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/quadtree-terrain/source/Terrain/Terrain</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/Terrain.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Gang-Gang/FinalProject's FightingGame, a student XNA 4.0 fighting game, unchanged. Content is
+       the XNA build output its repository ships (bin/x86/Debug/Content). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>FightingGame</AssemblyName>
+    <RootNamespace>FightingGame</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/FinalProject/FightingGame/FightingGame/FightingGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/FightingGame.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
