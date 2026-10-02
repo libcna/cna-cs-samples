@@ -74,4 +74,65 @@
     </ItemGroup>
   </Target>
 
+  <!--
+    A path a game opens through the BCL rather than XNA, spelled for Windows: NetRumble's
+    DirectoryInfo(Content.RootDirectory + @"\audio\wav"), NePlus's @"Content\Config.ini". Windows reads
+    the backslash as a separator; every other file system as part of one name. A project names it
+      <CnaWindowsPath Include="..." Path="Content%5CConfig.ini" LinksTo="Content/Config.ini" />
+    and an entry of exactly that name is linked beside the game to what Windows found. The backslash
+    is written %5C: MSBuild on Unix rewrites a literal one into a slash when the result looks like a
+    path, in an Include and in metadata alike.
+    scripts/browser-sample.sh makes the same links in a browser's file system as the game starts.
+  -->
+  <UsingTask TaskName="CnaWindowsPathLinks" TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Directory ParameterType="System.String" Required="true" />
+      <Paths ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Class" Language="cs"><![CDATA[
+        using System.IO;
+        using System.Runtime.InteropServices;
+        using Microsoft.Build.Framework;
+        using Microsoft.Build.Utilities;
+
+        public class CnaWindowsPathLinks : Task
+        {
+            [DllImport("libc", SetLastError = true)]
+            private static extern int symlink(string target, string linkPath);
+
+            public string Directory { get; set; }
+
+            public ITaskItem[] Paths { get; set; }
+
+            public override bool Execute()
+            {
+                foreach (ITaskItem item in Paths)
+                {
+                    string link = Path.Combine(Directory, item.GetMetadata("Path"));
+                    if (File.Exists(link) || System.IO.Directory.Exists(link))
+                    {
+                        continue;
+                    }
+
+                    if (symlink(item.GetMetadata("LinksTo"), link) != 0)
+                    {
+                        Log.LogError("Could not link " + link + " (errno " + Marshal.GetLastWin32Error() + ").");
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="CnaWindowsPathLinks" AfterTargets="Build"
+          Condition="'$(OS)' != 'Windows_NT' and '@(CnaWindowsPath)' != ''">
+    <CnaWindowsPathLinks Directory="$(OutDir)" Paths="@(CnaWindowsPath)" />
+  </Target>
+
 </Project>

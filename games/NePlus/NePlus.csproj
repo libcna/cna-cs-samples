@@ -28,9 +28,8 @@
     <None Include="$(GameContent)/DebugViewXNAContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <!-- The game opens @"Content\Config.ini" through EasyConfig, a prebuilt library, with a plain
-       FileStream: on a Unix file system that names one file with a backslash in it, so the build
-       puts one there (as NetRumble's project links its Windows-spelled audio folder). -->
-  <Target Name="NePlusWindowsSpelledConfig" AfterTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
-    <Exec Command="cp -f Content/Config.ini 'Content\Config.ini'" WorkingDirectory="$(OutDir)" />
-  </Target>
+       FileStream: Windows reads that as Content/Config.ini, a Unix file system as one file name. -->
+  <ItemGroup>
+    <CnaWindowsPath Include="config" Path="Content%5CConfig.ini" LinksTo="Content/Config.ini" />
+  </ItemGroup>
 </Project>
