@@ -83,9 +83,18 @@ from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
 work, sample_dir, cs_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+def msbuild(value):
+    return escape(value.replace("%", "%25").replace(";", "%3B"))
 libraries = [Path(line.strip()) for line in (work / "library-paths.txt").read_text().splitlines() if line.strip()]
 evaluation = json.loads((work / "evaluation.json").read_text())
 props = evaluation["Properties"]
+# .NET's browser runtime cannot load an assembly whose name holds an apostrophe: the WebAssembly SDK's
+# conditions and its asset loader both split the name there (A Princess' Request). Such a game is
+# built for the browser without it -- its project's name, not its source; content naming its own
+# readers by that assembly would then not find them, which is said here when it happens.
+if "'" in props["AssemblyName"]:
+    print(f"browser assembly name: {props['AssemblyName']!r} without its apostrophe", file=sys.stderr)
+    props["AssemblyName"] = props["AssemblyName"].replace("'", "")
 items = evaluation.get("Items", {})
 binaries = cs_root / "src/CNA.XnaCompat/bin/Release/net8.0"
 references = ["CNA.Interop", "CNA.Framework", "CNA.XnaCompat"]
@@ -95,7 +104,7 @@ if props.get("CnaPhoneCompat") == "true":
 
 lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
          "    <TargetFramework>net11.0</TargetFramework>",
-         f"    <AssemblyName>{escape(props['AssemblyName'])}</AssemblyName>",
+         f"    <AssemblyName>{msbuild(props['AssemblyName'])}</AssemblyName>",
          f"    <RootNamespace>{escape(props['RootNamespace'])}</RootNamespace>",
          "    <ImplicitUsings>disable</ImplicitUsings>",
          "    <Nullable>disable</Nullable>",
@@ -133,7 +142,7 @@ for item in items.get("Reference", []):
 for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
-lines.append(f'    <TrimmerRootAssembly Include="{escape(props["AssemblyName"])}" />')
+lines.append(f'    <TrimmerRootAssembly Include="{msbuild(props["AssemblyName"])}" />')
 if props.get("CnaPhoneCompat") == "true":
     lines.append('    <TrimmerRootAssembly Include="CNA.PhoneCompat" />')
 for name in references:
