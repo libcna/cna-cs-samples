@@ -27,6 +27,13 @@ checkout.
 | Playing in Traffic | `github.com/debreuil/PlayingInTrafficGame` @ `3ca43c1` | built likewise, XACT banks; its four videos labelled stand-ins (`--video-standins`: the game's own `.wmv`, XNA's Video layout) | its splash video, decoded and drawn by SpriteBatch under its Flash overlay, then its main menu; it reads only an Xbox 360 gamepad (no input manager without one, as on Windows) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships; the menu's music |
 
+In a browser and on Android (2026-10-02, CNA `ffb82bc0d`): `scripts/browser-sample.sh games/<Game>`
+(headless Chromium) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
+from the same project and content. In a browser 14 of the 16 reach their title or play; HeliumBiker
+starts a thread, which single-threaded WebAssembly cannot, and Playing in Traffic plays a video, which
+the browser build has no backend for. On Android 15 of the 16 run; Playing in Traffic stops at the same
+honest refusal of its video. Resonance loads its levels on a thread, so in a browser only its menu.
+
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
 (CSX-096), a game's worker thread loading content (CSX-100/101, CNA C ABI 0.39.0), a library
