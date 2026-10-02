@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- alaskajohn/2dGPfG's "8-1-0-ParticleEffects1" (2D Graphics Programming for Games, XNA 4.0), unchanged, on the
+       content its shared content project builds by XNA's BuildContent (Windows/Reach).
+       See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>ColorSample</AssemblyName>
+    <RootNamespace>ColorSample</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/8-1-0-ParticleEffects1</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameProject>$(GameRoot)/08-1-0-ParticleEffects1.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

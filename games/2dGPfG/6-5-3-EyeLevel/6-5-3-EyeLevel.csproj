@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- alaskajohn/2dGPfG's "6-5-3-EyeLevel" (2D Graphics Programming for Games, XNA 4.0), unchanged, on the
+       content its shared content project builds by XNA's BuildContent (Windows/Reach).
+       See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>cameraSample1</AssemblyName>
+    <RootNamespace>cameraSample1</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/6-5-3-EyeLevel</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameProject>$(GameRoot)/06-5-3-EyeLevel.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
