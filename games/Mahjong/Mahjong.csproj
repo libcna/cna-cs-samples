@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Jomata/Mahjong's XNA client (WinXNA), unchanged, with its Logic library. Content built from
+       its own content project by XNA's BuildContent (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>MahjongXNA</AssemblyName>
+    <RootNamespace>MahjongXNA</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Mahjong/WinXNA/WinXNA</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mahjong/Content</GameContent>
+    <GameProject>$(GameRoot)/WinXNA.csproj</GameProject>
+    <!-- Its settings live in its App.config, read through ConfigurationManager. -->
+    <AppConfig>$(GameRoot)/App.config</AppConfig>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- ConfigurationManager: .NET Framework's System.Configuration.dll, a package on .NET. -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <ProjectReference Include="Logic/Logic.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

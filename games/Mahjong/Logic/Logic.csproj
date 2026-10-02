@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Jomata/Mahjong's Logic library (the game rules, no XNA), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Mahjong</AssemblyName>
+    <RootNamespace>Mahjong</RootNamespace>
+    <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Mahjong</GameRoot>
+    <GameProject>$(GameRoot)/Logic/Logic.csproj</GameProject>
+  </PropertyGroup>
+</Project>
