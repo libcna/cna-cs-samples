@@ -168,6 +168,9 @@ Tried and not running here, each for a reason outside XNA:
   at startup, and its `C5.dll` and `Newtonsoft.Json.dll` hint paths point outside the repository.
 - **Pokémon Azure** (`Pokemon Azure/PokeEngine`): references `lua51.dll` and `LuaInterface.dll`,
   which the repository does not ship, and starts Lua for every game, battle and cutscene.
+- **Voxeliq** (`bonesoul/voxeliq` @ `249b1d0`, its XNA 4.0 client under
+  `contrib/old-codebase`): its content project builds but for its three sprite fonts, which name
+  Calibri, a Windows font neither its repository nor Game Studio ships; no built content is shipped.
 - **Old School Adventure** (`Source/OldSchoolAdventure`): its projects are MonoGame's now
   (`net8.0-windows`, MonoGame.Framework.WindowsDX); only its types library is still XNA 4.0.
 
