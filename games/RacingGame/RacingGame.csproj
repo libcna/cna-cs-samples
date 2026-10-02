@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The XNA 4.0 Racing Game Kit (exDream's RacingGame, brought to XNA 4.0), unchanged. Content is
+       its own RacingGameContent.contentproj built by XNA 4.0's own pipeline on Windows (cna-samples
+       SAMPLE-152 evidence/xna4-authentic-build). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>RacingGame</AssemblyName>
+    <RootNamespace>RacingGame</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/XNAGameStudio/Samples/XNA-4-Racing-Game-Kit-master/RacingGameWindows1/RacingGame/RacingGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-152-XNA-4-Racing-Game-Kit-master/evidence/xna4-authentic-build/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/RacingGame.csproj</GameProject>
+    <!-- Its BaseGame hides its form through Form.FromHandle(Window.Handle) while it loads, and its
+         Program shows a MessageBox when it cannot start. -->
+    <CnaWindowsFormsCompat>true</CnaWindowsFormsCompat>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
