@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Builds one sample for the browser and runs it in headless Chromium.
 #
-# Usage: scripts/browser-sample.sh <SampleDirectory> [--out DIR] [--seconds N] [--marker TEXT]
+# Usage: scripts/browser-sample.sh <SampleDirectory|games/Game> [--out DIR] [--seconds N] [--marker TEXT]
+#
+# A gallery row is named by its directory under samples/; a real game by its path (games/<Game>),
+# whose sources its <GameProject> target supplies and whose Content its LinkBase items link.
 #
 # The sample's own project is untouched. Its evaluated identity -- assembly name, root namespace,
 # entry point, DefineConstants, XnaProfile, phone host -- and its Compile items are read from
@@ -31,7 +34,11 @@ while [ $# -gt 0 ]; do
     esac
 done
 [ -n "$sample" ] || { echo "usage: $0 <SampleDirectory>" >&2; exit 2; }
-project="$here/samples/$sample/$sample.csproj"
+case "$sample" in
+    */*) sample_dir="$here/${sample%/}"; sample="$(basename "$sample_dir")" ;;
+    *)   sample_dir="$here/samples/$sample" ;;
+esac
+project="$sample_dir/$sample.csproj"
 [ -f "$project" ] || { echo "error: no $project" >&2; exit 2; }
 out="${out:-/rv/tmp/cs-samples/browser/$sample}"
 mkdir -p "$out"
@@ -40,19 +47,23 @@ work="$here/build-consumer/browser/$sample"
 mkdir -p "$work/wwwroot"
 cp "$cs_root/eng/browser/wwwroot/index.html" "$cs_root/eng/browser/wwwroot/main.js" "$work/wwwroot/"
 
-DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" -getProperty:AssemblyName \
+# A game's sources are Compile items its CnaGameProjectSources target adds, so that target runs first.
+targets=()
+[ -n "$(DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" -getProperty:GameProject)" ] && targets=(-t:CnaGameProjectSources)
+DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
     -getProperty:CnaPhoneCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
-    -getItem:EmbeddedResource -getItem:ProjectReference >"$work/evaluation.json"
+    -getItem:EmbeddedResource -getItem:ProjectReference -getItem:Reference -getItem:None -getItem:Content >"$work/evaluation.json"
 
 # Library projects beside the sample (Pathfinding's MapData, SpriteSheet's runtime) are referenced
-# as their own Release builds, not merged in: content names their readers by assembly.
+# as their own Release builds, not merged in: content names their readers by assembly. So are the
+# XNA-named forwarders a game referencing a library compiled against XNA names (src/XnaAssemblies).
 python3 - "$work/evaluation.json" "$cs_root" <<'PYEOF' >"$work/libraries.txt"
 import json, sys
 items = json.load(open(sys.argv[1]))["Items"].get("ProjectReference", [])
 for item in items:
-    if not item["FullPath"].startswith(sys.argv[2].rstrip("/") + "/"):
+    if not item["FullPath"].startswith(sys.argv[2].rstrip("/") + "/") or "/src/XnaAssemblies/" in item["FullPath"]:
         print(item["FullPath"])
 PYEOF
 : >"$work/library-paths.txt"
@@ -62,8 +73,11 @@ while read -r library; do
     DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$library" -p:Configuration=Release \
         -getProperty:TargetPath >>"$work/library-paths.txt"
 done <"$work/libraries.txt"
+# The .NET APIs the browser runtime leaves out (System.IO.IsolatedStorage), which
+# eng/browser/CNA.Browser.targets references from this Release build.
+dotnet build "$cs_root/src/CNA.BrowserCompat/CNA.BrowserCompat.csproj" -c Release -m:1 >/dev/null
 
-python3 - "$work" "$here/samples/$sample" "$cs_root" <<'EOF'
+python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
 import json, sys
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -110,6 +124,12 @@ for item in items.get("EmbeddedResource", []):
     logical = item.get("LogicalName", "")
     attr = f" LogicalName={quoteattr(logical)}" if logical else ""
     lines.append(f"    <EmbeddedResource Include={quoteattr(item['FullPath'])}{attr} />")
+# A prebuilt library the game ships (BEPUphysics, DPSF, ...) is referenced where it lies.
+for item in items.get("Reference", []):
+    hint = item.get("HintPath", "")
+    if hint:
+        lines.append(f'    <Reference Include={quoteattr(item["Identity"])}><HintPath>{escape(hint)}</HintPath></Reference>')
+        lines.append(f'    <TrimmerRootAssembly Include={quoteattr(Path(hint).stem)} />')
 for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
@@ -122,7 +142,8 @@ for name in references:
 # The SDK puts only static web assets into the virtual filesystem, matched by their path under
 # wwwroot; Content is linked there rather than copied.
 content = sample_dir / "Content"
-if content.is_dir():
+whole_content = content.is_dir()
+if whole_content:
     link = work / "wwwroot" / "Content"
     if link.is_symlink() or link.exists():
         link.unlink()
@@ -131,6 +152,27 @@ if content.is_dir():
         if file.is_file():
             relative = (Path("Content") / file.relative_to(content)).as_posix()
             lines.append(f"    <WasmFilesToIncludeInFileSystem Include={quoteattr(relative)} TargetPath={quoteattr(relative)} />")
+# Every other file the build copies beside the game goes where the game looks for it: a game's
+# Content linked under Content/ (LinkBase), and files such as Spacewar's settings.xml (Link).
+for item in items.get("None", []) + items.get("Content", []):
+    if item.get("CopyToOutputDirectory", "") not in ("PreserveNewest", "Always"):
+        continue
+    if item.get("Link"):
+        relative = item["Link"].replace("\\", "/")
+    elif item.get("LinkBase"):
+        relative = (Path(item["LinkBase"]) / item.get("RecursiveDir", "").replace("\\", "/") / (item["Filename"] + item["Extension"])).as_posix()
+    elif Path(item["FullPath"]).is_relative_to(sample_dir):
+        relative = Path(item["FullPath"]).relative_to(sample_dir).as_posix()
+    else:
+        continue
+    if whole_content and relative.startswith("Content/"):
+        continue
+    target = work / "wwwroot" / relative
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.is_symlink() or target.exists():
+        target.unlink()
+    target.symlink_to(item["FullPath"])
+    lines.append(f"    <WasmFilesToIncludeInFileSystem Include={quoteattr(relative)} TargetPath={quoteattr(relative)} />")
 lines.append("  </ItemGroup>")
 if props.get("CnaPhoneGame"):
     (work / "CnaPhoneHost.g.cs").write_text(
