@@ -53,8 +53,8 @@ targets=()
 DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
-    -getProperty:CnaPhoneCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
-    -getItem:EmbeddedResource -getItem:ProjectReference -getItem:Reference -getItem:None -getItem:Content -getItem:CnaWindowsPath >"$work/evaluation.json"
+    -getProperty:CnaPhoneCompat -getProperty:CnaWindowsFormsCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
+    -getItem:EmbeddedResource -getItem:ProjectReference -getItem:Reference -getItem:PackageReference -getItem:None -getItem:Content -getItem:CnaWindowsPath >"$work/evaluation.json"
 
 # Library projects beside the sample (Pathfinding's MapData, SpriteSheet's runtime) are referenced
 # as their own Release builds, not merged in: content names their readers by assembly. So are the
@@ -95,9 +95,13 @@ if "'" in props["AssemblyName"]:
 items = evaluation.get("Items", {})
 binaries = cs_root / "src/CNA.XnaCompat/bin/Release/net8.0"
 references = ["CNA.Interop", "CNA.Framework", "CNA.XnaCompat"]
+folders = {}
 if props.get("CnaPhoneCompat") == "true":
     references.append("CNA.PhoneCompat")
-    binaries_phone = cs_root / "src/CNA.PhoneCompat/bin/Release/net8.0"
+    folders["CNA.PhoneCompat"] = cs_root / "src/CNA.PhoneCompat/bin/Release/net8.0"
+if props.get("CnaWindowsFormsCompat") == "true":
+    references.append("CNA.WindowsFormsCompat")
+    folders["CNA.WindowsFormsCompat"] = cs_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"
 
 lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
          "    <TargetFramework>net11.0</TargetFramework>",
@@ -140,10 +144,15 @@ for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
 lines.append(f'    <TrimmerRootAssembly Include="{msbuild(props["AssemblyName"])}" />')
-if props.get("CnaPhoneCompat") == "true":
-    lines.append('    <TrimmerRootAssembly Include="CNA.PhoneCompat" />')
+for name in folders:
+    lines.append(f'    <TrimmerRootAssembly Include="{name}" />')
+# NuGet packages the game's project glue adds (ConfigurationManager, CodeDom: .NET Framework's own
+# assemblies, packages on .NET).
+for item in items.get("PackageReference", []):
+    if item.get("Version"):
+        lines.append(f'    <PackageReference Include={quoteattr(item["Identity"])} Version={quoteattr(item["Version"])} />')
 for name in references:
-    folder = binaries_phone if name == "CNA.PhoneCompat" else binaries
+    folder = folders.get(name, binaries)
     lines.append(f'    <Reference Include="{name}"><HintPath>{folder / (name + ".dll")}</HintPath></Reference>')
 # The SDK puts only static web assets into the virtual filesystem, matched by their path under
 # wwwroot; Content is linked there rather than copied.

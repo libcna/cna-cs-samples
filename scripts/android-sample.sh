@@ -56,9 +56,9 @@ targets=()
 DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
-    -getProperty:CnaPhoneCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
+    -getProperty:CnaPhoneCompat -getProperty:CnaWindowsFormsCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
     -getItem:EmbeddedResource -getItem:ProjectReference -getItem:None -getItem:Content \
-    -getItem:CnaWindowsPath -getItem:Reference >"$work/evaluation.json"
+    -getItem:CnaWindowsPath -getItem:Reference -getItem:PackageReference >"$work/evaluation.json"
 
 python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
 import json, re, subprocess, sys
@@ -92,6 +92,8 @@ binaries = cs_root / "src/CNA.XnaCompat/bin/Release/net8.0"
 references = [(name, binaries) for name in ("CNA.Interop", "CNA.Framework", "CNA.XnaCompat")]
 if props.get("CnaPhoneCompat") == "true":
     references.append(("CNA.PhoneCompat", cs_root / "src/CNA.PhoneCompat/bin/Release/net8.0"))
+if props.get("CnaWindowsFormsCompat") == "true":
+    references.append(("CNA.WindowsFormsCompat", cs_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"))
 
 constants = props.get("CnaSampleDefineConstants") or "WINDOWS"
 if props.get("CnaSampleConfiguration") == "Debug":
@@ -131,6 +133,11 @@ for item in items.get("EmbeddedResource", []):
     lines.append(f"    <EmbeddedResource Include={quoteattr(item['FullPath'])}{attr} />")
 for name, folder in references:
     lines.append(f'    <Reference Include="{name}"><HintPath>{folder / (name + ".dll")}</HintPath></Reference>')
+# NuGet packages the game's project glue adds (ConfigurationManager, CodeDom: .NET Framework's own
+# assemblies, packages on .NET).
+for item in items.get("PackageReference", []):
+    if item.get("Version"):
+        lines.append(f'    <PackageReference Include={quoteattr(item["Identity"])} Version={quoteattr(item["Version"])} />')
 # A prebuilt library the game ships (BEPUphysics, DPSF, ...) is referenced where it lies.
 for item in items.get("Reference", []):
     hint = item.get("HintPath", "")
