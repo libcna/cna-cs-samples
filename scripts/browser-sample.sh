@@ -73,9 +73,6 @@ while read -r library; do
     DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$library" -p:Configuration=Release \
         -getProperty:TargetPath >>"$work/library-paths.txt"
 done <"$work/libraries.txt"
-# The .NET APIs the browser runtime leaves out (System.IO.IsolatedStorage), which
-# eng/browser/CNA.Browser.targets references from this Release build.
-dotnet build "$cs_root/src/CNA.BrowserCompat/CNA.BrowserCompat.csproj" -c Release -m:1 >/dev/null
 
 python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
 import json, sys
