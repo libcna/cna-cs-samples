@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- denniskb/asvo's XNA 4.0 prototype, an animated sparse-voxel-octree renderer drawn in software
+       on worker threads, unchanged, with the XNAnimation library it ships. Content built from its
+       own content project, with its XNAnimation pipeline, by XNA's BuildContent (Windows/HiDef).
+       See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>asvo</AssemblyName>
+    <RootNamespace>asvo</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/denniskb_asvo/prototype/asvo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asvo/Content</GameContent>
+    <GameProject>$(GameRoot)/asvo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="XNAnimation/XNAnimation.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

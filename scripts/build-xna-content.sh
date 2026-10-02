@@ -97,6 +97,10 @@ for csproj in "${extensions[@]}"; do
         case "$line" in
             SRC:*)  sources+=("${line#SRC:}") ;;
             UNSAFE) extra+=("-unsafe") ;;
+            KEY:*)  extra+=("-keyfile:${line#KEY:}") ;;
+            RESX:*) resx="${line#RESX:}"; resx_file="${resx%%|*}"; resx_name="${resx##*|}"
+                    resgen "$resx_file" "$runner/$resx_name" >/dev/null
+                    extra+=("-resource:$runner/$resx_name,$resx_name") ;;
             FW:*)   [ -f "$api/${line#FW:}.dll" ] && extra+=("-r:$api/${line#FW:}.dll") ;;
             HINT:*) cp -u "${line#HINT:}" "$runner/"
                     extra+=("-r:$runner/$(basename "${line#HINT:}")")
@@ -111,6 +115,18 @@ for inc in re.findall(r'<Compile Include="([^"]+)"', text):
     print("SRC:" + os.path.join(here, inc.replace("\\", "/")))
 if re.search(r'<AllowUnsafeBlocks>\s*true', text, re.I):
     print("UNSAFE")
+# Its .resx resources, under the name its build gave them (<RootNamespace>.<folders>.<name>.resources;
+# XNAnimationPipeline reads its messages from Resources.resx).
+root = re.search(r'<RootNamespace>([^<]+)</RootNamespace>', text)
+for inc in re.findall(r'<EmbeddedResource Include="([^"]+\.resx)"', text):
+    name = (root.group(1) + "." if root else "") + os.path.splitext(inc)[0].replace("\\", ".").replace("/", ".") + ".resources"
+    print("RESX:" + os.path.join(here, inc.replace("\\", "/")) + "|" + name)
+# Signed as its project signed it (XNAnimation grants its internals to a signed XNAnimationPipeline).
+key = re.search(r'<AssemblyOriginatorKeyFile>([^<]+)</AssemblyOriginatorKeyFile>', text)
+if re.search(r'<SignAssembly>\s*true', text, re.I) and key:
+    path = os.path.join(here, key.group(1).replace("\\", "/"))
+    if os.path.isfile(path):
+        print("KEY:" + path)
 for name in re.findall(r'<Reference Include="(System[^",]*)', text):
     print("FW:" + name)
 for hint in re.findall(r'<HintPath>([^<]+)</HintPath>', text):

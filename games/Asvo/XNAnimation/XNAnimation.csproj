@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The XNAnimation skinned-animation library denniskb/asvo's prototype ships, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>XNAnimation</AssemblyName>
+    <RootNamespace>XNAnimation</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/denniskb_asvo/prototype/XNAnimation/XNAnimation</GameRoot>
+    <GameProject>$(GameRoot)/XNAnimation.csproj</GameProject>
+  </PropertyGroup>
+</Project>
