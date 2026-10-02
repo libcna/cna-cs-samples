@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- zfedoran/bubblebound (Bubble Bound, a casual undersea game), unchanged, with the SkinnedModel
+       library it carries. Content built from its own content project and its skinned- and
+       instanced-model pipeline extensions by XNA's BuildContent (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>bubblebound</AssemblyName>
+    <RootNamespace>hyades</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/bubblebound/hyades/hyades</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/bubblebound/Content</GameContent>
+    <GameProject>$(GameRoot)/hyades.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="SkinnedModel/SkinnedModel.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

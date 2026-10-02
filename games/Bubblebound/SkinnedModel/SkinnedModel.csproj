@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The SkinnedModel runtime library (Microsoft's XNA skinning sample) zfedoran/bubblebound
+       carries, unchanged: the types its skinned models' content reads into. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>SkinnedModel</AssemblyName>
+    <RootNamespace>SkinnedModel</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/bubblebound</GameRoot>
+    <GameProject>$(GameRoot)/SkinnedModel/SkinnedModelWindows.csproj</GameProject>
+  </PropertyGroup>
+</Project>
