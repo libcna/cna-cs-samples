@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Farseer Physics Engine (Ms-PL) gnomicstudios/GGJ13 carries, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>FarseerPhysicsXNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13</GameRoot>
+    <GameProject>$(GameRoot)/FarseerPhysics/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

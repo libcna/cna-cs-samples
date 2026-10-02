@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- gnomicstudios/GGJ13's Gnomic.Anim library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Gnomic.Anim</AssemblyName>
+    <RootNamespace>Gnomic.Anim</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13</GameRoot>
+    <GameProject>$(GameRoot)/Gnomic.Anim/Gnomic.Anim.csproj</GameProject>
+  </PropertyGroup>
+</Project>

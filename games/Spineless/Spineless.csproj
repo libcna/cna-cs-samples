@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- gnomicstudios/GGJ13's Spineless (a Global Game Jam 2013 game), unchanged, with the Gnomic
+       libraries and the Farseer Physics it carries. Content built from its own content project with
+       those libraries as pipeline extensions by XNA's BuildContent (Windows/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Spineless</AssemblyName>
+    <RootNamespace>Spineless</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13/Spineless/Spineless</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/spineless/Content</GameContent>
+    <GameProject>$(GameRoot)/Spineless.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <ProjectReference Include="GnomicAnim/GnomicAnim.csproj" />
+    <ProjectReference Include="Gnomic/Gnomic.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

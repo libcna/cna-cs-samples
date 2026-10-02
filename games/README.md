@@ -32,6 +32,7 @@ checkout.
 | Super Mario World (Sprint 4) | `github.com/buttsj/c-sharp-mario` @ `f2fee21` (a student team's demo) | built: its content project (181 `.xnb`); its eight MP3 songs labelled stand-ins (`--song-standins`, then `convert-xna-songs.sh`), five documentation images its repository lacks listed, not built | (2026-10-02, CNA `22b30b30e`, CNA.NET `1326161`) title menu; Space: level 1 -- Mario runs right, HUD with lives, time and coins; nothing needed changing |
 | The Legend of Zelda (clone attempt) | `github.com/edgiardina/Zelda` @ `d2dd348` | built: the content project its game project references, `Zelda.Content` (26 `.xnb`), into the `Zelda.Content` root it loads from | (2026-10-02, CNA `22b30b30e`, CNA.NET `1326161`) title, its fade into the save menu, then Up (to Register) and Enter: its first screen -- the life bar, water and an enemy; nothing needed changing. Not compared with XNA: the repository ships no XNA build |
 | Bubble Bound | `github.com/zfedoran/bubblebound` @ `8171890`, with the SkinnedModel library it carries | built: its content project (47 `.xnb`: 7 FBX models, 8 effects) with its SkinnedModel runtime and its skinned- and instanced-model pipeline extensions, and its level XML | (2026-10-02, CNA `22b30b30e`, CNA.NET `1326161`) title over its dimmed 3D scene; Enter: the bubble drifts through the lit undersea landscape among particles, as its own screenshot looks; nothing needed changing |
+| Spineless (Global Game Jam 2013) | `github.com/gnomicstudios/GGJ13` @ `ae0934b`, with its Gnomic engine and animation libraries and the Farseer Physics it carries | built: its content project (20 `.xnb`: 10 sounds, 2 fonts, 8 clip animations) with Farseer, Gnomic.Anim and Gnomic as pipeline extensions in that order, its 13 sprite sheets copied as its project copies them | (2026-10-02, CNA `51d9c84cc`, CNA.NET `1326161`) the siege tower with the princess and the heart meter; Right: the landscape scrolls, the enemies march on the tower and its knight steps out, the heart rises to 10%. Its sounds are XNA's own ADPCM, three at rates above 48000 Hz (up to 48084), which needed CNA CBIND-146; CodeDom, which its engine names and never calls, comes from its .NET package |
 
 In a browser and on Android (2026-10-02, CNA `ffb82bc0d`): `scripts/browser-sample.sh games/<Game>`
 (headless Chromium) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -50,7 +51,8 @@ placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120), a video f
 SpriteBatch accepts (CNA CBIND-142), a Shader Model 3 effect as Microsoft's compiler writes it
 (CNA FX-141), one storage device shared by several worker threads (CSX-109), `List<T>.ForEach`
 as .NET Framework 4.0 ran it (CSX-110), the graphics adapters in a game's constructor (CNA
-CBIND-145, CSX-111) and a not-yet-created device read as null (CSX-112).
+CBIND-145, CSX-111), a not-yet-created device read as null (CSX-112) and a sound at the
+sample rate XNA's own encoder wrote (CNA CBIND-146).
 
 XNA writes every song as Windows Media Audio, which neither CNA nor FNA decodes. As in an FNA port,
 `scripts/convert-xna-songs.sh <content-dir>` writes an Ogg Vorbis copy beside each `.wma`; the

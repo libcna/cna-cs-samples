@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- gnomicstudios/GGJ13's Gnomic engine library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Gnomic</AssemblyName>
+    <RootNamespace>Gnomic</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13</GameRoot>
+    <GameProject>$(GameRoot)/Gnomic.Core/Gnomic.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Its Util/AssemblyBuilder.cs names CodeDom's CSharpCodeProvider, which .NET Framework's
+         System.dll carried and .NET ships as a package. Nothing calls it. -->
+    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+    <ProjectReference Include="../Farseer/Farseer.csproj" />
+    <ProjectReference Include="../GnomicAnim/GnomicAnim.csproj" />
+  </ItemGroup>
+</Project>
