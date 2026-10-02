@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Builds one sample for the browser and runs it in headless Chromium.
 #
-# Usage: scripts/browser-sample.sh <SampleDirectory|games/Game> [--out DIR] [--seconds N] [--marker TEXT]
+# Usage: scripts/browser-sample.sh <SampleDirectory|games/Game> [--out DIR] [--seconds N] [--marker TEXT] [--threads]
 #
 # A gallery row is named by its directory under samples/; a real game by its path (games/<Game>),
 # whose sources its <GameProject> target supplies and whose Content its LinkBase items link.
@@ -22,12 +22,13 @@ here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cs_root="$(cd "$here/../cna-cs" && pwd)"
 dotnet_root="${DOTNET_ROOT_BROWSER:-$HOME/deps/dotnet11}"
 node_dir="${CNA_BROWSER_NODE_DIR:-$HOME/emsdk/node/22.16.0_64bit}"
-sample=""; out=""; seconds=8; marker=""
+sample=""; out=""; seconds=8; marker=""; threads=0
 while [ $# -gt 0 ]; do
     case "$1" in
         --out)     out="$2"; shift 2 ;;
         --seconds) seconds="$2"; shift 2 ;;
         --marker)  marker="$2"; shift 2 ;;
+        --threads) threads=1; shift ;;
         -h|--help) sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)        echo "error: unknown option $1" >&2; exit 2 ;;
         *)         sample="$1"; shift ;;
@@ -43,7 +44,11 @@ project="$sample_dir/$sample.csproj"
 out="${out:-/rv/tmp/cs-samples/browser/$sample}"
 mkdir -p "$out"
 
+# --threads: a multithreaded bundle (WasmEnableThreads, shared-memory CNA) for a game that starts
+# threads; its own generated project, so the two runtime packs never share an obj directory.
 work="$here/build-consumer/browser/$sample"
+if [ "$threads" = 1 ]; then work="$work-threads"; fi
+export CNA_BROWSER_THREADS="$threads"
 mkdir -p "$work/wwwroot"
 cp "$cs_root/eng/browser/wwwroot/index.html" "$cs_root/eng/browser/wwwroot/main.js" "$work/wwwroot/"
 
@@ -75,7 +80,7 @@ while read -r library; do
 done <"$work/libraries.txt"
 
 python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
-import json, sys
+import json, os, sys
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
@@ -212,6 +217,8 @@ if windows_paths:
         "            System.IO.File.CreateSymbolicLink(path, target);\n"
         "    }\n}\n")
     lines.append('  <ItemGroup><Compile Include="CnaWindowsPaths.g.cs" /></ItemGroup>')
+if os.environ.get("CNA_BROWSER_THREADS") == "1":
+    lines.append("  <PropertyGroup><WasmEnableThreads>true</WasmEnableThreads></PropertyGroup>")
 lines += [f'  <Import Project="{cs_root}/src/CNA.XnaCompat/build/CNA.XnaCompat.targets" />',
           f'  <Import Project="{cs_root}/eng/browser/CNA.Browser.targets" />', "</Project>", ""]
 (work / f"{sample_dir.name}.Browser.csproj").write_text("\n".join(lines))
