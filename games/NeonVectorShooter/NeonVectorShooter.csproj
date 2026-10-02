@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- thiagoromam/game-development's NeonVectorShooter (the Shape Blaster tutorial game with bloom),
+       unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach);
+       its MP3 music as a labelled stand-in. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>NeonVectorShooter</AssemblyName>
+    <RootNamespace>NeonVectorShooter</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/thiagoromam_game-development/NeonVectorShooter/NeonVectorShooter/NeonVectorShooter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/neonvectorshooter/Content</GameContent>
+    <GameProject>$(GameRoot)/NeonVectorShooter.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

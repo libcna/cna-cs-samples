@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- stpettersens/21's BlackjackXNA, a blackjack game on XNA 4.0, unchanged. Content: the XNA
+       build output its repository ships (bin/x86/Debug/Content, all 60 items; its two sprite fonts
+       name Verdana, which only that build could have made). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>BlackjackXNA</AssemblyName>
+    <RootNamespace>BlackjackXNA</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/stpettersens_21/xna/BlackjackXNA/BlackjackXNA</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/BlackjackXNA.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
