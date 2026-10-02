@@ -60,6 +60,13 @@ plays its music through XACT, which needs nothing.
 
 Tried and not running here, each for a reason outside XNA:
 
+- **Second Realipony** (`erikmooney/SecondRealipony` @ `77b15c0`, a demo): its sprite fonts name
+  Bookman Old Style and Calibri, commercial fonts that neither its repository nor Game Studio ships.
+- **Eva Frontier** (`Righteous-Noodle/Eva-Frontier` @ `35def75`, Imagine Cup 2011): its XNA 4.0 copy's
+  sprite fonts need Segoe UI and Vrinda, which neither its repository nor Game Studio ships.
+- **Samurai** (`Code52/Samurai` @ `12bc84d`): a Windows Phone client of an online strategy game whose
+  server (`samuraitest.apphb.com`, AppHarbor) is gone; its NuGet packages are not in the repository.
+
 - **Snails** (`xesf/SnailsXNA` @ `433338a`, Two Brains Games' Steam release, with its built content):
   its published source builds on no platform. Its Windows projects compile a Windows Forms stage
   editor and WCF service references into the engine; its FNA project, which compiles against
