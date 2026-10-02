@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- the-saif-ahmad/MissileCommand, a remake of Atari's Missile Command, unchanged. Content built
+       from its own content project by XNA's BuildContent (Windows/HiDef, Game Studio's Quartz MS
+       font). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>MissileCommand</AssemblyName>
+    <RootNamespace>MissileCommand</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/MissileCommand/MissileCommand/MissileCommand/MissileCommand</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/missilecommand/Content</GameContent>
+    <GameProject>$(GameRoot)/MissileCommand.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
