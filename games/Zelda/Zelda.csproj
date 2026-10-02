@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- edgiardina/Zelda ("XNA based Legend of Zelda Clone Attempt"), unchanged. Content built from
+       the content project its game project references, Zelda.Content, by XNA's BuildContent
+       (Windows/Reach), into the Zelda.Content root it loads from. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Test Game</AssemblyName>
+    <RootNamespace>Zelda</RootNamespace>
+    <CnaSampleContentDirectory>Zelda.Content</CnaSampleContentDirectory>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Zelda/Zelda</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/zelda/Content</GameContent>
+    <GameProject>$(GameRoot)/Zelda.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Zelda.Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
