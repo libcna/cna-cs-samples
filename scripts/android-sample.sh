@@ -37,7 +37,12 @@ while [ $# -gt 0 ]; do
     esac
 done
 [ -n "$sample" ] || { echo "usage: $0 <SampleDirectory>" >&2; exit 2; }
-project="$here/samples/$sample/$sample.csproj"
+# A gallery row is named by its directory under samples/; a real game by its path (games/<Game>).
+case "$sample" in
+    */*) sample_dir="$here/${sample%/}"; sample="$(basename "$sample_dir")" ;;
+    *)   sample_dir="$here/samples/$sample" ;;
+esac
+project="$sample_dir/$sample.csproj"
 [ -f "$project" ] || { echo "error: no $project" >&2; exit 2; }
 out="${out:-/rv/tmp/cs-samples/android/$sample}"
 mkdir -p "$out"
@@ -45,14 +50,17 @@ work="$here/build-consumer/android/$sample"
 mkdir -p "$work"
 adb="$sdk/platform-tools/adb"
 
-DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" -getProperty:AssemblyName \
+# A game's sources are Compile items its CnaGameProjectSources target adds, so that target runs first.
+targets=()
+[ -n "$(DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" -getProperty:GameProject)" ] && targets=(-t:CnaGameProjectSources)
+DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
     -getProperty:CnaPhoneCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
     -getItem:EmbeddedResource -getItem:ProjectReference -getItem:None -getItem:Content \
-    -getItem:CnaWindowsPath >"$work/evaluation.json"
+    -getItem:CnaWindowsPath -getItem:Reference >"$work/evaluation.json"
 
-python3 - "$work" "$here/samples/$sample" "$cs_root" <<'EOF'
+python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
 import json, re, subprocess, sys
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -66,7 +74,9 @@ package = "com.libcna.samples." + re.sub(r"[^a-z0-9]", "", sample.lower())
 libraries = []
 for item in items.get("ProjectReference", []):
     path = item["FullPath"]
-    if path.startswith(str(cs_root).rstrip("/") + "/"):
+    # The XNA-named forwarders a game referencing a library compiled against XNA needs are built
+    # like the game's own libraries; the rest of CNA.NET is referenced below.
+    if path.startswith(str(cs_root).rstrip("/") + "/") and "/src/XnaAssemblies/" not in path:
         continue
     subprocess.run(["dotnet", "build", path, "-c", "Release", "-m:1"], check=True, stdout=subprocess.DEVNULL)
     target = subprocess.run(["dotnet", "msbuild", path, "-p:Configuration=Release", "-getProperty:TargetPath"],
@@ -113,6 +123,12 @@ for item in items.get("EmbeddedResource", []):
     lines.append(f"    <EmbeddedResource Include={quoteattr(item['FullPath'])}{attr} />")
 for name, folder in references:
     lines.append(f'    <Reference Include="{name}"><HintPath>{folder / (name + ".dll")}</HintPath></Reference>')
+# A prebuilt library the game ships (BEPUphysics, DPSF, ...) is referenced where it lies.
+for item in items.get("Reference", []):
+    hint = item.get("HintPath", "")
+    if hint:
+        lines.append(f'    <Reference Include={quoteattr(item["Identity"])}><HintPath>{escape(hint)}</HintPath></Reference>')
+        lines.append(f'    <TrimmerRootAssembly Include={quoteattr(Path(hint).stem)} />')
 for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
@@ -128,11 +144,13 @@ for item in items.get("None", []) + items.get("Content", []):
         continue
     if item.get("Link"):
         relative = item["Link"].replace("\\", "/")
+    elif item.get("LinkBase"):
+        relative = (Path(item["LinkBase"]) / item.get("RecursiveDir", "").replace("\\", "/") / (item["Filename"] + item["Extension"])).as_posix()
     elif Path(item["FullPath"]).is_relative_to(sample_dir):
         relative = Path(item["FullPath"]).relative_to(sample_dir).as_posix()
     else:
         continue
-    if relative.startswith("Content/"):
+    if content.is_dir() and relative.startswith("Content/"):
         continue
     lines.append(f'    <AndroidAsset Include={quoteattr(item["FullPath"])} Link={quoteattr("Assets/" + relative)} />')
     if relative.split("/")[0] not in title_roots:
@@ -148,13 +166,19 @@ if props.get("CnaPhoneGame"):
 else:
     # Found by name: an entry point may be a private nested class (NetRumbleGame.Program), which
     # typeof() cannot name from here; each '.' from the right may be a nesting '+'.
-    body = (f"var name = {json.dumps(startup)}; System.Type type; "
-            "while ((type = typeof(GameApplication).Assembly.GetType(name)) == null) { "
-            "int dot = name.LastIndexOf('.'); name = name.Substring(0, dot) + \"+\" + name.Substring(dot + 1); } "
-            "var main = type.GetMethod(\"Main\", "
-            "System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | "
-            "System.Reflection.BindingFlags.NonPublic); "
-            "main.Invoke(null, main.GetParameters().Length == 0 ? null : new object[] { new string[0] });")
+    flags = ("System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | "
+             "System.Reflection.BindingFlags.NonPublic")
+    if startup:
+        find = (f"var name = {json.dumps(startup)}; System.Type type; "
+                "while ((type = typeof(GameApplication).Assembly.GetType(name)) == null) { "
+                "int dot = name.LastIndexOf('.'); name = name.Substring(0, dot) + \"+\" + name.Substring(dot + 1); } "
+                f"var main = type.GetMethod(\"Main\", {flags}); ")
+    else:
+        # No StartupObject: the compiler found the one static Main; so does this.
+        find = ("System.Reflection.MethodInfo main = null; "
+                "foreach (var type in typeof(GameApplication).Assembly.GetTypes()) { "
+                f"if (type != typeof(GameApplication) && (main = type.GetMethod(\"Main\", {flags})) != null) break; }} ")
+    body = find + "main.Invoke(null, main.GetParameters().Length == 0 ? null : new object[] { new string[0] });"
 # The Windows-spelled paths the game opens through the BCL (samples/Directory.Build.targets'
 # CnaWindowsPath), linked beside the extracted title before its Main runs.
 links = "".join(
