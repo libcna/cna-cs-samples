@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- PhreeCell, the FreeCell game of Charles Petzold's "Programming Windows Phone 7" (chapter 23),
+       from github.com/coderserdar/WindowsPhoneSamples, unchanged. Content built from its own
+       content project by XNA's BuildContent (WindowsPhone/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>PhreeCell</AssemblyName>
+    <RootNamespace>PhreeCell</RootNamespace>
+    <CnaPhoneGame>PhreeCell.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/coderserdar_WindowsPhoneSamples/SourceCode/E-Book Sample Codes/Programming WP 7/Chapter 23/PhreeCell/PhreeCell/PhreeCell</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/phreecell/Content</GameContent>
+    <GameProject>$(GameRoot)/PhreeCell.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
