@@ -2,4 +2,10 @@
   <!-- The real games build exactly as the gallery samples do (../samples/Directory.Build.props):
        2010-era C# settings, CNA.NET by project reference, no generated assembly info. -->
   <Import Project="../samples/Directory.Build.props" />
+
+  <PropertyGroup>
+    <!-- A 2010 project could version itself "1.0.*" (Farseer is "3.3.*"): Visual Studio 2010's
+         compiler filled the stars in, and a deterministic build, .NET's default, refuses them. -->
+    <Deterministic>false</Deterministic>
+  </PropertyGroup>
 </Project>

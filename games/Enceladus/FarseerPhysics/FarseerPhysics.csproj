@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Farseer Physics Engine 3.3.1 (Ms-PL) zachmu/escape-from-enceladus redistributes with its
+       own bug fix, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>FarseerPhysicsXNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/escape-from-enceladus</GameRoot>
+    <GameProject>$(GameRoot)/Farseer Physics Engine 3.3.1 Samples XNA/Farseer Physics Engine 3.3 XNA/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

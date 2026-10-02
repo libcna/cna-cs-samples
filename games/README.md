@@ -26,6 +26,7 @@ checkout.
 | My Big Head Is Weighing Me Down | `github.com/debreuil/MyBigHeadIsWeighingMeDownGame` @ `eb974cd` | built: its content project with Swf2XNA's pipeline extension (`debreuil/Swf2XNA` @ `da62298`, from source): the Flash-authored level, its font | its level: Flash-drawn art, Box2D physics on crates and heads, the particle trail; Swf2XNA's runtime from source (`../Swf2Xna`) |
 | Playing in Traffic | `github.com/debreuil/PlayingInTrafficGame` @ `3ca43c1` | built likewise, XACT banks; its four videos labelled stand-ins (`--video-standins`: the game's own `.wmv`, XNA's Video layout) | its splash video, decoded and drawn by SpriteBatch under its Flash overlay, then its main menu; it reads only an Xbox 360 gamepad (no input manager without one, as on Windows) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships; the menu's music |
+| Escape From Enceladus | `github.com/zachmu/escape-from-enceladus` @ `337b3bb`, with the Farseer Physics 3.3.1 and DebugView it redistributes and its Json.NET 4.5 binary | built: its content project (558 `.xnb`, 3 effects, XACT with a streaming song bank, its November font) and DebugView's; its four music tracks are not in its repository, so the song bank holds labelled 5 s silent stand-ins | (2026-10-02, CNA `46231e857`, CNA.NET `b4bedce`) title with its three save slots read at once; Space (its keyboard scheme), Enter: its first room plays, the player runs right |
 
 In a browser and on Android (2026-10-02, CNA `ffb82bc0d`): `scripts/browser-sample.sh games/<Game>`
 (headless Chromium) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -40,8 +41,10 @@ flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `Tit
 compiled against XNA 4.0 (CSX-099), a vertex shader's point-size output on GLSL (CNA FX-140) and
 `PhoneApplicationService.StartupMode` (CSX-103), a song played from the converted file beside
 its `.wma` (CSX-105), `ActivatedEventArgs.IsApplicationInstancePreserved` (CSX-106), sprites
-placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120) and a video frame a
-SpriteBatch accepts (CNA CBIND-142).
+placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120), a video frame a
+SpriteBatch accepts (CNA CBIND-142), a Shader Model 3 effect as Microsoft's compiler writes it
+(CNA FX-141), one storage device shared by several worker threads (CSX-109) and `List<T>.ForEach`
+as .NET Framework 4.0 ran it (CSX-110).
 
 XNA writes every song as Windows Media Audio, which neither CNA nor FNA decodes. As in an FNA port,
 `scripts/convert-xna-songs.sh <content-dir>` writes an Ogg Vorbis copy beside each `.wma`; the
@@ -50,6 +53,12 @@ without it (SDL's disk audio driver records zeros) and play their music with it.
 plays its music through XACT, which needs nothing.
 
 Tried and not running here, each for a reason outside XNA:
+
+- **Snails** (`xesf/SnailsXNA` @ `433338a`, Two Brains Games' Steam release, with its built content):
+  its published source builds on no platform. Its Windows projects compile a Windows Forms stage
+  editor and WCF service references into the engine; its FNA project, which compiles against
+  CNA.NET otherwise, lists `RemoteAPICallScreen.cs`, which calls `BrainGame.RemoteServicesManager`
+  that the published `BrainGame.cs` comments out -- FNA would fail the same way.
 
 - **Rabbit Apocalypse** (`valryon/Rabbit-Apocalypse` @ `a12768a`): builds -- its engine and data
   projects, the prebuilt EasyStorage and OgmoXNA4 libraries, content with its prebuilt Ogmo
@@ -122,6 +131,14 @@ Kosmic Warz's DPSF binary comes from its author's repository, sparsely (the whol
 --profile Reach --platform WindowsPhone --extension "ParticleSettings/ParticleSettings (Windows).csproj"
 --extension SpaceInvadersWP7Pipeline/SpaceInvadersWP7Pipeline.csproj --song-standins`, then
 `scripts/convert-xna-songs.sh` on the output.
+
+Escape From Enceladus's four music tracks are referenced by its XACT project and absent from its
+repository: `ffmpeg -f lavfi -i anullsrc=r=44100:cl=stereo -t 5 -c:a pcm_s16le` writes each of
+`spur`, `exploration`, `sanfran`, `disaster` `.wav` beside `Music/game.xap` first (labelled in their
+metadata). Then `--project "EscapeFromEnceladus/EscapeFromEnceladusContent/EscapeFromEnceladus
+Content.contentproj" --profile HiDef --font Fonts/november_regular/novem___.ttf`, and DebugView's
+`Farseer Physics Engine 3.3.1 Samples XNA/DebugView XNA/Content/DebugView XNA Content.contentproj`
+(`--profile Reach`) into the same output: DebugView loads its `font` from the game's content root.
 
 The two Swf2XNA games need `debreuil/Swf2XNA` cloned as `/rv/tmp/xna-games/SWF2XNA` (their
 projects name it `..\..\SWF2XNA`), and its pipeline as six extensions in dependency order:

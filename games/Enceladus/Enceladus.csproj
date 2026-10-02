@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- zachmu/escape-from-enceladus (Escape From Enceladus, a Metroidvania; Apache-2.0), unchanged,
+       with the Farseer Physics and DebugView it redistributes and its own Json.NET 4.5 binary.
+       Content built from its own content projects by XNA's BuildContent
+       (scripts/build-xna-content.sh, Windows/HiDef, its November font); its four music tracks are
+       not in its repository, so its streaming Songs bank is built from labelled silent stand-ins.
+       See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>EscapeFromEnceladus</AssemblyName>
+    <RootNamespace>Enceladus</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/escape-from-enceladus/EscapeFromEnceladus/EscapeFromEnceladus</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/enceladus/Content</GameContent>
+    <GameProject>$(GameRoot)/EscapeFromEnceladus.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json" HintPath="$(GameRoot)/Json.Net40/Newtonsoft.Json.dll" />
+    <ProjectReference Include="FarseerPhysics/FarseerPhysics.csproj" />
+    <ProjectReference Include="DebugView/DebugView.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
