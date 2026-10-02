@@ -201,12 +201,13 @@ if $video_standins; then
     done
 fi
 
-# Plain files the content project copies beside the built content (MSBuild's part, not BuildContent's).
+# Plain files the content project copies beside the built content (MSBuild's part, not BuildContent's):
+# None and Content items alike, as MSBuild copies either when CopyToOutputDirectory says so.
 python3 - "$project" "$out" <<'PYEOF'
 import os, re, shutil, sys
 project, out = sys.argv[1], sys.argv[2]
 text = open(project, encoding="utf-8-sig").read()
-for inc, body in re.findall(r'<None Include="([^"]+)">(.*?)</None>', text, re.S):
+for kind, inc, body in re.findall(r'<(None|Content) Include="([^"]+)">(.*?)</\1>', text, re.S):
     if re.search(r'<CopyToOutputDirectory>(PreserveNewest|Always)</CopyToOutputDirectory>', body):
         rel = inc.replace("\\", "/")
         os.makedirs(os.path.join(out, os.path.dirname(rel)), exist_ok=True)
