@@ -43,6 +43,7 @@ checkout.
 | Quadtree Terrain | `github.com/george7378/quadtree-terrain` @ `9feedb9` | the XNA build output its repository ships (`bin/x86/Debug/Content`, all 7 items, its terrain and water effects) | (2026-10-02) the terrain with distance fog and lakes that reflect the hills (its water effect renders a reflection target); C attaches the mouse, which steers through `Mouse.SetPosition`/`GetState` as its author's README says, and WASD flies -- as in the author's screenshots, from another viewpoint |
 | FightingGame | `github.com/Gang-Gang/FinalProject` @ `e1bc541` (a student fighting game) | the XNA build output its repository ships | (2026-10-02) its two health bars, which drain from green through yellow and are gone after about 8 s, as its code does; nothing else is drawn yet in its source |
 | Some 2D RPG | `github.com/MichaelAquilina/Some-2D-RPG` @ its checkout, with its own engine library (`games/Some2DRPG/Engine`) | built from its own content project by XNA's BuildContent (Windows/HiDef): 144 of 145 items; `SpeechFont` needs Lucida Console, a Windows font its repository does not ship | (2026-10-02) a Tiled map, the hero and his party with red hitbox overlays (its `.draw` files leave the HitBox layer visible, so XNA would draw them too; the 2018 screenshots in its repository predate them), the debug readout at 60 fps; arrows walk, F3 turns on its light shader (night, a light around the hero) |
+| SKraft | `github.com/Kermit/SKraft` @ `2480755` (a student block-world game, 2012) | built from its own content project, with its own `SKraftPipeline` model processor, by XNA's BuildContent (Windows/Reach): all 27 items | (2026-10-02, after CNA CBIND-153 and CNA.NET CSX-121: its constructor calls `ApplyChanges` and reads `GraphicsDevice.Viewport`) its menu; Start draws its world as instanced cubes through its own shader (3,721 grass cubes in view), the mouse looks and W walks, its sun dims the sky and the grass on its timer, and Quit saves the nine sectors and exits 0. The world is read from `<working directory>\Maps\Test\TestXY.sec`, a Windows path, and its repository keeps it outside the game's project (`Models/Maps/Test`), so a fresh build has none on Windows either and the player falls through an empty sky; for the run the nine files were copied (not linked: the game rewrites them on exit) to the one name Linux reads, `w\Maps\Test\TestXY.sec` beside the working directory `w` (`/rv/tmp/cs-samples/skraft/`) |
 
 In a browser and on Android: `scripts/browser-sample.sh games/<Game>` (headless Chromium, WebGL2
 through SwiftShader) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -158,8 +159,22 @@ Tried and not running here, each for a reason outside XNA:
 - **Nu, Pogodi!** (`martinsuchan/WP.NuPogodi`): a Silverlight and XNA application -- XAML pages,
   `System.Windows` controls, MVVM Light -- like the gallery's Yacht.
 
+- **Zelda Oracle** (`trigger-segfault/ZeldaOracle` @ `92be3a1`; its tip `85275f5` adds a
+  `VarType.cs` that compiles nowhere): compiles unchanged (branch `zelda-oracle`, with CNA.NET's
+  branch `zelda-oracle-forms` for the Windows Forms its form uses) and stops in `Initialize` at its
+  `EventInput` text hook, which subclasses the window procedure through `user32`'s `SetWindowLong`
+  with the delegate's address cast to `int` -- an x86 Windows process only.
+- **AutonomousCar** (`AutonomousCar`): the same `EventInput` hook, from its game console created
+  at startup, and its `C5.dll` and `Newtonsoft.Json.dll` hint paths point outside the repository.
+- **Pokémon Azure** (`Pokemon Azure/PokeEngine`): references `lua51.dll` and `LuaInterface.dll`,
+  which the repository does not ship, and starts Lua for every game, battle and cutscene.
+- **Old School Adventure** (`Source/OldSchoolAdventure`): its projects are MonoGame's now
+  (`net8.0-windows`, MonoGame.Framework.WindowsDX); only its types library is still XNA 4.0.
+
 Not XNA 4.0, so not here: the BitSits games (`Squares-Vs-Triangles`, `Moolecule`, `RainingLetters`,
-`Apple-e-Apple`, `Treasure-Island`) are XNA 3.1 projects with 3.1 content.
+`Apple-e-Apple`, `Treasure-Island`) are XNA 3.1 projects with 3.1 content, and so are AngryTanks,
+Flotilla (its 4.0 line is an FNA port, and its art is commercial) and XNA Street Fighter;
+Infiniminer is XNA 3.0.
 
 ## Reproducing
 
