@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- jacobdufault/forge-sample, the XNA 4.0 sample game of the Forge entity engine, unchanged:
+       no content of its own (it draws with a texture it makes); its prebuilt Forge, Lidgren, log4net
+       and Json.NET libraries. It loads GameLogic.dll and ../../../../../Assets from its working
+       directory, as run from Visual Studio's bin\x86\Debug. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XNA</AssemblyName>
+    <RootNamespace>XNA</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/forge-sample/XNA/XNA</GameRoot>
+    <GameProject>$(GameRoot)/XNA.csproj</GameProject>
+    <ForgeDlls>$(GameRoot)/../DLLs</ForgeDlls>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- .NET Framework assemblies that are packages on .NET: log4net reads its settings through
+         System.Configuration (as Mahjong does), and Json.NET 5 demands a ReflectionPermission. -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
+    <ProjectReference Include="GameLogic/GameLogic.csproj" />
+    <Reference Include="Forge.AllLibraries" HintPath="$(ForgeDlls)/Forge.AllLibraries.dll" />
+    <Reference Include="Forge.Collections" HintPath="$(ForgeDlls)/Forge.Collections.dll" />
+    <Reference Include="Forge.Entities" HintPath="$(ForgeDlls)/Forge.Entities.dll" />
+    <Reference Include="Forge.Extensions" HintPath="$(ForgeDlls)/Forge.Extensions.dll" />
+    <Reference Include="Forge.Networking" HintPath="$(ForgeDlls)/Forge.Networking.dll" />
+    <Reference Include="Forge.Utilities" HintPath="$(ForgeDlls)/Forge.Utilities.dll" />
+    <Reference Include="Lidgren.Network" HintPath="$(ForgeDlls)/Lidgren.Network.dll" />
+    <Reference Include="log4net" HintPath="$(ForgeDlls)/log4net.dll" />
+    <Reference Include="Newtonsoft.Json" HintPath="$(ForgeDlls)/Newtonsoft.Json.dll" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- jacobdufault/forge-sample's GameLogic library (its Forge systems and data), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>GameLogic</AssemblyName>
+    <RootNamespace>GameLogic</RootNamespace>
+    <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/forge-sample/GameLogic</GameRoot>
+    <GameProject>$(GameRoot)/GameLogic.csproj</GameProject>
+    <ForgeDlls>$(GameRoot)/../XNA/DLLs</ForgeDlls>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Forge.AllLibraries" HintPath="$(ForgeDlls)/Forge.AllLibraries.dll" />
+    <Reference Include="Forge.Collections" HintPath="$(ForgeDlls)/Forge.Collections.dll" />
+    <Reference Include="Forge.Entities" HintPath="$(ForgeDlls)/Forge.Entities.dll" />
+    <Reference Include="Forge.Extensions" HintPath="$(ForgeDlls)/Forge.Extensions.dll" />
+    <Reference Include="Forge.Networking" HintPath="$(ForgeDlls)/Forge.Networking.dll" />
+    <Reference Include="Forge.Utilities" HintPath="$(ForgeDlls)/Forge.Utilities.dll" />
+    <Reference Include="Lidgren.Network" HintPath="$(ForgeDlls)/Lidgren.Network.dll" />
+    <Reference Include="log4net" HintPath="$(ForgeDlls)/log4net.dll" />
+    <Reference Include="Newtonsoft.Json" HintPath="$(ForgeDlls)/Newtonsoft.Json.dll" />
+  </ItemGroup>
+</Project>
