@@ -60,6 +60,14 @@ plays its music through XACT, which needs nothing.
 
 Tried and not running here, each for a reason outside XNA:
 
+- **Space Conquest** (`cschar/spaceconquest` @ `8206744`): builds -- its 65 assets once the two
+  case-variant content directories its repository splits are merged as Windows sees them, and with
+  BinaryFormatter allowed -- and then its `Game1` reads `Content/Models/ModelConfig.txt`, a file its
+  repository does not contain.
+- **Divine Right** (`Haedrian/Divine-Right` @ `f8bb434`): its pathfinding P/Invokes Windows'
+  `Kernel32` (`RtlZeroMemory`, `QueryPerformanceCounter`), and its Parchment font is not in its
+  repository.
+
 - **Second Realipony** (`erikmooney/SecondRealipony` @ `77b15c0`, a demo): its sprite fonts name
   Bookman Old Style and Calibri, commercial fonts that neither its repository nor Game Studio ships.
 - **Eva Frontier** (`Righteous-Noodle/Eva-Frontier` @ `35def75`, Imagine Cup 2011): one of its XNA 4.0
