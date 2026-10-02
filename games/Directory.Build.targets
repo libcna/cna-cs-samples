@@ -6,9 +6,10 @@
     A game whose directory also holds sources its own project did not compile (resonance-game has
     ten) names that project in <GameProject>: exactly its Compile items are compiled, read from it.
     Each is found as Windows found it, segment by segment without regard to case (HeliumBiker lists
-    BluetoothDevice.cs and ships bluetoothDevice.cs). Its .resx resources are embedded under the
-    name its own build gave them (<RootNamespace>.<folders>.<name>.resources; Network Game State
-    Management's menu strings), and the Content and None files it copied to its output are copied
+    BluetoothDevice.cs and ships bluetoothDevice.cs). Its embedded resources keep the names its own
+    build gave them: <RootNamespace>.<folders>.<name>.resources for a .resx (Network Game State
+    Management's menu strings), <RootNamespace>.<folders>.<file> for any other file (Disentanglement's
+    GordionCube.txt). The Content and None files it copied to its output are copied
     beside the game (Saving Embedded Images opens its GameProjectImage.jpg through TitleContainer).
   -->
   <UsingTask TaskName="CnaGameProjectSourceFiles" TaskFactory="RoslynCodeTaskFactory"
@@ -49,11 +50,13 @@
         Sources = found.ToArray();
 
         var resources = new System.Collections.Generic.List<ITaskItem>();
-        foreach (Match m in Regex.Matches(text, "<EmbeddedResource Include=\"([^\"]+\\.resx)\""))
+        foreach (Match m in Regex.Matches(text, "<EmbeddedResource Include=\"([^\"]+)\""))
         {
             string include = m.Groups[1].Value.Replace('/', '\\');
+            bool resx = include.EndsWith(".resx", StringComparison.OrdinalIgnoreCase);
             var item = new TaskItem(resolve(include));
-            item.SetMetadata("LogicalName", RootNamespace + "." + Path.ChangeExtension(include, null).Replace('\\', '.') + ".resources");
+            item.SetMetadata("LogicalName", RootNamespace + "." +
+                (resx ? Path.ChangeExtension(include, null) + ".resources" : include).Replace('\\', '.'));
             resources.Add(item);
         }
         Resources = resources.ToArray();

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- dsplaisted/Disentanglement's XNA 4.0 Windows visualizer of a Gordian-knot puzzle solver,
+       unchanged, with its portable solver library. It draws with BasicEffect and loads no content
+       (its content project, which the repository does not ship, is referenced but unused). See
+       ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>WindowsPuzzleVisualizer</AssemblyName>
+    <RootNamespace>WindowsPuzzleVisualizer</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/dsplaisted_Disentanglement/DisentanglementApp/Disentanglement</GameRoot>
+    <GameProject>$(GameRoot)/DisentanglementWindows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="PuzzleSolver/PuzzleSolver.csproj" />
+  </ItemGroup>
+</Project>

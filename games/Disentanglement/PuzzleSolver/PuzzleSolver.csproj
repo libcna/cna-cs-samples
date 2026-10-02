@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- dsplaisted/Disentanglement's portable solver library, unchanged, with the puzzle it embeds. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>PuzzleSolver</AssemblyName>
+    <RootNamespace>PuzzleSolver</RootNamespace>
+    <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/dsplaisted_Disentanglement/DisentanglementPortable</GameRoot>
+    <GameProject>$(GameRoot)/DisentanglementPortable.csproj</GameProject>
+  </PropertyGroup>
+</Project>
