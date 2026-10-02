@@ -46,10 +46,21 @@ a thread, so in a browser only its menu. The nine added since were measured on C
 (2026-10-02): in a browser Missile Command, __Defense, Super Mario World, the Zelda clone, Bubble
 Bound (after CNA CBIND-149/150: WebGL 2 has neither the multisample mask nor texture swizzles),
 Spineless and Mahjong (after the generators carried its NuGet package) reach their title or menu;
-Escape From Enceladus and the Racing Game Kit start threads (`new Thread(...).Start()`) and stop with
-`PlatformNotSupportedException`, as HeliumBiker does. On Android all nine run -- titles and menus,
-Enceladus's save slots, the Racing Game Kit's attract mode -- so 24 of the 25 run on the emulator
-and 21 of the 25 in a browser (`/rv/tmp/cs-samples/{browser,android}/<Game>/`).
+Escape From Enceladus and the Racing Game Kit start threads (`new Thread(...).Start()`), which a
+single-threaded bundle refuses with `PlatformNotSupportedException`, as it does HeliumBiker's. On
+Android all nine run -- titles and menus, Enceladus's save slots, the Racing Game Kit's attract mode
+-- so 24 of the 25 run on the emulator.
+
+A game that starts threads runs in a browser as a multithreaded bundle:
+`scripts/browser-sample.sh games/<Game> --threads` (CNA.NET CSX-115/116/117, CNA CBIND-151, CNA
+`cde2251fa`, 2026-10-02; `/rv/tmp/cs-samples/browser-threads/<Game>/`). Escape From Enceladus reaches
+its three save slots, read from IndexedDB; HeliumBiker its CONNECT screen, as on the desktop;
+Resonance loads its level on its thread -- 32 physics threads on a 16-core host -- and plays the
+arena; the Racing Game Kit runs its attract mode at about 0.65 fps under SwiftShader, because a
+worker's WebGL calls are proxied to the page's thread, and at that rate its menus, which test a
+press while drawing, never see one (XNA's fixed-step catch-up runs several updates per draw);
+Missile Command, threaded too, starts a game on Space. So 24 of the 25 run in a browser as well,
+all but Playing in Traffic's video (`/rv/tmp/cs-samples/{browser,android}/<Game>/`).
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
