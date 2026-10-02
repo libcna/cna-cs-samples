@@ -86,6 +86,10 @@ on Android: both run .NET on Mono, whose `Thread.Join` does not consult the
 SynchronizationContext that CSX-118 relies on (CoreCLR's does), so the game thread never runs its
 loading thread's drawing. The Level Starter Kit (cna-samples SAMPLE-128) is a Silverlight Windows
 Phone app, not an XNA game.
+The GitHub games added since (CNA `90b553dc1` archives, 2026-10-03): Sonic 3, Disentanglement and
+HauntedHouse reach their first screens in a browser; SKraft loads its map sectors on threads of its
+own, so it runs as a multithreaded bundle (`--threads`) to its menu; the Forge sample's engine talks
+to itself over a local UDP server, which a browser cannot open.
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
