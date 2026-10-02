@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- raphaelmun/Xen's XenAspects library, unchanged: its Windows project. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XenAspects</AssemblyName>
+    <RootNamespace>XenAspects</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XenRoot)/XenAspects</GameRoot>
+    <GameProject>$(GameRoot)/XenAspects_Windows.csproj</GameProject>
+  </PropertyGroup>
+</Project>

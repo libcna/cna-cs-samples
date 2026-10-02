@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <XenRoot Condition="'$(XenRoot)' == ''">/rv/tmp/xna-games/raphaelmun_Xen</XenRoot>
+  </PropertyGroup>
+</Project>

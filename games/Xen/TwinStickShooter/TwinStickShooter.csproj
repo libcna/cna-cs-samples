@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- raphaelmun/Xen's twin-stick shooter starter kit, unchanged, on the Xen libraries it ships.
+       Content built from its own content project by XNA's BuildContent (Windows/Reach). See
+       ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>TwinStickShooter</AssemblyName>
+    <RootNamespace>TwinStickShooter</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XenRoot)/StarterKits/TwinStickShooter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xen-twinstick/Content</GameContent>
+    <GameProject>$(GameRoot)/TwinStickShooter.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Xen2D/Xen2D.csproj" />
+    <ProjectReference Include="../XenAspects/XenAspects.csproj" />
+    <ProjectReference Include="../XenGameBase/XenGameBase.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

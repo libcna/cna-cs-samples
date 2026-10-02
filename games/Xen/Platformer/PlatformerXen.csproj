@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- raphaelmun/Xen's Platformer starter kit, unchanged, on the Xen libraries it ships. Content
+       built from its own content project by XNA's BuildContent (Windows/HiDef); its sound effects
+       and song are .wma files byte-identical to Microsoft's Platformer starter kit's, taken from that
+       kit's retained XNA build output. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>PlatformerXen</AssemblyName>
+    <RootNamespace>PlatformerXen</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XenRoot)/StarterKits/Platformer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xen-platformer/Content</GameContent>
+    <GameProject>$(GameRoot)/PlatformerXen.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Xen2D/Xen2D.csproj" />
+    <ProjectReference Include="../XenAspects/XenAspects.csproj" />
+    <ProjectReference Include="../XenGameBase/XenGameBase.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

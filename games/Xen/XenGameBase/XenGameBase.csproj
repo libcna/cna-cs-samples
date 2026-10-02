@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- raphaelmun/Xen's XenGameBase library, unchanged: its Windows project. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XenGameBase</AssemblyName>
+    <RootNamespace>XenGameBase</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XenRoot)/XenGameBase</GameRoot>
+    <GameProject>$(GameRoot)/XenGameBase_Windows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Xen2D/Xen2D.csproj" />
+    <ProjectReference Include="../XenAspects/XenAspects.csproj" />
+  </ItemGroup>
+</Project>

@@ -58,6 +58,12 @@ internal static class Program
                 Console.WriteLine("skipped song: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
                 continue;
             }
+            // A sound effect from a .wma: WmaImporter decodes through Windows Media Format too.
+            if (item.GetMetadata("Importer") == "WmaImporter")
+            {
+                Console.WriteLine("skipped sound: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
+                continue;
+            }
             // VideoProcessor reads the video through Windows Media Format as well, and fails the same way.
             if (item.GetMetadata("Processor") == "VideoProcessor")
             {
