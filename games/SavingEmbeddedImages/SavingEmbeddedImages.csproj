@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Microsoft's XNA 4.0 Saving Embedded Images sample for Windows Phone, unchanged: it saves an
+       embedded image to the phone's media library. Content is XNA 4.0's own build (cna-samples
+       SAMPLE-106 win7-export). No C++ port exists. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>SavingEmbeddedImages</AssemblyName>
+    <RootNamespace>SavingEmbeddedImages</RootNamespace>
+    <CnaPhoneGame>SavingEmbeddedImages.SavingImagesGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/samples/SAMPLE-106-SavingEmbeddedImages_4_0/xna4-original/SavingEmbeddedImages</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-106-SavingEmbeddedImages_4_0/win7-export/Content</GameContent>
+    <GameProject>$(GameRoot)/SavingEmbeddedImages.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

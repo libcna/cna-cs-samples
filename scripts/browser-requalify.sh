@@ -2,21 +2,23 @@
 # Runs every manifest row in the browser (scripts/browser-sample.sh) and measures each canvas
 # capture against the row's desktop C# capture from a scripts/requalify.sh run.
 #
-# Usage: scripts/browser-requalify.sh --desktop DIR [--out DIR] [--seconds N] [SampleDirectory ...]
+# Usage: scripts/browser-requalify.sh --desktop DIR [--out DIR] [--seconds N] [--threads] [SampleDirectory ...]
 #
 # Writes DIR/<sample>/ and DIR/browser-requalification.md. "pass" means the browser project built,
 # the page ran for the given time without throwing, and the game drew (its capture is not one flat
 # colour). The pixel column is a measurement: animated and seeded rows differ by construction.
+# --threads builds every row as a multithreaded bundle (browser-sample.sh --threads).
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-desktop=""; out=""; seconds=6; rows=()
+desktop=""; out=""; seconds=6; threads=(); rows=()
 while [ $# -gt 0 ]; do
     case "$1" in
         --desktop) desktop="$2"; shift 2 ;;
         --out)     out="$2"; shift 2 ;;
         --seconds) seconds="$2"; shift 2 ;;
-        -h|--help) sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        --threads) threads=(--threads); shift ;;
+        -h|--help) sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         -*)        echo "error: unknown option $1" >&2; exit 2 ;;
         *)         rows+=("$1"); shift ;;
     esac
@@ -45,7 +47,7 @@ table="$out/browser-requalification.md"
     echo "# Browser requalification $(date +%Y-%m-%d)"
     echo
     echo "CNA.NET \`$(git -C "$here/../cna-cs" rev-parse --short HEAD)\`, CNA \`$(git -C "$here/../cna" rev-parse --short HEAD)\`,"
-    echo ".NET 11 browser-wasm, headless Chromium (SwiftShader WebGL2), ${seconds}s; desktop reference \`$desktop\`."
+    echo ".NET 11 browser-wasm${threads:+ multithreaded}, headless Chromium (SwiftShader WebGL2), ${seconds}s; desktop reference \`$desktop\`."
     echo
     echo "| Sample | Browser run | vs desktop C# | Canvas | Page errors |"
     echo "|---|---|---|---|---|"
@@ -55,7 +57,7 @@ for row in "${rows[@]}"; do
     log="$out/$row"
     mkdir -p "$log"
     result="pass"; pixels="-"; canvas="-"; errors=0
-    if ! "$here/scripts/browser-sample.sh" "$row" --out "$log" --seconds "$seconds" >"$log/browser.log" 2>&1; then
+    if ! "$here/scripts/browser-sample.sh" "$row" --out "$log" --seconds "$seconds" "${threads[@]}" >"$log/browser.log" 2>&1; then
         result="**fail**"
         grep -q "browser build failed" "$log/browser.log" && result="**build fails**"
     fi

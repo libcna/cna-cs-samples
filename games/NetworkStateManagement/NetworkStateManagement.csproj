@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Microsoft's XNA 4.0 Network Game State Management sample (menus, lobby and a networked gameplay screen), unchanged. Content is XNA 4.0's own build of its content project
+       (cna-samples SAMPLE-075). No C++ port exists to compare against. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>NetworkStateManagement</AssemblyName>
+    <RootNamespace>NetworkStateManagement</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/samples/SAMPLE-075-NGSMSample_4_0/xna4-original/NetworkStateManagement</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-075-NGSMSample_4_0/xna4-build/windows-reach/Content</GameContent>
+    <GameProject>$(GameRoot)/NetworkStateManagementWindows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

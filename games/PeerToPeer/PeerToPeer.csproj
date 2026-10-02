@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Microsoft's XNA 4.0 Peer to Peer sample (tanks in a peer-to-peer network session), unchanged. Content is XNA 4.0's own build of its content project
+       (cna-samples SAMPLE-103). No C++ port exists to compare against. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>PeerToPeer</AssemblyName>
+    <RootNamespace>PeerToPeer</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/samples/SAMPLE-103-PeerToPeerSample_4_0/xna4-original/PeerToPeer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-103-PeerToPeerSample_4_0/xna4-build/bin/Content</GameContent>
+    <GameProject>$(GameRoot)/PeerToPeerWindows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

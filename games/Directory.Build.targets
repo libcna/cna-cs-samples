@@ -6,13 +6,19 @@
     A game whose directory also holds sources its own project did not compile (resonance-game has
     ten) names that project in <GameProject>: exactly its Compile items are compiled, read from it.
     Each is found as Windows found it, segment by segment without regard to case (HeliumBiker lists
-    BluetoothDevice.cs and ships bluetoothDevice.cs).
+    BluetoothDevice.cs and ships bluetoothDevice.cs). Its .resx resources are embedded under the
+    name its own build gave them (<RootNamespace>.<folders>.<name>.resources; Network Game State
+    Management's menu strings), and the Content and None files it copied to its output are copied
+    beside the game (Saving Embedded Images opens its GameProjectImage.jpg through TitleContainer).
   -->
   <UsingTask TaskName="CnaGameProjectSourceFiles" TaskFactory="RoslynCodeTaskFactory"
              AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
       <Project ParameterType="System.String" Required="true" />
+      <RootNamespace ParameterType="System.String" Required="true" />
       <Sources ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+      <Resources ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+      <Copies ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
     </ParameterGroup>
     <Task>
       <Using Namespace="System.IO" />
@@ -20,11 +26,10 @@
       <Using Namespace="System.Text.RegularExpressions" />
       <Code Type="Fragment" Language="cs"><![CDATA[
         string root = Path.GetDirectoryName(Project);
-        var found = new System.Collections.Generic.List<ITaskItem>();
-        foreach (Match m in Regex.Matches(File.ReadAllText(Project), "<Compile Include=\"([^\"]+)\""))
+        Func<string, string> resolve = include =>
         {
             string path = root;
-            foreach (string segment in m.Groups[1].Value.Split('\\', '/'))
+            foreach (string segment in include.Split('\\', '/'))
             {
                 string exact = Path.Combine(path, segment);
                 path = File.Exists(exact) || Directory.Exists(exact) || !Directory.Exists(path)
@@ -33,16 +38,46 @@
                           .FirstOrDefault(e => string.Equals(Path.GetFileName(e), segment, StringComparison.OrdinalIgnoreCase))
                       ?? exact;
             }
-            found.Add(new TaskItem(path));
+            return path;
+        };
+        string text = File.ReadAllText(Project);
+        var found = new System.Collections.Generic.List<ITaskItem>();
+        foreach (Match m in Regex.Matches(text, "<Compile Include=\"([^\"]+)\""))
+        {
+            found.Add(new TaskItem(resolve(m.Groups[1].Value)));
         }
         Sources = found.ToArray();
+
+        var resources = new System.Collections.Generic.List<ITaskItem>();
+        foreach (Match m in Regex.Matches(text, "<EmbeddedResource Include=\"([^\"]+\\.resx)\""))
+        {
+            string include = m.Groups[1].Value.Replace('/', '\\');
+            var item = new TaskItem(resolve(include));
+            item.SetMetadata("LogicalName", RootNamespace + "." + Path.ChangeExtension(include, null).Replace('\\', '.') + ".resources");
+            resources.Add(item);
+        }
+        Resources = resources.ToArray();
+
+        var copies = new System.Collections.Generic.List<ITaskItem>();
+        foreach (Match m in Regex.Matches(text, "<(Content|None) Include=\"([^\"]+)\"\\s*>((?:(?!</\\1>).)*)</\\1>", RegexOptions.Singleline))
+        {
+            if (!Regex.IsMatch(m.Groups[3].Value, "<CopyToOutputDirectory>\\s*(PreserveNewest|Always)\\s*</CopyToOutputDirectory>")) continue;
+            string include = m.Groups[2].Value;
+            var item = new TaskItem(resolve(include));
+            item.SetMetadata("Link", include.Replace('\\', '/'));
+            item.SetMetadata("CopyToOutputDirectory", "PreserveNewest");
+            copies.Add(item);
+        }
+        Copies = copies.ToArray();
       ]]></Code>
     </Task>
   </UsingTask>
 
   <Target Name="CnaGameProjectSources" BeforeTargets="BeforeBuild" Condition="'$(GameProject)' != ''">
-    <CnaGameProjectSourceFiles Project="$(GameProject)">
+    <CnaGameProjectSourceFiles Project="$(GameProject)" RootNamespace="$(RootNamespace)">
       <Output TaskParameter="Sources" ItemName="Compile" />
+      <Output TaskParameter="Resources" ItemName="EmbeddedResource" />
+      <Output TaskParameter="Copies" ItemName="None" />
     </CnaGameProjectSourceFiles>
   </Target>
 </Project>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Memory Madness, the Windows Phone game of Microsoft's XNA Game Studio 4.0 hands-on lab
+       (exercise 2, "polish and menus"), unchanged. Content is XNA 4.0's own Windows Phone build of
+       its content project (cna-samples SAMPLE-097). No C++ port exists. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>MemoryMadness</AssemblyName>
+    <RootNamespace>MemoryMadness</RootNamespace>
+    <CnaPhoneGame>MemoryMadness.MemoryMadnessGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/samples/SAMPLE-097-MemoryMadnessLab_4_0/xna4-original/MemoryMadnessLab_4_0/Source/EX2_PolishAndMenus/MemoryMadness</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-097-MemoryMadnessLab_4_0/xna4-build/Content-ex2-phone</GameContent>
+    <GameProject>$(GameRoot)/MemoryMadness/MemoryMadness.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Microsoft's XNA 4.0 Network Prediction sample (tanks over a network session with prediction and smoothing), unchanged. Content is XNA 4.0's own build of its content project
+       (cna-samples SAMPLE-100). No C++ port exists to compare against. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>NetworkPrediction</AssemblyName>
+    <RootNamespace>NetworkPrediction</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/samples/SAMPLE-100-NetworkPredictionSample_4_0/xna4-original/NetworkPrediction</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/samples/SAMPLE-100-NetworkPredictionSample_4_0/xna4-build/Content</GameContent>
+    <GameProject>$(GameRoot)/NetworkPredictionWindows.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
