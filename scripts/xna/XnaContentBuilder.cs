@@ -64,6 +64,14 @@ internal static class Program
                 Console.WriteLine("skipped video: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
                 continue;
             }
+            // A source file the game's repository does not ship (its author's machine had it):
+            // listed, not attempted, for the same reason. A game that loads it fails at run time,
+            // naming it.
+            if (!File.Exists(item.ItemSpec))
+            {
+                Console.WriteLine("skipped missing: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
+                continue;
+            }
             assets.Add(item);
         }
         Console.WriteLine("content project: " + assets.Count + " assets");

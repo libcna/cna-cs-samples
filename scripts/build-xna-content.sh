@@ -20,6 +20,8 @@
 # device, so it gets a private Xvfb, never the desktop. Wine cannot run WmaImporter (songs) or
 # VideoProcessor (videos); those assets are listed, not built, and --song-standins/--video-standins
 # write labelled stand-ins for them (scripts/song-standin.sh, scripts/video-standin.sh).
+# A source file the content project lists and its repository does not ship is listed as
+# "skipped missing" and not built either.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 gs="${CNA_XNA40_GS:-/rv/tmp/samples/_tools/xna-game-studio-4-refresh/admin}"
