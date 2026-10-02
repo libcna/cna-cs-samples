@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- petriw/XNA-Shader-Programming's "Tutorial26_BumpMappedNoise" (XNA 4.0), unchanged. Content built from its own
+       content project by XNA's BuildContent (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>NoiseGPU</AssemblyName>
+    <RootNamespace>NoiseGPU</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/petriw_XNA-Shader-Programming/Tutorial26_BumpMappedNoise/NoiseGPU/NoiseGPU</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petriw/Tutorial26_BumpMappedNoise/Content</GameContent>
+    <GameProject>$(GameRoot)/BumpMapNoise.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

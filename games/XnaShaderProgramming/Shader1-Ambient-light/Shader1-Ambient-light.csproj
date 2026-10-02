@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- petriw/XNA-Shader-Programming's "XNA4ShaderProgramming 1 - Ambient light" (XNA 4.0), unchanged. Content built from its own
+       content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XNAShaderProgramming</AssemblyName>
+    <RootNamespace>XNAShaderProgramming</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/petriw_XNA-Shader-Programming/XNA4ShaderProgramming 1 - Ambient light/XNAShaderProgramming/XNAShaderProgramming</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petriw/1-Ambient-light/Content</GameContent>
+    <GameProject>$(GameRoot)/XNAShaderProgramming.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
