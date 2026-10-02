@@ -60,6 +60,10 @@ plays its music through XACT, which needs nothing.
 
 Tried and not running here, each for a reason outside XNA:
 
+- **StarWarrior** (`thelinuxlich/starwarrior_CSharp` @ `61d6880`, the Artemis example game): its sources
+  use a generic `EntityProcessingSystem<T>` that neither the `artemis.dll` its repository ships nor
+  the Artemis repository's own source (`thelinuxlich/artemis_CSharp` @ `db1e4e0`) has.
+
 - **Space Conquest** (`cschar/spaceconquest` @ `8206744`): builds -- its 65 assets once the two
   case-variant content directories its repository splits are merged as Windows sees them, and with
   BinaryFormatter allowed -- and then its `Game1` reads `Content/Models/ModelConfig.txt`, a file its
