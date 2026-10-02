@@ -36,12 +36,20 @@ checkout.
 | Mahjong (XNA client) | `github.com/Jomata/Mahjong` @ `bc81398` (MIT; tile art by Martin Persson), with its Logic library | built: its content project (161 `.xnb`: 153 tile images, its fonts in Courier New and Game Studio's Quartz MS and Segoe UI Mono) | (2026-10-02, CNA `6e273cd89`, CNA.NET `1326161`) its menu over the table; a click on Play Mahjong deals against three computer players: its hand with the recommended discards highlighted and the dora indicator. Its options live in its `App.config`, read through ConfigurationManager from its .NET package. Its menu hit-tests the mouse, which found CNA CBIND-147 and CBIND-148 |
 | XNA 4.0 Racing Game Kit | `/rv/tmp/XNAGameStudio/Samples/XNA-4-Racing-Game-Kit-master` (exDream's RacingGame brought to XNA 4.0; identical to cna-samples SAMPLE-152 `xna4-original`) | its own `RacingGameContent.contentproj` built by XNA 4.0's pipeline on Windows: SAMPLE-152 `evidence/xna4-authentic-build/Debug/Content` (339 `.xnb`, XACT banks, tracks) | (2026-10-02, CNA `fb5cb3ba2`, CNA.NET `ff08b93`) loads for about 40 s, switches to full screen as its settings ask, and runs its attract mode: the camera flies the track through the city and the mountains with the car, shadows and its "Press START to continue" -- no render-loop error in its own log. Needed CNA.NET CSX-113 (`models\Cube` for `Models/Cube.xnb`), CSX-114 (its Windows Forms: `Form.FromHandle`, `MessageBox`; opt-in `<CnaWindowsFormsCompat>`) and CNA FX-142 (a ps_1_x colour input linked as centroid on GLSL ES). Then plays: Space (held 2-3 s -- a frame takes longer than a quick tap under llvmpipe, so a short press falls between two polls; the same in full screen and windowed) opens its main menu, and three more Space presses and the up arrow take it into a race on the Advanced track -- lap 1/3, 62 MPH in 2nd gear, its HUD and post-processing (`/rv/tmp/cs-samples/games-racing-race/`, windowed 1024x768 from a seeded `RacingGameSettings.xml`; full-screen menu `games-racing-fullscreen-menu/`). Start it from `bin/Release`: XNA's `AudioEngine` resolves its `Content\Audio` path against the working directory |
 
-In a browser and on Android (2026-10-02, CNA `ffb82bc0d`): `scripts/browser-sample.sh games/<Game>`
-(headless Chromium) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
-from the same project and content. In a browser 14 of the 16 reach their title or play; HeliumBiker
-starts a thread, which single-threaded WebAssembly cannot, and Playing in Traffic plays a video, which
-the browser build has no backend for. On Android 15 of the 16 run; Playing in Traffic stops at the same
-honest refusal of its video. Resonance loads its levels on a thread, so in a browser only its menu.
+In a browser and on Android: `scripts/browser-sample.sh games/<Game>` (headless Chromium, WebGL2
+through SwiftShader) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
+from the same project and content. The first 16 were measured on CNA `ffb82bc0d`: in a browser 14
+reach their title or play -- HeliumBiker starts a thread, which single-threaded WebAssembly cannot,
+and Playing in Traffic plays a video, which the browser build has no backend for -- and on Android 15
+run (Playing in Traffic stops at the same honest refusal of its video). Resonance loads its levels on
+a thread, so in a browser only its menu. The nine added since were measured on CNA `3c72165e6`
+(2026-10-02): in a browser Missile Command, __Defense, Super Mario World, the Zelda clone, Bubble
+Bound (after CNA CBIND-149/150: WebGL 2 has neither the multisample mask nor texture swizzles),
+Spineless and Mahjong (after the generators carried its NuGet package) reach their title or menu;
+Escape From Enceladus and the Racing Game Kit start threads (`new Thread(...).Start()`) and stop with
+`PlatformNotSupportedException`, as HeliumBiker does. On Android all nine run -- titles and menus,
+Enceladus's save slots, the Racing Game Kit's attract mode -- so 24 of the 25 run on the emulator
+and 21 of the 25 in a browser (`/rv/tmp/cs-samples/{browser,android}/<Game>/`).
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
