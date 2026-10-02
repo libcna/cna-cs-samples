@@ -125,8 +125,14 @@ for _ in $(seq 1 120); do
 done
 [ -n "$window" ] || { echo "error: no window matching /$window_pattern/ appeared" >&2; exit 1; }
 
-DISPLAY="$display" xdotool windowmove "$window" 100 100
-sleep 0.5
+# A game that sizes its window after showing it can resize from the position it still believes,
+# undoing a move that arrived in between (Mahjong, 800x480 to 850x700); --xdotool coordinates
+# assume +100+100, so the move is repeated until it holds.
+for attempt in 1 2 3 4 5 6 7 8 9 10; do
+    DISPLAY="$display" xdotool windowmove "$window" 100 100
+    sleep 0.5
+    DISPLAY="$display" xwininfo -id "$window" | grep -q -- '-geometry [0-9]*x[0-9]*+100+100$' && break
+done
 DISPLAY="$display" xdotool getwindowname "$window" >"$out/window-name.txt"
 
 DISPLAY="$display" xdotool windowfocus --sync "$window"
