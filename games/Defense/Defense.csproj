@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- gamealgorithms/defense (__Defense, the tower-defense game of Sanjay Madhav's "Game Programming
+       Algorithms and Techniques"), unchanged, as its XNA project builds it. Content built from that
+       project's own XNAContent.contentproj by XNA's BuildContent (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>defense</AssemblyName>
+    <RootNamespace>defense</RootNamespace>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/defense</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/defense/Content</GameContent>
+    <GameProject>$(GameRoot)/defense-xna.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

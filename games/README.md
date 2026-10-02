@@ -27,6 +27,7 @@ checkout.
 | Playing in Traffic | `github.com/debreuil/PlayingInTrafficGame` @ `3ca43c1` | built likewise, XACT banks; its four videos labelled stand-ins (`--video-standins`: the game's own `.wmv`, XNA's Video layout) | its splash video, decoded and drawn by SpriteBatch under its Flash overlay, then its main menu; it reads only an Xbox 360 gamepad (no input manager without one, as on Windows) |
 | Resonance | `github.com/lordcodes/resonance-game` @ `b591114` | built: 282 assets with its own pipeline extension, XACT banks by XactBld3; its 4 songs are labelled stand-ins (`--song-standins`) | loads its level on its own thread, then plays: the arena, the Bad Vibes, the HUD; physics from the BEPUphysics binary it ships; the menu's music |
 | Escape From Enceladus | `github.com/zachmu/escape-from-enceladus` @ `337b3bb`, with the Farseer Physics 3.3.1 and DebugView it redistributes and its Json.NET 4.5 binary | built: its content project (558 `.xnb`, 3 effects, XACT with a streaming song bank, its November font) and DebugView's; its four music tracks are not in its repository, so the song bank holds labelled 5 s silent stand-ins | (2026-10-02, CNA `46231e857`, CNA.NET `b4bedce`) title with its three save slots read at once; Space (its keyboard scheme), Enter: its first room plays, the player runs right |
+| __Defense | `github.com/gamealgorithms/defense` @ `3b456a6` (the tower-defense sample of Sanjay Madhav's *Game Programming Algorithms and Techniques*) | built: its XNA project's `XNAContent.contentproj` (54 `.xnb`, 3 bloom effects, Game Studio's Quartz MS and Segoe UI Mono fonts) -- the `Content/` it ships beside it belongs to its MonoGame project | (2026-10-02, CNA `22b30b30e`, CNA.NET `1326161`) full screen at the desktop's mode, as it asks: its menu, then START!!: the hex field with its bloom, the base and wave 1 under way |
 
 In a browser and on Android (2026-10-02, CNA `ffb82bc0d`): `scripts/browser-sample.sh games/<Game>`
 (headless Chromium) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -43,8 +44,9 @@ compiled against XNA 4.0 (CSX-099), a vertex shader's point-size output on GLSL 
 its `.wma` (CSX-105), `ActivatedEventArgs.IsApplicationInstancePreserved` (CSX-106), sprites
 placed in 3D by a stock effect in `SpriteBatch.Begin` (CNA Task 1120), a video frame a
 SpriteBatch accepts (CNA CBIND-142), a Shader Model 3 effect as Microsoft's compiler writes it
-(CNA FX-141), one storage device shared by several worker threads (CSX-109) and `List<T>.ForEach`
-as .NET Framework 4.0 ran it (CSX-110).
+(CNA FX-141), one storage device shared by several worker threads (CSX-109), `List<T>.ForEach`
+as .NET Framework 4.0 ran it (CSX-110), the graphics adapters in a game's constructor (CNA
+CBIND-145, CSX-111) and a not-yet-created device read as null (CSX-112).
 
 XNA writes every song as Windows Media Audio, which neither CNA nor FNA decodes. As in an FNA port,
 `scripts/convert-xna-songs.sh <content-dir>` writes an Ogg Vorbis copy beside each `.wma`; the
