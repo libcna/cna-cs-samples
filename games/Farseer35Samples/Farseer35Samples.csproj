@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Farseer Physics Engine 3.5's own XNA samples, as laie/RescueTheVisualStudio ships them, unchanged. Content built from the samples' and the DebugView's content projects by XNA's BuildContent (Windows/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Samples XNA</AssemblyName>
+    <RootNamespace>FarseerPhysics.Samples</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/laie_RescueTheVisualStudio/FarseerPhysics_3_5/Farseer Physics Samples 3.5</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/farseer35/Content</GameContent>
+    <GameProject>$(GameRoot)/Samples XNA.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <ProjectReference Include="DebugView/DebugView.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

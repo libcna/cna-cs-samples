@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Farseer Physics DebugView 3.5 as laie/RescueTheVisualStudio ships it, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>DebugView XNA</AssemblyName>
+    <RootNamespace>FarseerPhysics.DebugView</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/laie_RescueTheVisualStudio/FarseerPhysics_3_5/Farseer Physics DebugView 3.5</GameRoot>
+    <GameProject>$(GameRoot)/DebugView XNA.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Farseer/Farseer.csproj" />
+  </ItemGroup>
+</Project>

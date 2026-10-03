@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Jewelots/Spelunky-Tiles' SpelunkyTileTest, Spelunky-style tiles cut from a 2D boolean map, unchanged, on its TileGenerator. Content built from its own content project by XNA's BuildContent (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>SpelunkyTileTest</AssemblyName>
+    <RootNamespace>SpelunkyTileTest</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Jewelots_Spelunky-Tiles/src/SpelunkyTileTest/SpelunkyTileTest</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/spelunky/Content</GameContent>
+    <GameProject>$(GameRoot)/SpelunkyTileTest.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="TileGenerator/TileGenerator.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

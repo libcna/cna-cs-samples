@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Jewelots/Spelunky-Tiles' TileGenerator library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>TileGenerator</AssemblyName>
+    <RootNamespace>TileGenerator</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Jewelots_Spelunky-Tiles/src/TileGenerator</GameRoot>
+    <GameProject>$(GameRoot)/TileGenerator.csproj</GameProject>
+  </PropertyGroup>
+</Project>

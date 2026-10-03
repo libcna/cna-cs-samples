@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- google-code-export/the-lost-levels' tile engine (tutorial series part 9), unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>TileEngine</AssemblyName>
+    <RootNamespace>TileEngine</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/google-code-export_the-lost-levels/tileengineseries9/TileEngine/TileEngine</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/tileengine/Content</GameContent>
+    <GameProject>$(GameRoot)/TileEngine.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

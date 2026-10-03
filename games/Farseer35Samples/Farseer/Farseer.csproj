@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Farseer Physics Engine 3.5 as laie/RescueTheVisualStudio ships it, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>FarseerPhysics XNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/laie_RescueTheVisualStudio/FarseerPhysics_3_5/Farseer Physics Engine 3.5</GameRoot>
+    <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>
