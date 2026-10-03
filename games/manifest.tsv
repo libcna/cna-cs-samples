@@ -294,22 +294,22 @@ checkout		https://github.com/tylerforsythe/IceCreamXNA @ c4a389e					/rv/tmp/xna
 checkout		https://github.com/v-venes/XNA-4.0-Book-Projects @ eaf6b31					/rv/tmp/xna-games/v-venes_XNA-4.0-Book-Projects		not used by any game project (4.9M): downloaded and triaged, never run or recorded	
 checkout		https://github.com/bonesoul/voxeliq @ 249b1d0					/rv/tmp/xna-games/voxeliq		not used by any game project (212M): recorded in games/README.md (blocked or not XNA 4.0)	
 checkout		https://github.com/xexuxjy/bullet-xna @ 73b2e1b					/rv/tmp/xna-games/xexuxjy_bullet-xna		not used by any game project (5.4M): recorded in games/README.md (blocked or not XNA 4.0)	
-content								/rv/tmp/xna-games-content/almirante-entites	not used by any game project (5.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-fonts	not used by any game project (5.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-gui	not used by any game project (5.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-inputs	not used by any game project (5.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-resources	not used by any game project (6.4M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-scenes	not used by any game project (6.9M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/almirante-tweener	not used by any game project (5.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/babsang	not used by any game project (162M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/drumkit	not used by any game project (8.7M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/lostlevels	not used by any game project (9.7M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/rugbyleague	not used by any game project (23M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/shading	not used by any game project (87M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/sleepwalker	not used by any game project (224M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/songtest	not used by any game project (752K): content built for a blocked game	
-content								/rv/tmp/xna-games-content/spaceconquest	not used by any game project (215M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/starwarrior	not used by any game project (136K): content built for a blocked game	
-content								/rv/tmp/xna-games-content/voxeliq	not used by any game project (1.8M): content built for a blocked game	
-content								/rv/tmp/xna-games-content/ycpu	not used by any game project (36K): content built for a blocked game	
-content								/rv/tmp/xna-games-content/zeldaoracle	not used by any game project (18M): content built for a blocked game	
+content								/rv/tmp/xna-games-content/almirante-entites	not used by any game project (5.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-fonts	not used by any game project (5.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-gui	not used by any game project (5.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-inputs	not used by any game project (5.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-resources	not used by any game project (6.4M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-scenes	not used by any game project (6.9M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/almirante-tweener	not used by any game project (5.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/babsang	not used by any game project (162M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/drumkit	not used by any game project (8.7M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/lostlevels	not used by any game project (9.7M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/rugbyleague	not used by any game project (23M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/shading	not used by any game project (87M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/sleepwalker	not used by any game project (224M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/songtest	not used by any game project (752K): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/spaceconquest	not used by any game project (215M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/starwarrior	not used by any game project (136K): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/voxeliq	not used by any game project (1.8M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/ycpu	not used by any game project (36K): content built for a blocked game	deleted 2026-10-03 (owner's decision)
+content								/rv/tmp/xna-games-content/zeldaoracle	not used by any game project (18M): content built for a blocked game	deleted 2026-10-03 (owner's decision)
