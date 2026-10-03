@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- zachmu/tiled-xna's example, a Tiled map drawn by its Tiled.cs reader, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef), its MapTest.tmx copied as that project copies it. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>TiledExample</AssemblyName>
+    <RootNamespace>TiledExample</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/zachmu_tiled-xna/Example</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/tiledxna/Content</GameContent>
+    <GameProject>$(GameRoot)/TiledExample.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
