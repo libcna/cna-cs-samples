@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Krypton lighting copy mdlawson/ThievesLikeUs ships under Vendor, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Krypton</AssemblyName>
+    <RootNamespace>Krypton</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mdlawson_ThievesLikeUs/Vendor/Krypton</GameRoot>
+    <GameProject>$(GameRoot)/Krypton.csproj</GameProject>
+  </PropertyGroup>
+</Project>

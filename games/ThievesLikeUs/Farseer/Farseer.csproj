@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Farseer Physics copy mdlawson/ThievesLikeUs ships under Vendor, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>FarseerPhysicsXNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mdlawson_ThievesLikeUs/Vendor/Farseer</GameRoot>
+    <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

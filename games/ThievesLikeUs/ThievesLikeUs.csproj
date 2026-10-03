@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- mdlawson/ThievesLikeUs, unchanged. Its references to Farseer and Krypton name their builds
+       under Vendor/*/bin, which the repository does not ship; they are built here from the Vendor
+       sources it does ship. Content built from its own content project by XNA's BuildContent
+       (Windows/Reach) with its TiledLib and ThievesLikeUsPipeline extensions. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>ThievesLikeUs</AssemblyName>
+    <RootNamespace>ThievesLikeUs</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mdlawson_ThievesLikeUs/ThievesLikeUs</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/thieveslikeus/Content</GameContent>
+    <GameProject>$(GameRoot)/ThievesLikeUs.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <ProjectReference Include="Krypton/Krypton.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
