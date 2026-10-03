@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ZaneDubya/MP3Sharp's XNA 4.0 sample, unchanged: an MP3 decoded by MP3Sharp and streamed through a DynamicSoundEffectInstance. Its sample.mp3 is copied beside it as its project copies it. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XNA4Sample</AssemblyName>
+    <RootNamespace>XNA4Sample</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ZaneDubya_MP3Sharp/XNA4Sample</GameRoot>
+    <GameProject>$(GameRoot)/XNA4Sample.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="MP3Sharp/MP3Sharp.csproj" />
+  </ItemGroup>
+</Project>

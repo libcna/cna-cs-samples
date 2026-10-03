@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's MDTerrainDemo, midpoint-displacement terrain, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>MDTerrainDemo</AssemblyName>
+    <RootNamespace>MDTerrainDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/MidpointDisplacementDemo/MDTerrainDemo/MDTerrainDemo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mdterrain/Content</GameContent>
+    <GameProject>$(GameRoot)/MDTerrainDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+    <ProjectReference Include="../Framework.Landscape/Framework.Landscape.csproj" />
+    <ProjectReference Include="../Framework.Terrain.CDLOD/Framework.Terrain.CDLOD.csproj" />
+    <ProjectReference Include="../Framework.Terrain/Framework.Terrain.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

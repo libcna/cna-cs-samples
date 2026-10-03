@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's DemoFramework library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Willcraftia.Xna.Framework</AssemblyName>
+    <RootNamespace>Willcraftia.Xna.Framework</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/DemoFramework/DemoFramework</GameRoot>
+    <GameProject>$(GameRoot)/DemoFramework.csproj</GameProject>
+  </PropertyGroup>
+</Project>

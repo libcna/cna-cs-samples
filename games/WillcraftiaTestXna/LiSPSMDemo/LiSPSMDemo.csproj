@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's LiSPSMDemo, light-space perspective shadow maps, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef), with the sixteen files of Microsoft's Shadow Mapping sample its content README asks for. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>LiSPSMDemo</AssemblyName>
+    <RootNamespace>LiSPSMDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/LiSPSMDemo/LiSPSMDemo/LiSPSMDemo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/lispsm/Content</GameContent>
+    <GameProject>$(GameRoot)/LiSPSMDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- thegouldfish/SharpMik's XNA test player, unchanged: MOD files mixed by SharpMik and streamed through a DynamicSoundEffectInstance. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>XNAWindowsTest</AssemblyName>
+    <RootNamespace>XNAWindowsTest</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/thegouldfish_SharpMik/XNATest/XNAWindowsTest</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/sharpmik/Content</GameContent>
+    <GameProject>$(GameRoot)/XNAWindowsTest.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="SharpMik/SharpMik.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <!-- It plays "content/mods/musicN.mod" through a FileStream; Windows' file system ignored the letter case of its Content directory. -->
+    <CnaWindowsPath Include="content" Path="content" LinksTo="Content" />
+  </ItemGroup>
+</Project>

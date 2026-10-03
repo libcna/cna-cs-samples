@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's MidpointDisplacementDemo, midpoint-displacement height map, unchanged. Its content project is empty. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>MidpointDisplacementDemo</AssemblyName>
+    <RootNamespace>MidpointDisplacementDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/MidpointDisplacementDemo/MidpointDisplacementDemo/MidpointDisplacementDemo</GameRoot>
+    <GameProject>$(GameRoot)/MidpointDisplacementDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+    <ProjectReference Include="../Framework.Terrain/Framework.Terrain.csproj" />
+  </ItemGroup>
+</Project>

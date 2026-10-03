@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's Framework.Landscape library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Willcraftia.Xna.Framework.Landscape</AssemblyName>
+    <RootNamespace>Willcraftia.Xna.Framework.Landscape</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/Framework.Landscape/Framework.Landscape</GameRoot>
+    <GameProject>$(GameRoot)/Framework.Landscape.csproj</GameProject>
+  </PropertyGroup>
+</Project>

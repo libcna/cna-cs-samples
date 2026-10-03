@@ -80,6 +80,10 @@ checkout.
 | Spelunky Tiles | `github.com/Jewelots/Spelunky-Tiles` @ `fc5c7d4`, `SpelunkyTileTest`, Spelunky-style tiles cut from a boolean map, on its TileGenerator library (`games/SpelunkyTiles/*`) | built from its own content project by XNA's BuildContent (Windows/HiDef) | (2026-10-03) the left button places 64-pixel tiles, which it merges into rectangles with edge decals; the right button removes one, the middle button shows its rectangles. It draws nothing until a tile is placed. No defect found |
 | Farseer Physics 3.5 samples | Farseer Physics Engine 3.5's own XNA samples, as `github.com/laie/RescueTheVisualStudio` @ `e5a6f60` ships them with the engine and its DebugView (`games/Farseer35Samples/*`) | built from the samples' and the DebugView's content projects by XNA's BuildContent (Windows/Reach) | (2026-10-03) the samples menu, then Stacked Objects: its pyramid of boxes settles under the agent at 60 fps. No defect found |
 | Tile engine (part 9) | `github.com/google-code-export/the-lost-levels` @ `8a8a636`, `tileengineseries9`: the isometric tile-engine tutorial's ninth part | built from its own content project by XNA's BuildContent (Windows/Reach) | (2026-10-03) its isometric map with height tiles and slopes, and its character Vlad walking it on the arrow and keypad keys. Walking off the map's top-left edge throws `ArgumentOutOfRangeException` from its own `TileMap.GetCellAtWorldPoint`, which indexes its rows without a bounds check, as it did under XNA. No defect found |
+| MP3Sharp sample | `github.com/ZaneDubya/MP3Sharp` @ `c92d6e5`, its `XNA4Sample`, on the MP3Sharp decoder it ships (`games/Mp3Sharp/*`; the decoder's own project now targets .NET Framework 4.7.2 and is compiled from its sources here) | its `sample.mp3`, copied beside it as its project copies it | (2026-10-03) streams the MP3 through a `DynamicSoundEffectInstance`: the output SDL's disk driver captured matches an ffmpeg decode of the same file to an RMS difference of 20 against a signal of 9,500 (peak 68 of 32,768, decoder rounding). No defect found |
+| SharpMik player | `github.com/thegouldfish/SharpMik` @ `9e2aab7`, its XNA Windows test player on the SharpMik library it ships (`games/SharpMik/*`), as transferred from CodePlex: the next commits rework the library for MikMod 3.3.10 without its XNA project, which then lists files the code no longer has | built from its own content project by XNA's BuildContent (Windows/Reach), its six `.mod` files copied as the project copies them | (2026-10-03) Play starts "cannon fodder" and Next "bootup", mixed by SharpMik and streamed through a `DynamicSoundEffectInstance` (SDL's disk driver captured the music). It opens `content/mods/musicN.mod` where its content directory is `Content`, which Windows' file system did not mind, so `content` is linked beside it (`CnaWindowsPath`). No defect found |
+| LilyPath logo | `github.com/jaquadro/LilyPath` @ `a3750eb`, its `LilyPathLogo` demo on the library's XNA build (`games/LilyPath/*`): the last commit before its XNA project stopped listing the files the library needs | none (paths, arcs and fills drawn by its `DrawBatch`) | (2026-10-03, after CNA CBIND-156 and CNA.NET CSX-135) its lily-pad logo, matching the XNA-rendered image in its README to 2,281 of 129,600 pixels at 10% (MSAA edges). It drew all black before: CNA's stock effects ignored the brush texture its `DrawBatch` sets on the device after applying a texture-less `BasicEffect` |
+| willcraftia's XNA tests | `github.com/willcraftia/TestXna` @ `f271604`: seven demos (`games/WillcraftiaTestXna/*`) -- light-space perspective and parallel-split shadow maps (LiSPSM, PSSM), CDLOD terrain (Terrain, TiledTerrain, MDTerrain) on hardware instancing and vertex texture fetch, midpoint-displacement and Perlin-noise height maps -- on its five libraries | built from their own content projects by XNA's BuildContent (Windows/HiDef); the shadow demos with the sixteen files of Microsoft's Shadow Mapping sample (`dude.fbx`, `grid.fbx` and their textures) their content README asks to be copied in | (2026-10-03, after CNA FX-145 and CNA.NET CSX-136) all seven run. LiSPSM matches its XNA build under Wine, its variance shadow included, which was speckled before: its blur read the Vector2 moments at fp16. TerrainDemo's floating sheets and ribbons are its own: its XNA build under Wine draws the same |
 
 In a browser and on Android: `scripts/browser-sample.sh games/<Game>` (headless Chromium, WebGL2
 through SwiftShader) and `scripts/android-sample.sh games/<Game>` (the x86_64 emulator) build each game
@@ -226,6 +230,8 @@ Tried and not running here, each for a reason outside XNA:
   `E:\Libraries\...`, which the repository does not ship, at versions it does not name.
 - **Mythology** (`AlanWills/Mythology`, one commit): its XRpgLibrary project omits
   `TileEngine/ILayer.cs`, which its map layers implement, so it does not build as published.
+- **TestBench1** (`geofftnz/TestBench1`): its terrain test bench's sprite font names Consolas, a
+  Windows font neither its repository nor Game Studio ships.
 - **Rugby League** (`initials/RugbyLeague` @ `a1aa01a`): its XNAFlixel content
   (`initials/XNAFlixel` @ `0ef7a5c`) has sprite fonts that name Munro, Small Pixel and Space
   Marine, which neither repository ships (only `deffont.ttf`, Nokia Cellphone FC).
@@ -305,6 +311,14 @@ projects name it `..\..\SWF2XNA`), and its pipeline as six extensions in depende
 `Vex/Vex.csproj`, `SwfReader/SwfFormat.csproj`, `GdiRenderer/GdiRenderer.csproj`,
 `VexPipelineReader/VexPipelineReader.csproj`, `VexTo2DPhysics/VexTo2DPhysics.csproj`,
 `VexPipeline/VexPipeline.csproj` (`--profile HiDef`; Playing in Traffic adds `--video-standins`).
+
+willcraftia's LiSPSM and PSSM content projects list Microsoft's Shadow Mapping sample files,
+which the repository leaves out as too large; as its content README asks, copy `dude.fbx`,
+`grid.fbx`, `Grid.png` and the thirteen `head`/`jacket`/`pants`/`upBody` textures from
+`ShadowMappingSample_4_0/ShadowMapping/Content` beside each `.contentproj` before building it.
+SharpMik is checked out at `9e2aab7` and LilyPath at `a3750eb` (`git fetch --unshallow` first if
+cloned shallow): the commits after those leave their XNA projects naming files the code no longer
+has, or missing files it now needs.
 
 `GameRoot` (and `GameContent` for the games with built content) override the checkout locations. The XNA 4.0
 reference frames come from the games' own XNA-built executables run under Wine with the XNA 4.0

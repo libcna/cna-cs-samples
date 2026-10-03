@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's PerlinNoiseDemo, Perlin noise height map, unchanged. Its content project is empty. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>PerlinNoiseDemo</AssemblyName>
+    <RootNamespace>PerlinNoiseDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/PerlinNoiseDemo/PerlinNoiseDemo/PerlinNoiseDemo</GameRoot>
+    <GameProject>$(GameRoot)/PerlinNoiseDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+    <ProjectReference Include="../Framework.Noise/Framework.Noise.csproj" />
+    <ProjectReference Include="../Framework.Terrain/Framework.Terrain.csproj" />
+  </ItemGroup>
+</Project>

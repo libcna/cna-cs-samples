@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's TiledTerrainDemo, tiled CDLOD terrain from noise, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>TiledTerrainDemo</AssemblyName>
+    <RootNamespace>TiledTerrainDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/TiledTerrainDemo/TiledTerrainDemo/TiledTerrainDemo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/tiledterrain/Content</GameContent>
+    <GameProject>$(GameRoot)/TiledTerrainDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+    <ProjectReference Include="../Framework.Landscape/Framework.Landscape.csproj" />
+    <ProjectReference Include="../Framework.Noise/Framework.Noise.csproj" />
+    <ProjectReference Include="../Framework.Terrain.CDLOD/Framework.Terrain.CDLOD.csproj" />
+    <ProjectReference Include="../Framework.Terrain/Framework.Terrain.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

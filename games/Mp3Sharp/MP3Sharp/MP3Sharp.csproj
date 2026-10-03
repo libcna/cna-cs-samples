@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ZaneDubya/MP3Sharp's decoder, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>MP3Sharp</AssemblyName>
+    <RootNamespace>MP3Sharp</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ZaneDubya_MP3Sharp/MP3Sharp</GameRoot>
+    <GameProject>$(GameRoot)/MP3Sharp.csproj</GameProject>
+  </PropertyGroup>
+</Project>

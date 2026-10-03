@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <TestXnaRoot Condition="'$(TestXnaRoot)' == ''">/rv/tmp/xna-games/willcraftia_TestXna</TestXnaRoot>
+  </PropertyGroup>
+</Project>

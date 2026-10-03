@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's Framework.Noise library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Willcraftia.Xna.Framework.Noise</AssemblyName>
+    <RootNamespace>Willcraftia.Xna.Framework.Noise</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/Framework.Noise/Framework.Noise</GameRoot>
+    <GameProject>$(GameRoot)/Framework.Noise.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+  </ItemGroup>
+</Project>

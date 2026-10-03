@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- jaquadro/LilyPath, its XNA build, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>LilyPath.Xna</AssemblyName>
+    <RootNamespace>LilyPath</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/jaquadro_LilyPath/LilyPath</GameRoot>
+    <GameProject>$(GameRoot)/LilyPath.Xna.csproj</GameProject>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- jaquadro/LilyPath's logo demo, unchanged: paths, arcs and fills drawn by LilyPath's DrawBatch. It has no content. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>LilyPathLogo</AssemblyName>
+    <RootNamespace>LilyPathLogo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/jaquadro_LilyPath/LilyPathLogo</GameRoot>
+    <GameProject>$(GameRoot)/LilyPathLogo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="LilyPath/LilyPath.csproj" />
+  </ItemGroup>
+</Project>

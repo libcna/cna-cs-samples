@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's Framework.Terrain.CDLOD library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Willcraftia.Xna.Framework.Terrain.CDLOD</AssemblyName>
+    <RootNamespace>Willcraftia.Xna.Framework.Terrain.CDLOD</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/Framework.Terrain.CDLOD/Framework.Terrain.CDLOD</GameRoot>
+    <GameProject>$(GameRoot)/Framework.Terrain.CDLOD.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+    <ProjectReference Include="../Framework.Terrain/Framework.Terrain.csproj" />
+  </ItemGroup>
+</Project>

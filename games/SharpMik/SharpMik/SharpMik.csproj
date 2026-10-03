@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- thegouldfish/SharpMik's player library, its XNA Windows build, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>SharpMikXNA</AssemblyName>
+    <RootNamespace>SharpMik</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/thegouldfish_SharpMik/SharpMik</GameRoot>
+    <GameProject>$(GameRoot)/SharpMikXNAWindows.csproj</GameProject>
+  </PropertyGroup>
+</Project>

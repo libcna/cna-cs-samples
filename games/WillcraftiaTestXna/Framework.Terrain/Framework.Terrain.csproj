@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's Framework.Terrain library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Willcraftia.Xna.Framework.Terrain</AssemblyName>
+    <RootNamespace>Willcraftia.Xna.Framework.Terrain</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/Framework.Terrain/Framework.Terrain</GameRoot>
+    <GameProject>$(GameRoot)/Framework.Terrain.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DemoFramework/DemoFramework.csproj" />
+  </ItemGroup>
+</Project>

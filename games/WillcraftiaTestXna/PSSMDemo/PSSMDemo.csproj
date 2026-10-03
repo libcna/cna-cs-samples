@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- willcraftia/TestXna's PSSMDemo, parallel-split shadow maps, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef), with the sixteen files of Microsoft's Shadow Mapping sample its content README asks for. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>PSSMDemo</AssemblyName>
+    <RootNamespace>PSSMDemo</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(TestXnaRoot)/PSSMDemo/PSSMDemo/PSSMDemo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pssm/Content</GameContent>
+    <GameProject>$(GameRoot)/PSSMDemo.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
