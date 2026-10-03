@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Recipes' Chapter1 XNATrialApplication (Fabio Claudio Ferracchiati and Emanuele Garofalo, Apress), trial mode through the Guide, unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>XNATrialApplication</AssemblyName>
+    <RootNamespace>XNATrialApplication</RootNamespace>
+    <CnaPhoneGame>XNATrialApplication.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(Wp7RecipesRoot)/Chapter1/XNATrialApplication/XNATrialApplication</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7r-trial/Content</GameContent>
+    <GameProject>$(GameRoot)/XNATrialApplication.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

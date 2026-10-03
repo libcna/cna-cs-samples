@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <Wp7RecipesRoot Condition="'$(Wp7RecipesRoot)' == ''">/rv/tmp/xna-games/Apress_win-phone-7-recipes/9781430233718</Wp7RecipesRoot>
+  </PropertyGroup>
+</Project>

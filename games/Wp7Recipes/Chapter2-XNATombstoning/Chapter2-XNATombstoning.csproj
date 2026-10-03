@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Recipes' Chapter2 XNATombstoning (Fabio Claudio Ferracchiati and Emanuele Garofalo, Apress), tombstoning through PhoneApplicationService, unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>XNATombstoning</AssemblyName>
+    <RootNamespace>XNATombstoning</RootNamespace>
+    <CnaPhoneGame>XNATombstoning.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(Wp7RecipesRoot)/Chapter2/XNATombstoning/XNATombstoning</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7r-tomb/Content</GameContent>
+    <GameProject>$(GameRoot)/XNATombstoning.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
