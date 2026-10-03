@@ -1,0 +1,7 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <XpfRoot Condition="'$(XpfRoot)' == ''">/rv/tmp/xna-games/redbadger_XPF</XpfRoot>
+    <XpfPackages>$(XpfRoot)/XPF/packages</XpfPackages>
+  </PropertyGroup>
+</Project>

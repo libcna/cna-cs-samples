@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Red Badger's XPF "Getting Started" sample (Windows), unchanged, on XPF built from its own
+       repository's source. Content built from its own content project by XNA's BuildContent
+       (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Xpf.Samples.S01GettingStarted</AssemblyName>
+    <RootNamespace>Xpf.Samples.S01GettingStarted</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S01GettingStarted/Xpf.Samples.S01GettingStarted</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-s01/Content</GameContent>
+    <GameProject>$(GameRoot)/Xpf.Samples.S01GettingStarted.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RedBadger.Xpf/RedBadger.Xpf.csproj" />
+    <ProjectReference Include="../RedBadger.Xpf.Adapters.Xna/RedBadger.Xpf.Adapters.Xna.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

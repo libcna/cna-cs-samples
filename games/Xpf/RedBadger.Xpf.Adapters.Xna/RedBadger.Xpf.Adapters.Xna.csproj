@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Red Badger's XPF adapters for XNA, unchanged, with the Rx 1.0 System.Reactive its project
+       file names (from its repository's packages folder). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>RedBadger.Xpf.Adapters.Xna</AssemblyName>
+    <RootNamespace>RedBadger.Xpf.Adapters.Xna</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(XpfRoot)/XPF/RedBadger.Xpf.Adapters.Xna</GameRoot>
+    <GameProject>$(GameRoot)/RedBadger.Xpf.Adapters.Xna.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RedBadger.Xpf/RedBadger.Xpf.csproj" />
+    <Reference Include="System.Reactive" HintPath="$(XpfPackages)/Rx-Main.1.0.11226/lib/Net4/System.Reactive.dll" />
+  </ItemGroup>
+</Project>
