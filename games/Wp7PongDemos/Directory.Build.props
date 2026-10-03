@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <PongDemosRoot Condition="'$(PongDemosRoot)' == ''">/rv/tmp/xna-games/coderserdar_WindowsPhoneSamples/SourceCode/E-Book Sample Codes/Version 1 Demos/Chapter 09 Demos</PongDemosRoot>
+  </PropertyGroup>
+</Project>

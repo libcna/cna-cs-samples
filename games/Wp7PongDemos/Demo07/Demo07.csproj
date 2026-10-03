@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- coderserdar/WindowsPhoneSamples' "Version 1 Demos", chapter 9 "Demo 07 Game with Sounds", an XNA Pong game built up step by step for Windows Phone, unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>PongGame</AssemblyName>
+    <RootNamespace>PongGame</RootNamespace>
+    <CnaPhoneGame>PongGame.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PongDemosRoot)/Demo 07 Game with Sounds/PongGame/PongGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pongdemos/pongdemo07/Content</GameContent>
+    <GameProject>$(GameRoot)/PongGame.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
