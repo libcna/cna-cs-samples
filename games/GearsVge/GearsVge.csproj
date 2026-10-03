@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- spectrumbranch/gearsvge's GearsDebug, the demo of its 2D middleware and menu engine, unchanged, on the GearsVGE library it ships. Content built from its own content project by XNA's BuildContent (Windows/Reach) with the "Roses are FF0000" font its repository ships installed; its MP3 song, which XNA's importer reads through Windows Media Format, is a labelled stand-in. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GearsDebug</AssemblyName>
+    <RootNamespace>GearsDebug</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/spectrumbranch_gearsvge/GearsDebug/GearsDebug</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/gearsvge/Content</GameContent>
+    <GameProject>$(GameRoot)/GearsDebug.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="GearsVGE/GearsVGE.csproj" />
+    <!-- Its content project names no ContentRootDirectory, so XNA's build put the content under
+         the project's own name, which the game loads from. -->
+    <None Include="$(GameContent)/**/*" LinkBase="GearsDebugContent" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

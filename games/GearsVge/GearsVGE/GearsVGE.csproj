@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- spectrumbranch/gearsvge's GearsVGE library, unchanged; its Settings class derives from .NET Framework's ApplicationSettingsBase, which .NET ships as the System.Configuration.ConfigurationManager package. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GearsVGE</AssemblyName>
+    <RootNamespace>Gears</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/spectrumbranch_gearsvge/GearsVGE/GearsVGE</GameRoot>
+    <GameProject>$(GameRoot)/GearsVGE.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+</Project>
