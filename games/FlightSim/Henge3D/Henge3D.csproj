@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Henge3D physics library (2010-11) wontonst/flightsim ships, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Henge3D.Physics</AssemblyName>
+    <RootNamespace>Henge3D.Physics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim/Henge3D_201011/Physics</GameRoot>
+    <GameProject>$(GameRoot)/Physics.csproj</GameProject>
+  </PropertyGroup>
+</Project>

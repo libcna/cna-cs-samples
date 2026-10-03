@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- wontonst/flightsim, a USC ITP 380 game, unchanged, on the Henge3D physics and Particle 3D sample
+       it ships. Content built from its three content projects by XNA's BuildContent
+       (Windows/HiDef) with its Henge3D pipeline and OBJ importer extensions (its prebuilt Content/
+       served its Mono and Mac builds). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>itp380</AssemblyName>
+    <RootNamespace>itp380</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/flightsim/Content</GameContent>
+    <GameProject>$(GameRoot)/game-xna.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Henge3D/Henge3D.csproj" />
+    <ProjectReference Include="Particle3DSample/Particle3DSample.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

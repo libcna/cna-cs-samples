@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Microsoft's Particle 3D sample as wontonst/flightsim ships and references it, unchanged. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Particle3DSample</AssemblyName>
+    <RootNamespace>Particle3DSample</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim/Particle3DSample</GameRoot>
+    <GameProject>$(GameRoot)/Particle3DSampleWindows.csproj</GameProject>
+  </PropertyGroup>
+</Project>
