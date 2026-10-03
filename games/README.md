@@ -199,6 +199,10 @@ Tried and not running here, each for a reason outside XNA:
 - **SeedWorld** (`ccajas/SeedWorld`): its content project needs Nuclex's sprite-font processor,
   a pipeline extension its repository does not ship, and Lucida Console; its game reads the
   clipboard through WPF's `System.Windows.Clipboard`.
+- **BulletXNA demos** (`xexuxjy/bullet-xna`): both content projects' fonts name Miriam, a Windows
+  Hebrew font neither the repository nor Game Studio ships.
+- **Isosurface** (`Lin20/isosurface`): references `alglibnet2.dll` and `MathNet.Numerics.dll` at
+  `E:\Libraries\...`, which the repository does not ship, at versions it does not name.
 - **Design Patterns Game** (`brunolm/DesignPatternsGame` @ `109ddea`): its `Main` composes its 20
   mini-games through MEF, which constructs every one -- 21 `Game` objects alive at once, where
   CNA runs one game per process ("Only one C-owned CNA game may be active at a time").
