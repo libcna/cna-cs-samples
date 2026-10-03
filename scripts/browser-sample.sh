@@ -35,11 +35,17 @@ while [ $# -gt 0 ]; do
     esac
 done
 [ -n "$sample" ] || { echo "usage: $0 <SampleDirectory>" >&2; exit 2; }
+# A game one directory deeper (games/Xen/Platformer) is named by both directories, so it never
+# shares a generated project with a gallery row of the same name (samples/Platformer), and its
+# project is the one .csproj in its directory whatever that is called.
 case "$sample" in
-    */*) sample_dir="$here/${sample%/}"; sample="$(basename "$sample_dir")" ;;
+    */*) sample_dir="$here/${sample%/}"; rel="${sample%/}"; rel="${rel#games/}"; sample="${rel//\//-}" ;;
     *)   sample_dir="$here/samples/$sample" ;;
 esac
-project="$sample_dir/$sample.csproj"
+project="$sample_dir/$(basename "$sample_dir").csproj"
+if [ ! -f "$project" ] && [ "$(ls "$sample_dir"/*.csproj 2>/dev/null | wc -l)" = 1 ]; then
+    project="$(ls "$sample_dir"/*.csproj)"
+fi
 [ -f "$project" ] || { echo "error: no $project" >&2; exit 2; }
 out="${out:-/rv/tmp/cs-samples/browser/$sample}"
 mkdir -p "$out"
@@ -145,9 +151,20 @@ for item in items.get("Reference", []):
     if hint:
         lines.append(f'    <Reference Include={quoteattr(item["Identity"])}><HintPath>{escape(hint)}</HintPath></Reference>')
         lines.append(f'    <TrimmerRootAssembly Include={quoteattr(Path(hint).stem)} />')
+# A library's own prebuilt dependencies (XPF's Rx) are copied beside it by its build and referenced
+# from there; CNA.NET's assemblies, the XNA-named forwarders and other libraries are referenced above
+# or below, so they are not taken twice.
+referenced = {Path(item.get("HintPath", "")).stem for item in items.get("Reference", [])} | {l.stem for l in libraries}
 for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
+    for dependency in sorted(library.parent.glob("*.dll")):
+        name = dependency.stem
+        if name in referenced or name.startswith(("CNA.", "Microsoft.Xna.Framework")):
+            continue
+        referenced.add(name)
+        lines.append(f'    <Reference Include="{name}"><HintPath>{dependency}</HintPath></Reference>')
+        lines.append(f'    <TrimmerRootAssembly Include="{name}" />')
 lines.append(f'    <TrimmerRootAssembly Include="{msbuild(props["AssemblyName"])}" />')
 for name in folders:
     lines.append(f'    <TrimmerRootAssembly Include="{name}" />')
@@ -227,7 +244,7 @@ EOF
 export DOTNET_ROOT="$dotnet_root" DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1
 # A publish over a previous obj/ has left index.html with its placeholders unsubstituted.
 rm -rf "$work/publish" "$work/obj" "$work/bin"
-if ! "$dotnet_root/dotnet" publish "$work/$sample.Browser.csproj" -c Release -o "$work/publish" \
+if ! "$dotnet_root/dotnet" publish "$work/$(basename "$sample_dir").Browser.csproj" -c Release -o "$work/publish" \
         >"$out/publish.log" 2>&1; then
     grep -E " error " "$out/publish.log" | sort -u | head -20 >&2
     echo "error: the browser build failed; see $out/publish.log" >&2

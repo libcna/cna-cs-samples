@@ -38,11 +38,17 @@ while [ $# -gt 0 ]; do
 done
 [ -n "$sample" ] || { echo "usage: $0 <SampleDirectory>" >&2; exit 2; }
 # A gallery row is named by its directory under samples/; a real game by its path (games/<Game>).
+# A game one directory deeper (games/Xen/Platformer) is named by both directories, so it never
+# shares a generated project with a gallery row of the same name (samples/Platformer), and its
+# project is the one .csproj in its directory whatever that is called.
 case "$sample" in
-    */*) sample_dir="$here/${sample%/}"; sample="$(basename "$sample_dir")" ;;
+    */*) sample_dir="$here/${sample%/}"; rel="${sample%/}"; rel="${rel#games/}"; sample="${rel//\//-}" ;;
     *)   sample_dir="$here/samples/$sample" ;;
 esac
-project="$sample_dir/$sample.csproj"
+project="$sample_dir/$(basename "$sample_dir").csproj"
+if [ ! -f "$project" ] && [ "$(ls "$sample_dir"/*.csproj 2>/dev/null | wc -l)" = 1 ]; then
+    project="$(ls "$sample_dir"/*.csproj)"
+fi
 [ -f "$project" ] || { echo "error: no $project" >&2; exit 2; }
 out="${out:-/rv/tmp/cs-samples/android/$sample}"
 mkdir -p "$out"
@@ -73,7 +79,7 @@ props, items = evaluation["Properties"], evaluation.get("Items", {})
 if "'" in props["AssemblyName"]:
     print(f"android assembly name: {props['AssemblyName']!r} without its apostrophe", file=sys.stderr)
     props["AssemblyName"] = props["AssemblyName"].replace("'", "")
-sample = sample_dir.name
+sample = work.name  # unique: a nested game is named by both its directories
 package = "com.libcna.samples." + re.sub(r"[^a-z0-9]", "", sample.lower())
 
 libraries = []
@@ -144,9 +150,19 @@ for item in items.get("Reference", []):
     if hint:
         lines.append(f'    <Reference Include={quoteattr(item["Identity"])}><HintPath>{escape(hint)}</HintPath></Reference>')
         lines.append(f'    <TrimmerRootAssembly Include={quoteattr(Path(hint).stem)} />')
+# A library's own prebuilt dependencies (XPF's Rx) are copied beside it by its build and referenced
+# from there, once each; CNA.NET's assemblies and the XNA-named forwarders are referenced elsewhere.
+referenced = {Path(item.get("HintPath", "")).stem for item in items.get("Reference", [])} | {l.stem for l in libraries}
 for library in libraries:
     lines.append(f'    <Reference Include="{library.stem}"><HintPath>{library}</HintPath></Reference>')
     lines.append(f'    <TrimmerRootAssembly Include="{library.stem}" />')
+    for dependency in sorted(library.parent.glob("*.dll")):
+        name = dependency.stem
+        if name in referenced or name.startswith(("CNA.", "Microsoft.Xna.Framework")):
+            continue
+        referenced.add(name)
+        lines.append(f'    <Reference Include="{name}"><HintPath>{dependency}</HintPath></Reference>')
+        lines.append(f'    <TrimmerRootAssembly Include="{name}" />')
 lines.append(f'    <TrimmerRootAssembly Include="{escape(props["AssemblyName"])}" />')
 content = sample_dir / "Content"
 title_roots = ["Content"]
