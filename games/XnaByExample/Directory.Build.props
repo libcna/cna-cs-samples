@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <XnaByExampleRoot Condition="'$(XnaByExampleRoot)' == ''">/rv/tmp/xna-games/AcornPublishing_xna4-game</XnaByExampleRoot>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA 4.0 Game Development by Example (Kurt Jaegers, Packt, 2010), as github.com/AcornPublishing/xna4-game ships its code: Gemstone Hunter, a platformer on the book's Tile Engine, its final chapter's project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Gemstone Hunter</AssemblyName>
+    <RootNamespace>Gemstone_Hunter</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(XnaByExampleRoot)/Chapter09/Code/Gemstone Hunter/Gemstone Hunter/Gemstone Hunter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/gemstonehunter/Content</GameContent>
+    <GameProject>$(GameRoot)/Gemstone Hunter.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../TileEngine/TileEngine.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

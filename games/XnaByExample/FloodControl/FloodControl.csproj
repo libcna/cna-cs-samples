@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA 4.0 Game Development by Example (Kurt Jaegers, Packt, 2010), as github.com/AcornPublishing/xna4-game ships its code: Flood Control, a pipe puzzle, its final chapter's project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Flood Control</AssemblyName>
+    <RootNamespace>Flood_Control</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(XnaByExampleRoot)/Chapter03/Code/Flood Control/Flood Control/Flood Control</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/floodcontrol/Content</GameContent>
+    <GameProject>$(GameRoot)/Flood Control.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA 4.0 Game Development by Example (Kurt Jaegers, Packt, 2010), as github.com/AcornPublishing/xna4-game ships its code: Asteroid Belt Assault, a shooter, its final chapter's project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Asteroid Belt Assault</AssemblyName>
+    <RootNamespace>Asteroid_Belt_Assault</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(XnaByExampleRoot)/Chapter05/Code/Asteroid Belt Assault/Asteroid Belt Assault/Asteroid Belt Assault</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asteroidbelt/Content</GameContent>
+    <GameProject>$(GameRoot)/Asteroid Belt Assault.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- XNA 4.0 Game Development by Example's Tile Engine library (chapter 9), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Tile Engine</AssemblyName>
+    <RootNamespace>Tile_Engine</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(XnaByExampleRoot)/Chapter09/Code/Gemstone Hunter/Tile Engine</GameRoot>
+    <GameProject>$(GameRoot)/Tile Engine.csproj</GameProject>
+  </PropertyGroup>
+</Project>
