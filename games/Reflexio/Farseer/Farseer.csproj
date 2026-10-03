@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Farseer Physics 3.3.1 copy ajl275/Reflexio ships beside its game, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>FarseerPhysicsXNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ajl275_Reflexio/Reflexio.FNA/Farseer Physics Engine 3.3.1 XNA</GameRoot>
+    <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

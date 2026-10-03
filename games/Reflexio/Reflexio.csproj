@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ajl275/Reflexio, a puzzle platformer of reflections, unchanged, on the Farseer Physics 3.3.1 it
+       ships beside it (its project names that copy one directory too high). Content built from its
+       own content project by XNA's BuildContent (Windows/HiDef). Its repository does not ship the
+       Properties/AssemblyInfo.cs its project lists, which holds assembly attributes only: it is
+       compiled without it, the SDK generating those attributes instead. It reads its levels through
+       XmlReader at Windows paths ("Content\\Levels\\" + a name from levels.txt), linked beside the
+       game for each level file. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Reflexio</AssemblyName>
+    <RootNamespace>Reflexio</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ajl275_Reflexio/Reflexio.FNA</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/reflexio/Content</GameContent>
+    <GameProject>$(GameRoot)/Reflexio.csproj</GameProject>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <Target Name="ReflexioWithoutItsMissingAssemblyInfo" AfterTargets="CnaGameProjectSources">
+    <ItemGroup>
+      <Compile Remove="$(GameRoot)/Properties/AssemblyInfo.cs" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <_ReflexioLevel Include="$(GameContent)/Levels/*" />
+    <CnaWindowsPath Include="@(_ReflexioLevel->'%(Filename)%(Extension)')" Path="Content%5CLevels%5C%(Filename)%(Extension)" LinksTo="Content/Levels/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>
