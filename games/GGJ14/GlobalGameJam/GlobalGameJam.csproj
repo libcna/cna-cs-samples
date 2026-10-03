@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- LostCodeStudios/GGJ14's Global Game Jam 2014 game, unchanged, on the GameLibrary it ships.
+       Content built from its own content project by XNA's BuildContent (Windows/Reach); its MP3
+       song, which XNA's importer reads through Windows Media Format, is a labelled stand-in.
+       See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GlobalGameJam</AssemblyName>
+    <RootNamespace>GlobalGameJam</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/LostCodeStudios_GGJ14/GlobalGameJam/GlobalGameJam/GlobalGameJam</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/ggj14/Content</GameContent>
+    <GameProject>$(GameRoot)/GlobalGameJam.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../GameLibrary/GameLibrary.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- LostCodeStudios/GGJ14's GameLibrary, unchanged. Its script runtime compiles C# through
+       CodeDom, part of .NET Framework and a package on .NET (the game itself runs no scripts). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GameLibrary</AssemblyName>
+    <RootNamespace>GameLibrary</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/LostCodeStudios_GGJ14/GameLib/GameLibrary</GameRoot>
+    <GameProject>$(GameRoot)/GameLibrary.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+  </ItemGroup>
+</Project>
