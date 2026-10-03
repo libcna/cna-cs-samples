@@ -88,6 +88,31 @@ struct.pack_into("<H", data, characteristics, flags | 0x0020)
 open(path, "wb").write(data)
 PYEOF
 
+# Microsoft's C# 4 compiler under Wine, for an extension mcs refuses: framework_csc OUT ARGS..., the
+# ARGS spelled as for mcs (-r:, -define:, -unsafe, -keyfile:, -resource:, then the sources).
+framework_csc() {
+    local out=$1; shift
+    local csc args=() a r
+    csc="$(find "$wine_prefix/drive_c/windows/Microsoft.NET/Framework/v4.0.30319" -maxdepth 1 -name csc.exe | head -1)"
+    rm -f "${out:?}"
+    for a in "$@"; do
+        case "$a" in
+            # A framework assembly by name, from csc's own .NET Framework 4, as Visual Studio's was.
+            -fw:*)       args+=("/r:${a#-fw:}.dll") ;;
+            -r:"$api"/*) ;;
+            -r:*)        args+=("/r:$(win "${a#-r:}")") ;;
+            -define:*)   args+=("/define:${a#-define:}") ;;
+            -unsafe)     args+=("/unsafe") ;;
+            -keyfile:*)  args+=("/keyfile:$(win "${a#-keyfile:}")") ;;
+            -resource:*) r="${a#-resource:}"; args+=("/resource:$(win "${r%%,*}"),${r#*,}") ;;
+            *)           args+=("$(win "$a")") ;;
+        esac
+    done
+    env -u DISPLAY -u WAYLAND_DISPLAY WINEPREFIX="$wine_prefix" WINEDEBUG=-all \
+        wine "$csc" /nologo /noconfig /target:library /out:"$(win "$out")" "${args[@]}" | grep -v '^$' || true
+    [ -f "$out" ] || { echo "error: $(basename "$out") did not compile" >&2; exit 1; }
+}
+
 # The game's own pipeline extensions, compiled from their projects' Compile items.
 xna_refs=()
 for dll in "$runner"/Microsoft.Xna.Framework*.dll; do xna_refs+=("-r:$dll"); done
@@ -98,7 +123,7 @@ for csproj in "${extensions[@]}"; do
     name="$(sed -n 's:.*<AssemblyName>\(.*\)</AssemblyName>.*:\1:p' "$csproj" | head -1)"
     # Its Compile items, and the references its project names: framework assemblies by name, and
     # prebuilt libraries by HintPath (copied beside the pipeline, which loads them too).
-    sources=(); extra=()
+    sources=(); extra=(); fw_names=()
     api=/usr/lib/mono/4.0-api
     while IFS= read -r line; do
         case "$line" in
@@ -109,7 +134,9 @@ for csproj in "${extensions[@]}"; do
             RESX:*) resx="${line#RESX:}"; resx_file="${resx%%|*}"; resx_name="${resx##*|}"
                     resgen "$resx_file" "$runner/$resx_name" >/dev/null
                     extra+=("-resource:$runner/$resx_name,$resx_name") ;;
-            FW:*)   [ -f "$api/${line#FW:}.dll" ] && extra+=("-r:$api/${line#FW:}.dll") ;;
+            FW:*)   fw="$(find "$api" -maxdepth 1 -iname "${line#FW:}.dll" | head -1)"
+                    [ -n "$fw" ] && extra+=("-r:$fw")
+                    fw_names+=("${line#FW:}") ;;
             HINT:*) cp -u "${line#HINT:}" "$runner/"
                     extra+=("-r:$runner/$(basename "${line#HINT:}")")
                     pipeline+=("$(win "$runner/$(basename "${line#HINT:}")")") ;;
@@ -141,8 +168,13 @@ if re.search(r'<SignAssembly>\s*true', text, re.I) and key:
     path = os.path.join(here, key.group(1).replace("\\", "/"))
     if os.path.isfile(path):
         print("KEY:" + path)
-for name in re.findall(r'<Reference Include="(System[^",]*)', text):
-    print("FW:" + name)
+# Framework assemblies: every reference without a HintPath, but XNA's own and mscorlib
+# (Almirante.Engine names Accessibility and System.configuration).
+for include, body in re.findall(r'<Reference Include="([^"]+)"\s*(?:/>|>(.*?)</Reference>)', text, re.S):
+    simple = include.split(",")[0].strip()
+    if simple.startswith("Microsoft.Xna") or simple == "mscorlib" or "<HintPath>" in (body or ""):
+        continue
+    print("FW:" + simple)
 for hint in re.findall(r'<HintPath>([^<]+)</HintPath>', text):
     path = os.path.normpath(os.path.join(here, hint.replace("\\", "/")))
     if "Microsoft.Xna" not in path and os.path.isfile(path):
@@ -153,9 +185,15 @@ PYEOF
     # Against .NET Framework 4.0's reference assemblies, as Visual Studio 2010 compiled them: mono's
     # own mscorlib offers newer overloads (String.Split(char, StringSplitOptions)) that bind and
     # then do not exist when XNA's pipeline runs the extension under .NET 4.0.
-    mcs -nologo -target:library -nostdlib -out:"$runner/$name.dll" -r:"$api/mscorlib.dll" -r:"$api/System.dll" \
+    if ! mcs -nologo -target:library -nostdlib -out:"$runner/$name.dll" -r:"$api/mscorlib.dll" -r:"$api/System.dll" \
         -r:"$api/System.Core.dll" -r:"$api/System.Xml.dll" -r:"$api/System.Xml.Linq.dll" \
-        "${xna_refs[@]}" "${extra[@]}" "${sources[@]}"
+        "${xna_refs[@]}" "${extra[@]}" "${sources[@]}"; then
+        # mono's compiler refuses some code Visual Studio 2010's accepted -- Almirante's
+        # `MouseButton lastMouseKeyUp = 0.0f;` (Microsoft's compilers convert any constant zero to an
+        # enum) -- so Microsoft's own C# 4 compiler, from the prefix's .NET Framework 4, decides.
+        echo "extension: $name refused by mcs; compiling with the .NET Framework's csc"
+        framework_csc "$runner/$name.dll" "${fw_names[@]/#/-fw:}" "${xna_refs[@]}" "${extra[@]}" "${sources[@]}"
+    fi
     built+=("$runner/$name.dll")
     pipeline+=("$(win "$runner/$name.dll")")
     echo "extension: $name ($((${#sources[@]})) sources)"
