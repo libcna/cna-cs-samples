@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Red Badger's XPF XNA adapters for Windows Phone, unchanged (TRACE;WINDOWS_PHONE). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>RedBadger.Xpf.Phone.Adapters.Xna</AssemblyName>
+    <RootNamespace>RedBadger.Xpf.Adapters.Xna</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>TRACE;WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(XpfRoot)/XPF/RedBadger.Xpf.Phone.Adapters.Xna</GameRoot>
+    <GameProject>$(GameRoot)/RedBadger.Xpf.Phone.Adapters.Xna.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RedBadger.Xpf.Phone/RedBadger.Xpf.Phone.csproj" />
+    <Reference Include="System.Reactive.Core" HintPath="$(XpfPackages)/Rx-Core.2.0.20823/lib/Net40/System.Reactive.Core.dll" />
+    <Reference Include="System.Reactive.Interfaces" HintPath="$(XpfPackages)/Rx-Interfaces.2.0.20823/lib/Net40/System.Reactive.Interfaces.dll" />
+    <Reference Include="System.Reactive.Linq" HintPath="$(XpfPackages)/Rx-Linq.2.0.20823/lib/Net40/System.Reactive.Linq.dll" />
+  </ItemGroup>
+</Project>

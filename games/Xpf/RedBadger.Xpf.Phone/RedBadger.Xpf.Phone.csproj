@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Red Badger's XPF for Windows Phone, unchanged: the core's sources compiled with its phone
+       project's symbols (TRACE;WINDOWS_PHONE), with Rx 2.0 from its repository's packages folder
+       (the .NET 4 build of the same packages; the phone build targets Silverlight's mscorlib). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>RedBadger.Xpf.Phone</AssemblyName>
+    <RootNamespace>RedBadger.Xpf</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>TRACE;WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(XpfRoot)/XPF/RedBadger.Xpf.Phone</GameRoot>
+    <GameProject>$(GameRoot)/RedBadger.Xpf.Phone.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Reactive.Core" HintPath="$(XpfPackages)/Rx-Core.2.0.20823/lib/Net40/System.Reactive.Core.dll" />
+    <Reference Include="System.Reactive.Interfaces" HintPath="$(XpfPackages)/Rx-Interfaces.2.0.20823/lib/Net40/System.Reactive.Interfaces.dll" />
+    <Reference Include="System.Reactive.Linq" HintPath="$(XpfPackages)/Rx-Linq.2.0.20823/lib/Net40/System.Reactive.Linq.dll" />
+    <Reference Include="System.Reactive.PlatformServices" HintPath="$(XpfPackages)/Rx-PlatformServices.2.0.20823/lib/Net40/System.Reactive.PlatformServices.dll" />
+  </ItemGroup>
+</Project>

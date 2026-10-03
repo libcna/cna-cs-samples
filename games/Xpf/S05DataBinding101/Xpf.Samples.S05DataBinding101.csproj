@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Red Badger's XPF Windows Phone sample S05DataBinding101, unchanged, hosted through CnaPhoneGame on XPF's
+       phone build from its own source. Content built from its own content project by XNA's
+       BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Xpf.Samples.S05DataBinding101</AssemblyName>
+    <RootNamespace>Xpf.Samples.S05DataBinding101</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>Xpf.Samples.S05DataBinding101.Game1</CnaPhoneGame>
+    <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S05DataBinding101/Xpf.Samples.S05DataBinding101</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-S05DataBinding101/Content</GameContent>
+    <GameProject>$(GameRoot)/Xpf.Samples.S05DataBinding101.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RedBadger.Xpf.Phone/RedBadger.Xpf.Phone.csproj" />
+    <ProjectReference Include="../RedBadger.Xpf.Phone.Adapters.Xna/RedBadger.Xpf.Phone.Adapters.Xna.csproj" />
+    <Reference Include="System.Reactive.Core" HintPath="$(XpfPackages)/Rx-Core.2.0.20823/lib/Net40/System.Reactive.Core.dll" />
+    <Reference Include="System.Reactive.Interfaces" HintPath="$(XpfPackages)/Rx-Interfaces.2.0.20823/lib/Net40/System.Reactive.Interfaces.dll" />
+    <Reference Include="System.Reactive.Linq" HintPath="$(XpfPackages)/Rx-Linq.2.0.20823/lib/Net40/System.Reactive.Linq.dll" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
