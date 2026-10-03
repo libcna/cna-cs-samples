@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Game Development's Chapter8 EnvironmentMap (Adam Dawes, Apress), unchanged, hosted
+       through CnaPhoneGame. Content built from its own content project by XNA's BuildContent
+       (WindowsPhone/Reach) with the chapter's CustomModelEffectPipeline extension, whose
+       CubemapProcessor builds its environment map. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>EnvironmentMap</AssemblyName>
+    <RootNamespace>EnvironmentMap</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>EnvironmentMap.EnvironmentMapGame</CnaPhoneGame>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter8/EnvironmentMap/EnvironmentMap</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-environmentmap/Content</GameContent>
+    <GameProject>$(GameRoot)/EnvironmentMap.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Chapter8-GameFramework/GameFramework.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

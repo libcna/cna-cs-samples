@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Game Development's Chapter7 Lighting (Adam Dawes, Apress), unchanged, hosted
+       through CnaPhoneGame. Content built from its own content project by XNA's BuildContent
+       (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Lighting</AssemblyName>
+    <RootNamespace>Lighting</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>Lighting.LightingGame</CnaPhoneGame>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter7/Lighting/Lighting</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter7-lighting/Content</GameContent>
+    <GameProject>$(GameRoot)/Lighting.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Chapter7-GameFramework/GameFramework.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

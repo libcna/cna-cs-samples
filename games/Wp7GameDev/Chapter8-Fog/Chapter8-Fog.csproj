@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Game Development's Chapter8 Fog (Adam Dawes, Apress), unchanged, hosted
+       through CnaPhoneGame. Content built from its own content project by XNA's BuildContent
+       (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Fog</AssemblyName>
+    <RootNamespace>Fog</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>Fog.FogGame</CnaPhoneGame>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter8/Fog/Fog</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-fog/Content</GameContent>
+    <GameProject>$(GameRoot)/Fog.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Chapter8-GameFramework/GameFramework.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

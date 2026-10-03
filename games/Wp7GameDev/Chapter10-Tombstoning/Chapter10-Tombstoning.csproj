@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Game Development's Chapter10 Tombstoning (Adam Dawes, Apress), unchanged, hosted
+       through CnaPhoneGame. Content built from its own content project by XNA's BuildContent
+       (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Tombstoning</AssemblyName>
+    <RootNamespace>Tombstoning</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>Tombstoning.TombstoningGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter10/Tombstoning/Tombstoning</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter10-tombstoning/Content</GameContent>
+    <GameProject>$(GameRoot)/Tombstoning.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Chapter10-GameFramework/GameFramework.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Windows Phone 7 Game Development's Chapter9 HighScores (Adam Dawes, Apress), unchanged, hosted
+       through CnaPhoneGame. Content built from its own content project by XNA's BuildContent
+       (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>HighScores</AssemblyName>
+    <RootNamespace>HighScores</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaPhoneGame>HighScores.HighScoresGame</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter9/HighScores/HighScores</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter9-highscores/Content</GameContent>
+    <GameProject>$(GameRoot)/HighScores.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Chapter9-GameFramework/GameFramework.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

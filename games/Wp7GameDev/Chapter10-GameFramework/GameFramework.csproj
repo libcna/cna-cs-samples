@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The GameFramework of Windows Phone 7 Game Development's Chapter10, unchanged (its phone
+       configuration, WINDOWS_PHONE). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GameFramework</AssemblyName>
+    <RootNamespace>GameFramework</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <GameRoot>$(Wp7GameDevRoot)/Chapter10/GameFramework</GameRoot>
+    <GameProject>$(GameRoot)/GameFramework.csproj</GameProject>
+  </PropertyGroup>
+</Project>

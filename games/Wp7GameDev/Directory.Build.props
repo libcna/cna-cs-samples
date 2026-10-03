@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <Wp7GameDevRoot Condition="'$(Wp7GameDevRoot)' == ''">/rv/tmp/xna-games/Apress_win-phone-7-game-dev/Windows Phone 7 Game Dev</Wp7GameDevRoot>
+  </PropertyGroup>
+</Project>
