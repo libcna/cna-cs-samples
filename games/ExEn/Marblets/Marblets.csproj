@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Andrew Russell's ExEn samples (jlyonsmith/ExEnCopy): the Marblets puzzle, a port of Microsoft's XNA 1.0 starter kit, its XNA (Windows) project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>MarbletsWindows</AssemblyName>
+    <RootNamespace>Marblets</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(ExEnRoot)/Samples/Marblets</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-marblets/Content</GameContent>
+    <GameProject>$(GameRoot)/Marblets[XNA].csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

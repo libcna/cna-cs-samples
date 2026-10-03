@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Andrew Russell's ExEn samples (jlyonsmith/ExEnCopy): ExEn's feature tests and its cat girl sprite demo, its XNA (Windows) project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef); its song, an MP3 XNA's importer reads through Windows Media Format, is a labelled stand-in (song stand-ins), and its fonts go through ExEn's own font shim extension and the Nuclex importer the repository ships. See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>CatGirls</AssemblyName>
+    <RootNamespace>CatGirls</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(ExEnRoot)/Samples/CatGirls</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-catgirls/Content</GameContent>
+    <GameProject>$(GameRoot)/CatGirls[XNA].csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <ExEnRoot Condition="'$(ExEnRoot)' == ''">/rv/tmp/xna-games/jlyonsmith_ExEnCopy</ExEnRoot>
+  </PropertyGroup>
+</Project>

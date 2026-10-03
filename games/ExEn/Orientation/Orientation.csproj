@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Andrew Russell's ExEn samples (jlyonsmith/ExEnCopy): a display orientation test, its XNA (Windows) project, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Orientation</AssemblyName>
+    <RootNamespace>Orientation</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot>$(ExEnRoot)/Samples/Orientation</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-orientation/Content</GameContent>
+    <GameProject>$(GameRoot)/Orientation[XNA].csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Its content project's ContentRootDirectory is ".", and the game loads from there. -->
+    <None Include="$(GameContent)/**/*" Link="%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
