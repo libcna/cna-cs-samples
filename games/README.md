@@ -132,6 +132,21 @@ The GitHub games added since (CNA `90b553dc1` archives, 2026-10-03): Sonic 3, Di
 HauntedHouse reach their first screens in a browser; SKraft loads its map sectors on threads of its
 own, so it runs as a multithreaded bundle (`--threads`) to its menu; the Forge sample's engine talks
 to itself over a local UDP server, which a browser cannot open.
+The programs added on 2026-10-03 (CNA `c7b13c14d` archives, both rebuilt that day): in a browser
+Mario3, the tile-engine tutorial, MP3Sharp's and SharpMik's players, LilyPath's logo (after CNA
+CBIND-156), the LiSPSM and PSSM shadow demos (LiSPSM's variance shadow smooth: SwiftShader samples at
+32 bits), the midpoint-displacement and Perlin-noise demos, cocos2d-x for XNA's tests, BoneAnimation
+(after CNA.NET CSX-140, which keeps CoreLib whole for its protobuf-net), the 2D camera Platformer,
+the UTS tower defence, ExEn's Marblets and the three Windows Phone 7 recipes reach their first
+screen; the Farseer 3.5 samples after the generators carried their wildcard version, which needs
+`Deterministic` off. TiledTerrainDemo's normal map is `Rgba64`, which WebGL 2 without
+`EXT_texture_norm16` has no format for (refused by name); MDTerrainDemo, as a threaded bundle, never
+loads a terrain partition -- its thread-pool work items never run (the .NET 11 RC1 worker fault
+above); TerrainDemo draws only its clear colour, which is not explained yet. On the Android emulator
+eight Petzold samples, the three recipes, cocos2d-x for XNA's tests (after the generators stopped
+handing the game the SDK's `ANDROID` symbol, which switched on its MonoGame-for-Android activity),
+BoneAnimation (CSX-140 again), Mario3, the 2D camera Platformer, LilyPath, Marblets, tiled-xna, the
+UTS tower defence and LiSPSM all run (`/rv/tmp/cs-samples/{browser,android}-20261003*`).
 
 What these games needed from CNA.NET, each fixed where it lived: a Windows Phone title's full-screen
 flag and Back button off a phone (CSX-094/095), Windows paths into XACT and `TitleContainer`
