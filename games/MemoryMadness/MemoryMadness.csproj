@@ -16,5 +16,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <!-- GameplayScreen reads its levels through the BCL, XDocument.Load(@"Content\Gameplay\LevelDefinitions.xml"),
+         a path only Windows splits at the backslashes. -->
+    <CnaWindowsPath Include="levels" Path="Content%5CGameplay%5CLevelDefinitions.xml" LinksTo="Content/Gameplay/LevelDefinitions.xml" />
   </ItemGroup>
 </Project>
