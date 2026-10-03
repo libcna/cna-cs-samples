@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <Cocos2dXnaRoot Condition="'$(Cocos2dXnaRoot)' == ''">/rv/tmp/xna-games/cocos2d_cocos2d-x-for-xna</Cocos2dXnaRoot>
+  </PropertyGroup>
+</Project>

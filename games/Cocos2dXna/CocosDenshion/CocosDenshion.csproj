@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- cocos2d-x-for-xna's CocosDenshion audio library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>CocosDenshion</AssemblyName>
+    <RootNamespace>CocosDenshion</RootNamespace>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(Cocos2dXnaRoot)/CocosDenshion</GameRoot>
+    <GameProject>$(GameRoot)/CocosDenshion.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../cocos2d-xna/cocos2d-xna.csproj" />
+  </ItemGroup>
+</Project>

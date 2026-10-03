@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- cocos2d-x-for-xna's cocos2d.Framework (content types shared with its pipeline), unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>cocos2d.Framework</AssemblyName>
+    <RootNamespace>cocos2d.Framework</RootNamespace>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(Cocos2dXnaRoot)/cocos2d.Framework</GameRoot>
+    <GameProject>$(GameRoot)/cocos2d.Framework.csproj</GameProject>
+  </PropertyGroup>
+</Project>

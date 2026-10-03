@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- cocos2d-x-for-xna's cocos2d-xna library, its Windows Phone build, unchanged, with the
+       SharpZipLib and zlib.net binaries it ships. Its project also references the content
+       pipeline extension, from which it uses nothing. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>cocos2d-xna</AssemblyName>
+    <RootNamespace>cocos2d</RootNamespace>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>VS2010;WINDOWS_PHONE,CC_FONT_LABEL_SUPPORT,CC_DIRECTOR_FAST_FPS,CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD,CC_COCOSNODE_RENDER_SUBPIXEL,CC_SPRITEBATCHNODE_RENDER_SUBPIXEL,CC_USES_VBO,CC_NODE_TRANSFORM_USING_AFFINE_MATRIX,CC_OPTIMIZE_BLEND_FUNC_FOR_PREMULTIPLIED_ALPHA</CnaSampleDefineConstants>
+    <GameRoot>$(Cocos2dXnaRoot)/cocos2d-xna</GameRoot>
+    <GameProject>$(GameRoot)/cocos2d-xna.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib" HintPath="$(GameRoot)/external lib/ICSharpCode.SharpZipLib.dll" />
+    <Reference Include="zlib.net" HintPath="$(GameRoot)/external lib/zlib.net.dll" />
+    <ProjectReference Include="../cocos2d.Framework/cocos2d.Framework.csproj" />
+  </ItemGroup>
+</Project>

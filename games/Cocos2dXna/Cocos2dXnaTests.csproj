@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- cocos2d/cocos2d-x-for-xna's tests, the cocos2d-x test scenes ported to XNA 4.0 for Windows Phone, unchanged, hosted through CnaPhoneGame on the cocos2d-xna and CocosDenshion libraries it ships. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach) with its cocos2d.Content.Pipeline.Importers extension. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>tests</AssemblyName>
+    <RootNamespace>tests</RootNamespace>
+    <CnaPhoneGame>tests.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(Cocos2dXnaRoot)/tests/tests</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/cocos2dtests/Content</GameContent>
+    <GameProject>$(GameRoot)/tests.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="cocos2d-xna/cocos2d-xna.csproj" />
+    <ProjectReference Include="CocosDenshion/CocosDenshion.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
