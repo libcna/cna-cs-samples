@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 23 SpinPaint (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>SpinPaint</AssemblyName>
+    <RootNamespace>SpinPaint</RootNamespace>
+    <CnaPhoneGame>SpinPaint.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 23/SpinPaint/SpinPaint/SpinPaint</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch23-spinpaint/Content</GameContent>
+    <GameProject>$(GameRoot)/SpinPaint.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Petzold.Phone.Xna/Petzold.Phone.Xna.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

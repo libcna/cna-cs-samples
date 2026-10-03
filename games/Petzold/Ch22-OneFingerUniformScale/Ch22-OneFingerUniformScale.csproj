@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 22 OneFingerUniformScale (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>OneFingerUniformScale</AssemblyName>
+    <RootNamespace>OneFingerUniformScale</RootNamespace>
+    <CnaPhoneGame>OneFingerUniformScale.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 22/OneFingerUniformScale/OneFingerUniformScale/OneFingerUniformScale</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch22-onefingeruniformscale/Content</GameContent>
+    <GameProject>$(GameRoot)/OneFingerUniformScale.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

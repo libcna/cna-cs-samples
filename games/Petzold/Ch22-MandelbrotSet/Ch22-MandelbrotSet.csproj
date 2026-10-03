@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 22 MandelbrotSet (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>MandelbrotSet</AssemblyName>
+    <RootNamespace>MandelbrotSet</RootNamespace>
+    <CnaPhoneGame>MandelbrotSet.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 22/MandelbrotSet/MandelbrotSet/MandelbrotSet</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch22-mandelbrotset/Content</GameContent>
+    <GameProject>$(GameRoot)/MandelbrotSet.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Petzold.Phone.Xna/Petzold.Phone.Xna.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

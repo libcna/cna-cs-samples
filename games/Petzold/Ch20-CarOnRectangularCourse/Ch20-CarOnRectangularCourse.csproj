@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 20 CarOnRectangularCourse (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>CarOnRectangularCourse</AssemblyName>
+    <RootNamespace>CarOnRectangularCourse</RootNamespace>
+    <CnaPhoneGame>CarOnRectangularCourse.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 20/CarOnRectangularCourse/CarOnRectangularCourse/CarOnRectangularCourse</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch20-caronrectangularcourse/Content</GameContent>
+    <GameProject>$(GameRoot)/CarOnRectangularCourse.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

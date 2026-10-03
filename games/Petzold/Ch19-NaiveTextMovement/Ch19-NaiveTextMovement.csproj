@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 19 NaiveTextMovement (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Content built from its own content project by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>NaiveTextMovement</AssemblyName>
+    <RootNamespace>NaiveTextMovement</RootNamespace>
+    <CnaPhoneGame>NaiveTextMovement.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 19/NaiveTextMovement/NaiveTextMovement/NaiveTextMovement</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch19-naivetextmovement/Content</GameContent>
+    <GameProject>$(GameRoot)/NaiveTextMovement.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

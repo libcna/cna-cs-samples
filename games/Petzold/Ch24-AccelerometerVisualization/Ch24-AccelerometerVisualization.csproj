@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Chapter 24 AccelerometerVisualization (Charles Petzold, Microsoft Press, 2010), unchanged, hosted through CnaPhoneGame. Its content project is missing from this copy of the book's code; content built from the same project in github.com/rkks/refer @ c6c65714 (mobile-prog/ProgWin7, its font identical but for line endings) by XNA's BuildContent (WindowsPhone/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>AccelerometerVisualization</AssemblyName>
+    <RootNamespace>AccelerometerVisualization</RootNamespace>
+    <CnaPhoneGame>AccelerometerVisualization.Game1</CnaPhoneGame>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Chapter 24/AccelerometerVisualization/AccelerometerVisualization/AccelerometerVisualization</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch24-accelerometervisualization/Content</GameContent>
+    <GameProject>$(GameRoot)/AccelerometerVisualization.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Programming Windows Phone 7's Petzold.Phone.Xna library, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <AssemblyName>Petzold.Phone.Xna</AssemblyName>
+    <RootNamespace>Petzold.Phone.Xna</RootNamespace>
+    <CnaPhoneCompat>true</CnaPhoneCompat>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
+    <GameRoot>$(PetzoldRoot)/Petzold.Phone.Xna/Petzold.Phone.Xna</GameRoot>
+    <GameProject>$(GameRoot)/Petzold.Phone.Xna.csproj</GameProject>
+  </PropertyGroup>
+</Project>
