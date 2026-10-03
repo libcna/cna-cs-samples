@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- scotttorgeson/HeroesOfRock's EasyStorage, unchanged (its Release configuration's symbols). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>EasyStorage</AssemblyName>
+    <RootNamespace>EasyStorage</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/EasyStorage</GameRoot>
+    <GameProject>$(GameRoot)/EasyStorage [Windows].csproj</GameProject>
+  </PropertyGroup>
+</Project>

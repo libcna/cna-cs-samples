@@ -7,7 +7,7 @@
 # Usage: scripts/build-xna-content.sh --project X.contentproj --out DIR [--obj DIR]
 #            [--profile Reach|HiDef] [--platform Windows] [--compress true|false]
 #            [--extension Y.csproj ...] [--font F.ttf ...] [--song-standins] [--video-standins]
-#            [--official SRC:XNB ...]
+#            [--official SRC:XNB ...] [--sound-standins]
 #
 # --extension compiles one of the game's pipeline-extension (or content-runtime) projects with mono
 # against XNA's assemblies and hands it to BuildContent; list them in dependency order. XACT
@@ -21,7 +21,8 @@
 # device, so it gets a private Xvfb, never the desktop. Wine cannot run WmaImporter (songs) or
 # VideoProcessor (videos); those assets are listed, not built, and --song-standins/--video-standins
 # write labelled stand-ins for them (scripts/song-standin.sh, scripts/video-standin.sh). Sound effects
-# imported from .wma are listed the same way. --official SRC:XNB takes such an asset from Microsoft's
+# imported from .wma or .mp3 are listed the same way, and --sound-standins writes labelled
+# stand-ins for them (scripts/sound-standin.sh). --official SRC:XNB takes such an asset from Microsoft's
 # own pipeline output instead, when the game's source file is byte-identical to SRC/<path> and
 # XNB/<name>.xnb exists (a song's .wma beside it too): the same input, already built by XNA on Windows.
 # A source file the content project lists and its repository does not ship is listed as
@@ -35,7 +36,7 @@ wine_prefix="${CNA_XNA40_WINEPREFIX:-$HOME/.wine-cna-xna40}"
 xna_native="$wine_prefix/drive_c/Program Files/Common Files/Microsoft Shared/XNA/Framework/v4.0/XnaNative.dll"
 runner="$here/build-consumer/xna-content-runner"
 
-project=""; out=""; obj=""; profile=Reach; platform=Windows; compress=false; extensions=(); fonts=(); officials=(); standins=false; video_standins=false
+project=""; out=""; obj=""; profile=Reach; platform=Windows; compress=false; extensions=(); fonts=(); officials=(); standins=false; sound_standins=false; video_standins=false
 while [ $# -gt 0 ]; do
     case "$1" in
         --project)   project="$(realpath "$2")"; shift 2 ;;
@@ -48,8 +49,9 @@ while [ $# -gt 0 ]; do
         --font)      fonts+=("$(realpath "$2")"); shift 2 ;;
         --official)  officials+=("$2"); shift 2 ;;
         --song-standins) standins=true; shift ;;
+        --sound-standins) sound_standins=true; shift ;;
         --video-standins) video_standins=true; shift ;;
-        -h|--help)   sed -n '2,28p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        -h|--help)   sed -n '2,29p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "error: unknown argument $1" >&2; exit 2 ;;
     esac
 done
@@ -238,6 +240,13 @@ if $standins; then
         source="${source//\\//}"
         grep -qxF "$source" "$taken" && continue
         "$here/scripts/song-standin.sh" "$(dirname "$project")/$source" "$out/$(dirname "$source")" "$name"
+    done
+fi
+if $sound_standins; then
+    sed -n 's/^skipped sound: \(.*\) as \([^\r]*\)\r\{0,1\}$/\1\t\2/p' "$obj/build.log" | while IFS=$'\t' read -r source name; do
+        source="${source//\\//}"
+        grep -qxF "$source" "$taken" && continue
+        "$here/scripts/sound-standin.sh" "$(dirname "$project")/$source" "$out/$(dirname "$source")" "$name"
     done
 fi
 if $video_standins; then

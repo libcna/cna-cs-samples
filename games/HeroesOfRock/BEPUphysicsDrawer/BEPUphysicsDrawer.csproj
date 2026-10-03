@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- scotttorgeson/HeroesOfRock's BEPUphysicsDrawer, unchanged (its Release configuration's symbols). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>BEPUphysicsDrawer</AssemblyName>
+    <RootNamespace>BEPUphysicsDrawer</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/BEPUphysicsDrawer</GameRoot>
+    <GameProject>$(GameRoot)/BEPUphysicsDrawer.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BEPUphysics/BEPUphysics.csproj" />
+  </ItemGroup>
+</Project>

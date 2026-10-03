@@ -58,8 +58,9 @@ internal static class Program
                 Console.WriteLine("skipped song: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
                 continue;
             }
-            // A sound effect from a .wma: WmaImporter decodes through Windows Media Format too.
-            if (item.GetMetadata("Importer") == "WmaImporter")
+            // A sound effect from a .wma or .mp3: WmaImporter and Mp3Importer decode through Windows
+            // Media Format too.
+            if (item.GetMetadata("Importer") == "WmaImporter" || item.GetMetadata("Importer") == "Mp3Importer")
             {
                 Console.WriteLine("skipped sound: " + node.GetAttribute("Include") + " as " + item.GetMetadata("Name"));
                 continue;

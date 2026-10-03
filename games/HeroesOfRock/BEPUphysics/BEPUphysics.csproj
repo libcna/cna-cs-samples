@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- scotttorgeson/HeroesOfRock's BEPUphysics, unchanged (its Release configuration's symbols). -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>BEPUphysics</AssemblyName>
+    <RootNamespace>BEPUphysics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;ALLOWUNSAFE</CnaSampleDefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/BEPUphysics</GameRoot>
+    <GameProject>$(GameRoot)/BEPUphysics.csproj</GameProject>
+  </PropertyGroup>
+</Project>

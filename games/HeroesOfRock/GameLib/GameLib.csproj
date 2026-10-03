@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- scotttorgeson/HeroesOfRock's GameLib, unchanged (its Release configuration's symbols). Its
+       debug overlay reads Windows performance counters, part of .NET Framework and a package on .NET. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>GameLib</AssemblyName>
+    <RootNamespace>GameLib</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;RELEASE</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/GameLib</GameRoot>
+    <GameProject>$(GameRoot)/GameLib.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BEPUphysics/BEPUphysics.csproj" />
+    <ProjectReference Include="../BEPUphysicsDrawer/BEPUphysicsDrawer.csproj" />
+    <ProjectReference Include="../EasyStorage/EasyStorage.csproj" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.0.0" />
+  </ItemGroup>
+</Project>

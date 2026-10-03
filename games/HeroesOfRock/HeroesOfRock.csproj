@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- scotttorgeson/HeroesOfRock, a rock-band brawler on BEPUphysics, unchanged, with the libraries it
+       ships. Content built from its own content project by XNA's BuildContent (Windows/HiDef) with
+       its GameLib and Pipeline extensions and the two fonts it ships installed; its 66 sound effects
+       are .mp3 files XNA's Mp3Importer reads through Windows Media Format, so they are labelled
+       stand-ins (scripts/sound-standin.sh). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>HeroesOfRock</AssemblyName>
+    <RootNamespace>HeroesOfRock</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/HeroesOfRock/HeroesOfRock</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/heroesofrock/Content</GameContent>
+    <GameProject>$(GameRoot)/HeroesOfRock.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="BEPUphysics/BEPUphysics.csproj" />
+    <ProjectReference Include="GameLib/GameLib.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
