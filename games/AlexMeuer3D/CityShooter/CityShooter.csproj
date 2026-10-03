@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- AlexMeuer/3D-Graphics-and-Audio's FPS_Assessment (City Shooter), a second-year course project, unchanged. Content built
+       from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>CityShooter</AssemblyName>
+    <RootNamespace>FPS_Assessment</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(AlexMeuer3DRoot)/FPS_Assessment/FPS_Assessment</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/alexmeuer-fps/Content</GameContent>
+    <GameProject>$(GameRoot)/FPS_Assessment.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

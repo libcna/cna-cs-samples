@@ -1,0 +1,6 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <AlexMeuer3DRoot Condition="'$(AlexMeuer3DRoot)' == ''">/rv/tmp/xna-games/AlexMeuer_3D-Graphics-and-Audio</AlexMeuer3DRoot>
+  </PropertyGroup>
+</Project>

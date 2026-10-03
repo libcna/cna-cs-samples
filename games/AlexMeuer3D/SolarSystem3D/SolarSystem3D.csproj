@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- AlexMeuer/3D-Graphics-and-Audio's 3DSolarSystem, a second-year course project, unchanged. Content built
+       from its own content project by XNA's BuildContent (Windows/Reach). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>3DSolarSystem</AssemblyName>
+    <RootNamespace>_3DSolarSystem</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot>$(AlexMeuer3DRoot)/3DSolarSystem/3DSolarSystem</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/alexmeuer-solar3d/Content</GameContent>
+    <GameProject>$(GameRoot)/3DSolarSystem.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
