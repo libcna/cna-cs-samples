@@ -122,6 +122,9 @@ lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
          "    <ImplicitUsings>disable</ImplicitUsings>",
          "    <Nullable>disable</Nullable>",
          "    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>",
+         # A game's code sees its own DefineConstants only, as XNA's build gave it: the SDK's own
+         # ANDROID/BROWSER symbols switched on cocos2d-x for XNA's MonoGame-for-Android code.
+         "    <DisableImplicitFrameworkDefines>true</DisableImplicitFrameworkDefines>",
          "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
          "    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>",
          "    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>",
