@@ -62,6 +62,9 @@ checkout.
 | Alone | `github.com/zachrburke/ludum-dare22` @ `0fa9587`, `ld_alone`, a Ludum Dare 22 entry | the XNA build output its repository ships (`bin/x86/Debug/Content`), and the `levels2` maps it reads from its working directory, from the same output (its project lists them as Content without copying them) | (2026-10-03) its 512x512 desert map; the adventurer walks on WASD. No defect found |
 | Zombie Run | `github.com/scottrehlander/ZombieRunXNA` @ `27186a5`, `FrunWithXNA2`: its Windows copy of the phone project, the one with rockets and flying seekers | the XNA build output its repository ships (`bin/x86/Debug/Content`) | (2026-10-03) its menu, then Return starts the level with its timer and zombie count. No defect found. Its project names `NPCManager.cs` for the file `NpcManager.cs`, which Windows' file system did not mind; the glue resolves names case-insensitively |
 | Shootin | `github.com/mtio/GoingToTheStars` @ `1a1d526`, `Shootin`, a gravity shooter | the XNA build output its repository ships (`bin/x86/Debug/Content`) | (2026-10-03) its starfield and ship; the arrow keys start it and its fuel count runs. No defect found |
+| Square Chase | `github.com/nethojs29/SquareChase` @ `0493795`, the Square Chase game of XNA's tutorials | the XNA build output its repository ships | (2026-10-03) the square jumps about its grey field as it is clicked. No defect found |
+| Risk of Pain | `github.com/nanexcool/RiskOfPain` @ `836a43a`, a small prototype | built from its own content project by XNA's BuildContent (Windows/Reach) | (2026-10-03) its checkered arena with its two squares. No defect found |
+| FunGame | `github.com/rpallarino3/Test2DGame` @ `13620e3`, `FunGame`, a top-down RPG prototype | the XNA build output its repository ships (196 assets) | (2026-10-03) its start screen saves a fixed starting game through XNA's `StorageDevice` on Delete and loads it on Home; the player then walks its first zone. No defect found |
 | Super Luigi | `github.com/JohnP42/super-luigi` @ `6c851c4`, a Super Mario World-style platformer | the XNA build output its repository ships (`bin/x86/Debug/Content`, its three songs' `.wma` included), with an Ogg Vorbis copy beside each `.wma` | (2026-10-03) Luigi runs and jumps on the arrow keys and Space, and a Goomba takes his hearts. No defect found |
 | Pyramid Panic | `github.com/Kennyomg/PyramidPanic` @ `522cdf2`, a maze game after the Commodore 64 original | built from its own content project by XNA's BuildContent (Windows/HiDef) | (2026-10-03) its title menu, then Return starts the first maze with its explorer, scarabs and treasures. No defect found |
 | Submarine Destroyer | `github.com/pwasilewski-pl/submariner-xna` @ `7bbab42`, a university game from 2012 | built from its own content project by XNA's BuildContent (Windows/HiDef) | (2026-10-03) its title, then a key starts the destroyer over its submarines. No defect found |
@@ -212,6 +215,8 @@ Tried and not running here, each for a reason outside XNA:
   Hebrew font neither the repository nor Game Studio ships.
 - **Isosurface** (`Lin20/isosurface`): references `alglibnet2.dll` and `MathNet.Numerics.dll` at
   `E:\Libraries\...`, which the repository does not ship, at versions it does not name.
+- **Mythology** (`AlanWills/Mythology`, one commit): its XRpgLibrary project omits
+  `TileEngine/ILayer.cs`, which its map layers implement, so it does not build as published.
 - **Design Patterns Game** (`brunolm/DesignPatternsGame` @ `109ddea`): its `Main` composes its 20
   mini-games through MEF, which constructs every one -- 21 `Game` objects alive at once, where
   CNA runs one game per process ("Only one C-owned CNA game may be active at a time").
