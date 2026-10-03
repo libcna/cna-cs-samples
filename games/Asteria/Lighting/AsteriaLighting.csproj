@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Bryan-Legend/asteria's lighting prototype (AsteriaLighting), unchanged. Content built from
+       its own content project by XNA's BuildContent (Windows/HiDef). See ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>AsteriaLighting</AssemblyName>
+    <RootNamespace>AsteriaLighting</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Bryan-Legend_asteria/AsteriaLighting/AsteriaLighting/AsteriaLighting</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asteria-lighting/Content</GameContent>
+    <GameProject>$(GameRoot)/AsteriaLighting.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

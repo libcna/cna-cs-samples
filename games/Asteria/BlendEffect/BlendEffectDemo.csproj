@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Bryan-Legend/asteria's blend-effect demo (Assets/BlendEffectDemo, a WindowsGame1), unchanged.
+       Content built from its own content project by XNA's BuildContent (Windows/HiDef). See
+       ../../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>WindowsGame1</AssemblyName>
+    <RootNamespace>WindowsGame1</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Bryan-Legend_asteria/Assets/BlendEffectDemo/WindowsGame1/WindowsGame1</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asteria-blend/Content</GameContent>
+    <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
