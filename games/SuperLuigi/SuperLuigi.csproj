@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- JohnP42/super-luigi, unchanged. Content: the XNA build output its repository ships
+       (bin/x86/Debug/Content), with an Ogg Vorbis copy beside each song's .wma
+       (scripts/convert-xna-songs.sh). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>Super_Luigi</AssemblyName>
+    <RootNamespace>Super_Luigi</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/JohnP42_super-luigi/Super_Luigi/Super_Luigi</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/superluigi/Content</GameContent>
+    <GameProject>$(GameRoot)/Super_Luigi.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
