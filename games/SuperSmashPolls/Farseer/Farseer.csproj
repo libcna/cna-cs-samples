@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The Farseer Physics Engine 3.5 copy WilliamKluge/SuperSmashPolls ships, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>FarseerPhysics XNA</AssemblyName>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/WilliamKluge_SuperSmashPolls/Farseer Physics Engine 3.5</GameRoot>
+    <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
+  </PropertyGroup>
+</Project>

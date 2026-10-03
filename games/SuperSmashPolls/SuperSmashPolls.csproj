@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- WilliamKluge/SuperSmashPolls, a fighting game on the 2016 US election, unchanged, with the
+       Farseer 3.5 and DebugView it ships. Content built from its own content project by XNA's
+       BuildContent (Windows/Reach), with the 8-BIT WONDER font the repository ships installed.
+       See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>SuperSmashPolls</AssemblyName>
+    <RootNamespace>SuperSmashPolls</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/WilliamKluge_SuperSmashPolls/SuperSmashPolls/SuperSmashPolls</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/supersmashpolls/Content</GameContent>
+    <GameProject>$(GameRoot)/SuperSmashPolls.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="Farseer/Farseer.csproj" />
+    <ProjectReference Include="DebugView/DebugView.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

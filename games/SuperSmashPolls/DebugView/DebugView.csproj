@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Farseer's DebugView XNA as WilliamKluge/SuperSmashPolls ships it, unchanged. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>DebugView XNA</AssemblyName>
+    <RootNamespace>FarseerPhysics.DebugView</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/WilliamKluge_SuperSmashPolls/DebugViews/DebugView XNA</GameRoot>
+    <GameProject>$(GameRoot)/DebugView XNA.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Farseer/Farseer.csproj" />
+  </ItemGroup>
+</Project>
