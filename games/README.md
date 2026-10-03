@@ -188,6 +188,12 @@ Tried and not running here, each for a reason outside XNA:
 - **Voxeliq** (`bonesoul/voxeliq` @ `249b1d0`, its XNA 4.0 client under
   `contrib/old-codebase`): its content project builds but for its three sprite fonts, which name
   Calibri, a Windows font neither its repository nor Game Studio ships; no built content is shipped.
+- **Asteria** (`Bryan-Legend/asteria` @ `11334ae`, the Steam game's full source): its Windows
+  game saves and loads its player and maps through `System.Xaml`'s `XamlServices` and writes map
+  images through WPF's `PngBitmapEncoder`, Windows desktop assemblies .NET does not have on Linux;
+  its Xbox 360 project no longer compiles against the shared sources it links (Steamworks,
+  `Achievement`), already so in the one commit the source was published as. Its lighting and
+  blend-effect demos run (above).
 - **Design Patterns Game** (`brunolm/DesignPatternsGame` @ `109ddea`): its `Main` composes its 20
   mini-games through MEF, which constructs every one -- 21 `Game` objects alive at once, where
   CNA runs one game per process ("Only one C-owned CNA game may be active at a time").
