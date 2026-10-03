@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- klutch/Box2DFluid's FluidPort, an XNA 4.0 port of a Box2D fluid simulation, unchanged. Content
+       built from its own content project by XNA's BuildContent (Windows/Reach). It references a
+       prebuilt FarseerPhysicsXNA.dll of Farseer Physics Engine 3.3.1 by a path outside its
+       repository; that library is built here from the Farseer 3.3.1 XNA source HauntedHouse's
+       repository ships (../HauntedHouse/Farseer). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>FluidPort</AssemblyName>
+    <RootNamespace>FluidPort</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/klutch_Box2DFluid/FluidPort/FluidPort</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/fluidport/Content</GameContent>
+    <GameProject>$(GameRoot)/FluidPort.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../HauntedHouse/Farseer/Farseer.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
