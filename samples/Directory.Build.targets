@@ -26,8 +26,14 @@
     XNA's build wrote the project's <XnaProfile> into the game assembly, and GraphicsDeviceManager
     reads it for its default GraphicsProfile. A package consumer gets this from CNA.XnaCompat's
     build/ folder; these samples reference the project, so they import it here, and each sample
-    states its original project's profile.
+    states its original project's profile. A phone-only title (<CnaPhoneGame>) was built by XNA's
+    Windows Phone project, so its platform is Windows Phone unless it says otherwise: CNA.NET reads
+    that line to make the mouse the finger. Without it, Apress' SoundEffectInstances, which reads
+    only TouchPanel, heard nothing.
   -->
+  <PropertyGroup Condition="'$(XnaPlatform)' == '' and '$(CnaPhoneGame)' != ''">
+    <XnaPlatform>Windows Phone</XnaPlatform>
+  </PropertyGroup>
   <Import Project="$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets"
           Condition="'$(CnaCsRoot)' != '' and Exists('$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets')" />
 
