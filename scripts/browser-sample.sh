@@ -64,7 +64,8 @@ targets=()
 DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProperty:AssemblyName \
     -getProperty:RootNamespace -getProperty:StartupObject -getProperty:CnaSampleDefineConstants \
     -getProperty:XnaProfile -getProperty:XnaPlatform -getProperty:CnaPhoneGame \
-    -getProperty:CnaPhoneCompat -getProperty:CnaWindowsFormsCompat -getProperty:CnaSampleConfiguration -getItem:Compile \
+    -getProperty:CnaPhoneCompat -getProperty:CnaWindowsFormsCompat -getProperty:CnaSampleConfiguration -getProperty:Deterministic \
+    -getProperty:AllowUnsafeBlocks -getItem:Compile \
     -getItem:EmbeddedResource -getItem:ProjectReference -getItem:Reference -getItem:PackageReference -getItem:None -getItem:Content -getItem:CnaWindowsPath >"$work/evaluation.json"
 
 # Library projects beside the sample (Pathfinding's MapData, SpriteSheet's runtime) are referenced
@@ -128,6 +129,12 @@ lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
 # A row qualified in Debug keeps its DEBUG-only code ([Conditional("DEBUG")] drawing, say).
 if props.get("CnaSampleConfiguration") == "Debug":
     lines.append("    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>")
+# A 2010 project could version itself "3.5.0.*", which a deterministic build refuses (the games'
+# own Directory.Build.props turns determinism off); and some compile unsafe code.
+if props.get("Deterministic") == "false":
+    lines.append("    <Deterministic>false</Deterministic>")
+if props.get("AllowUnsafeBlocks") == "true":
+    lines.append("    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>")
 if props.get("XnaProfile"):
     lines.append(f"    <XnaProfile>{escape(props['XnaProfile'])}</XnaProfile>")
 if props.get("XnaPlatform"):
