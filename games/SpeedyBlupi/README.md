@@ -19,6 +19,15 @@ repository is changed; `SpeedyBlupiRoot` points at it.
 - `Game1` hardcodes `IsFullScreen = true` with no preferred back buffer. On a bare Xvfb the switch
   falls back to the 800x480 window, the framing the art is drawn for.
 
+## Measured 2026-10-03 (the owner's walk-through, CNA `75b55659c`)
+
+- Played on a real desktop (Xwayland, 2048x1152): the mouse works -- menus, the virtual pad and the
+  buttons answer clicks -- after CNA CBIND-157. Xwayland cannot switch to the 800x480 mode `IsFullScreen`
+  asks for, so the window takes the desktop mode and letterboxes the back buffer; `Window.ClientBounds`
+  reported that 2048x1152 window while the mouse was already in back-buffer space, and the game, which
+  maps its pointer by `Viewport / ClientBounds`, missed every button. A fullscreen window's ClientBounds
+  is now the back buffer's mode, as XNA's mode switch makes it.
+
 Captures: `/rv/tmp/cs-samples/speedy-blupi-{1,2,3}/` (CNA.NET) and
 `/rv/tmp/cs-samples/speedy-blupi-xna/xna-title.png` (XNA 4.0 under Wine).
 
