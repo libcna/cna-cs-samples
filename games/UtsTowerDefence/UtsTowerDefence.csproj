@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ddoodm/GameProgramming's GameProgrammingMajor, a UTS Game Programming group's 3D tower defence, unchanged. Content built from its own content project by XNA's BuildContent (Windows/Reach); its FSM and level XML copied beside it, as its post-build event copied them, and read at Windows paths ("Levels\\level0.xml"), so each is linked under its Windows name too. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>GameProgrammingMajor</AssemblyName>
+    <RootNamespace>GameProgrammingMajor</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ddoodm_GameProgramming/GameProgrammingMajor/GameProgrammingMajor/GameProgrammingMajor</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/utsmajor/Content</GameContent>
+    <GameProject>$(GameRoot)/GameProgrammingMajor.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/Levels/*" Link="Levels/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/FSM/*" Link="FSM/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <_UtsLevel Include="$(GameRoot)/Levels/*" />
+    <_UtsFsm Include="$(GameRoot)/FSM/*" />
+    <CnaWindowsPath Include="@(_UtsLevel->'%(Filename)%(Extension)')" Path="Levels%5C%(Filename)%(Extension)" LinksTo="Levels/%(Filename)%(Extension)" />
+    <CnaWindowsPath Include="@(_UtsFsm->'%(Filename)%(Extension)')" Path="FSM%5C%(Filename)%(Extension)" LinksTo="FSM/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

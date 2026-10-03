@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- apbeecham/xna-camera-2d, Microsoft's Platformer starter kit with a scrolling 2D camera added, unchanged. Content built from its own content project by XNA's BuildContent (Windows/HiDef); its sounds and song are .wma files byte-identical to the starter kit's, so they are that kit's retained XNA build output. Its repository does not ship the Properties/AssemblyInfo.cs its project lists (assembly attributes only): it is compiled without it, the SDK generating those attributes instead. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Platformer</AssemblyName>
+    <RootNamespace>Platformer</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/apbeecham_xna-camera-2d/2DCamExample/Platformer/Platformer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/camera2d/Content</GameContent>
+    <GameProject>$(GameRoot)/2DCamExample.csproj</GameProject>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <Target Name="Camera2DWithoutItsMissingAssemblyInfo" AfterTargets="CnaGameProjectSources">
+    <ItemGroup>
+      <Compile Remove="$(GameRoot)/Properties/AssemblyInfo.cs" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
