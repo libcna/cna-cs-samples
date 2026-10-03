@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Kennyomg/PyramidPanic @ 522cdf2, unchanged. Content built from its own content project by XNA's BuildContent
+       (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>PyramidPanic</AssemblyName>
+    <RootNamespace>PyramidPanic</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Kennyomg_PyramidPanic/PyramidPanic/PyramidPanic/PyramidPanic</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pyramidpanic/Content</GameContent>
+    <GameProject>$(GameRoot)/PyramidPanic.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

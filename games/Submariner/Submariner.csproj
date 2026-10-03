@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- pwasilewski-pl/submariner-xna @ 7bbab42, unchanged. Content built from its own content project by XNA's BuildContent
+       (Windows/HiDef). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>Submariner</AssemblyName>
+    <RootNamespace>Submariner</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/pwasilewski-pl_submariner-xna/Submariner/Submariner</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/submariner/Content</GameContent>
+    <GameProject>$(GameRoot)/Submariner.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
