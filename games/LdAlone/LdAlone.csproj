@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- zachrburke/ludum-dare22's "Alone" (ld_alone), a Ludum Dare 22 entry, unchanged. Content: the
+       XNA build output its repository ships (bin/x86/Debug/Content), and the levels2 directory it
+       reads from its working directory, from the same build output (its project lists the maps as
+       Content without copying them). See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>ld_alone</AssemblyName>
+    <RootNamespace>ld_alone</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/zachrburke_ludum-dare22/ld_alone/ld_alone</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/ld_alone.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="$(GameRoot)/bin/x86/Debug/levels2/*" LinkBase="levels2" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
