@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- imeteora/BoneAnimation's Bones.XNA library, unchanged, with the protobuf-net binary it ships. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>BoneLibrary</AssemblyName>
+    <RootNamespace>BoneLibrary</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/imeteora_BoneAnimation/Bones.XNA</GameRoot>
+    <GameProject>$(GameRoot)/Bones.XNA.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="protobuf-net" HintPath="$(GameRoot)/../Libs/protobuf-net.dll" />
+  </ItemGroup>
+</Project>

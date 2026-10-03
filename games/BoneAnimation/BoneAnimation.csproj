@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- imeteora/BoneAnimation's XNA example, a skeletal sprite animation, unchanged, on the Bones.XNA library it ships. Content built from its own content project by XNA's BuildContent (Windows/Reach); its hero.png and hero.skt copied beside it as its project copies them. See ../README.md. -->
+  <PropertyGroup>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>BoneTestGame</AssemblyName>
+    <RootNamespace>BoneTestGame</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/imeteora_BoneAnimation/Bones.XNA.Example/BoneTestGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/bones/Content</GameContent>
+    <GameProject>$(GameRoot)/Bones.XNA.Example.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="BoneLibrary/BoneLibrary.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
