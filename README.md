@@ -1,10 +1,10 @@
 # CNA.NET Samples
 
 The official **Microsoft XNA Game Studio 4.0** sample collection — still in its original C# —
-running on [CNA](https://github.com/openeggbert/cna) through the
-[CNA.NET](https://github.com/openeggbert/cna-cs) binding, on .NET 8.
+running on [CNA](https://github.com/libcna/cna) through the
+[CNA.NET](https://github.com/libcna/cna-cs) binding, on .NET 8.
 
-This is not a port. The sibling [`cna-samples`](https://github.com/openeggbert/cna-samples)
+This is not a port. The sibling [`cna-samples`](https://github.com/libcna/cna-samples)
 repository is the C++ port campaign; here the upstream C# files are checked in as close to
 verbatim as .NET 8 permits, and everything that has to change to make them build and run lives in
 the project file, not in the sample's code. Each sample's `missing.md` lists every byte that

@@ -22,7 +22,7 @@ permits. Every deviation from the upstream bytes is recorded in the affected sam
 The samples compile against **CNA.NET**, the C#/.NET binding that supplies the
 `Microsoft.Xna.Framework` API surface on top of CNA's C ABI.
 
-CNA.NET is developed by the OpenEggbert project.
+CNA.NET is developed by the libcna project.
 
 ---
 
@@ -31,8 +31,8 @@ CNA.NET is developed by the OpenEggbert project.
 CNA.NET's `CNA.Interop` layer loads **CNA**, a C++ reimplementation of the XNA 4.0 programming
 model built on SDL3.
 
-CNA is developed by the OpenEggbert project and is available at:
-https://github.com/openeggbert/cna
+CNA is developed by the libcna project and is available at:
+https://github.com/libcna/cna
 
 ---
 
@@ -42,8 +42,8 @@ CNA transitively depends on **sharp-runtime**, a C++ port of selected .NET BCL t
 implementation detail of the native layer; the samples in this repository run on the real .NET
 BCL and never see it.
 
-sharp-runtime is developed by the OpenEggbert project and is available at:
-https://github.com/openeggbert/sharp-runtime
+sharp-runtime is developed by the libcna project and is available at:
+https://github.com/libcna/sharp-runtime
 
 ---
 
@@ -51,5 +51,5 @@ https://github.com/openeggbert/sharp-runtime
 
 The `.xnb` files shipped beside a sample are output of the **original Microsoft XNA Content
 Pipeline**. They are taken byte-for-byte from the sibling
-[`cna-samples`](https://github.com/openeggbert/cna-samples) repository, which generated and
+[`cna-samples`](https://github.com/libcna/cna-samples) repository, which generated and
 verified them against the official pipeline. CNA reads `.xnb`; it does not produce it.
