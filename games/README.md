@@ -121,6 +121,10 @@ worker's WebGL calls are proxied to the page's thread, and at that rate its menu
 press while drawing, never see one (XNA's fixed-step catch-up runs several updates per draw);
 Missile Command, threaded too, starts a game on Space. So 24 of the 25 run in a browser as well,
 all but Playing in Traffic's video (`/rv/tmp/cs-samples/{browser,android}/<Game>/`).
+CSX-148 bounded the performance investigation on 2026-10-04: Emscripten can hand an
+`OffscreenCanvas` to a worker only while creating that pthread, but .NET owns its managed deputy
+thread and exposes no supported canvas-transfer hook. The correct proxy path remains; improving it
+is future .NET/browser-host platform work, not a reason to alter this game or patch the runtime.
 The five Microsoft samples added last reach their first screen in a browser and on the Android
 emulator too (CNA `fb89c451a` archives, 2026-10-02). In a browser Memory Madness reaches its instructions (a round needs the level link added on 2026-10-03, not run in a browser since) and
 Saving Embedded Images opens its keyboard prompt, but its blocking `Guide.EndShowMessageBox` right
