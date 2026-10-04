@@ -1,5 +1,20 @@
 # Real XNA 4.0 games on CNA.NET
 
+## Campaign closure and maintenance policy (2026-10-04)
+
+The broad AI-driven compatibility campaign is closed. This file preserves evidence for 85
+external application/project rows plus the ten deliberately bounded final candidates below: 95
+documented project investigations, with several rows themselves covering multiple book, framework
+or engine samples. The corpus spans commercial and indie games, Microsoft networking/game samples,
+open-source games and engines, physics/UI/content frameworks, shader/3D demos, audio players,
+Windows Phone titles, and book/course applications.
+
+Do not add projects merely to grow that count, replace the completed final candidates, or browse
+for another game by default. Add new evidence only when the owner requests a specific application,
+a user reports a reproducible XNA defect, a CNA/CNA.NET regression needs a real reproducer, a
+specific under-tested XNA subsystem or platform is being deliberately qualified, or an application
+provides unusually strong differential evidence against real XNA.
+
 The gallery rows prove Microsoft's samples. These are games: code written to ship, not to teach.
 Each project here compiles a game's **unchanged** XNA 4.0 sources against CNA.NET exactly as its own
 XNA project compiled them (same files, defines, profile), with **official XNA Content Pipeline
