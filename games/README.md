@@ -144,7 +144,13 @@ screen; the Farseer 3.5 samples after the generators carried their wildcard vers
 `Deterministic` off. TiledTerrainDemo's normal map is `Rgba64`, which WebGL 2 without
 `EXT_texture_norm16` has no format for (refused by name); MDTerrainDemo, as a threaded bundle, never
 loads a terrain partition -- its thread-pool work items never run (the .NET 11 RC1 worker fault
-above); TerrainDemo draws only its clear colour, which is not explained yet. On the Android emulator
+above). TerrainDemo's clear-only symptom was reduced to its mouse-look loop repeatedly calling
+`Mouse.SetPosition`, which a browser cannot physically perform, rather than its compiled effect or
+instanced terrain draw. After CNA CSX-145 virtually preserves the requested position and applies
+later raw pointer deltas, unchanged original source draws in headless Chromium/SwiftShader with the
+deterministic harness action `move:600,350@2000`; the no-action harness starts at raw `(0,0)`, and
+the demo itself never centres that first sample. Interactive browser input and a hardware GPU were
+not qualified by this run. On the Android emulator
 eight Petzold samples, the three recipes, cocos2d-x for XNA's tests (after the generators stopped
 handing the game the SDK's `ANDROID` symbol, which switched on its MonoGame-for-Android activity),
 BoneAnimation (CSX-140 again), Mario3, the 2D camera Platformer, LilyPath, Marblets, tiled-xna, the
