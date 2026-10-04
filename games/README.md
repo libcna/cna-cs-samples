@@ -125,6 +125,14 @@ CSX-148 bounded the performance investigation on 2026-10-04: Emscripten can hand
 `OffscreenCanvas` to a worker only while creating that pthread, but .NET owns its managed deputy
 thread and exposes no supported canvas-transfer hook. The correct proxy path remains; improving it
 is future .NET/browser-host platform work, not a reason to alter this game or patch the runtime.
+CSX-150 requalified the path on 2026-10-04 with a threaded archive rebuilt from current CNA
+`28f8312f0` (Emscripten 6.0.3, SHA-256
+`ce8db116c3d9100f363864d355ad205c7334e5c5b630167c4fee1641c588b6c2`). AimingSample moved under
+held keyboard input and exited cleanly. Unchanged Resonance, after its disposable 282-asset output
+was rebuilt by the documented XNA BuildContent/XACT workflow, loaded its level on its own thread,
+initialized its shipped BEPUphysics, entered the 3D arena and reacted to movement. No new general
+CNA/CNA.NET defect was exposed; evidence is in
+`/rv/tmp/cs-samples/final-threaded-20261004/`.
 The five Microsoft samples added last reach their first screen in a browser and on the Android
 emulator too (CNA `fb89c451a` archives, 2026-10-02). In a browser Memory Madness reaches its instructions (a round needs the level link added on 2026-10-03, not run in a browser since) and
 Saving Embedded Images opens its keyboard prompt, but its blocking `Guide.EndShowMessageBox` right
