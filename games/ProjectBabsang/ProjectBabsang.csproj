@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- FoxRyang/Project_Babsang, unchanged. The repository ships its XNA 4.0 build output and the
+       Farseer/DebugView binaries used by that build. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>WindowsGame1</AssemblyName>
+    <RootNamespace>WindowsGame1</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/FoxRyang_Project_Babsang/babsang/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
+    <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DebugViewXNA" HintPath="$(GameRoot)/bin/x86/Debug/DebugViewXNA.dll" />
+    <Reference Include="FarseerPhysicsXNA" HintPath="$(GameRoot)/bin/x86/Debug/FarseerPhysicsXNA.dll" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

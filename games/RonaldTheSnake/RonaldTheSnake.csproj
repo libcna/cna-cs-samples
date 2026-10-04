@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Layoric/RonaldTheSnake, unchanged. Build the 56 Windows assets with XNA 4.0 BuildContent
+       and the three original pipeline extensions. Palatino Linotype is not in the repository, so
+       the recorded CSX-151 build substitutes Liberation Serif for gamescore.spritefont only. -->
+  <PropertyGroup>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>RonaldTheSnake</AssemblyName>
+    <RootNamespace>RonaldTheSnake</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Layoric_RonaldTheSnake</GameRoot>
+    <GameProject>$(GameRoot)/RonaldTheSnake/RonaldTheSnake/RonaldTheSnake.csproj</GameProject>
+    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/final-ronald-complete/Content</GameContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="CustomDataTypes/CustomDataTypes.csproj" />
+    <ProjectReference Include="XTiled/XTiled.csproj" />
+    <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

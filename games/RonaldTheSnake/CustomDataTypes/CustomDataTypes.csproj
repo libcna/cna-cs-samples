@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <AssemblyName>RonaldTheSnake.CustomDataTypes</AssemblyName>
+    <RootNamespace>RonaldTheSnake.CustomDataTypes</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameProject>/rv/tmp/xna-games/Layoric_RonaldTheSnake/RonandTheSnake.CustomDataTypes/RonaldTheSnake.CustomDataTypes.csproj</GameProject>
+  </PropertyGroup>
+</Project>

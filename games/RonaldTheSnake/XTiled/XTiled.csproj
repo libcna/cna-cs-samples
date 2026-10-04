@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <XnaProfile>HiDef</XnaProfile>
+    <AssemblyName>FuncWorks.XNA.XTiled</AssemblyName>
+    <RootNamespace>FuncWorks.XNA.XTiled</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GameProject>/rv/tmp/xna-games/Layoric_RonaldTheSnake/XTiled/XTiled [Windows].csproj</GameProject>
+  </PropertyGroup>
+</Project>

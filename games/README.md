@@ -8,6 +8,35 @@ output**: either the content the game's repository ships, or content built from 
 (`scripts/build-xna-content.sh`). Nothing of a game is checked in here; `GameRoot` points at its
 checkout.
 
+## Final bounded compatibility sweep (CSX-151, 2026-10-04)
+
+This was the final broad discovery batch: exactly ten locally retained, deliberately diverse
+projects were investigated, and no finished candidate was replaced with another repository. Two
+unchanged XNA 4.0 applications ran; every other stop occurred before a CNA/CNA.NET compatibility
+boundary because the published source was incomplete or the application required non-XNA host,
+middleware, framework or service dependencies.
+
+| Candidate | Diagnostic area | Outcome |
+|---|---|---|
+| [Project Babsang](ProjectBabsang/ProjectBabsang.csproj), `FoxRyang/Project_Babsang` @ `2d5ce0b63312` | shipped XNA libraries, Farseer physics, DebugView and effects | **Runs unchanged.** Its 48 shipped XNBs and original `FarseerPhysicsXNA.dll`/`DebugViewXNA.dll` load through CNA.NET; the Korean title and confirmed-start state render at 800x600. |
+| [Ronald the Snake](RonaldTheSnake/RonaldTheSnake.csproj), `Layoric/RonaldTheSnake` @ `60bc554b324a` | custom content readers, tiled maps, four post-processing effects, render targets and a large game loop | **Runs unchanged through arcade gameplay.** All 56 assets were rebuilt with XNA 4.0 BuildContent and the project's three pipeline extensions. The repository does not ship Palatino Linotype, so only `gamescore.spritefont` used the metrically similar open Liberation Serif family; this is a recorded content substitution, not a source or runtime fix. |
+| Bamboozled, `csce3513/Team7` @ `083794e2a651` | Reach side-scroller, screen manager and audio | **Incomplete published source.** Its own project lists `Ecstasy.cs`, `Enemy.cs`, `explosion.cs`, `GameOver.cs`, `Level.cs` and `Win.cs`, none of which exists in the repository; retained EXE/XNB output does not restore those sources. |
+| Voodoo Boy, `mdwheele/voodoo-boy` @ `9e690356ee43` | entity/component game, Farseer, animation, storage and tiled levels | **Incomplete published source.** Its project lists four absent component/script sources (`AnimationComponent`, `ScriptComponent`, `Script` and `ChasePlayerScript`); the old EXE and dependency DLLs cannot provide an unchanged-source migration. |
+| Hunted, `GarethIW/Hunted` @ `d17e15b86786` | custom tiled pipeline, lighting/shadow effects and vehicles | **Incomplete published source.** Five A* sources required by `TiledLib` are absent, as are the project's `ScreenManager` and most screen files, so its own custom content pipeline cannot compile. |
+| Project Heist, `ErraticUnicorn/ProjectHeist` @ `e6d266134543` | content database, input, rendering and networking | **Non-XNA application dependencies.** The runnable project is MonoGame 3 WindowsGL and requires OpenTK, Lidgren, Tao.Sdl, FSharp.Core and SQLite through machine-local paths. Implementing those MonoGame/third-party layers is outside strict XNA 4.0 compatibility. |
+| Adventure Time, `Team-IX/adventure-time` @ `9ce5fbdbac2c` | physics, custom input and local web controls | **Non-XNA application dependencies.** Its game is a MonoGame 3/.NET 4.5 project using MonoGame Farseer/DebugView, Nuclex input, WinForms and Newtonsoft.Json; CNA.NET did not grow those extensions merely to change a corpus count. |
+| Pixel Blast, `AlexMeuer/Pixel-Blast` @ `53d40721f743` | Windows Phone touch and lifecycle | **Platform host outside CNA.NET.** It is a Silverlight Windows Phone 7.1 XAML application (`Microsoft.Phone`, `System.Windows`, phone `DrawingSurface`), not a standalone XNA `Game`; a Silverlight host is not part of Android CNA.PhoneCompat. |
+| Engine Nine samples, `studio-nine/Engine-Nine` @ `ab314ac4ea6a` | large 3D engine, effects, UI, physics and serialization | **Windows desktop framework dependency.** The XNA 4.0 sample's mandatory engine graph uses `System.Xaml`, WinForms/WPF markup and Win32 interop throughout. Porting a general WPF/XAML/Win32 engine host is intentionally outside CNA.NET's small XNA-valued WinForms subset. |
+| MunchKlone, `mcacciola/MunchKlone` @ `7e79d38bdac6` | GamerServices/SystemLink, dynamic card images and database state | **External service/framework dependency.** It requires `System.Drawing.Common` to create textures and unconditionally fetches its cards/images from a hard-coded `cs.westga.edu:3307` MySQL database with embedded historical credentials. The repository does not contain that data, and no database or drawing shim was invented. |
+
+Evidence for the two runnable candidates, including captures and logs, is under
+`/rv/tmp/cs-samples/final-sweep-20261004/`; Ronald's complete authentic-pipeline output and build
+log are under `/rv/tmp/xna-games-content/final-ronald-complete/`. The batch exposed **zero new
+general CNA/CNA.NET defects**. It therefore meets saturation condition B: the selected ten are all
+investigated and the remaining failures are exclusively missing source/content, dead/external
+services, non-XNA middleware, or Windows/Silverlight host APIs. Do not replace these candidates
+with another discovery batch.
+
 | Game | Source | Content | Measured 2026-10-01 and -02 (CNA.NET `4fc7dfb`; music and the games added 2026-10-02 on CNA.NET `880b6bc`, CNA `fad9fabe0`; the rest CNA `1c2923efd`) |
 |---|---|---|---|
 | [Speedy Blupi](SpeedyBlupi/README.md) | `openeggbert/mobile-eggbert-legacy` `speedy-blupi-xna4` @ `6d35cca` | its XNA build's `build/bin/Content` (280 `.xnb`) | title 255 px from XNA 4.0 under Wine (save-game numbers); plays, pauses |
