@@ -2,12 +2,12 @@
 
 ## Mandatory status
 
-This file is the binding working agreement for every change in `cna-cs-samples`. Read it
+This file is the binding working agreement for every change in `cna-dotnet-samples`. Read it
 completely before analysing, enabling, building, running, documenting or reviewing a sample. Also
 read [`plan.md`](plan.md) and the affected sample's `missing.md`.
 
 Where this file and a historical note disagree, this file and `plan.md` win. The campaign brief
-of 2026-10-01 (`../cna-cs/CAMPAIGN.md`) superseded the earlier read-only and stop-for-owner rules:
+of 2026-10-01 (`../cna-dotnet/CAMPAIGN.md`) superseded the earlier read-only and stop-for-owner rules:
 defects are fixed in the repository they live in, and phone-only or entry-point-less samples are
 hosted rather than declared out of scope.
 
@@ -25,8 +25,8 @@ The measured claim of a finished row here is therefore narrow and precise:
 
 | Repository | Checkout | Branch | Role |
 |---|---|---|---|
-| samples | `cna-cs-samples` | `develop` | this repository |
-| C# binding | `../cna-cs` | `develop` | `Microsoft.Xna.Framework` facade |
+| samples | `cna-dotnet-samples` | `develop` | this repository |
+| C# binding | `../cna-dotnet` | `develop` | `Microsoft.Xna.Framework` facade |
 | XNA runtime | `../cna` | `next` | native C ABI implementation |
 | .NET runtime | `../sharp-runtime` | as checked out | CNA's internal BCL; not visible to these samples |
 | gallery | `../samples.libcna.com` | `main` | which samples are in scope |
@@ -34,7 +34,7 @@ The measured claim of a finished row here is therefore narrow and precise:
 | originals | `/rv/tmp/XNAGameStudio/Samples` | -- | authoritative Microsoft C# |
 
 CNA.NET admits exactly one reviewed CNA C ABI generation at a time
-(`../cna-cs/docs/native-abi-compatibility.md`). If `../cna`'s `modules/c-api/include/CNA/C/abi.h`
+(`../cna-dotnet/docs/native-abi-compatibility.md`). If `../cna`'s `modules/c-api/include/CNA/C/abi.h`
 and that matrix disagree, migrate the binding (review the new generation into the matrix) -- never
 widen the matrix to make a sample run.
 
@@ -77,7 +77,7 @@ changed in a `.cs` file is a recorded deviation.
 Some upstream C# genuinely cannot compile on .NET 8 — a reference to a type that only ever existed
 on Xbox 360 or Windows Phone 7, for instance. Then, in this order:
 
-1. If the API is XNA 4.0's, it belongs in `../cna-cs`. **Fix it there.**
+1. If the API is XNA 4.0's, it belongs in `../cna-dotnet`. **Fix it there.**
 2. If the gap is in CNA itself — a missing native behaviour, a wrong result, a crash below the
    binding — reduce it to the smallest native reproducer, **fix it in `../cna`** (or
    `../sharp-runtime` if it is below CNA) with a regression test at the lowest layer that can see
@@ -88,7 +88,7 @@ on Xbox 360 or Windows Phone 7, for instance. Then, in this order:
    built from a different CNA revision is not evidence, and saying so is what stops it being quoted
    as such later.
 3. If the API is not XNA's but a Windows Phone SDK one (`Microsoft.Devices`, ...), it goes into the
-   separate opt-in phone compatibility assembly of `../cna-cs`, never into the strict XNA facade.
+   separate opt-in phone compatibility assembly of `../cna-dotnet`, never into the strict XNA facade.
 4. A sample without its own `Main` (its host supplied one) gets a generated host around the
    unchanged source: the project names the game class in `<CnaPhoneGame>`, and
    `samples/Directory.Build.targets` writes the entry point into `obj/` and selects the phone
@@ -173,7 +173,7 @@ dependency:
 3. `cp -a` the upstream project directories into `samples/<Name>/`. Do not touch a byte.
 4. Copy `Content/` from `../cna-samples/samples/<Port>/Content/` and verify the hashes.
 5. Write `samples/<Name>/<Name>.csproj` — as small as the shared props allow — and add it to
-   `CnaCsSamples.sln`.
+   `CnaDotnetSamples.sln`.
 6. `dotnet build -c Debug` and `-c Release`. Compile errors are triaged with the ladder above:
    binding fix, CNA report, or (last) a recorded source deviation.
 7. Run it with `scripts/run-sample.sh`, headless and windowed. Exercise the original controls and
@@ -181,13 +181,13 @@ dependency:
 8. Compare against `../cna-samples/samples/<Port>/` and its `missing.md`.
 9. Write `samples/<Name>/missing.md`.
 10. Update the `plan.md` row and `NEXT.md`.
-11. Commit `cna-cs-samples` by explicit file list; commit `../cna-cs`, `../cna` or
+11. Commit `cna-dotnet-samples` by explicit file list; commit `../cna-dotnet`, `../cna` or
     `../sharp-runtime` separately in their own repositories if they were fixed. Do not push unless
     the owner asks.
 
 ## Owner decision boundary
 
-Continue without interrupting the owner. Large subsystems in `../cna-cs`/`../cna`, cross-repository
+Continue without interrupting the owner. Large subsystems in `../cna-dotnet`/`../cna`, cross-repository
 fixes, phone compatibility and sample hosts are authorized. Stop only for something genuinely
 outside these repositories (a toolchain, a device, a legal question), state the measured scope, and
 continue with the next sample meanwhile.

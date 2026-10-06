@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="../Engine/Lapins.Engine.csproj" />
     <Reference Include="OgmoXNA4" HintPath="$(GameRoot)/Libs/OgmoXNA4/OgmoXNA4.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
   </ItemGroup>
 </Project>

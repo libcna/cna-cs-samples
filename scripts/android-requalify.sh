@@ -68,7 +68,7 @@ table="$out/android-requalification.md"
 {
     echo "# Android requalification $(date +%Y-%m-%d)"
     echo
-    echo "CNA.NET \`$(git -C "$here/../cna-cs" rev-parse --short HEAD)\`, CNA \`$(git -C "$here/../cna" rev-parse --short HEAD)\`,"
+    echo "CNA.NET \`$(git -C "$here/../cna-dotnet" rev-parse --short HEAD)\`, CNA \`$(git -C "$here/../cna" rev-parse --short HEAD)\`,"
     echo ".NET 11 net11.0-android, emulator x86_64 (SwiftShader GLES 3), ${seconds}s then one Back tap;"
     echo "desktop reference \`$desktop\`."
     echo

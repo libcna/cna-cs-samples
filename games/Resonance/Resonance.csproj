@@ -16,8 +16,8 @@
     <!-- The x86 build of the BEPUphysics release the game ships, as its Windows project references it;
          its struct laid out for 32-bit processes is realigned by CNA.NET (CSX-134). -->
     <Reference Include="BEPUphysics" HintPath="$(GameRoot)/Resonance/Resonance/BEPUphysics v1.0.0/x86/Release/BEPUphysics.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
     <ProjectReference Include="AnimationLibrary/AnimationLibrary.csproj" />
     <ProjectReference Include="ResonanceLibrary/ResonanceLibrary.csproj" />
     <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />

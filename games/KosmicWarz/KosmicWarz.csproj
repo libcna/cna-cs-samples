@@ -20,9 +20,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DPSFPhone" HintPath="$(DpsfRoot)/XNA 4.0/Installer/Installer Files/DPSFPhone.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
     <ProjectReference Include="GameStateManagement/GameStateManagement.csproj" />
     <ProjectReference Include="ParticleSettings/ParticleSettings.csproj" />
     <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />

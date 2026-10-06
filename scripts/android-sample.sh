@@ -7,19 +7,19 @@
 # Like browser-sample.sh, the sample's own project is untouched: its evaluated identity, Compile
 # items and library projects are read from MSBuild, and a net11.0-android app is generated under
 # build-consumer/android/<Sample>/ with the same sources, Content as APK assets, and an activity that
-# runs the sample's own Main on SDL's thread (../cna-cs/eng/android). The emulator runs with
+# runs the sample's own Main on SDL's thread (../cna-dotnet/eng/android). The emulator runs with
 # -no-window and a read-only AVD; one this script started is stopped at the end unless
 # --keep-emulator. Screenshot and logcat land in DIR (default /rv/tmp/cs-samples/android/<Sample>).
 # --then runs a command on the device after the screenshot (e.g. 'input keyevent KEYCODE_BACK')
 # and reports whether the game's Main then returned. The app is uninstalled at the end unless
 # --keep-app: the emulator's /data holds a few apps of this size, not a corpus of them.
 #
-# Needs ../cna-cs/scripts/Build-AndroidNative.sh to have staged the native libraries, the .NET 11 SDK
+# Needs ../cna-dotnet/scripts/Build-AndroidNative.sh to have staged the native libraries, the .NET 11 SDK
 # with the android workload (default ~/deps/dotnet11) and the Android SDK (default ~/Android/Sdk).
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cs_root="$(cd "$here/../cna-cs" && pwd)"
+cna_dotnet_root="$(cd "$here/../cna-dotnet" && pwd)"
 dotnet_root="${DOTNET_ROOT_ANDROID:-$HOME/deps/dotnet11}"
 sdk="${ANDROID_SDK_ROOT:-$HOME/Android/Sdk}"
 sample=""; out=""; seconds=10; avd=Medium_Phone; keep=0; then=""; keep_app=0
@@ -67,12 +67,12 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProp
     -getItem:EmbeddedResource -getItem:ProjectReference -getItem:None -getItem:Content \
     -getItem:CnaWindowsPath -getItem:Reference -getItem:PackageReference >"$work/evaluation.json"
 
-python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
+python3 - "$work" "$sample_dir" "$cna_dotnet_root" <<'EOF'
 import json, re, subprocess, sys
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
-work, sample_dir, cs_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+work, sample_dir, cna_dotnet_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
 evaluation = json.loads((work / "evaluation.json").read_text())
 props, items = evaluation["Properties"], evaluation.get("Items", {})
 # The Android SDK's MSBuild breaks on an assembly name holding an apostrophe (A Princess' Request:
@@ -88,19 +88,19 @@ for item in items.get("ProjectReference", []):
     path = item["FullPath"]
     # The XNA-named forwarders a game referencing a library compiled against XNA needs are built
     # like the game's own libraries; the rest of CNA.NET is referenced below.
-    if path.startswith(str(cs_root).rstrip("/") + "/") and "/src/XnaAssemblies/" not in path:
+    if path.startswith(str(cna_dotnet_root).rstrip("/") + "/") and "/src/XnaAssemblies/" not in path:
         continue
     subprocess.run(["dotnet", "build", path, "-c", "Release", "-m:1"], check=True, stdout=subprocess.DEVNULL)
     target = subprocess.run(["dotnet", "msbuild", path, "-p:Configuration=Release", "-getProperty:TargetPath"],
                             check=True, capture_output=True, text=True).stdout.strip()
     libraries.append(Path(target))
 
-binaries = cs_root / "src/CNA.XnaCompat/bin/Release/net8.0"
+binaries = cna_dotnet_root / "src/CNA.XnaCompat/bin/Release/net8.0"
 references = [(name, binaries) for name in ("CNA.Interop", "CNA.Framework", "CNA.XnaCompat")]
 if props.get("CnaPhoneCompat") == "true":
-    references.append(("CNA.PhoneCompat", cs_root / "src/CNA.PhoneCompat/bin/Release/net8.0"))
+    references.append(("CNA.PhoneCompat", cna_dotnet_root / "src/CNA.PhoneCompat/bin/Release/net8.0"))
 if props.get("CnaWindowsFormsCompat") == "true":
-    references.append(("CNA.WindowsFormsCompat", cs_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"))
+    references.append(("CNA.WindowsFormsCompat", cna_dotnet_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"))
 
 constants = props.get("CnaSampleDefineConstants") or "WINDOWS"
 if props.get("CnaSampleConfiguration") == "Debug":
@@ -197,8 +197,8 @@ for item in items.get("None", []) + items.get("Content", []):
     if relative.split("/")[0] not in title_roots:
         title_roots.append(relative.split("/")[0])
 lines += ["    <Compile Include=\"GameApplication.g.cs\" />", "  </ItemGroup>",
-          f'  <Import Project="{cs_root}/src/CNA.XnaCompat/build/CNA.XnaCompat.targets" />',
-          f'  <Import Project="{cs_root}/eng/android/CNA.Android.targets" />', "</Project>", ""]
+          f'  <Import Project="{cna_dotnet_root}/src/CNA.XnaCompat/build/CNA.XnaCompat.targets" />',
+          f'  <Import Project="{cna_dotnet_root}/eng/android/CNA.Android.targets" />', "</Project>", ""]
 (work / f"{sample}.Android.csproj").write_text("\n".join(lines))
 
 # The phone's XAP host constructed a phone-only game; anything else runs its own Main.

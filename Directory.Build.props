@@ -3,14 +3,14 @@
   <!--
     Locates the CNA.NET checkout that supplies Microsoft.Xna.Framework.
 
-    Order: an explicit property, then CNA_CS_ROOT from the environment, then the two sibling
+    Order: an explicit property, then CNA_DOTNET_ROOT from the environment, then the two sibling
     layouts this project has been checked out beside. The samples themselves know nothing about
     any of this; keeping the discovery here is what lets their .csproj files stay nearly empty.
   -->
   <PropertyGroup>
-    <CnaCsRoot Condition="'$(CnaCsRoot)' == '' and '$(CNA_CS_ROOT)' != ''">$(CNA_CS_ROOT)</CnaCsRoot>
-    <CnaCsRoot Condition="'$(CnaCsRoot)' == '' and Exists('$(MSBuildThisFileDirectory)../cna-cs/src/CNA.XnaCompat/CNA.XnaCompat.csproj')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../cna-cs'))</CnaCsRoot>
-    <CnaCsRoot Condition="'$(CnaCsRoot)' == '' and Exists('$(MSBuildThisFileDirectory)../_bindings/cna-cs/src/CNA.XnaCompat/CNA.XnaCompat.csproj')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../_bindings/cna-cs'))</CnaCsRoot>
+    <CnaDotnetRoot Condition="'$(CnaDotnetRoot)' == '' and '$(CNA_DOTNET_ROOT)' != ''">$(CNA_DOTNET_ROOT)</CnaDotnetRoot>
+    <CnaDotnetRoot Condition="'$(CnaDotnetRoot)' == '' and Exists('$(MSBuildThisFileDirectory)../cna-dotnet/src/CNA.XnaCompat/CNA.XnaCompat.csproj')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../cna-dotnet'))</CnaDotnetRoot>
+    <CnaDotnetRoot Condition="'$(CnaDotnetRoot)' == '' and Exists('$(MSBuildThisFileDirectory)../_bindings/cna-dotnet/src/CNA.XnaCompat/CNA.XnaCompat.csproj')">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../_bindings/cna-dotnet'))</CnaDotnetRoot>
   </PropertyGroup>
 
   <!-- The C++ port campaign: the eligibility authority and the source of every .xnb. -->

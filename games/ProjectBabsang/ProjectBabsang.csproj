@@ -13,9 +13,9 @@
   <ItemGroup>
     <Reference Include="DebugViewXNA" HintPath="$(GameRoot)/bin/x86/Debug/DebugViewXNA.dll" />
     <Reference Include="FarseerPhysicsXNA" HintPath="$(GameRoot)/bin/x86/Debug/FarseerPhysicsXNA.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
     <None Include="$(GameContent)/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

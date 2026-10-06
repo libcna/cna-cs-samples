@@ -45,7 +45,7 @@ find_existing() {
         [ -f "$cache" ] || continue
         grep -q "^CNA_GRAPHICS_RENDERER:STRING=$renderer\$" "$cache" || continue
         grep -q "^CNA_EASYGL_COMPILED_EFFECTS:BOOL=ON$" "$cache" || continue
-        # A cross-compiled tree (../cna-cs's cmake-build-android-<abi>) is the newest Release
+        # A cross-compiled tree (../cna-dotnet's cmake-build-android-<abi>) is the newest Release
         # OPENGLES3 tree with compiled effects too, and this host cannot load what it builds.
         grep -q "^CMAKE_TOOLCHAIN_FILE:" "$cache" && continue
         [ -f "$d/modules/c-api/libcna_c_api.so" ] || continue
@@ -102,4 +102,4 @@ echo "renderer       : $renderer (compiled effects ON)"
 echo "CNA C ABI      : $abi"
 echo
 echo "CNA.NET admits one reviewed ABI generation at a time; check that $abi is in"
-echo "  \$CNA_CS_ROOT/docs/native-abi-compatibility.md before reporting a load failure as a bug."
+echo "  \$CNA_DOTNET_ROOT/docs/native-abi-compatibility.md before reporting a load failure as a bug."

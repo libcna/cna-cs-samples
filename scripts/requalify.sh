@@ -17,7 +17,7 @@
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cs_root="$(cd "$here/../cna-cs" && pwd)"
+dotnet_root="$(cd "$here/../cna-dotnet" && pwd)"
 cna_root="$(cd "$here/../cna" && pwd)"
 out=""
 settle=5
@@ -35,7 +35,7 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-stamp="$(date +%Y%m%d)-cs$(git -C "$cs_root" rev-parse --short HEAD)-cna$(git -C "$cna_root" rev-parse --short HEAD)"
+stamp="$(date +%Y%m%d)-dotnet$(git -C "$dotnet_root" rev-parse --short HEAD)-cna$(git -C "$cna_root" rev-parse --short HEAD)"
 out="${out:-/rv/tmp/cs-samples/requal-$stamp}"
 mkdir -p "$out"
 
@@ -61,7 +61,7 @@ table="$out/requalification.md"
 {
     echo "# Requalification $stamp"
     echo
-    echo "CNA.NET \`$(git -C "$cs_root" rev-parse --short HEAD)\`, CNA \`$(git -C "$cna_root" rev-parse --short HEAD)\`,"
+    echo "CNA.NET \`$(git -C "$dotnet_root" rev-parse --short HEAD)\`, CNA \`$(git -C "$cna_root" rev-parse --short HEAD)\`,"
     echo "native \`$("$here/scripts/build-native-cna.sh" --no-build)\`, private Xvfb, settle ${settle}s."
     echo
     echo "| Sample | Build | Run + capture | Exit | vs C++ port | Window |"

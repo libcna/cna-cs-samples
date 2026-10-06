@@ -46,7 +46,7 @@ table="$out/browser-requalification.md"
 {
     echo "# Browser requalification $(date +%Y-%m-%d)"
     echo
-    echo "CNA.NET \`$(git -C "$here/../cna-cs" rev-parse --short HEAD)\`, CNA \`$(git -C "$here/../cna" rev-parse --short HEAD)\`,"
+    echo "CNA.NET \`$(git -C "$here/../cna-dotnet" rev-parse --short HEAD)\`, CNA \`$(git -C "$here/../cna" rev-parse --short HEAD)\`,"
     echo ".NET 11 browser-wasm${threads:+ multithreaded}, headless Chromium (SwiftShader WebGL2), ${seconds}s; desktop reference \`$desktop\`."
     echo
     echo "| Sample | Browser run | vs desktop C# | Canvas | Page errors |"

@@ -53,5 +53,5 @@ fi
 
 printf '%s\t%s\t%s\t%s\n' "$sample" "$upstream" "$subpath" "$port" >>"$here/samples/manifest.tsv"
 echo "scaffolded $dst; write $sample.csproj, then:"
-echo "  dotnet sln $here/CnaCsSamples.sln add samples/$sample/$sample.csproj"
+echo "  dotnet sln $here/CnaDotnetSamples.sln add samples/$sample/$sample.csproj"
 echo "  scripts/check-verbatim.sh $sample && scripts/check-content.sh"

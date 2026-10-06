@@ -11,7 +11,7 @@
 # MSBuild, and a browser project that includes the same sources and Content is generated under
 # build-consumer/browser/<Sample>/ (outside samples/, so the desktop glue does not apply). It is
 # a Microsoft.NET.Sdk.WebAssembly project for net11.0, the first .NET whose WebAssembly toolchain
-# compiles CNA, linking the archive ../cna-cs/scripts/Build-BrowserNative.sh stages; the CNA.NET
+# compiles CNA, linking the archive ../cna-dotnet/scripts/Build-BrowserNative.sh stages; the CNA.NET
 # assemblies it references are the net8.0 Release builds beside it.
 #
 # Needs the .NET 11 SDK with the wasm-tools workload (default ~/deps/dotnet11; DOTNET_ROOT_BROWSER
@@ -19,7 +19,7 @@
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cs_root="$(cd "$here/../cna-cs" && pwd)"
+cna_dotnet_root="$(cd "$here/../cna-dotnet" && pwd)"
 dotnet_root="${DOTNET_ROOT_BROWSER:-$HOME/deps/dotnet11}"
 node_dir="${CNA_BROWSER_NODE_DIR:-$HOME/emsdk/node/22.16.0_64bit}"
 sample=""; out=""; seconds=8; marker=""; threads=0
@@ -56,7 +56,7 @@ work="$here/build-consumer/browser/$sample"
 if [ "$threads" = 1 ]; then work="$work-threads"; fi
 export CNA_BROWSER_THREADS="$threads"
 mkdir -p "$work/wwwroot"
-cp "$cs_root/eng/browser/wwwroot/index.html" "$cs_root/eng/browser/wwwroot/main.js" "$work/wwwroot/"
+cp "$cna_dotnet_root/eng/browser/wwwroot/index.html" "$cna_dotnet_root/eng/browser/wwwroot/main.js" "$work/wwwroot/"
 
 # A game's sources are Compile items its CnaGameProjectSources target adds, so that target runs first.
 targets=()
@@ -71,7 +71,7 @@ DOTNET_CLI_TELEMETRY_OPTOUT=1 dotnet msbuild "$project" "${targets[@]}" -getProp
 # Library projects beside the sample (Pathfinding's MapData, SpriteSheet's runtime) are referenced
 # as their own Release builds, not merged in: content names their readers by assembly. So are the
 # XNA-named forwarders a game referencing a library compiled against XNA names (src/XnaAssemblies).
-python3 - "$work/evaluation.json" "$cs_root" <<'PYEOF' >"$work/libraries.txt"
+python3 - "$work/evaluation.json" "$cna_dotnet_root" <<'PYEOF' >"$work/libraries.txt"
 import json, sys
 items = json.load(open(sys.argv[1]))["Items"].get("ProjectReference", [])
 for item in items:
@@ -86,12 +86,12 @@ while read -r library; do
         -getProperty:TargetPath >>"$work/library-paths.txt"
 done <"$work/libraries.txt"
 
-python3 - "$work" "$sample_dir" "$cs_root" <<'EOF'
+python3 - "$work" "$sample_dir" "$cna_dotnet_root" <<'EOF'
 import json, os, sys
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
-work, sample_dir, cs_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+work, sample_dir, cna_dotnet_root = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
 def msbuild(value):
     return escape(value.replace("%", "%25").replace(";", "%3B"))
 libraries = [Path(line.strip()) for line in (work / "library-paths.txt").read_text().splitlines() if line.strip()]
@@ -105,15 +105,15 @@ if "'" in props["AssemblyName"]:
     print(f"browser assembly name: {props['AssemblyName']!r} without its apostrophe", file=sys.stderr)
     props["AssemblyName"] = props["AssemblyName"].replace("'", "")
 items = evaluation.get("Items", {})
-binaries = cs_root / "src/CNA.XnaCompat/bin/Release/net8.0"
+binaries = cna_dotnet_root / "src/CNA.XnaCompat/bin/Release/net8.0"
 references = ["CNA.Interop", "CNA.Framework", "CNA.XnaCompat"]
 folders = {}
 if props.get("CnaPhoneCompat") == "true":
     references.append("CNA.PhoneCompat")
-    folders["CNA.PhoneCompat"] = cs_root / "src/CNA.PhoneCompat/bin/Release/net8.0"
+    folders["CNA.PhoneCompat"] = cna_dotnet_root / "src/CNA.PhoneCompat/bin/Release/net8.0"
 if props.get("CnaWindowsFormsCompat") == "true":
     references.append("CNA.WindowsFormsCompat")
-    folders["CNA.WindowsFormsCompat"] = cs_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"
+    folders["CNA.WindowsFormsCompat"] = cna_dotnet_root / "src/CNA.WindowsFormsCompat/bin/Release/net8.0"
 
 lines = ['<Project Sdk="Microsoft.NET.Sdk.WebAssembly">', "  <PropertyGroup>",
          "    <TargetFramework>net11.0</TargetFramework>",
@@ -246,8 +246,8 @@ if windows_paths:
     lines.append('  <ItemGroup><Compile Include="CnaWindowsPaths.g.cs" /></ItemGroup>')
 if os.environ.get("CNA_BROWSER_THREADS") == "1":
     lines.append("  <PropertyGroup><WasmEnableThreads>true</WasmEnableThreads></PropertyGroup>")
-lines += [f'  <Import Project="{cs_root}/src/CNA.XnaCompat/build/CNA.XnaCompat.targets" />',
-          f'  <Import Project="{cs_root}/eng/browser/CNA.Browser.targets" />', "</Project>", ""]
+lines += [f'  <Import Project="{cna_dotnet_root}/src/CNA.XnaCompat/build/CNA.XnaCompat.targets" />',
+          f'  <Import Project="{cna_dotnet_root}/eng/browser/CNA.Browser.targets" />', "</Project>", ""]
 (work / f"{sample_dir.name}.Browser.csproj").write_text("\n".join(lines))
 EOF
 
@@ -262,7 +262,7 @@ if ! "$dotnet_root/dotnet" publish "$work/$(basename "$sample_dir").Browser.cspr
 fi
 
 env -u DISPLAY -u WAYLAND_DISPLAY CNA_RUN_SECONDS="$seconds" NODE_PATH="$node_dir/lib/node_modules" \
-    "$node_dir/bin/node" "$cs_root/scripts/Run-BrowserPage.mjs" "$work/publish/wwwroot" \
+    "$node_dir/bin/node" "$cna_dotnet_root/scripts/Run-BrowserPage.mjs" "$work/publish/wwwroot" \
     "$out/$sample.png" "$marker" >"$out/run.log" 2>&1 || status=$?
 grep -v "^\s*$\|GL Driver Message\|WEBGL_polygon_mode" "$out/run.log" | tail -25
 echo "capture  : $out/$sample.png"

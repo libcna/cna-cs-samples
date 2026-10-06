@@ -34,8 +34,8 @@
   <PropertyGroup Condition="'$(XnaPlatform)' == '' and '$(CnaPhoneGame)' != ''">
     <XnaPlatform>Windows Phone</XnaPlatform>
   </PropertyGroup>
-  <Import Project="$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets"
-          Condition="'$(CnaCsRoot)' != '' and Exists('$(CnaCsRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets')" />
+  <Import Project="$(CnaDotnetRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets"
+          Condition="'$(CnaDotnetRoot)' != '' and Exists('$(CnaDotnetRoot)/src/CNA.XnaCompat/build/CNA.XnaCompat.targets')" />
 
   <ItemGroup>
     <EmbeddedResource Update="**/*.resx">
@@ -67,14 +67,14 @@
     <CnaPhoneHostFile>$(IntermediateOutputPath)CnaPhoneHost.g.cs</CnaPhoneHostFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(CnaPhoneCompat)' == 'true' and '$(CnaCsRoot)' != ''">
-    <ProjectReference Include="$(CnaCsRoot)/src/CNA.PhoneCompat/CNA.PhoneCompat.csproj" />
+  <ItemGroup Condition="'$(CnaPhoneCompat)' == 'true' and '$(CnaDotnetRoot)' != ''">
+    <ProjectReference Include="$(CnaDotnetRoot)/src/CNA.PhoneCompat/CNA.PhoneCompat.csproj" />
   </ItemGroup>
 
   <!-- <CnaWindowsFormsCompat> references CNA.WindowsFormsCompat, the opt-in assembly carrying the
        part of System.Windows.Forms an XNA game uses on its own window (Form.FromHandle, MessageBox). -->
-  <ItemGroup Condition="'$(CnaWindowsFormsCompat)' == 'true' and '$(CnaCsRoot)' != ''">
-    <ProjectReference Include="$(CnaCsRoot)/src/CNA.WindowsFormsCompat/CNA.WindowsFormsCompat.csproj" />
+  <ItemGroup Condition="'$(CnaWindowsFormsCompat)' == 'true' and '$(CnaDotnetRoot)' != ''">
+    <ProjectReference Include="$(CnaDotnetRoot)/src/CNA.WindowsFormsCompat/CNA.WindowsFormsCompat.csproj" />
   </ItemGroup>
 
   <Target Name="GenerateCnaPhoneHost" BeforeTargets="CoreCompile" Condition="'$(CnaPhoneGame)' != ''">

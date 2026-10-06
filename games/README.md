@@ -383,14 +383,14 @@ Infiniminer is XNA 3.0.
 mkdir -p /rv/tmp/xna-games && cd /rv/tmp/xna-games
 git clone https://github.com/Gaming-Triad/rookie-drivers.git && git -C rookie-drivers checkout d9c099b
 git clone https://github.com/prenex/tiefighter.git && git -C tiefighter checkout 3c72d10
-cd tiefighter && ../../../data/development/github.com/libcna/cna-cs-samples/scripts/build-xna-content.sh \
+cd tiefighter && ../../../data/development/github.com/libcna/cna-dotnet-samples/scripts/build-xna-content.sh \
     --project "TIE Fighter Forever/Content/TIE Fighter ForeverContent.contentproj" \
     --out /rv/tmp/xna-games-content/tiefighter/Content --profile Reach \
     --extension TypeReaders/CollisionPipelineRuntimeHelper.csproj \
     --extension CollosionLoader/CollisionPipeline.csproj \
     --extension StarFighterEffect1Pipeline/StarFighterEffect1Pipeline.csproj \
     --extension MotherShipEffect1Pipeline/MothershipEffect1Pipeline.csproj
-cd /rv/data/development/github.com/libcna/cna-cs-samples
+cd /rv/data/development/github.com/libcna/cna-dotnet-samples
 dotnet build games/TieFighter/TieFighter.csproj -c Release    # likewise the others
 scripts/convert-xna-songs.sh "/rv/tmp/xna-games/rookie-drivers/Rookie Drivers/Rookie Drivers/bin/x86/Debug/Content"
 ```

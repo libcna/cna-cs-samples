@@ -67,7 +67,7 @@ On 2026-09-02 every `⬜` row was blocked by one of four known issues (37 load a
 `CNA-REPORT-002`; 25 declare a `DrawableGameComponent`, `CNA-REPORT-004`; 6 reach Windows Phone SDK
 types, `DEC-001`; 3 reference `Microsoft.Xna.Framework.Net`, `DEC-002`). As of 2026-10-01 both
 CNA-REPORTs are fixed (one in cna-cs, one in CNA) and the four `⛔` rows run; `DEC-001`/`DEC-002`
-are superseded by the campaign brief in `../cna-cs/CAMPAIGN.md` (a separate phone compatibility
+are superseded by the campaign brief in `../cna-dotnet/CAMPAIGN.md` (a separate phone compatibility
 assembly; the XNA Net/GamerServices surface backed by CNA).
 
 Every finished row runs from byte-identical upstream sources with no deviation; the phone-only
@@ -147,7 +147,7 @@ Raised by `CSSAMPLE-010` InputSequence, 2026-09-02. **Blocks 1 row outright; 2 m
 
 `Microsoft.Xna.Framework.Net` does not exist in CNA.NET, so `using Microsoft.Xna.Framework.Net;`
 fails to compile. Unlike `DEC-001`'s `Microsoft.Devices`, this **is** real XNA 4.0 surface, so
-`rules.md`'s ladder points at `../cna-cs` — but it is the Xbox LIVE session subsystem, and
+`rules.md`'s ladder points at `../cna-dotnet` — but it is the Xbox LIVE session subsystem, and
 implementing it is a large new subsystem rather than a bounded fix. CNA.NET already records the gap
 (`docs/xna-compatibility.md:188`, "GamerServices and networking/session APIs need separate
 inventory"); `GamerServices` and `Storage` are present.
@@ -362,9 +362,9 @@ game built from the same revision.
 
 ## Session report and commit contract
 
-Every session ends with: which rows moved and to what, which `../cna-cs` fixes were made and their
+Every session ends with: which rows moved and to what, which `../cna-dotnet` fixes were made and their
 commit hashes, which CNA defects were recorded, and what the next session should pick up. Put it in
 [`NEXT.md`](NEXT.md) under a new **Active handoff**.
 
-Commit `cna-cs-samples` and `../cna-cs` separately, by explicit file list, with the `CSSAMPLE-nnn`
+Commit `cna-dotnet-samples` and `../cna-dotnet` separately, by explicit file list, with the `CSSAMPLE-nnn`
 task id in both messages. Do not push unless the owner asks.

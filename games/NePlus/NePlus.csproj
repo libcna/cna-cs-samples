@@ -19,9 +19,9 @@
     <Reference Include="FarseerPhysicsXNA" HintPath="$(GameRoot)/NePlus/WindowsDLLs/FarseerPhysicsXNA.dll" />
     <Reference Include="ProjectMercury" HintPath="$(GameRoot)/NePlus/WindowsDLLs/ProjectMercury.dll" />
     <Reference Include="TiledLib" HintPath="$(GameRoot)/NePlus/WindowsDLLs/TiledLib.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Game/Microsoft.Xna.Framework.Game.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
     <!-- The three content projects all build into Content/, as the game's build merged them. -->
     <None Include="$(GameContent)/NePlusContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />
     <None Include="$(GameContent)/BloomPostProcessContent/**/*" LinkBase="Content" CopyToOutputDirectory="PreserveNewest" />

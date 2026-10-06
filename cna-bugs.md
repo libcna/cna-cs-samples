@@ -4,8 +4,8 @@ Since 2026-10-01 a defect below the binding is fixed in `../cna` or `../sharp-ru
 `rules.md`); this file records what was found, how it was reproduced and where it was fixed.
 [`plan.md`](plan.md) carries a one-line index of the same rows.
 
-A defect belongs here only when it is **below** `../cna-cs`. A defect in the binding is fixed in
-`../cna-cs` in the same session and written up in the sample's `missing.md` instead — see
+A defect belongs here only when it is **below** `../cna-dotnet`. A defect in the binding is fixed in
+`../cna-dotnet` in the same session and written up in the sample's `missing.md` instead — see
 `CSSAMPLE-001`'s `Clear(Color)` entry for that shape.
 
 Each row is written so that someone working in `../cnanext` can act on it without re-deriving it:

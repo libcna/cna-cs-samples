@@ -40,18 +40,18 @@
        already been read. -->
 
   <ItemGroup>
-    <ProjectReference Include="$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaCsRoot)' != ''" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaDotnetRoot)' != ''" />
   </ItemGroup>
 
   <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/$(CnaSampleContentDirectory)')">
     <None Include="$(CnaSampleContentDirectory)/**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <Target Name="ValidateCnaCsRoot" BeforeTargets="ResolveProjectReferences">
-    <Error Condition="'$(CnaCsRoot)' == ''"
-           Text="CNA.NET was not found. Check out cna-cs beside this repository, or set CNA_CS_ROOT or -p:CnaCsRoot=/path/to/cna-cs." />
-    <Error Condition="!Exists('$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj')"
-           Text="CnaCsRoot='$(CnaCsRoot)' does not contain src/CNA.XnaCompat/CNA.XnaCompat.csproj." />
+  <Target Name="ValidateCnaDotnetRoot" BeforeTargets="ResolveProjectReferences">
+    <Error Condition="'$(CnaDotnetRoot)' == ''"
+           Text="CNA.NET was not found. Check out cna-dotnet beside this repository, or set CNA_DOTNET_ROOT or -p:CnaDotnetRoot=/path/to/cna-dotnet." />
+    <Error Condition="!Exists('$(CnaDotnetRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj')"
+           Text="CnaDotnetRoot='$(CnaDotnetRoot)' does not contain src/CNA.XnaCompat/CNA.XnaCompat.csproj." />
   </Target>
 
 </Project>

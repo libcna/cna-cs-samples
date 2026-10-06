@@ -16,8 +16,8 @@
   <ItemGroup>
     <!-- A library built against XNA 4.0 itself (CSX-099): it binds to XNA's assembly names. -->
     <Reference Include="C3.XNA.Primitives2D" HintPath="$(GameRoot)/../XNAPrimitiveShapesLibrary/C3.XNA.Primitives2D.dll" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
-    <ProjectReference Include="$(CnaCsRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework/Microsoft.Xna.Framework.csproj" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/XnaAssemblies/Microsoft.Xna.Framework.Graphics/Microsoft.Xna.Framework.Graphics.csproj" />
     <ProjectReference Include="Farseer/Farseer.csproj" />
     <ProjectReference Include="Krypton/Krypton.csproj" />
     <ProjectReference Include="TiledLib/TiledLib.csproj" />

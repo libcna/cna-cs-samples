@@ -15,11 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(CnaCsRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaCsRoot)' != ''" />
+    <ProjectReference Include="$(CnaDotnetRoot)/src/CNA.XnaCompat/CNA.XnaCompat.csproj" Condition="'$(CnaDotnetRoot)' != ''" />
   </ItemGroup>
 
-  <Target Name="ValidateCnaCsRoot" BeforeTargets="ResolveProjectReferences">
-    <Error Condition="'$(CnaCsRoot)' == ''" Text="CNA.NET not found; set CNA_CS_ROOT." />
+  <Target Name="ValidateCnaDotnetRoot" BeforeTargets="ResolveProjectReferences">
+    <Error Condition="'$(CnaDotnetRoot)' == ''" Text="CNA.NET not found; set CNA_DOTNET_ROOT." />
   </Target>
 
 </Project>

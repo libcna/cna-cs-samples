@@ -17,7 +17,7 @@ permits. Every deviation from the upstream bytes is recorded in the affected sam
 
 ---
 
-## CNA.NET (`cna-cs`)
+## CNA.NET (`cna-dotnet`)
 
 The samples compile against **CNA.NET**, the C#/.NET binding that supplies the
 `Microsoft.Xna.Framework` API surface on top of CNA's C ABI.

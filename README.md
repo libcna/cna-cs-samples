@@ -2,7 +2,7 @@
 
 The official **Microsoft XNA Game Studio 4.0** sample collection — still in its original C# —
 running on [CNA](https://github.com/libcna/cna) through the
-[CNA.NET](https://github.com/libcna/cna-cs) binding, on .NET 8.
+[CNA.NET](https://github.com/libcna/cna-dotnet) binding, on .NET 8.
 
 This is not a port. The sibling [`cna-samples`](https://github.com/libcna/cna-samples)
 repository is the C++ port campaign; here the upstream C# files are checked in as close to
@@ -13,9 +13,9 @@ differs from upstream, and why.
 ```text
 original C# XNA sample          ← unchanged
         ↓
-CNA.XnaCompat                   Microsoft.Xna.Framework facade   (../cna-cs)
+CNA.XnaCompat                   Microsoft.Xna.Framework facade   (../cna-dotnet)
         ↓
-CNA.Framework → CNA.Interop     P/Invoke boundary                (../cna-cs)
+CNA.Framework → CNA.Interop     P/Invoke boundary                (../cna-dotnet)
         ↓
 CNA C ABI → CNA C++             native runtime                   (../cnanext)
 ```
@@ -25,18 +25,18 @@ CNA C ABI → CNA C++             native runtime                   (../cnanext)
 | Tool | Version |
 |---|---|
 | .NET SDK | 8.0 or later |
-| CNA.NET | sibling checkout, `../cna-cs` (or `../_bindings/cna-cs`) |
+| CNA.NET | sibling checkout, `../cna-dotnet` (or `../_bindings/cna-dotnet`) |
 | CNA | sibling checkout, `../cnanext`, built with `CNA_GRAPHICS_RENDERER=OPENGLES3` |
 | A GL ES 3 capable display | or `xvfb-run` for headless runs |
 
 CNA.NET pins one reviewed CNA C ABI generation at a time, so the two checkouts must agree; see
-`../cna-cs/docs/native-abi-compatibility.md`.
+`../cna-dotnet/docs/native-abi-compatibility.md`.
 
 ## Building and running
 
 ```bash
 scripts/build-native-cna.sh          # builds ../cnanext's C ABI library, reusing its build tree
-dotnet build CnaCsSamples.sln -c Release
+dotnet build CnaDotnetSamples.sln -c Release
 scripts/run-sample.sh PrimitivesSample
 ```
 
@@ -54,7 +54,7 @@ yet work on C++ CNA is not attempted, because a failure here could not be attrib
 Compiled content (`.xnb`) is copied byte-for-byte from `../cna-samples`. CNA reads `.xnb` and
 cannot produce it, so no content is built in this repository.
 
-`../cna-cs` is the only dependency this repository fixes. A defect below the C ABI is recorded in
+`../cna-dotnet` is the only dependency this repository fixes. A defect below the C ABI is recorded in
 [cna-bugs.md](cna-bugs.md) with a reproduction script instead, because CNA is not ours to change
 from here.
 
