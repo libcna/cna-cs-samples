@@ -7,7 +7,7 @@
 #       --headless             accepted for compatibility; every run is on a private display
 #       --frames N             forwarded to the sample as --frames N
 #       --build                dotnet build the sample first
-#       --lib <path>           explicit libcna_c_api.so
+#       --lib <path>           explicit libcna_c_api.so (.dylib on macOS)
 #
 # Note on --frames: it is passed through to the sample, and almost no original XNA sample
 # understands it. Deterministic-length runs are a property a sample would have to have had in
@@ -65,7 +65,8 @@ fi
 
 # AppendTargetFrameworkToOutputPath is off, and AssemblyName keeps the original project's name,
 # so the executable is bin/<cfg>/<AssemblyName> rather than bin/<cfg>/<SampleDirectory>.
-exe="$(find "$project_dir/bin/$configuration" -maxdepth 1 -type f -executable ! -name '*.so' ! -name '*.dll' 2>/dev/null | head -1)"
+# -perm -u+x rather than GNU's -executable, which BSD find (macOS) does not have.
+exe="$(find "$project_dir/bin/$configuration" -maxdepth 1 -type f -perm -u+x ! -name '*.so' ! -name '*.dylib' ! -name '*.dll' 2>/dev/null | head -1)"
 if [ -z "$exe" ]; then
     echo "error: no $configuration build of $sample; re-run with --build" >&2
     exit 2
@@ -86,7 +87,15 @@ echo
 # Never on the owner's desktop: CNA's private runner starts a headless Weston and a rootful
 # Xwayland with the real GPU (DRI3) and runs the sample there. Xvfb has no DRI3 and would measure a
 # software rasterizer instead of the renderer the C++ evidence was taken on.
+#
+# macOS has no Weston (CNA plans/plan_apple_m4.md AM4-228): there a sample runs off the desktop under
+# SDL's dummy video driver, which the windowless renderer build-native-cna.sh picks there (SOFTWARE)
+# draws under.
 cna_root="${CNA_ROOT:-$(cd "$here/.." && pwd)/cna}"
+if [ "$(uname -s)" = Darwin ]; then
+    cd "$(dirname "$exe")"
+    exec env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-dummy}" "$exe" "$@"
+fi
 runner="$cna_root/tools/platform/run_gpu_tests_private.sh"
 if [ ! -x "$runner" ]; then
     echo "error: $runner not found (set CNA_ROOT)" >&2

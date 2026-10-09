@@ -44,6 +44,12 @@ scripts/run-sample.sh PrimitivesSample
 sample; `--headless` wraps it in `xvfb-run`, and `--frames N` runs a fixed-length deterministic
 pass. Any additional arguments are forwarded to the sample unchanged.
 
+macOS has neither OpenGL ES nor Weston (CNA `plans/plan_apple_m4.md` `AM4-228`). There,
+`build-native-cna.sh` defaults to `SOFTWARE` with `CNA_SOFTWARE_COMPILED_EFFECTS`, finds a
+`libcna_c_api.dylib`, and also looks for build trees under `CNA_BUILD_ROOT`. `run-sample.sh` runs
+the sample off the desktop under SDL's dummy video driver. That is a smoke run -- the sample starts,
+loads its content and keeps running -- not the pixel evidence the `OPENGLES3` baseline carries.
+
 ## Scope
 
 Only samples the C++ campaign has already finished and proved are eligible here: a sample must be
