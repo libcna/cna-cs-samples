@@ -90,11 +90,13 @@ echo
 #
 # macOS has no Weston (CNA plans/plan_apple_m4.md AM4-228): there a sample runs off the desktop under
 # SDL's dummy video driver, which the windowless renderer build-native-cna.sh picks there (SOFTWARE)
-# draws under.
+# draws under. METAL needs a real window, so a Metal run asks for one explicitly with
+# SDL_VIDEODRIVER=cocoa.
 cna_root="${CNA_ROOT:-$(cd "$here/.." && pwd)/cna}"
 if [ "$(uname -s)" = Darwin ]; then
     cd "$(dirname "$exe")"
-    exec env SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-dummy}" "$exe" "$@"
+    exec env SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-dummy}" SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-dummy}" \
+        "$exe" "$@"
 fi
 runner="$cna_root/tools/platform/run_gpu_tests_private.sh"
 if [ ! -x "$runner" ]; then
