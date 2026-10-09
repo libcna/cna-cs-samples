@@ -47,8 +47,9 @@ pass. Any additional arguments are forwarded to the sample unchanged.
 macOS has neither OpenGL ES nor Weston (CNA `plans/plan_apple_m4.md` `AM4-228`). There,
 `build-native-cna.sh` defaults to `SOFTWARE` with `CNA_SOFTWARE_COMPILED_EFFECTS`, finds a
 `libcna_c_api.dylib`, and also looks for build trees under `CNA_BUILD_ROOT`. `run-sample.sh` runs
-the sample off the desktop under SDL's dummy video driver. That is a smoke run -- the sample starts,
-loads its content and keeps running -- not the pixel evidence the `OPENGLES3` baseline carries.
+the sample off the desktop under SDL's dummy video driver, unless `SDL_VIDEODRIVER` asks for a real
+window -- `cocoa`, which a `METAL` library needs. That is a smoke run -- the sample starts, loads
+its content and keeps running -- not the pixel evidence the `OPENGLES3` baseline carries.
 
 ## Scope
 
