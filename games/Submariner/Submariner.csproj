@@ -6,8 +6,8 @@
     <AssemblyName>Submariner</AssemblyName>
     <RootNamespace>Submariner</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/pwasilewski-pl_submariner-xna/Submariner/Submariner</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/submariner/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/pwasilewski-pl_submariner-xna/Submariner/Submariner</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/submariner/Content</GameContent>
     <GameProject>$(GameRoot)/Submariner.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

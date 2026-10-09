@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 21/MultiFingerPaint/MultiFingerPaint/MultiFingerPaint</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch21-multifingerpaint/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch21-multifingerpaint/Content</GameContent>
     <GameProject>$(GameRoot)/MultiFingerPaint.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

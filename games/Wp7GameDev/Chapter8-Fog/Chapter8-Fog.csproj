@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>Fog.FogGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter8/Fog/Fog</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-fog/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter8-fog/Content</GameContent>
     <GameProject>$(GameRoot)/Fog.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

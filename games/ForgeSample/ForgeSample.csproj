@@ -8,7 +8,7 @@
     <AssemblyName>XNA</AssemblyName>
     <RootNamespace>XNA</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/forge-sample/XNA/XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/forge-sample/XNA/XNA</GameRoot>
     <GameProject>$(GameRoot)/XNA.csproj</GameProject>
     <ForgeDlls>$(GameRoot)/../DLLs</ForgeDlls>
   </PropertyGroup>

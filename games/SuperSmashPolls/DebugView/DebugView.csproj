@@ -6,7 +6,7 @@
     <AssemblyName>DebugView XNA</AssemblyName>
     <RootNamespace>FarseerPhysics.DebugView</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/WilliamKluge_SuperSmashPolls/DebugViews/DebugView XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/WilliamKluge_SuperSmashPolls/DebugViews/DebugView XNA</GameRoot>
     <GameProject>$(GameRoot)/DebugView XNA.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

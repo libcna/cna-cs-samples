@@ -8,7 +8,7 @@
     <CnaSampleDefineConstants>WINDOWS;UNSAFE</CnaSampleDefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.Windows</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.Windows</GameRoot>
     <GameProject>$(GameRoot)/ProjectMercury.Windows.csproj</GameProject>
   </PropertyGroup>
 </Project>

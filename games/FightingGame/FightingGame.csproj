@@ -6,7 +6,7 @@
     <AssemblyName>FightingGame</AssemblyName>
     <RootNamespace>FightingGame</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/FinalProject/FightingGame/FightingGame/FightingGame</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/FinalProject/FightingGame/FightingGame/FightingGame</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/FightingGame.csproj</GameProject>
   </PropertyGroup>

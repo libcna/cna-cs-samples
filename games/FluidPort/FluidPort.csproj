@@ -9,8 +9,8 @@
     <AssemblyName>FluidPort</AssemblyName>
     <RootNamespace>FluidPort</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/klutch_Box2DFluid/FluidPort/FluidPort</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/fluidport/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/klutch_Box2DFluid/FluidPort/FluidPort</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/fluidport/Content</GameContent>
     <GameProject>$(GameRoot)/FluidPort.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

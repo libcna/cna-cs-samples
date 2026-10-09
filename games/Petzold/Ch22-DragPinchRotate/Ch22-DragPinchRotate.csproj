@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 22/DragPinchRotate/DragPinchRotate/DragPinchRotate</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch22-dragpinchrotate/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch22-dragpinchrotate/Content</GameContent>
     <GameProject>$(GameRoot)/DragPinchRotate.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

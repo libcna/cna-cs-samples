@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 19/TouchToStopRevolution/TouchToStopRevolution/TouchToStopRevolution</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch19-touchtostoprevolution/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch19-touchtostoprevolution/Content</GameContent>
     <GameProject>$(GameRoot)/TouchToStopRevolution.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

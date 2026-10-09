@@ -7,8 +7,8 @@
     <AssemblyName>NeonVectorShooter</AssemblyName>
     <RootNamespace>NeonVectorShooter</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/thiagoromam_game-development/NeonVectorShooter/NeonVectorShooter/NeonVectorShooter</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/neonvectorshooter/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/thiagoromam_game-development/NeonVectorShooter/NeonVectorShooter/NeonVectorShooter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/neonvectorshooter/Content</GameContent>
     <GameProject>$(GameRoot)/NeonVectorShooter.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -7,8 +7,8 @@
     <AssemblyName>Spineless</AssemblyName>
     <RootNamespace>Spineless</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13/Spineless/Spineless</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/spineless/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/GGJ13/Spineless/Spineless</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/spineless/Content</GameContent>
     <GameProject>$(GameRoot)/Spineless.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

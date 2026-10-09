@@ -6,8 +6,8 @@
     <AssemblyName>XNAShaderProgramming</AssemblyName>
     <RootNamespace>XNAShaderProgramming</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/petriw_XNA-Shader-Programming/XNA4ShaderProgramming 5 - Deform shader/XNAShaderProgramming/XNAShaderProgramming</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petriw/5-Deform-shader/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/petriw_XNA-Shader-Programming/XNA4ShaderProgramming 5 - Deform shader/XNAShaderProgramming/XNAShaderProgramming</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petriw/5-Deform-shader/Content</GameContent>
     <GameProject>$(GameRoot)/XNAShaderProgramming.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

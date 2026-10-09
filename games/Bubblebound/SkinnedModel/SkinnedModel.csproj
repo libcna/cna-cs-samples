@@ -7,7 +7,7 @@
     <AssemblyName>SkinnedModel</AssemblyName>
     <RootNamespace>SkinnedModel</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/bubblebound</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/bubblebound</GameRoot>
     <GameProject>$(GameRoot)/SkinnedModel/SkinnedModelWindows.csproj</GameProject>
   </PropertyGroup>
 </Project>

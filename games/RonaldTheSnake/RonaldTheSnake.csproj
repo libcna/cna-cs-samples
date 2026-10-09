@@ -7,9 +7,9 @@
     <AssemblyName>RonaldTheSnake</AssemblyName>
     <RootNamespace>RonaldTheSnake</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Layoric_RonaldTheSnake</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Layoric_RonaldTheSnake</GameRoot>
     <GameProject>$(GameRoot)/RonaldTheSnake/RonaldTheSnake/RonaldTheSnake.csproj</GameProject>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/final-ronald-complete/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/final-ronald-complete/Content</GameContent>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="CustomDataTypes/CustomDataTypes.csproj" />

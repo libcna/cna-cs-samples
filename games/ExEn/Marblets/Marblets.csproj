@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(ExEnRoot)/Samples/Marblets</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-marblets/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/exen-marblets/Content</GameContent>
     <GameProject>$(GameRoot)/Marblets[XNA].csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

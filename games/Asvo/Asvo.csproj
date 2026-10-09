@@ -9,8 +9,8 @@
     <RootNamespace>asvo</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/denniskb_asvo/prototype/asvo</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asvo/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/denniskb_asvo/prototype/asvo</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/asvo/Content</GameContent>
     <GameProject>$(GameRoot)/asvo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

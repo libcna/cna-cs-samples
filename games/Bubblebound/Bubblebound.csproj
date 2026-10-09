@@ -7,8 +7,8 @@
     <AssemblyName>bubblebound</AssemblyName>
     <RootNamespace>hyades</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/bubblebound/hyades/hyades</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/bubblebound/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/bubblebound/hyades/hyades</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/bubblebound/Content</GameContent>
     <GameProject>$(GameRoot)/hyades.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

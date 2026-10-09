@@ -7,8 +7,8 @@
     <AssemblyName>animationSeq2</AssemblyName>
     <RootNamespace>animationSeq2</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/4-3-2-SlowInOut</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/alaskajohn_2dGPfG/2dGPfG-XNA/4-3-2-SlowInOut</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/2dgpfg/Content</GameContent>
     <GameProject>$(GameRoot)/04-3-2-SlowInOut.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

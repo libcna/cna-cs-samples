@@ -7,8 +7,8 @@
     <AssemblyName>TIE Fighter Forever</AssemblyName>
     <RootNamespace>TIE_Fighter_Forever</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/tiefighter</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/tiefighter/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/tiefighter</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/tiefighter/Content</GameContent>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(GameRoot)/TIE Fighter Forever/**/*.cs" Exclude="$(GameRoot)/TIE Fighter Forever/obj/**;$(GameRoot)/TIE Fighter Forever/bin/**;$(GameRoot)/TIE Fighter Forever/Content/**" />

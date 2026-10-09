@@ -8,7 +8,7 @@
     <RootNamespace>GameLib</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS;RELEASE</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/GameLib</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/scotttorgeson_HeroesOfRock/GameLib</GameRoot>
     <GameProject>$(GameRoot)/GameLib.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

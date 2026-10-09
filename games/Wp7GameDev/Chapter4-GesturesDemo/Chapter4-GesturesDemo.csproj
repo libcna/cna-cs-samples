@@ -10,7 +10,7 @@
     <CnaPhoneGame>GesturesDemo.GesturesDemoGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <GameRoot>$(Wp7GameDevRoot)/Chapter4/GesturesDemo/GesturesDemo</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter4-gesturesdemo/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter4-gesturesdemo/Content</GameContent>
     <GameProject>$(GameRoot)/GesturesDemo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

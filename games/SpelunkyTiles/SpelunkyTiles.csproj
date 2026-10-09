@@ -5,8 +5,8 @@
     <AssemblyName>SpelunkyTileTest</AssemblyName>
     <RootNamespace>SpelunkyTileTest</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Jewelots_Spelunky-Tiles/src/SpelunkyTileTest/SpelunkyTileTest</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/spelunky/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Jewelots_Spelunky-Tiles/src/SpelunkyTileTest/SpelunkyTileTest</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/spelunky/Content</GameContent>
     <GameProject>$(GameRoot)/SpelunkyTileTest.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

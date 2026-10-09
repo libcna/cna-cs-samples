@@ -7,7 +7,7 @@
     <RootNamespace>TileGenerator</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Jewelots_Spelunky-Tiles/src/TileGenerator</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Jewelots_Spelunky-Tiles/src/TileGenerator</GameRoot>
     <GameProject>$(GameRoot)/TileGenerator.csproj</GameProject>
   </PropertyGroup>
 </Project>

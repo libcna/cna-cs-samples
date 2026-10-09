@@ -7,7 +7,7 @@
     <RootNamespace>FarseerPhysics</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mdlawson_ThievesLikeUs/Vendor/Farseer</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/mdlawson_ThievesLikeUs/Vendor/Farseer</GameRoot>
     <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
   </PropertyGroup>
 </Project>

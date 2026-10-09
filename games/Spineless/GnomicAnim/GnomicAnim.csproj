@@ -6,7 +6,7 @@
     <AssemblyName>Gnomic.Anim</AssemblyName>
     <RootNamespace>Gnomic.Anim</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/GGJ13</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/GGJ13</GameRoot>
     <GameProject>$(GameRoot)/Gnomic.Anim/Gnomic.Anim.csproj</GameProject>
   </PropertyGroup>
 </Project>

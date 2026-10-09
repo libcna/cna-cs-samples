@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 21/GradientBackground/GradientBackground/GradientBackground</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch21-gradientbackground/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch21-gradientbackground/Content</GameContent>
     <GameProject>$(GameRoot)/GradientBackground.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

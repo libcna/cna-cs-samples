@@ -6,7 +6,7 @@
     <AssemblyName>Box2D.XNA</AssemblyName>
     <RootNamespace>Box2D.XNA</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/SWF2XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/SWF2XNA</GameRoot>
     <GameProject>$(GameRoot)/Box2D.XNA/Box2D.XNA.csproj</GameProject>
   </PropertyGroup>
 </Project>

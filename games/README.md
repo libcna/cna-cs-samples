@@ -377,6 +377,25 @@ Not XNA 4.0, so not here: the BitSits games (`Squares-Vs-Triangles`, `Moolecule`
 Flotilla (its 4.0 line is an FNA port, and its art is commercial) and XNA Street Fighter;
 Infiniminer is XNA 3.0.
 
+## macOS on Apple silicon (METAL), 2026-10-09
+
+The eleven projects whose content ships in their own checkout (or that need none) were built on a
+Mac mini M4 (macOS 27, .NET 8) against the METAL C API (`CNA_NATIVE_LIBRARY` pointing at a
+`CNA_BUILD_C_API=ON`, `CNA_METAL_COMPILED_EFFECTS=ON` install of the campaign CNA) and run for 15
+seconds each in a real Cocoa window:
+
+| Project | Result |
+|---|---|
+| Blackjack, Disentanglement, Domino, FightingGame, FunGame, LdAlone, QuadtreeTerrain, Shootin, SquareChase, ZombieRun | running after 15 s; log names `METAL`; no exception, fatal or refusal line |
+| HauntedHouse | not built: its `TiledLib` compiles against Game Studio's `Microsoft.Xna.Framework.Content.Pipeline.dll` (`CNA_XNA40_GS`), which this Mac does not have |
+
+The other rows need content built by XNA's `BuildContent` under Wine (`scripts/build-xna-content.sh`),
+which was not reproduced on the Mac. Checkouts and content can live anywhere: every glue project
+names them under `$(XnaGamesRoot)` and `$(XnaGamesContentRoot)` (defaults `/rv/tmp/xna-games` and
+`/rv/tmp/xna-games-content`, `Directory.Build.props`), so for example
+`dotnet build games/Disentanglement/Disentanglement.csproj -c Release -p:XnaGamesRoot=$HOME/xna-games`
+moves a game and its library sub-projects together.
+
 ## Reproducing
 
 ```bash

@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>Xpf.Samples.S02Wp7Orientation.Game1</CnaPhoneGame>
     <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S02Wp7Orientation/Xpf.Samples.S02Wp7Orientation</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-S02Wp7Orientation/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xpf-S02Wp7Orientation/Content</GameContent>
     <GameProject>$(GameRoot)/Xpf.Samples.S02Wp7Orientation.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

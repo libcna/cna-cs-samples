@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(XnaByExampleRoot)/Chapter05/Code/Asteroid Belt Assault/Asteroid Belt Assault/Asteroid Belt Assault</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asteroidbelt/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/asteroidbelt/Content</GameContent>
     <GameProject>$(GameRoot)/Asteroid Belt Assault.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

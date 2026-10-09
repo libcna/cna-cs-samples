@@ -7,8 +7,8 @@
     <AssemblyName>ColorSample</AssemblyName>
     <RootNamespace>ColorSample</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/9-1-0-ColorGradient</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/alaskajohn_2dGPfG/2dGPfG-XNA/9-1-0-ColorGradient</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/2dgpfg/Content</GameContent>
     <GameProject>$(GameRoot)/09-1-0-ColorGradient.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

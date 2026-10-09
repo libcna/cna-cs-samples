@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(Wp7RecipesRoot)/Chapter2/XNATombstoning/XNATombstoning</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7r-tomb/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7r-tomb/Content</GameContent>
     <GameProject>$(GameRoot)/XNATombstoning.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

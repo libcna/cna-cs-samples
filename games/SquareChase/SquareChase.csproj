@@ -5,7 +5,7 @@
     <AssemblyName>SuareChase</AssemblyName>
     <RootNamespace>SuareChase</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/nethojs29_SquareChase</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/nethojs29_SquareChase</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/SuareChase.csproj</GameProject>
   </PropertyGroup>

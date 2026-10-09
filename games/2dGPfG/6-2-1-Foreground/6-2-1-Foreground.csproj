@@ -7,8 +7,8 @@
     <AssemblyName>DepthExample1</AssemblyName>
     <RootNamespace>Foreground</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/6-2-1-Foreground</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/alaskajohn_2dGPfG/2dGPfG-XNA/6-2-1-Foreground</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/2dgpfg/Content</GameContent>
     <GameProject>$(GameRoot)/06-2-1-Foreground.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

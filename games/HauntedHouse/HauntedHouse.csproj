@@ -9,7 +9,7 @@
     <AssemblyName>HauntedHouse</AssemblyName>
     <RootNamespace>HauntedHouse</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/HauntedHouse</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/callumlawson_Projects/HauntedHouse/HauntedHouse/HauntedHouse</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/HauntedHouse.csproj</GameProject>
   </PropertyGroup>

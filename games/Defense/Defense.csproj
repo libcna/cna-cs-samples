@@ -8,8 +8,8 @@
     <RootNamespace>defense</RootNamespace>
     <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/defense</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/defense/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/defense</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/defense/Content</GameContent>
     <GameProject>$(GameRoot)/defense-xna.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

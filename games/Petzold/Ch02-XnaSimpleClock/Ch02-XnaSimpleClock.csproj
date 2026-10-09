@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 02/XnaSimpleClock/XnaSimpleClock/XnaSimpleClock</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch02-xnasimpleclock/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch02-xnasimpleclock/Content</GameContent>
     <GameProject>$(GameRoot)/XnaSimpleClock.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

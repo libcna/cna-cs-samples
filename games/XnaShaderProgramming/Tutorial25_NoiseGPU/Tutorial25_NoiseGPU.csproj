@@ -6,8 +6,8 @@
     <AssemblyName>NoiseGPU</AssemblyName>
     <RootNamespace>NoiseGPU</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/petriw_XNA-Shader-Programming/Tutorial25_NoiseGPU/NoiseGPU/NoiseGPU</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petriw/Tutorial25_NoiseGPU/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/petriw_XNA-Shader-Programming/Tutorial25_NoiseGPU/NoiseGPU/NoiseGPU</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petriw/Tutorial25_NoiseGPU/Content</GameContent>
     <GameProject>$(GameRoot)/NoiseGPU.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

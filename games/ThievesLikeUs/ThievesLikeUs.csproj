@@ -8,8 +8,8 @@
     <AssemblyName>ThievesLikeUs</AssemblyName>
     <RootNamespace>ThievesLikeUs</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mdlawson_ThievesLikeUs/ThievesLikeUs</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/thieveslikeus/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/mdlawson_ThievesLikeUs/ThievesLikeUs</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/thieveslikeus/Content</GameContent>
     <GameProject>$(GameRoot)/ThievesLikeUs.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

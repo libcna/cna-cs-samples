@@ -5,8 +5,8 @@
     <AssemblyName>Mario3</AssemblyName>
     <RootNamespace>Mario3</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Zero-One101_Mario3/Mario3/Mario3</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mario3/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Zero-One101_Mario3/Mario3/Mario3</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/mario3/Content</GameContent>
     <GameProject>$(GameRoot)/Mario3.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -9,8 +9,8 @@
     <RootNamespace>itp380</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/flightsim/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/wontonst_flightsim</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/flightsim/Content</GameContent>
     <GameProject>$(GameRoot)/game-xna.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

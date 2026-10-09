@@ -8,8 +8,8 @@
     <AssemblyName>ProjectMercury.TestBench</AssemblyName>
     <RootNamespace>ProjectMercury.TestBench</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.TestBench.Windows</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mercury/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Andrea_MercuryParticleEngine/Branches/4.0/ProjectMercury.TestBench.Windows</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/mercury/Content</GameContent>
     <GameProject>$(GameRoot)/ProjectMercury.TestBench.Windows.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

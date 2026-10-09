@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PongDemosRoot)/Demo 07 Game with Sounds/PongGame/PongGame</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pongdemos/pongdemo07/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/pongdemos/pongdemo07/Content</GameContent>
     <GameProject>$(GameRoot)/PongGame.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

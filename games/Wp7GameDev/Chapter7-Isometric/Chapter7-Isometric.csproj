@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>Isometric.IsometricGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter7/Isometric/Isometric</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter7-isometric/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter7-isometric/Content</GameContent>
     <GameProject>$(GameRoot)/Isometric.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
     <RootNamespace>GameLogic</RootNamespace>
     <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/forge-sample/GameLogic</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/forge-sample/GameLogic</GameRoot>
     <GameProject>$(GameRoot)/GameLogic.csproj</GameProject>
     <ForgeDlls>$(GameRoot)/../XNA/DLLs</ForgeDlls>
   </PropertyGroup>

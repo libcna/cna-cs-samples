@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>CosmicRocksPartIII.CosmicRocksPartIIIGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter5/CosmicRocksPartIII/CosmicRocksPartIII</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter5-cosmicrockspartiii/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter5-cosmicrockspartiii/Content</GameContent>
     <GameProject>$(GameRoot)/CosmicRocksPartIII.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

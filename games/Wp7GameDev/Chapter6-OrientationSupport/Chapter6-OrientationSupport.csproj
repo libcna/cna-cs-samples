@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>OrientationSupport.OrientationSupportGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter6/OrientationSupport/OrientationSupport</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter6-orientationsupport/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter6-orientationsupport/Content</GameContent>
     <GameProject>$(GameRoot)/OrientationSupport.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

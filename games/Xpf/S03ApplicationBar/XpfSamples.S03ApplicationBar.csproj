@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>XpfSamples.S03ApplicationBar.Game1</CnaPhoneGame>
     <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S03ApplicationBar/Xpf.Samples.S03ApplicationBar</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-S03ApplicationBar/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xpf-S03ApplicationBar/Content</GameContent>
     <GameProject>$(GameRoot)/Xpf.Samples.S03ApplicationBar.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

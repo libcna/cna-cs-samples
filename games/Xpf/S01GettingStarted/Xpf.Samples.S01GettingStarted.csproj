@@ -8,7 +8,7 @@
     <RootNamespace>Xpf.Samples.S01GettingStarted</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S01GettingStarted/Xpf.Samples.S01GettingStarted</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-s01/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xpf-s01/Content</GameContent>
     <GameProject>$(GameRoot)/Xpf.Samples.S01GettingStarted.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 24/EdgeSlam/EdgeSlam/EdgeSlam</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch24-edgeslam/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch24-edgeslam/Content</GameContent>
     <GameProject>$(GameRoot)/EdgeSlam.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

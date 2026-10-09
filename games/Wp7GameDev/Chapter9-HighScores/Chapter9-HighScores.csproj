@@ -10,7 +10,7 @@
     <CnaPhoneGame>HighScores.HighScoresGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <GameRoot>$(Wp7GameDevRoot)/Chapter9/HighScores/HighScores</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter9-highscores/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter9-highscores/Content</GameContent>
     <GameProject>$(GameRoot)/HighScores.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

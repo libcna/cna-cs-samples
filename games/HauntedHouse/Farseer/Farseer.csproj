@@ -7,7 +7,7 @@
     <RootNamespace>FarseerPhysics</RootNamespace>
     <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/Farseer Physics Engine 3.3.1 XNA/Farseer Physics Engine 3.3.1 XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/callumlawson_Projects/HauntedHouse/HauntedHouse/Farseer Physics Engine 3.3.1 XNA/Farseer Physics Engine 3.3.1 XNA</GameRoot>
     <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
   </PropertyGroup>
 </Project>

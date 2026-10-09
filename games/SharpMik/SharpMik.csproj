@@ -6,8 +6,8 @@
     <RootNamespace>XNAWindowsTest</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/thegouldfish_SharpMik/XNATest/XNAWindowsTest</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/sharpmik/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/thegouldfish_SharpMik/XNATest/XNAWindowsTest</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/sharpmik/Content</GameContent>
     <GameProject>$(GameRoot)/XNAWindowsTest.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

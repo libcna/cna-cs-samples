@@ -6,7 +6,7 @@
     <AssemblyName>WindowsGame1</AssemblyName>
     <RootNamespace>WindowsGame1</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/FoxRyang_Project_Babsang/babsang/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/FoxRyang_Project_Babsang/babsang/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
   </PropertyGroup>

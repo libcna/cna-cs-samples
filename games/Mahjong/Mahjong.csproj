@@ -6,8 +6,8 @@
     <AssemblyName>MahjongXNA</AssemblyName>
     <RootNamespace>MahjongXNA</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Mahjong/WinXNA/WinXNA</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/mahjong/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Mahjong/WinXNA/WinXNA</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/mahjong/Content</GameContent>
     <GameProject>$(GameRoot)/WinXNA.csproj</GameProject>
     <!-- Its settings live in its App.config, read through ConfigurationManager. -->
     <AppConfig>$(GameRoot)/App.config</AppConfig>

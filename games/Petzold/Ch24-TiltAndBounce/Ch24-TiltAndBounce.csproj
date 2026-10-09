@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 24/TiltAndBounce/TiltAndBounce/TiltAndBounce</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch24-tiltandbounce/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch24-tiltandbounce/Content</GameContent>
     <GameProject>$(GameRoot)/TiltAndBounce.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

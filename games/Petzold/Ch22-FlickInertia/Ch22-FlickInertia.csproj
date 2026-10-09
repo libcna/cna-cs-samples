@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 22/FlickInertia/FlickInertia/FlickInertia</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch22-flickinertia/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch22-flickinertia/Content</GameContent>
     <GameProject>$(GameRoot)/FlickInertia.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
     <RootNamespace>TwinStickShooter</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(XenRoot)/StarterKits/TwinStickShooter</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xen-twinstick/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xen-twinstick/Content</GameContent>
     <GameProject>$(GameRoot)/TwinStickShooter.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

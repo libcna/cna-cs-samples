@@ -10,8 +10,8 @@
     <CnaPhoneGame>PhreeCell.Game1</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/coderserdar_WindowsPhoneSamples/SourceCode/E-Book Sample Codes/Programming WP 7/Chapter 23/PhreeCell/PhreeCell/PhreeCell</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/phreecell/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/coderserdar_WindowsPhoneSamples/SourceCode/E-Book Sample Codes/Programming WP 7/Chapter 23/PhreeCell/PhreeCell/PhreeCell</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/phreecell/Content</GameContent>
     <GameProject>$(GameRoot)/PhreeCell.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

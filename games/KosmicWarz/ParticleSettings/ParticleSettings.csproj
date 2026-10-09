@@ -6,7 +6,7 @@
     <RootNamespace>ParticleSettings</RootNamespace>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
     <GameProject>$(GameRoot)/ParticleSettings/ParticleSettings (Phone).csproj</GameProject>
   </PropertyGroup>
 </Project>

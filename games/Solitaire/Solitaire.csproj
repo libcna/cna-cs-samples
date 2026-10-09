@@ -10,8 +10,8 @@
     <CnaPhoneGame>XNASolitaire.Game1</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/solitaire-wp/XNASolitaire</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/solitaire/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/solitaire-wp/XNASolitaire</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/solitaire/Content</GameContent>
     <GameProject>$(GameRoot)/XNASolitaire/XNASolitaire.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

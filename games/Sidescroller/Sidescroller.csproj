@@ -6,7 +6,7 @@
     <AssemblyName>WindowsGame1</AssemblyName>
     <RootNamespace>WindowsGame1</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/XNASidescroller/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/XNASidescroller/WindowsGame1/WindowsGame1/WindowsGame1</GameRoot>
     <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

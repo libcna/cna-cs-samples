@@ -13,9 +13,9 @@
     <CnaPhoneGame>SpaceInvadersWP7.SIAGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/kosmicwarz/Content</GameContent>
-    <DpsfRoot Condition="'$(DpsfRoot)' == ''">/rv/tmp/xna-games/DPSF-XNA</DpsfRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/KosmicWarz-WP/SpaceInvadersWP7</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/kosmicwarz/Content</GameContent>
+    <DpsfRoot Condition="'$(DpsfRoot)' == ''">$(XnaGamesRoot)/DPSF-XNA</DpsfRoot>
     <GameProject>$(GameRoot)/SpaceInvadersWP7/SpaceInvadersWP7.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(ExEnRoot)/Samples/Orientation</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-orientation/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/exen-orientation/Content</GameContent>
     <GameProject>$(GameRoot)/Orientation[XNA].csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

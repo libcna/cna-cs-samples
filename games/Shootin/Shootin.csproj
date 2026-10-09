@@ -6,7 +6,7 @@
     <AssemblyName>Shootin</AssemblyName>
     <RootNamespace>Shootin</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/mtio_GoingToTheStars/Shootin/Shootin/Shootin</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/mtio_GoingToTheStars/Shootin/Shootin/Shootin</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/Shootin.csproj</GameProject>
   </PropertyGroup>

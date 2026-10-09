@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(ExEnRoot)/Samples/CatGirls</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/exen-catgirls/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/exen-catgirls/Content</GameContent>
     <GameProject>$(GameRoot)/CatGirls[XNA].csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

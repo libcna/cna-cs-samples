@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 02/XnaOrientableHelloPhone/XnaOrientableHelloPhone/XnaOrientableHelloPhone</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch02-xnaorientablehellophone/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch02-xnaorientablehellophone/Content</GameContent>
     <GameProject>$(GameRoot)/XnaOrientableHelloPhone.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

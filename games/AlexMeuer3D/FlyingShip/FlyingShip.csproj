@@ -7,7 +7,7 @@
     <RootNamespace>FlyingShip</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(AlexMeuer3DRoot)/FlyingShip/XNA_3D_INTRO</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/alexmeuer-flyingship/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/alexmeuer-flyingship/Content</GameContent>
     <GameProject>$(GameRoot)/FlyingShip.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

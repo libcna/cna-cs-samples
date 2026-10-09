@@ -6,7 +6,7 @@
     <RootNamespace>LilyPathLogo</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/jaquadro_LilyPath/LilyPathLogo</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/jaquadro_LilyPath/LilyPathLogo</GameRoot>
     <GameProject>$(GameRoot)/LilyPathLogo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

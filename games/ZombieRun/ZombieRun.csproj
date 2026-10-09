@@ -7,7 +7,7 @@
     <AssemblyName>FrunWithXNA2</AssemblyName>
     <RootNamespace>FrunWithXNA2</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scottrehlander_ZombieRunXNA/FrunWithXNA2/FrunWithXNA2</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/scottrehlander_ZombieRunXNA/FrunWithXNA2/FrunWithXNA2</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/Windows Copy of Windows Phone FrunWithXNA2.csproj</GameProject>
   </PropertyGroup>

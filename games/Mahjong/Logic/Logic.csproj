@@ -6,7 +6,7 @@
     <RootNamespace>Mahjong</RootNamespace>
     <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Mahjong</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Mahjong</GameRoot>
     <GameProject>$(GameRoot)/Logic/Logic.csproj</GameProject>
   </PropertyGroup>
 </Project>

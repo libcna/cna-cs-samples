@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>SkyBox.SkyBoxGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter8/SkyBox/SkyBox</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-skybox/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter8-skybox/Content</GameContent>
     <GameProject>$(GameRoot)/SkyBox.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

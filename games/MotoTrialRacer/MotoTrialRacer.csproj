@@ -11,8 +11,8 @@
     <CnaPhoneGame>MotoTrialRacer.Game1</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/moto-trial-racer-wp/MotoTrialRacer</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/moto/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/moto-trial-racer-wp/MotoTrialRacer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/moto/Content</GameContent>
     <GameProject>$(GameRoot)/MotoTrialRacer/MotoTrialRacer/MotoTrialRacer.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

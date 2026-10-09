@@ -6,7 +6,7 @@
     <AssemblyName>GameEngine</AssemblyName>
     <RootNamespace>GameEngine</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Some-2D-RPG/GameEngine</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Some-2D-RPG/GameEngine</GameRoot>
     <GameProject>$(GameRoot)/GameEngine.csproj</GameProject>
   </PropertyGroup>
 </Project>

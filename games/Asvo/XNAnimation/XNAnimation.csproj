@@ -7,7 +7,7 @@
     <RootNamespace>XNAnimation</RootNamespace>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/denniskb_asvo/prototype/XNAnimation/XNAnimation</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/denniskb_asvo/prototype/XNAnimation/XNAnimation</GameRoot>
     <GameProject>$(GameRoot)/XNAnimation.csproj</GameProject>
   </PropertyGroup>
 </Project>

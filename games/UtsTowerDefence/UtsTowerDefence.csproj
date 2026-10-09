@@ -6,8 +6,8 @@
     <RootNamespace>GameProgrammingMajor</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ddoodm_GameProgramming/GameProgrammingMajor/GameProgrammingMajor/GameProgrammingMajor</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/utsmajor/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/ddoodm_GameProgramming/GameProgrammingMajor/GameProgrammingMajor/GameProgrammingMajor</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/utsmajor/Content</GameContent>
     <GameProject>$(GameRoot)/GameProgrammingMajor.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

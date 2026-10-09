@@ -8,7 +8,7 @@
     <RootNamespace>GameLibrary</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/LostCodeStudios_GGJ14/GameLib/GameLibrary</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/LostCodeStudios_GGJ14/GameLib/GameLibrary</GameRoot>
     <GameProject>$(GameRoot)/GameLibrary.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

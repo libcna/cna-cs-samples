@@ -5,7 +5,7 @@
     <AssemblyName>Particle3DSample</AssemblyName>
     <RootNamespace>Particle3DSample</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim/Particle3DSample</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/wontonst_flightsim/Particle3DSample</GameRoot>
     <GameProject>$(GameRoot)/Particle3DSampleWindows.csproj</GameProject>
   </PropertyGroup>
 </Project>

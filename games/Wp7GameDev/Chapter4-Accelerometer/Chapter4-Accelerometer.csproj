@@ -10,7 +10,7 @@
     <CnaPhoneGame>AccelerometerDemo.AccelerometerGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <GameRoot>$(Wp7GameDevRoot)/Chapter4/Accelerometer/Accelerometer</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter4-accelerometer/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter4-accelerometer/Content</GameContent>
     <GameProject>$(GameRoot)/Accelerometer.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

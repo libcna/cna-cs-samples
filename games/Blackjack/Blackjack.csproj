@@ -7,7 +7,7 @@
     <AssemblyName>BlackjackXNA</AssemblyName>
     <RootNamespace>BlackjackXNA</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/stpettersens_21/xna/BlackjackXNA/BlackjackXNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/stpettersens_21/xna/BlackjackXNA/BlackjackXNA</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/BlackjackXNA.csproj</GameProject>
   </PropertyGroup>

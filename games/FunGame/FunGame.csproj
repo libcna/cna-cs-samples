@@ -5,7 +5,7 @@
     <AssemblyName>FunGame</AssemblyName>
     <RootNamespace>FunGame</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/rpallarino3_Test2DGame/FunGame/FunGame/FunGame</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/rpallarino3_Test2DGame/FunGame/FunGame/FunGame</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/FunGame.csproj</GameProject>
   </PropertyGroup>

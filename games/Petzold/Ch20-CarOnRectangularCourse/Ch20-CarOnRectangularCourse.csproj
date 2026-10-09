@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 20/CarOnRectangularCourse/CarOnRectangularCourse/CarOnRectangularCourse</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch20-caronrectangularcourse/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch20-caronrectangularcourse/Content</GameContent>
     <GameProject>$(GameRoot)/CarOnRectangularCourse.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

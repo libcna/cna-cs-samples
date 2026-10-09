@@ -6,7 +6,7 @@
     <AssemblyName>TypeReaders</AssemblyName>
     <RootNamespace>TypeReaders</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/tiefighter</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/tiefighter</GameRoot>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(GameRoot)/TypeReaders/**/*.cs" Exclude="$(GameRoot)/TypeReaders/obj/**;$(GameRoot)/TypeReaders/bin/**" />

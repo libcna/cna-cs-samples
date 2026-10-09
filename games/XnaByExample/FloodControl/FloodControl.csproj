@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(XnaByExampleRoot)/Chapter03/Code/Flood Control/Flood Control/Flood Control</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/floodcontrol/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/floodcontrol/Content</GameContent>
     <GameProject>$(GameRoot)/Flood Control.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

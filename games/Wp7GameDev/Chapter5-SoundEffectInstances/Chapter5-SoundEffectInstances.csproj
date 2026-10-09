@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>SoundEffectInstances.SoundEffectInstancesGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter5/SoundEffectInstances/SoundEffectInstances</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter5-soundeffectinstances/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter5-soundeffectinstances/Content</GameContent>
     <GameProject>$(GameRoot)/SoundEffectInstances.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

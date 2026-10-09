@@ -10,7 +10,7 @@
     <CnaPhoneGame>Tombstoning.TombstoningGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <GameRoot>$(Wp7GameDevRoot)/Chapter10/Tombstoning/Tombstoning</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter10-tombstoning/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter10-tombstoning/Content</GameContent>
     <GameProject>$(GameRoot)/Tombstoning.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

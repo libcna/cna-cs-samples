@@ -7,8 +7,8 @@
     <AssemblyName>Some2DRPG</AssemblyName>
     <RootNamespace>Some2DRPG</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Some-2D-RPG/Some2DRPG/Some2DRPG</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/some2drpg/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Some-2D-RPG/Some2DRPG/Some2DRPG</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/some2drpg/Content</GameContent>
     <GameProject>$(GameRoot)/Some2DRPG.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

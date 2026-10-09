@@ -5,8 +5,8 @@
     <AssemblyName>RiskOfPain</AssemblyName>
     <RootNamespace>RiskOfPain</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/nanexcool_RiskOfPain/RiskOfPain/RiskOfPain</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/riskofpain/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/nanexcool_RiskOfPain/RiskOfPain/RiskOfPain</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/riskofpain/Content</GameContent>
     <GameProject>$(GameRoot)/RiskOfPain.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

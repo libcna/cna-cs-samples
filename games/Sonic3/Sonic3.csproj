@@ -8,8 +8,8 @@
     <AssemblyName>Sonic3</AssemblyName>
     <RootNamespace>Sonic3</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/JonathanDechelle_Sonic3/Sonic3/Sonic3/Sonic3</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/sonic3/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/JonathanDechelle_Sonic3/Sonic3/Sonic3/Sonic3</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/sonic3/Content</GameContent>
     <GameProject>$(GameRoot)/Sonic3.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
     <AssemblyName>ResonanceLibrary</AssemblyName>
     <RootNamespace>ResonanceLibrary</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/resonance-game/Resonance</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/resonance-game/Resonance</GameRoot>
     <GameProject>$(GameRoot)/ResonanceLibrary/ResonanceLibrary.csproj</GameProject>
   </PropertyGroup>
 </Project>

@@ -6,8 +6,8 @@
     <RootNamespace>Platformer</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/apbeecham_xna-camera-2d/2DCamExample/Platformer/Platformer</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/camera2d/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/apbeecham_xna-camera-2d/2DCamExample/Platformer/Platformer</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/camera2d/Content</GameContent>
     <GameProject>$(GameRoot)/2DCamExample.csproj</GameProject>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>

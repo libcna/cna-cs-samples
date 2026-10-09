@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(Cocos2dXnaRoot)/tests/tests</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/cocos2dtests/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/cocos2dtests/Content</GameContent>
     <GameProject>$(GameRoot)/tests.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

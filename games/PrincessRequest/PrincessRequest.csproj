@@ -7,8 +7,8 @@
     <AssemblyName>A Princess%27 Request</AssemblyName>
     <RootNamespace>LD30</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/princess-request/LD30/LD30</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/princess/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/princess-request/LD30/LD30</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/princess/Content</GameContent>
     <GameProject>$(GameRoot)/LD30.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

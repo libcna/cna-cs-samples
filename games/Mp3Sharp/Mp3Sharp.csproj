@@ -6,7 +6,7 @@
     <RootNamespace>XNA4Sample</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ZaneDubya_MP3Sharp/XNA4Sample</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/ZaneDubya_MP3Sharp/XNA4Sample</GameRoot>
     <GameProject>$(GameRoot)/XNA4Sample.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

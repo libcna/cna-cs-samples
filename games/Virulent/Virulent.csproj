@@ -6,7 +6,7 @@
     <AssemblyName>Virulent_dev</AssemblyName>
     <RootNamespace>Virulent_dev</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Virulent-game/Virulent_dev/Virulent_dev</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Virulent-game/Virulent_dev/Virulent_dev</GameRoot>
     <GameProject>$(GameRoot)/Virulent_dev Windows.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

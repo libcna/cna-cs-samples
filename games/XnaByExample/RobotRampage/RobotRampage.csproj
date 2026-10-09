@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(XnaByExampleRoot)/Chapter07/Code/Robot Rampage/Robot Rampage/Robot Rampage</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/robotrampage/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/robotrampage/Content</GameContent>
     <GameProject>$(GameRoot)/Robot Rampage.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

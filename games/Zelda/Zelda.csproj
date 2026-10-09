@@ -8,8 +8,8 @@
     <RootNamespace>Zelda</RootNamespace>
     <CnaSampleContentDirectory>Zelda.Content</CnaSampleContentDirectory>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Zelda/Zelda</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/zelda/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Zelda/Zelda</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/zelda/Content</GameContent>
     <GameProject>$(GameRoot)/Zelda.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

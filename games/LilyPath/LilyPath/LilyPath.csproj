@@ -7,7 +7,7 @@
     <RootNamespace>LilyPath</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/jaquadro_LilyPath/LilyPath</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/jaquadro_LilyPath/LilyPath</GameRoot>
     <GameProject>$(GameRoot)/LilyPath.Xna.csproj</GameProject>
   </PropertyGroup>
 </Project>

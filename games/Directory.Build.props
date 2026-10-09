@@ -4,6 +4,13 @@
   <Import Project="../samples/Directory.Build.props" />
 
   <PropertyGroup>
+    <!-- Where the games' checkouts and their built content live. Every glue project names its
+         GameRoot/GameContent under these two, so one -p:XnaGamesRoot=... (or an environment
+         variable of the same name) moves the whole corpus, library sub-projects included; a
+         global -p:GameRoot cannot, because each sub-project has its own. The defaults are the
+         layout this corpus was assembled in (CNA plans/plan_apple_m4.md AM4-311). -->
+    <XnaGamesRoot Condition="'$(XnaGamesRoot)' == ''">/rv/tmp/xna-games</XnaGamesRoot>
+    <XnaGamesContentRoot Condition="'$(XnaGamesContentRoot)' == ''">/rv/tmp/xna-games-content</XnaGamesContentRoot>
     <!-- A 2010 project could version itself "1.0.*" (Farseer is "3.3.*"): Visual Studio 2010's
          compiler filled the stars in, and a deterministic build, .NET's default, refuses them. -->
     <Deterministic>false</Deterministic>

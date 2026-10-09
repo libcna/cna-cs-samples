@@ -8,7 +8,7 @@
     <AssemblyName>WindowsPuzzleVisualizer</AssemblyName>
     <RootNamespace>WindowsPuzzleVisualizer</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/dsplaisted_Disentanglement/DisentanglementApp/Disentanglement</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/dsplaisted_Disentanglement/DisentanglementApp/Disentanglement</GameRoot>
     <GameProject>$(GameRoot)/DisentanglementWindows.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

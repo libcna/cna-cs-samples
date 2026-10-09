@@ -8,7 +8,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/BEPUphysicsDrawer</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/scotttorgeson_HeroesOfRock/BEPUphysicsDrawer</GameRoot>
     <GameProject>$(GameRoot)/BEPUphysicsDrawer.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

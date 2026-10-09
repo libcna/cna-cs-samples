@@ -7,8 +7,8 @@
     <AssemblyName>cameraSample1</AssemblyName>
     <RootNamespace>cameraSample1</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/alaskajohn_2dGPfG/2dGPfG-XNA/5-3-1-SimpleTiles</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/2dgpfg/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/alaskajohn_2dGPfG/2dGPfG-XNA/5-3-1-SimpleTiles</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/2dgpfg/Content</GameContent>
     <GameProject>$(GameRoot)/05-3-1-SimpleTiles.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

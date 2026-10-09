@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 22/OneFingerScale/OneFingerScale/OneFingerScale</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch22-onefingerscale/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch22-onefingerscale/Content</GameContent>
     <GameProject>$(GameRoot)/OneFingerScale.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

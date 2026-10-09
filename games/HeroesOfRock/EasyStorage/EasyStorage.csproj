@@ -7,7 +7,7 @@
     <RootNamespace>EasyStorage</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/EasyStorage</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/scotttorgeson_HeroesOfRock/EasyStorage</GameRoot>
     <GameProject>$(GameRoot)/EasyStorage [Windows].csproj</GameProject>
   </PropertyGroup>
 </Project>

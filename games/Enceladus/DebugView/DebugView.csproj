@@ -6,7 +6,7 @@
     <AssemblyName>DebugViewXNA</AssemblyName>
     <RootNamespace>FarseerPhysics.DebugViews</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/escape-from-enceladus</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/escape-from-enceladus</GameRoot>
     <GameProject>$(GameRoot)/Farseer Physics Engine 3.3.1 Samples XNA/DebugView XNA/DebugView XNA.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

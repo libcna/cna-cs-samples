@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 21/PinwheelText/PinwheelText/PinwheelText</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch21-pinwheeltext/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch21-pinwheeltext/Content</GameContent>
     <GameProject>$(GameRoot)/PinwheelText.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

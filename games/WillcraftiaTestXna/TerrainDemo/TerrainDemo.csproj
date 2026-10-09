@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(TestXnaRoot)/TerrainDemo/TerrainDemo/TerrainDemo</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/terraindemo/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/terraindemo/Content</GameContent>
     <GameProject>$(GameRoot)/TerrainDemo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

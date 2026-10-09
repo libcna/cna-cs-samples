@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>Xpf.Samples.S05DataBinding101.Game1</CnaPhoneGame>
     <GameRoot>$(XpfRoot)/XPF.Samples/Xpf.Samples.S05DataBinding101/Xpf.Samples.S05DataBinding101</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xpf-S05DataBinding101/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xpf-S05DataBinding101/Content</GameContent>
     <GameProject>$(GameRoot)/Xpf.Samples.S05DataBinding101.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

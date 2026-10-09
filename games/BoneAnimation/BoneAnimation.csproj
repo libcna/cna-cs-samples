@@ -6,8 +6,8 @@
     <RootNamespace>BoneTestGame</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/imeteora_BoneAnimation/Bones.XNA.Example/BoneTestGame</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/bones/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/imeteora_BoneAnimation/Bones.XNA.Example/BoneTestGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/bones/Content</GameContent>
     <GameProject>$(GameRoot)/Bones.XNA.Example.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

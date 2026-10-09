@@ -6,8 +6,8 @@
     <AssemblyName>PyramidPanic</AssemblyName>
     <RootNamespace>PyramidPanic</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Kennyomg_PyramidPanic/PyramidPanic/PyramidPanic/PyramidPanic</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pyramidpanic/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Kennyomg_PyramidPanic/PyramidPanic/PyramidPanic/PyramidPanic</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/pyramidpanic/Content</GameContent>
     <GameProject>$(GameRoot)/PyramidPanic.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

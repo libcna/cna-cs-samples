@@ -9,8 +9,8 @@
     <AssemblyName>HeroesOfRock</AssemblyName>
     <RootNamespace>HeroesOfRock</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/scotttorgeson_HeroesOfRock/HeroesOfRock/HeroesOfRock</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/heroesofrock/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/scotttorgeson_HeroesOfRock/HeroesOfRock/HeroesOfRock</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/heroesofrock/Content</GameContent>
     <GameProject>$(GameRoot)/HeroesOfRock.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

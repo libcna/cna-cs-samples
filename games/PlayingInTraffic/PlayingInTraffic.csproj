@@ -7,8 +7,8 @@
     <AssemblyName>SmuckVexWin</AssemblyName>
     <RootNamespace>SmuckVexWin</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/PlayingInTrafficGame/SmuckVexWin</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/traffic/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/PlayingInTrafficGame/SmuckVexWin</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/traffic/Content</GameContent>
     <GameProject>$(GameRoot)/Traffic.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

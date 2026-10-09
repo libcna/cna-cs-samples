@@ -6,7 +6,7 @@
     <RootNamespace>PuzzleSolver</RootNamespace>
     <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/dsplaisted_Disentanglement/DisentanglementPortable</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/dsplaisted_Disentanglement/DisentanglementPortable</GameRoot>
     <GameProject>$(GameRoot)/DisentanglementPortable.csproj</GameProject>
   </PropertyGroup>
 </Project>

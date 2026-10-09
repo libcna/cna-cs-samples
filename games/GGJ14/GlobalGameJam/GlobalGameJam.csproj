@@ -8,8 +8,8 @@
     <AssemblyName>GlobalGameJam</AssemblyName>
     <RootNamespace>GlobalGameJam</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/LostCodeStudios_GGJ14/GlobalGameJam/GlobalGameJam/GlobalGameJam</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/ggj14/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/LostCodeStudios_GGJ14/GlobalGameJam/GlobalGameJam/GlobalGameJam</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/ggj14/Content</GameContent>
     <GameProject>$(GameRoot)/GlobalGameJam.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

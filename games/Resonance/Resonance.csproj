@@ -8,8 +8,8 @@
     <AssemblyName>Resonance</AssemblyName>
     <RootNamespace>Resonance</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/resonance-game/Resonance</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/resonance/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/resonance-game/Resonance</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/resonance/Content</GameContent>
     <GameProject>$(GameRoot)/Resonance/Resonance/Windows Copy of Resonance.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

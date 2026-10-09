@@ -6,7 +6,7 @@
     <AssemblyName>Krypton</AssemblyName>
     <RootNamespace>Krypton</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/Krypton/Krypton</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/callumlawson_Projects/HauntedHouse/HauntedHouse/Krypton/Krypton</GameRoot>
     <GameProject>$(GameRoot)/Krypton.csproj</GameProject>
   </PropertyGroup>
 </Project>

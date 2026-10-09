@@ -7,8 +7,8 @@
     <AssemblyName>WindowsGame1</AssemblyName>
     <RootNamespace>WindowsGame1</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Bryan-Legend_asteria/Assets/BlendEffectDemo/WindowsGame1/WindowsGame1</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/asteria-blend/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Bryan-Legend_asteria/Assets/BlendEffectDemo/WindowsGame1/WindowsGame1</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/asteria-blend/Content</GameContent>
     <GameProject>$(GameRoot)/WindowsGame1.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

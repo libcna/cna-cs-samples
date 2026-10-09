@@ -8,8 +8,8 @@
     <AssemblyName>RabbitApocalypse</AssemblyName>
     <RootNamespace>Lapins.Game</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Rabbit-Apocalypse/Source</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/rabbit/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Rabbit-Apocalypse/Source</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/rabbit/Content</GameContent>
     <GameProject>$(GameRoot)/Lapins.Game/Lapins.Game.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

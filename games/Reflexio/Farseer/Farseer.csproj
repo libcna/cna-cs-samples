@@ -7,7 +7,7 @@
     <RootNamespace>FarseerPhysics</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS;XNA</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ajl275_Reflexio/Reflexio.FNA/Farseer Physics Engine 3.3.1 XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/ajl275_Reflexio/Reflexio.FNA/Farseer Physics Engine 3.3.1 XNA</GameRoot>
     <GameProject>$(GameRoot)/Farseer Physics XNA.csproj</GameProject>
   </PropertyGroup>
 </Project>

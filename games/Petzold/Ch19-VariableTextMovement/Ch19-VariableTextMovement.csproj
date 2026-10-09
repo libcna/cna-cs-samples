@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 19/VariableTextMovement/VariableTextMovement/VariableTextMovement</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch19-variabletextmovement/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch19-variabletextmovement/Content</GameContent>
     <GameProject>$(GameRoot)/VariableTextMovement.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

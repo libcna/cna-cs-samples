@@ -5,7 +5,7 @@
     <AssemblyName>Lapins.Engine</AssemblyName>
     <RootNamespace>Lapins.Engine</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/Rabbit-Apocalypse/Source</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/Rabbit-Apocalypse/Source</GameRoot>
     <GameProject>$(GameRoot)/Lapins.Engine/Lapins.Engine.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

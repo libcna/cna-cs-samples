@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 24/AccelerometerGraph/AccelerometerGraph/AccelerometerGraph</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch24-accelerometergraph/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch24-accelerometergraph/Content</GameContent>
     <GameProject>$(GameRoot)/AccelerometerGraph.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

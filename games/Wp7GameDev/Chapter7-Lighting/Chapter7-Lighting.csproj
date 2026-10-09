@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>Lighting.LightingGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter7/Lighting/Lighting</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter7-lighting/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter7-lighting/Content</GameContent>
     <GameProject>$(GameRoot)/Lighting.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

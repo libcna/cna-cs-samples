@@ -9,7 +9,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>DualTexture.DualTextureGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter8/DualTexture/DualTexture</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-dualtexture/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter8-dualtexture/Content</GameContent>
     <GameProject>$(GameRoot)/DualTexture.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

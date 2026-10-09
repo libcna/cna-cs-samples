@@ -10,8 +10,8 @@
     <AssemblyName>EscapeFromEnceladus</AssemblyName>
     <RootNamespace>Enceladus</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/escape-from-enceladus/EscapeFromEnceladus/EscapeFromEnceladus</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/enceladus/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/escape-from-enceladus/EscapeFromEnceladus/EscapeFromEnceladus</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/enceladus/Content</GameContent>
     <GameProject>$(GameRoot)/EscapeFromEnceladus.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

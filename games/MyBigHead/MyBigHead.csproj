@@ -7,8 +7,8 @@
     <AssemblyName>HeadGame</AssemblyName>
     <RootNamespace>HeadGame</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/MyBigHeadIsWeighingMeDownGame/HeadGame</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/headgame/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/MyBigHeadIsWeighingMeDownGame/HeadGame</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/headgame/Content</GameContent>
     <GameProject>$(GameRoot)/HeadGame.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

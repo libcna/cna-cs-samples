@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 05/XnaAccelerometer/XnaAccelerometer/XnaAccelerometer</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch05-xnaaccelerometer/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch05-xnaaccelerometer/Content</GameContent>
     <GameProject>$(GameRoot)/XnaAccelerometer.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

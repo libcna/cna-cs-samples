@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 19/ScaleTextToViewport/ScaleTextToViewport/ScaleTextToViewport</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch19-scaletexttoviewport/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch19-scaletexttoviewport/Content</GameContent>
     <GameProject>$(GameRoot)/ScaleTextToViewport.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

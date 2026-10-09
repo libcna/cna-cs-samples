@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(XnaByExampleRoot)/Chapter09/Code/Gemstone Hunter/Gemstone Hunter/Gemstone Hunter</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/gemstonehunter/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/gemstonehunter/Content</GameContent>
     <GameProject>$(GameRoot)/Gemstone Hunter.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

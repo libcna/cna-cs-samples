@@ -12,7 +12,7 @@
     <RootNamespace>TiledLib</RootNamespace>
     <CnaSampleDefineConstants>TRACE</CnaSampleDefineConstants>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/callumlawson_Projects/HauntedHouse/HauntedHouse/TiledLib/TiledLib</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/callumlawson_Projects/HauntedHouse/HauntedHouse/TiledLib/TiledLib</GameRoot>
     <GameProject>$(GameRoot)/TiledLib.csproj</GameProject>
     <XnaGameStudioReferences Condition="'$(XnaGameStudioReferences)' == ''">$(CNA_XNA40_GS)</XnaGameStudioReferences>
     <XnaGameStudioReferences Condition="'$(XnaGameStudioReferences)' == ''">/rv/tmp/samples/_tools/xna-game-studio-4-refresh/admin</XnaGameStudioReferences>

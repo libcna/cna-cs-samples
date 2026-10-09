@@ -7,7 +7,7 @@
     <RootNamespace>BoneLibrary</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/imeteora_BoneAnimation/Bones.XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/imeteora_BoneAnimation/Bones.XNA</GameRoot>
     <GameProject>$(GameRoot)/Bones.XNA.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

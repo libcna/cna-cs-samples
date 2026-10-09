@@ -6,7 +6,7 @@
     <AssemblyName>Henge3D.Physics</AssemblyName>
     <RootNamespace>Henge3D.Physics</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/wontonst_flightsim/Henge3D_201011/Physics</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/wontonst_flightsim/Henge3D_201011/Physics</GameRoot>
     <GameProject>$(GameRoot)/Physics.csproj</GameProject>
   </PropertyGroup>
 </Project>

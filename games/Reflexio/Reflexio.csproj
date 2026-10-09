@@ -11,8 +11,8 @@
     <AssemblyName>Reflexio</AssemblyName>
     <RootNamespace>Reflexio</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ajl275_Reflexio/Reflexio.FNA</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/reflexio/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/ajl275_Reflexio/Reflexio.FNA</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/reflexio/Content</GameContent>
     <GameProject>$(GameRoot)/Reflexio.csproj</GameProject>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>

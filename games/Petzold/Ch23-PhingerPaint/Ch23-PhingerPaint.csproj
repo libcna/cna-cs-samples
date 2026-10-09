@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS_PHONE</CnaSampleDefineConstants>
     <GameRoot>$(PetzoldRoot)/Chapter 23/PhingerPaint/PhingerPaint/PhingerPaint</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petzold/petzold-ch23-phingerpaint/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petzold/petzold-ch23-phingerpaint/Content</GameContent>
     <GameProject>$(GameRoot)/PhingerPaint.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

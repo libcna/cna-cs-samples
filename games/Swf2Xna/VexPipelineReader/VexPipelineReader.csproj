@@ -6,7 +6,7 @@
     <AssemblyName>VexPipelineReader</AssemblyName>
     <RootNamespace>VexPipelineReader</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/SWF2XNA</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/SWF2XNA</GameRoot>
     <GameProject>$(GameRoot)/VexPipelineReader/VexPipelineReader.csproj</GameProject>
   </PropertyGroup>
 </Project>

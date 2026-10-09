@@ -7,7 +7,7 @@
     <RootNamespace>FPS_Assessment</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(AlexMeuer3DRoot)/FPS_Assessment/FPS_Assessment</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/alexmeuer-fps/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/alexmeuer-fps/Content</GameContent>
     <GameProject>$(GameRoot)/FPS_Assessment.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

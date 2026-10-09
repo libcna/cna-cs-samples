@@ -8,7 +8,7 @@
     <AssemblyName>ld_alone</AssemblyName>
     <RootNamespace>ld_alone</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/zachrburke_ludum-dare22/ld_alone/ld_alone</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/zachrburke_ludum-dare22/ld_alone/ld_alone</GameRoot>
     <GameContent Condition="'$(GameContent)' == ''">$(GameRoot)/bin/x86/Debug/Content</GameContent>
     <GameProject>$(GameRoot)/ld_alone.csproj</GameProject>
   </PropertyGroup>

@@ -7,7 +7,7 @@
     <RootNamespace>_3DSolarSystem</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(AlexMeuer3DRoot)/3DSolarSystem/3DSolarSystem</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/alexmeuer-solar3d/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/alexmeuer-solar3d/Content</GameContent>
     <GameProject>$(GameRoot)/3DSolarSystem.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

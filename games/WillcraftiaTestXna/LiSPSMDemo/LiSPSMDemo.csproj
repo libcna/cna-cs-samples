@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(TestXnaRoot)/LiSPSMDemo/LiSPSMDemo/LiSPSMDemo</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/lispsm/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/lispsm/Content</GameContent>
     <GameProject>$(GameRoot)/LiSPSMDemo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

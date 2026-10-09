@@ -10,7 +10,7 @@
     <CnaPhoneGame>VaporTrailTS.VaporTrailTSGame</CnaPhoneGame>
     <CnaPhoneCompat>true</CnaPhoneCompat>
     <GameRoot>$(Wp7GameDevRoot)/Chapter10/VaporTrailTS/VaporTrailTS</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter10-vaportrailts/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter10-vaportrailts/Content</GameContent>
     <GameProject>$(GameRoot)/VaporTrailTS.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

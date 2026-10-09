@@ -7,7 +7,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaSampleDefineConstants>WINDOWS</CnaSampleDefineConstants>
     <GameRoot>$(TestXnaRoot)/PSSMDemo/PSSMDemo/PSSMDemo</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/pssm/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/pssm/Content</GameContent>
     <GameProject>$(GameRoot)/PSSMDemo.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

@@ -6,8 +6,8 @@
     <AssemblyName>NoiseGPU</AssemblyName>
     <RootNamespace>NoiseGPU</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/petriw_XNA-Shader-Programming/Tutorial26_BumpMappedNoise/NoiseGPU/NoiseGPU</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/petriw/Tutorial26_BumpMappedNoise/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/petriw_XNA-Shader-Programming/Tutorial26_BumpMappedNoise/NoiseGPU/NoiseGPU</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/petriw/Tutorial26_BumpMappedNoise/Content</GameContent>
     <GameProject>$(GameRoot)/BumpMapNoise.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

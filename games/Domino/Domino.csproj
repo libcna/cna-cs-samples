@@ -6,7 +6,7 @@
     <AssemblyName>Domino Beta v0.1</AssemblyName>
     <RootNamespace>Domino_Beta_v0._1</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/DominoTropicalXNA/Domino/Domino</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/DominoTropicalXNA/Domino/Domino</GameRoot>
     <GameProject>$(GameRoot)/Domino.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

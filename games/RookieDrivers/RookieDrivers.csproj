@@ -6,7 +6,7 @@
     <AssemblyName>Rookie Drivers</AssemblyName>
     <RootNamespace>RookieDrivers</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/rookie-drivers/Rookie Drivers/Rookie Drivers</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/rookie-drivers/Rookie Drivers/Rookie Drivers</GameRoot>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(GameRoot)/**/*.cs" Exclude="$(GameRoot)/obj/**;$(GameRoot)/bin/**" />

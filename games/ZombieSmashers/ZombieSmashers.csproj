@@ -7,7 +7,7 @@
     <AssemblyName>GameZS</AssemblyName>
     <RootNamespace>ZombieSmashers</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/ZombieSmashersXNA4/GameZS/GameZS/GameZS</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/ZombieSmashersXNA4/GameZS/GameZS/GameZS</GameRoot>
     <GameProject>$(GameRoot)/GameZS.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

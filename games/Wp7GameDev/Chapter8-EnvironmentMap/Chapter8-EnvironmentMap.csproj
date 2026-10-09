@@ -10,7 +10,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <CnaPhoneGame>EnvironmentMap.EnvironmentMapGame</CnaPhoneGame>
     <GameRoot>$(Wp7GameDevRoot)/Chapter8/EnvironmentMap/EnvironmentMap</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/wp7gamedev/chapter8-environmentmap/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/wp7gamedev/chapter8-environmentmap/Content</GameContent>
     <GameProject>$(GameRoot)/EnvironmentMap.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

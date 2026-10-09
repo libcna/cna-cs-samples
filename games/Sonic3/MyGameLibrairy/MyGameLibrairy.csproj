@@ -6,7 +6,7 @@
     <AssemblyName>MyGameLibrairy</AssemblyName>
     <RootNamespace>MyGameLibrairy</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/JonathanDechelle_Sonic3/GameLibrairie/MyGameLibrairy/MyGameLibrairy</GameRoot>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/JonathanDechelle_Sonic3/GameLibrairie/MyGameLibrairy/MyGameLibrairy</GameRoot>
     <GameProject>$(GameRoot)/MyGameLibrairy.csproj</GameProject>
   </PropertyGroup>
 </Project>

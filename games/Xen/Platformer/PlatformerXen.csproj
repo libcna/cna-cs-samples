@@ -9,7 +9,7 @@
     <RootNamespace>PlatformerXen</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameRoot>$(XenRoot)/StarterKits/Platformer</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/xen-platformer/Content</GameContent>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/xen-platformer/Content</GameContent>
     <GameProject>$(GameRoot)/PlatformerXen.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>

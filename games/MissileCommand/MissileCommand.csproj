@@ -7,8 +7,8 @@
     <AssemblyName>MissileCommand</AssemblyName>
     <RootNamespace>MissileCommand</RootNamespace>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GameRoot Condition="'$(GameRoot)' == ''">/rv/tmp/xna-games/MissileCommand/MissileCommand/MissileCommand/MissileCommand</GameRoot>
-    <GameContent Condition="'$(GameContent)' == ''">/rv/tmp/xna-games-content/missilecommand/Content</GameContent>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(XnaGamesRoot)/MissileCommand/MissileCommand/MissileCommand/MissileCommand</GameRoot>
+    <GameContent Condition="'$(GameContent)' == ''">$(XnaGamesContentRoot)/missilecommand/Content</GameContent>
     <GameProject>$(GameRoot)/MissileCommand.csproj</GameProject>
   </PropertyGroup>
   <ItemGroup>
